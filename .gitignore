@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+dist/
+waha-media/
+.sessions/
+*.egg-info/
+.venv/
+venv/
+pgdata/
+smartmoney-backups/
+docker-compose.override.yml
+waha-qr.png
+models/*.pkl
+models/*.joblib

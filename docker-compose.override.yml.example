@@ -1,0 +1,11 @@
+# Dev overrides — copy to docker-compose.override.yml
+services:
+  api:
+    volumes:
+      - ./packages:/app/packages
+  worker:
+    volumes:
+      - ./packages:/app/packages
+  processor:
+    volumes:
+      - ./packages:/app/packages
