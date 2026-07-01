@@ -47,7 +47,7 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
   return (
     <div>
       <div className="page-intro">
-        <h2>Smart-Money Tracker</h2>
+        <h2>Trade Bot</h2>
         <p className="muted">Each row shows a live 6-month price chart plus scores. Demand tab = predicted from world trends, no bulk deal needed.</p>
       </div>
 

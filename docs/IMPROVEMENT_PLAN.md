@@ -1,4 +1,4 @@
-# Improvement Plan — Smart-Money Tracker
+# Improvement Plan — Trade Bot
 
 A phased roadmap focused on **clear hold/sell timeframes**, then data quality, UI, and alerts.
 

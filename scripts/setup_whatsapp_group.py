@@ -14,8 +14,8 @@ from notifier.waha import create_alert_group, list_group_chats, waha_healthy
 def main() -> None:
   parser = argparse.ArgumentParser(description="Setup WhatsApp alert group")
   parser.add_argument("--list", action="store_true", help="List existing group chats")
-  parser.add_argument("--create", action="store_true", help="Create Smart Money Alerts group")
-  parser.add_argument("--name", default="Smart Money Alerts", help="Group name")
+  parser.add_argument("--create", action="store_true", help="Create Trade Bot Alerts group")
+  parser.add_argument("--name", default="Trade Bot Alerts", help="Group name")
   parser.add_argument("--phone", default="", help="Your phone (919606754584) to add to group")
   args = parser.parse_args()
   settings = get_settings()

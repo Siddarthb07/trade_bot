@@ -86,11 +86,11 @@ def daily_picks_message(
   today = datetime.now(IST).strftime("%d %b")
   home = dashboard_home_url(dashboard_url)
   if not picks:
-    lines_empty = [f"Smart Money · {today}", "No high-conviction BUY picks today."]
+    lines_empty = [f"Trade Bot · {today}", "No high-conviction BUY picks today."]
     lines_empty.extend(_link_block(home))
     return "\n".join(lines_empty)
 
-  lines = [f"Smart Money · Top {len(picks)} Picks · {today} · {market} (by est. return)"]
+  lines = [f"Trade Bot · Top {len(picks)} Picks · {today} · {market} (by est. return)"]
   for idx, (signal, score) in enumerate(picks, start=1):
     meta = _score_meta(score)
     prob = meta.get("prob")

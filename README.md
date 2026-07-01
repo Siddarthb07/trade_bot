@@ -1,4 +1,4 @@
-# Smart-Money Tracker
+# Trade Bot
 
 Personal research and alerting system for Indian (NSE) and US (SEC) institutional activity. Runs entirely on your Windows PC via Docker.
 
@@ -13,7 +13,7 @@ Personal research and alerting system for Indian (NSE) and US (SEC) institutiona
 ## Quick Start
 
 ```powershell
-cd C:\Users\siddu\projects\smart-money-tracker
+cd C:\Users\siddu\projects\trade_bot
 copy .env.example .env
 # Edit .env: set DASHBOARD_PUBLIC_URL to your PC LAN IP, WHATSAPP_TO, SEC_IDENTITY, passwords
 

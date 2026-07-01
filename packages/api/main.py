@@ -28,7 +28,7 @@ from processor.scoring import score_signal
 
 settings = get_settings()
 security = HTTPBasic()
-app = FastAPI(title="Smart-Money Tracker API", version="0.1.0")
+app = FastAPI(title="Trade Bot API", version="0.1.0")
 
 app.add_middleware(
   CORSMiddleware,

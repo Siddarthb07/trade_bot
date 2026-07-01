@@ -23,9 +23,9 @@ if ($Create) {
 }
 
 Write-Host @"
-Smart Money WhatsApp Group Setup
+Trade Bot WhatsApp Group Setup
 ================================
-1. Create a WhatsApp group manually on your phone named 'Smart Money Alerts'
+1. Create a WhatsApp group manually on your phone named 'Trade Bot Alerts'
 2. Add your linked number to it (or create via --Create below)
 3. List groups to get the group ID:
    .\scripts\setup_whatsapp_group.ps1 -List

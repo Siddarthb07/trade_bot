@@ -19,7 +19,7 @@ export default function Layout() {
     <div className="app">
       <header className="header">
         <div className="header-brand">
-          <strong>Smart-Money Tracker</strong>
+          <strong>Trade Bot</strong>
           <span className="subtitle">Not investment advice</span>
         </div>
         <nav className="header-nav">

@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     notify_dry_run: bool = False
     dashboard_public_url: str = "http://192.168.1.42:3000"
     whatsapp_to: str = ""
-    ntfy_topic: str = "smartmoney-alerts"
+    ntfy_topic: str = "trade-bot-alerts"
     ntfy_server: str = "http://ntfy:80"
 
     waha_base_url: str = "http://waha:3000"
