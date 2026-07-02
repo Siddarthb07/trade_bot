@@ -43,6 +43,9 @@ services:
     environment:
       POSTGRES_URL: ${POSTGRES_URL}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      MODEL_DIR: /app/models
+    volumes:
+      - models:/app/models
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -64,6 +67,9 @@ services:
     environment:
       POSTGRES_URL: ${POSTGRES_URL}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      MODEL_DIR: /app/models
+    volumes:
+      - models:/app/models
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -80,6 +86,9 @@ services:
     environment:
       POSTGRES_URL: ${POSTGRES_URL}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      MODEL_DIR: /app/models
+    volumes:
+      - models:/app/models
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -139,3 +148,4 @@ services:
 volumes:
   pgdata:
   ntfy-cache:
+  models:
