@@ -6,7 +6,7 @@ import StickyHoldBar from "../components/StickyHoldBar";
 import { usePriceCharts } from "../hooks/usePriceCharts";
 import { useHoldPrefs } from "../hooks/useHoldPrefs";
 import { apiFetch, LiveThemePick, SignalItem, ThemeSummary } from "../api";
-import { fmtPct, fmtValue } from "../utils/format";
+import { fmtPct, fmtValue, fmtDateLabel } from "../utils/format";
 import {
   bulkHoldMetrics,
   bulkProfitMetrics,
@@ -71,9 +71,9 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
       try {
         const m = market ? `&market=${market}` : "";
         const [d, b, all] = await Promise.all([
-          apiFetch<{ items: LiveThemePick[] }>(`/themes/live-picks?limit=30&no_bulk_only=true${m}`),
+          apiFetch<{ items: LiveThemePick[] }>(`/themes/live-picks?limit=30${m}`),
           apiFetch<{ items: SignalItem[]; scoring_note?: string }>(`/signals/top-picks?market=${market || "IN"}&limit=20&days=14`),
-          apiFetch<{ items: SignalItem[] }>(`/signals?limit=40${market ? `&market=${market}` : ""}`),
+          apiFetch<{ items: SignalItem[] }>(`/signals?limit=80${market ? `&market=${market}` : ""}`),
         ]);
         setDemand(d.items);
         setBulkTop(b.items);
@@ -108,8 +108,23 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
       rows = rows.filter((r) => r.p.theme_slug === themeFilter);
     }
     rows = rows.filter((r) => passesExitFilter(r.tf));
+    rows.sort((a, b) => {
+      const ab = a.p.investor_backing?.investors?.length ? 1 : 0;
+      const bb = b.p.investor_backing?.investors?.length ? 1 : 0;
+      if (ab !== bb) return bb - ab;
+      return (b.p.composite_score ?? 0) - (a.p.composite_score ?? 0);
+    });
     return sortByExit(rows);
   }, [demand, exitFilter, sortExit, themeFilter]);
+
+  const allSignalsSorted = useMemo(() => {
+    return [...allSignals].sort((a, b) => {
+      const ab = a.investor_backing?.investors?.length ? 1 : 0;
+      const bb = b.investor_backing?.investors?.length ? 1 : 0;
+      if (ab !== bb) return bb - ab;
+      return new Date(b.disclosed_at).getTime() - new Date(a.disclosed_at).getTime();
+    });
+  }, [allSignals]);
 
   const bulkRows = useMemo(() => {
     const rows = bulkTop.map((s) => ({ s, tf: tfFromDist(s.return_distribution) }))
@@ -307,7 +322,16 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
                   market={p.market}
                   signalId={p.signal_id}
                   headline={`${p.company_name} · ${p.theme_name}`}
-                  subline={pickView === "profit" ? pickRationale(p) : p.demand_driver}
+                  subline={
+                    pickView === "profit"
+                      ? pickRationale(p)
+                      : p.investor_backing
+                        ? [
+                            `${fmtValue(p.investor_backing.total_value, p.market)} backed · ${p.investor_backing.investor_count} investors`,
+                            p.demand_driver,
+                          ].filter(Boolean).join(" · ")
+                        : p.demand_driver
+                  }
                   tier={p.tier}
                   timeframe={tf}
                   showTimeline={pickView === "hold"}
@@ -318,13 +342,15 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
                   tags={[
                     pickView === "hold" ? "Hold plan" : "Profit outlook",
                     p.market,
-                    "Demand pick",
-                    p.bulk_confirmed ? "Bulk confirmed" : p.has_bulk_deal ? "Also has bulk" : "No bulk deal",
+                    p.bulk_backed ? "Bulk backed" : "Demand pick",
+                    p.bulk_confirmed ? "Bulk confirmed" : p.has_bulk_deal ? "Also has bulk" : null,
                     tf.timeframe_tier || "",
-                  ].filter(Boolean)}
+                  ].filter(Boolean) as string[]}
                   prices={c?.prices}
                   trend={c?.trend}
                   chartLoading={chartsLoading && !c}
+                  investorBacking={p.investor_backing}
+                  prediction={p.prediction}
                 />
               );
             })
@@ -352,7 +378,7 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
                     s.investor_backing
                       ? `${fmtValue(s.investor_backing.total_value, s.market)} backed · ${s.investor_backing.investor_count} investors`
                       : fmtValue(s.value, s.market),
-                    new Date(s.disclosed_at).toLocaleDateString(),
+                    tf.entry_date_label || fmtDateLabel(s.disclosed_at, true),
                     fmtPct(s.calibrated_probability, 1) + " conf",
                     s.bulk_deal_count_week && s.bulk_deal_count_week > 1
                       ? `${s.bulk_deal_count_week} bulk deals this week`
@@ -385,7 +411,7 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
 
       {!loading && tab === "all" && (
         <div className="panel-list">
-          {allSignals.map((s, i) => {
+          {allSignalsSorted.map((s, i) => {
             const c = get(s.ticker, s.market);
             const isMacro = s.source === "macro_theme";
             const tf = signalTf(s);
@@ -403,6 +429,13 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
                   return_rationale: s.return_distribution?.return_rationale as string,
                 } as LiveThemePick, tf))
               : (pickView === "hold" ? bulkHoldMetrics(s, tf, holdMode) : bulkProfitMetrics(s, tf));
+            const bulkSubline = s.investor_backing
+              ? [
+                  `${fmtValue(s.investor_backing.total_value, s.market)} backed · ${s.investor_backing.investor_count} investors`,
+                  tf.entry_date_label || fmtDateLabel(s.disclosed_at, true),
+                  fmtPct(s.calibrated_probability, 1) + " conf",
+                ].filter(Boolean).join(" · ")
+              : `${s.action} · ${s.source} · ${fmtDateLabel(s.disclosed_at, true)}`;
             return (
               <ExpandableStockPanel
                 key={s.id}
@@ -411,12 +444,14 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
                 market={s.market}
                 signalId={s.id}
                 headline={isMacro ? `${s.ticker} · ${s.theme?.name || s.entity}` : `${s.ticker} · ${s.entity}`}
-                subline={`${s.action} · ${s.source} · ${new Date(s.disclosed_at).toLocaleDateString()}`}
+                subline={isMacro ? `${s.action} · ${s.source} · ${fmtDateLabel(s.disclosed_at, true)}` : bulkSubline}
                 tier={s.tier}
                 timeframe={tf}
                 showTimeline={pickView === "hold"}
                 metrics={metrics}
-                tags={[isMacro ? "Demand" : "Bulk", s.market, pickView === "hold" ? "Hold" : "Profit"]}
+                investorBacking={s.investor_backing}
+                prediction={s.prediction}
+                tags={[isMacro ? "Demand" : "Bulk", s.market, s.investor_backing ? "Smart-money" : "", pickView === "hold" ? "Hold" : "Profit"].filter(Boolean)}
                 prices={c?.prices}
                 trend={c?.trend}
                 chartLoading={chartsLoading && !c}

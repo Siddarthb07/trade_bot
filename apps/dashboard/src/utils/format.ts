@@ -20,9 +20,12 @@ export function fmtDateLabel(iso?: string | null, short = false) {
   if (!iso) return "—";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "—";
-  return d.toLocaleDateString(undefined, short
-    ? { day: "numeric", month: "short" }
-    : { day: "numeric", month: "short", year: "numeric" });
+  return new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "numeric",
+    month: "short",
+    ...(short ? {} : { year: "numeric" }),
+  }).format(d);
 }
 
 export function fmtValue(v: number | null | undefined, market = "IN") {

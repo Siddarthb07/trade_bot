@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { DetailPriceChart, TrendInfo } from "../components/PriceChart";
 import HoldTimeline, { HoldBanner } from "../components/HoldTimeline";
 import { apiFetch, SignalItem } from "../api";
-import { fmtPct, fmtValue } from "../utils/format";
+import { fmtPct, fmtValue, fmtDateLabel } from "../utils/format";
 import { formatHoldLabel, tfFromDist } from "../utils/timeframe";
 import { useHoldPrefs } from "../hooks/useHoldPrefs";
 
@@ -68,7 +68,7 @@ export default function SignalPage() {
               <h2>{s.ticker} · {s.action}</h2>
               <p className="muted">
                 {isMacro ? s.theme?.name || s.entity : s.entity}
-                {" · "}{new Date(s.disclosed_at).toLocaleString()}
+                {" · "}{s.disclosed_date_full || fmtDateLabel(s.disclosed_at)}
               </p>
             </div>
             <span className={`tier ${s.tier?.toLowerCase()}`}>{s.tier}</span>

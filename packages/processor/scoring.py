@@ -76,12 +76,12 @@ def score_macro_signal(db: Session, signal: Signal) -> SignalScore:
   if conf["bulk_confirmed"] and tier == "MEDIUM" and prob >= 0.58:
     tier = "HIGH"
 
-  from processor.timeframe import build_timeframe
-  from processor.partial_exit import build_partial_exit_plan
   from processor.market_data import compute_trend_features
+  from processor.partial_exit import build_partial_exit_plan
+  from processor.timeframe import build_timeframe, signal_entry_anchor
 
   trend = compute_trend_features(signal.ticker_normalized)
-  tf = build_timeframe(int(days), signal.disclosed_at, volatility_annualized=trend.get("volatility_20d"))
+  tf = build_timeframe(int(days), signal_entry_anchor(signal.disclosed_at), volatility_annualized=trend.get("volatility_20d"))
   tf["partial_exit_plan"] = build_partial_exit_plan(int(days))
   distribution = {
     "median": None,

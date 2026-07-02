@@ -95,6 +95,7 @@ def bulk_investor_breakdown(
 
   aggregate_win_rate = sum(tracked_wr) / len(tracked_wr) if tracked_wr else None
   aggregate_median = sum(tracked_med) / len(tracked_med) if tracked_med else None
+  latest_bulk_at = max((d.disclosed_at for d in deals), default=None)
 
   return {
     "investors": investors,
@@ -102,6 +103,7 @@ def bulk_investor_breakdown(
     "investor_count": len(by_entity),
     "deal_count": len(deals),
     "window_days": since_days,
+    "latest_bulk_at": latest_bulk_at.isoformat() if latest_bulk_at else None,
     "aggregate_win_rate": round(aggregate_win_rate, 4) if aggregate_win_rate is not None else None,
     "aggregate_median_return": round(aggregate_median, 4) if aggregate_median is not None else None,
     "tracked_past_trades": tracked_n,

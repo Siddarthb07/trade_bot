@@ -125,6 +125,8 @@ export interface SignalItem {
   qty?: number;
   value?: number;
   disclosed_at: string;
+  disclosed_date_label?: string;
+  disclosed_date_full?: string;
   source_url?: string;
   tier?: string;
   historical_win_rate?: number;
@@ -187,11 +189,15 @@ export interface LiveThemePick {
   calibrated_probability: number;
   expected_return_pct: number;
   tier: string;
+  composite_score?: number;
   signal_id?: string | null;
   signal_date?: string | null;
   has_bulk_deal: boolean;
   bulk_confirmed?: boolean;
   bulk_deal_count?: number;
+  bulk_backed?: boolean;
+  investor_backing?: BulkInvestorBacking;
+  prediction?: BulkPredictionMeta;
   sell_horizon_label?: string;
   hold_days?: number;
   hold_label_long?: string;

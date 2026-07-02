@@ -132,6 +132,159 @@ def _signal_data_maturity(db: Session, signal: Signal) -> dict[str, Any]:
   )
 
 
+def _intel_data_maturity(
+  db: Session,
+  signal: Signal | None,
+  backing: dict[str, Any],
+) -> dict[str, Any] | None:
+  """Maturity badge anchored to the latest bulk deal, not a macro signal date."""
+  from processor.data_maturity import data_maturity
+
+  disclosed_at = None
+  latest = backing.get("latest_bulk_at")
+  if latest:
+    disclosed_at = datetime.fromisoformat(str(latest).replace("Z", "+00:00"))
+  elif signal:
+    disclosed_at = signal.disclosed_at
+  if disclosed_at is None:
+    return None
+  forward = _forward_returns_map(db, signal.id) if signal else {}
+  return data_maturity(
+    disclosed_at,
+    forward_returns=forward,
+    label_window=settings.win_window,
+  )
+
+
+def _attach_investor_intel(
+  db: Session,
+  item: dict[str, Any],
+  signal: Signal | None,
+  *,
+  ticker: str,
+  market: str,
+  since_days: int = 14,
+) -> None:
+  """Attach smart-money backing + track record block (bulk deals on this ticker)."""
+  from processor.bulk_investors import bulk_investor_breakdown
+
+  backing = bulk_investor_breakdown(db, ticker, market.upper(), since_days=since_days)
+  if not backing.get("investors"):
+    return
+
+  item["investor_backing"] = backing
+  dist = item.get("return_distribution") or {}
+  scorer = item.get("scorer_version") or ""
+  maturity = _intel_data_maturity(db, signal, backing)
+  item["prediction"] = {
+    "method": "ml" if "lgbm" in scorer else "rules",
+    "scorer_version": scorer or "interim-v1",
+    "lead_investor_win_rate": item.get("historical_win_rate"),
+    "lead_investor_median_return": dist.get("median"),
+    "lead_investor_n_trades": item.get("n_trades"),
+    "backing_win_rate": backing.get("aggregate_win_rate"),
+    "backing_median_return": backing.get("aggregate_median_return"),
+    "tracked_past_trades": backing.get("tracked_past_trades"),
+    "data_maturity": maturity,
+  }
+
+
+def _append_bulk_backed_demand_picks(
+  db: Session,
+  items: list[dict[str, Any]],
+  seen: set[str],
+  *,
+  limit: int,
+  days: int = 14,
+) -> None:
+  """Prepend NSE bulk-backed tickers (with investor intel) not already in demand picks."""
+  from datetime import timedelta
+
+  since = datetime.now(timezone.utc) - timedelta(days=days)
+  signals = (
+    db.query(Signal)
+    .filter(
+      Signal.market == "IN",
+      Signal.disclosed_at >= since,
+      Signal.source.in_(["nse_bulk", "nse_block"]),
+      Signal.action.in_(["BUY", "P", "A"]),
+    )
+    .order_by(desc(Signal.disclosed_at))
+    .all()
+  )
+  ranked: list[tuple[float, dict[str, Any], Signal]] = []
+  for signal in signals:
+    key = f"{signal.market}:{signal.ticker}"
+    if key in seen:
+      continue
+    score = _latest_score(db, signal.id)
+    exp, dist = _bulk_expected_return(db, signal, score)
+    item = _serialize_signal(db, signal)
+    _apply_distribution(item, dist)
+    ranked.append((exp, item, signal))
+
+  best: dict[str, tuple[float, dict[str, Any], Signal]] = {}
+  for exp, item, signal in ranked:
+    key = signal.ticker
+    prev = best.get(key)
+    if prev is None or exp > prev[0]:
+      best[key] = (exp, item, signal)
+
+  bulk_rows: list[dict[str, Any]] = []
+  for ticker, (exp, item, signal) in sorted(best.items(), key=lambda x: x[1][0], reverse=True):
+    hold_days = (item.get("return_distribution") or {}).get("hold_days")
+    if not passes_min_hold_filter(hold_days, db):
+      continue
+    _attach_investor_intel(db, item, signal, ticker=ticker, market="IN", since_days=days)
+    if not item.get("investor_backing"):
+      continue
+    dist = item.get("return_distribution") or {}
+    tf = _resolve_timeframe(
+      signal,
+      hold_days=int(dist.get("hold_days") or dist.get("sell_horizon_days") or 30),
+      score_dist=dist,
+    )
+    backing = item["investor_backing"]
+    bulk_rows.append({
+      "theme_slug": "bulk_backed",
+      "theme_name": "Smart-money bulk",
+      "demand_driver": (
+        f"NSE bulk/block — {backing.get('deal_count', 0)} deals, "
+        f"{backing.get('investor_count', 0)} investors in {days}d"
+      ),
+      "ticker": ticker,
+      "market": "IN",
+      "company_name": ticker,
+      "theme_heat": 0.0,
+      "alignment_score": 0.0,
+      "calibrated_probability": item.get("calibrated_probability") or dist.get("calibrated_probability"),
+      "expected_return_pct": exp,
+      "return_breakdown": dist.get("return_breakdown"),
+      "return_rationale": dist.get("return_rationale"),
+      "fundamentals": dist.get("fundamentals"),
+      "tier": item.get("tier"),
+      "composite_score": exp,
+      "signal_id": item.get("id"),
+      "signal_date": item.get("disclosed_at"),
+      "has_bulk_deal": True,
+      "bulk_confirmed": True,
+      "bulk_deal_count": backing.get("deal_count"),
+      "bulk_backed": True,
+      "investor_backing": item.get("investor_backing"),
+      "prediction": item.get("prediction"),
+      **{k: tf.get(k) for k in (
+        "hold_days", "hold_label_long", "hold_label_short",
+        "entry_date", "entry_date_label", "entry_date_full",
+        "exit_date_label", "exit_date_full", "exit_window_label",
+        "review_date_label", "countdown_label", "hold_status", "timeframe_tier", "days_remaining",
+      )},
+    })
+    seen.add(f"IN:{ticker}")
+
+  remaining = max(0, limit - len(items))
+  items[:0] = bulk_rows[:remaining]
+
+
 def _latest_score(db: Session, signal_id: uuid.UUID) -> SignalScore | None:
   return (
     db.query(SignalScore)
@@ -142,14 +295,11 @@ def _latest_score(db: Session, signal_id: uuid.UUID) -> SignalScore | None:
 
 
 def _stable_signal_entry(signal: Signal | None) -> datetime:
-  """Anchor hold windows to the signal's disclosure calendar day (IST), not request time."""
-  from zoneinfo import ZoneInfo
+  """Anchor hold windows to the signal's disclosure calendar day (IST)."""
+  from processor.timeframe import signal_entry_anchor
 
-  IST = ZoneInfo("Asia/Kolkata")
   src = signal.disclosed_at if signal and signal.disclosed_at else datetime.now(timezone.utc)
-  local = src.astimezone(IST)
-  stable = local.replace(hour=0, minute=0, second=0, microsecond=0)
-  return stable.astimezone(timezone.utc)
+  return signal_entry_anchor(src)
 
 
 def _resolve_timeframe(
@@ -174,6 +324,16 @@ def _resolve_timeframe(
 def _serialize_signal(db: Session, signal: Signal) -> dict[str, Any]:
   score = _latest_score(db, signal.id)
   raw = signal.raw_json or {}
+  dist: dict[str, Any] | None = dict(score.return_distribution) if score and score.return_distribution else None
+  if dist is not None:
+    hold_days = int(dist.get("hold_days") or dist.get("sell_horizon_days") or 30)
+    fresh = _resolve_timeframe(
+      signal,
+      hold_days=hold_days,
+      score_dist=dist,
+      volatility=dist.get("volatility_annualized"),
+    )
+    dist = {**dist, **fresh}
   item = {
     "id": str(signal.id),
     "source": signal.source,
@@ -189,9 +349,13 @@ def _serialize_signal(db: Session, signal: Signal) -> dict[str, Any]:
     "historical_win_rate": score.historical_win_rate if score else None,
     "n_trades": score.n_trades if score else None,
     "scorer_version": score.scorer_version if score else None,
-    "return_distribution": score.return_distribution if score else None,
-    "calibrated_probability": (score.return_distribution or {}).get("calibrated_probability") if score else None,
+    "return_distribution": dist,
+    "calibrated_probability": (dist or {}).get("calibrated_probability") if dist else None,
   }
+  if signal.disclosed_at:
+    from processor.timeframe import disclosed_date_labels
+
+    item.update(disclosed_date_labels(signal.disclosed_at))
   if signal.source == "macro_theme" or raw.get("theme_slug"):
     item["theme"] = {
       "slug": raw.get("theme_slug"),
@@ -201,6 +365,10 @@ def _serialize_signal(db: Session, signal: Signal) -> dict[str, Any]:
       "theme_heat": raw.get("theme_heat"),
       "alignment_score": raw.get("alignment_score"),
     }
+  if signal.source in ("nse_bulk", "nse_block"):
+    _attach_investor_intel(db, item, signal, ticker=signal.ticker, market=signal.market)
+  elif signal.market.upper() == "IN":
+    _attach_investor_intel(db, item, signal, ticker=signal.ticker, market=signal.market)
   return item
 
 
@@ -344,27 +512,12 @@ def top_picks(
     hold_days = (item.get("return_distribution") or {}).get("hold_days")
     if not passes_min_hold_filter(hold_days, db):
       continue
-    from processor.bulk_investors import bulk_investor_breakdown
 
     week = bulk_confluence(db, ticker, market.upper(), since_days=7)
-    backing = bulk_investor_breakdown(db, ticker, market.upper(), since_days=days)
+    sig = db.query(Signal).filter(Signal.id == uuid.UUID(item["id"])).first()
     item["bulk_deal_count"] = deal_counts.get(ticker, 1)
     item["bulk_deal_count_week"] = week["bulk_deal_count"]
-    item["investor_backing"] = backing
-    scorer = item.get("scorer_version") or ""
-    sig = db.query(Signal).filter(Signal.id == uuid.UUID(item["id"])).first()
-    maturity = _signal_data_maturity(db, sig) if sig else None
-    item["prediction"] = {
-      "method": "ml" if "lgbm" in scorer else "rules",
-      "scorer_version": scorer or "interim-v1",
-      "lead_investor_win_rate": item.get("historical_win_rate"),
-      "lead_investor_median_return": (item.get("return_distribution") or {}).get("median"),
-      "lead_investor_n_trades": item.get("n_trades"),
-      "backing_win_rate": backing.get("aggregate_win_rate"),
-      "backing_median_return": backing.get("aggregate_median_return"),
-      "tracked_past_trades": backing.get("tracked_past_trades"),
-      "data_maturity": maturity,
-    }
+    _attach_investor_intel(db, item, sig, ticker=ticker, market=market.upper(), since_days=days)
     items.append(item)
     if len(items) >= limit:
       break
@@ -465,6 +618,7 @@ def live_theme_picks(
   market: str | None = None,
   limit: int = Query(default=30, le=50),
   no_bulk_only: bool = False,
+  include_bulk_backed: bool = True,
   min_composite: float | None = None,
   db: Session = Depends(get_db),
   _: None = Depends(verify_basic_or_share),
@@ -530,7 +684,7 @@ def live_theme_picks(
       if score_dist.get("fundamentals"):
         display_fundamentals = score_dist["fundamentals"]
 
-    items.append({
+    row: dict[str, Any] = {
       "theme_slug": pick["theme_slug"],
       "theme_name": pick["theme_name"],
       "demand_driver": pick.get("demand_driver"),
@@ -557,9 +711,20 @@ def live_theme_picks(
         "exit_date_label", "exit_date_full", "exit_window_label",
         "review_date_label", "countdown_label", "hold_status", "timeframe_tier", "days_remaining",
       )},
-    })
+    }
+    if pick["market"].upper() == "IN":
+      if sc:
+        row["scorer_version"] = sc.scorer_version
+        row["historical_win_rate"] = sc.historical_win_rate
+        row["n_trades"] = sc.n_trades
+        row["return_distribution"] = score_dist or {}
+      _attach_investor_intel(db, row, signal, ticker=pick["ticker"], market=pick["market"], since_days=30)
+    items.append(row)
     if len(items) >= limit:
       break
+
+  if include_bulk_backed and (not market or market.upper() == "IN"):
+    _append_bulk_backed_demand_picks(db, items, seen, limit=limit)
 
   return {"items": items, "ranked_by": "composite_score", "source": "live", "disclaimer": "Thematic research from public prices — not investment advice."}
 

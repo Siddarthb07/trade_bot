@@ -106,10 +106,12 @@ export default function ExpandableStockPanel({
           {portfolioMsg && <span className="muted">{portfolioMsg}</span>}
         </div>
       )}
-      {investorBacking && investorBacking.investors.length > 0 && (
+      {(prediction || investorBacking) && (
         <>
           <BulkTrackRecord backing={investorBacking} prediction={prediction} />
-          <BulkInvestorTable backing={investorBacking} market={market} compact />
+          {investorBacking && investorBacking.investors.length > 0 && (
+            <BulkInvestorTable backing={investorBacking} market={market} compact />
+          )}
         </>
       )}
       {open && signalId && (

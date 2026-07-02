@@ -118,7 +118,13 @@ class NSEClient:
     value = _to_float(row.get("value") or row.get("VALUE"))
     if value is None and qty and price:
       value = qty * price
-    disclosed = _parse_date(row.get("date") or row.get("DATE") or datetime.now(IST).date())
+    disclosed = _parse_date(
+      row.get("date")
+      or row.get("DATE")
+      or row.get("Date")
+      or row.get("dealDate")
+      or datetime.now(IST).date()
+    )
     source = "nse_bulk" if "bulk" in mode else "nse_block"
     source_ref = _make_ref(source, symbol, client, action, disclosed, qty, price)
     return {

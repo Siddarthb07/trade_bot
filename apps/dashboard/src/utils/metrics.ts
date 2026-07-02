@@ -8,12 +8,8 @@ import { Metric } from "../components/StockPanel";
 
 export type PickView = "hold" | "profit";
 
-function tradeDateMetrics(tf: TimeframeInfo, entryFallback?: string): Metric[] {
-  const buy =
-    tf.entry_date_full ||
-    tf.entry_date_label ||
-    fmtDateLabel(entryFallback) ||
-    fmtDateLabel(tf.entry_date);
+function tradeDateMetrics(tf: TimeframeInfo): Metric[] {
+  const buy = tf.entry_date_full || tf.entry_date_label || "—";
   return [
     { label: "Buy / entry", value: buy },
     { label: "Sell by", value: tf.exit_date_full || tf.exit_date_label || "—" },
@@ -25,7 +21,7 @@ function tradeDateMetrics(tf: TimeframeInfo, entryFallback?: string): Metric[] {
 
 export function demandHoldMetrics(p: LiveThemePick, tf: TimeframeInfo, holdMode: HoldDisplayMode = "both"): Metric[] {
   return [
-    ...tradeDateMetrics(tf, p.signal_date),
+    ...tradeDateMetrics(tf),
     { label: "Hold", value: formatHoldLabel(tf, holdMode) },
     { label: "Tier", value: p.tier || "—" },
     { label: "Theme heat", value: fmtPct(p.theme_heat) },
@@ -35,7 +31,7 @@ export function demandHoldMetrics(p: LiveThemePick, tf: TimeframeInfo, holdMode:
 export function demandProfitMetrics(p: LiveThemePick, tf: TimeframeInfo): Metric[] {
   const f = p.fundamentals || {};
   return [
-    ...tradeDateMetrics(tf, p.signal_date),
+    ...tradeDateMetrics(tf),
     { label: "Est. return", value: fmtExp(p.expected_return_pct), accent: true },
     { label: "Confidence", value: fmtPct(p.calibrated_probability, 1) },
     { label: "P/E (TTM)", value: fmtRatio(f.trailing_pe) },
@@ -50,7 +46,7 @@ export function demandProfitMetrics(p: LiveThemePick, tf: TimeframeInfo): Metric
 export function bulkHoldMetrics(s: SignalItem, tf: TimeframeInfo, holdMode: HoldDisplayMode = "both"): Metric[] {
   const backing = s.investor_backing;
   return [
-    ...tradeDateMetrics(tf, s.disclosed_at),
+    ...tradeDateMetrics(tf),
     ...(backing ? [
       { label: "Total backed", value: fmtValue(backing.total_value, s.market), accent: true },
       { label: "Investors", value: String(backing.investor_count) },
@@ -69,7 +65,7 @@ export function bulkProfitMetrics(s: SignalItem, tf: TimeframeInfo): Metric[] {
   const f = (dist.fundamentals as Record<string, number | null>) || {};
   const backing = s.investor_backing;
   return [
-    ...tradeDateMetrics(tf, s.disclosed_at),
+    ...tradeDateMetrics(tf),
     ...(backing ? [
       { label: "Total backed", value: fmtValue(backing.total_value, s.market), accent: true },
       { label: "Investors", value: String(backing.investor_count) },

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { fmtExp, fmtTrackRecord, fmtValue } from "../utils/format";
+import { fmtExp, fmtTrackRecord, fmtValue, fmtDateLabel } from "../utils/format";
 
 export interface BulkInvestorRow {
   entity: string;
@@ -78,7 +78,7 @@ export default function BulkInvestorTable({
                   ) : null}
                 </td>
                 {!compact && <td>{inv.deal_count ?? 1}</td>}
-                <td>{inv.latest_at ? new Date(inv.latest_at).toLocaleDateString() : "—"}</td>
+                <td>{inv.latest_at ? fmtDateLabel(inv.latest_at, true) : "—"}</td>
               </tr>
             ))}
           </tbody>

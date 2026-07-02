@@ -34,6 +34,24 @@ def _fmt_date(dt: datetime, short: bool = False) -> str:
   return local.strftime("%d %b") if short else local.strftime("%d %b %Y")
 
 
+def signal_entry_anchor(disclosed_at: datetime) -> datetime:
+  """Hold window starts at 00:00 IST on the disclosure trading day."""
+  if disclosed_at.tzinfo is None:
+    disclosed_at = disclosed_at.replace(tzinfo=timezone.utc)
+  local = disclosed_at.astimezone(IST)
+  stable = local.replace(hour=0, minute=0, second=0, microsecond=0)
+  return stable.astimezone(timezone.utc)
+
+
+def disclosed_date_labels(disclosed_at: datetime) -> dict[str, str]:
+  """IST calendar labels for raw disclosure timestamp (deal filed)."""
+  anchor = signal_entry_anchor(disclosed_at)
+  return {
+    "disclosed_date_label": _fmt_date(anchor, short=True),
+    "disclosed_date_full": _fmt_date(anchor, short=False),
+  }
+
+
 def build_timeframe(
   hold_days: int,
   entry: datetime,
@@ -54,6 +72,7 @@ def build_timeframe(
       window_days = max(2, window_days - 1)
 
   entry_utc = entry.astimezone(timezone.utc)
+  local_entry = entry.astimezone(IST)
   review_days = max(1, hold_days // 2)
   review_dt = entry_utc + timedelta(days=review_days)
   exit_dt = entry_utc + timedelta(days=hold_days)
@@ -61,7 +80,8 @@ def build_timeframe(
   window_end = exit_dt + timedelta(days=window_days)
 
   now_utc = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
-  elapsed = max(0, (now_utc.date() - entry_utc.date()).days)
+  local_now = now_utc.astimezone(IST)
+  elapsed = max(0, (local_now.date() - local_entry.date()).days)
   remaining = hold_days - elapsed
 
   if remaining > window_days:

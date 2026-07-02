@@ -73,7 +73,7 @@ def estimate_sell_horizon(features: dict, signal: Signal, db: Session | None = N
   trend = compute_trend_features(signal.ticker_normalized)
   vol = trend.get("volatility_20d")
 
-  tf = build_timeframe(days, signal.disclosed_at, volatility_annualized=vol)
+  tf = build_timeframe(days, signal_entry_anchor(signal.disclosed_at), volatility_annualized=vol)
   tf["expected_return_pct"] = expected
   tf["return_breakdown"] = bulk_ret["return_breakdown"]
   tf["return_rationale"] = bulk_ret["return_rationale"]

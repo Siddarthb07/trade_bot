@@ -5,6 +5,8 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Any
 
+from processor.timeframe import IST, signal_entry_anchor
+
 MATURITY_WINDOWS = {"1w": 7, "1mo": 30, "3mo": 90, "6mo": 180}
 
 
@@ -13,11 +15,14 @@ def data_maturity(
   *,
   forward_returns: dict[str, float | None] | None = None,
   label_window: str = "3mo",
+  now: datetime | None = None,
 ) -> dict[str, Any]:
   """How trustworthy track-record stats are for this pick."""
-  now = datetime.now(timezone.utc)
-  entry = disclosed_at.astimezone(timezone.utc)
-  age_days = max(0, (now.date() - entry.date()).days)
+  now_utc = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+  entry = signal_entry_anchor(disclosed_at)
+  local_now = now_utc.astimezone(IST)
+  local_entry = entry.astimezone(IST)
+  age_days = max(0, (local_now.date() - local_entry.date()).days)
   need_days = MATURITY_WINDOWS.get(label_window, 90)
   fr = forward_returns or {}
   ret_3mo = fr.get("3mo") if label_window == "3mo" else fr.get(label_window)
@@ -29,7 +34,12 @@ def data_maturity(
 
   if age_days < 3:
     status = "too_new"
-    label = f"Deal {age_days}d old — win rate not meaningful yet"
+    if age_days == 0:
+      label = "Deal from today — win rate not meaningful yet"
+    elif age_days == 1:
+      label = "Deal 1d old — win rate not meaningful yet"
+    else:
+      label = f"Deal {age_days}d old — win rate not meaningful yet"
     detail = "Investor stats need matured 3-month outcomes after similar bulk buys."
   elif days_until > 0 and ret_3mo is None:
     status = "maturing"
