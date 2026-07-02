@@ -2,43 +2,76 @@
 
 from __future__ import annotations
 
+import logging
+import time
 from datetime import datetime, timedelta
 
 import pandas as pd
 import yfinance as yf
 
+logger = logging.getLogger(__name__)
+
+_CACHE_TTL_SEC = 900  # 15 minutes
+_price_cache: dict[str, tuple[float, list[dict]]] = {}
+_YF_TIMEOUT = 8
+
+
+def _cache_get(key: str) -> list[dict] | None:
+  hit = _price_cache.get(key)
+  if not hit:
+    return None
+  ts, data = hit
+  if time.monotonic() - ts > _CACHE_TTL_SEC:
+    _price_cache.pop(key, None)
+    return None
+  return data
+
+
+def _cache_set(key: str, data: list[dict]) -> None:
+  _price_cache[key] = (time.monotonic(), data)
+
 
 def fetch_price_history(ticker_normalized: str, days: int = 180) -> list[dict]:
+  cache_key = f"{ticker_normalized}:{days}"
+  cached = _cache_get(cache_key)
+  if cached is not None:
+    return cached
+
   try:
     ticker = yf.Ticker(ticker_normalized)
     end = datetime.utcnow().date()
     start = end - timedelta(days=days)
-    hist = ticker.history(start=start, end=end, auto_adjust=True)
+    hist = ticker.history(start=start, end=end, auto_adjust=True, timeout=_YF_TIMEOUT)
     if hist.empty:
+      _cache_set(cache_key, [])
       return []
     hist = hist.sort_index()
-    out = []
+    out: list[dict] = []
     for idx, row in hist.iterrows():
       out.append({
         "date": idx.strftime("%Y-%m-%d"),
         "close": round(float(row["Close"]), 2),
         "volume": int(row["Volume"]) if pd.notna(row["Volume"]) else 0,
       })
+    _cache_set(cache_key, out)
     return out
-  except Exception:
+  except Exception as exc:
+    logger.warning("price fetch failed for %s: %s", ticker_normalized, exc)
     return []
 
 
-def compute_trend_features(ticker_normalized: str) -> dict:
-  prices = fetch_price_history(ticker_normalized, days=120)
-  if len(prices) < 20:
-    return {"trend": "unknown", "return_1m": None, "return_3m": None, "above_ma50": None, "momentum": None}
-  closes = [p["close"] for p in prices]
+def _trend_from_closes(closes: list[float]) -> dict:
+  if len(closes) < 20:
+    return {
+      "trend": "unknown", "return_1m": None, "return_3m": None, "above_ma50": None,
+      "momentum": None, "volatility_20d": None,
+    }
   current = closes[-1]
   ma50 = sum(closes[-50:]) / min(50, len(closes))
   ret_1m = (current - closes[-22]) / closes[-22] if len(closes) >= 22 else None
   ret_3m = (current - closes[-66]) / closes[-66] if len(closes) >= 66 else None
   momentum = "bullish" if ret_1m and ret_1m > 0.02 else "bearish" if ret_1m and ret_1m < -0.02 else "neutral"
+  vol = _volatility_20d(closes)
   return {
     "trend": "uptrend" if current > ma50 else "downtrend",
     "return_1m": round(ret_1m, 4) if ret_1m is not None else None,
@@ -47,7 +80,43 @@ def compute_trend_features(ticker_normalized: str) -> dict:
     "momentum": momentum,
     "current_price": current,
     "ma50": round(ma50, 2),
+    "volatility_20d": vol,
   }
+
+
+def trend_from_prices(prices: list[dict]) -> dict:
+  """Trend features from an existing price series (avoids duplicate yfinance calls)."""
+  if len(prices) < 20:
+    return {
+      "trend": "unknown", "return_1m": None, "return_3m": None, "above_ma50": None,
+      "momentum": None, "volatility_20d": None,
+    }
+  window = prices[-120:] if len(prices) > 120 else prices
+  closes = [p["close"] for p in window]
+  return _trend_from_closes(closes)
+
+
+def compute_trend_features(ticker_normalized: str) -> dict:
+  prices = fetch_price_history(ticker_normalized, days=120)
+  return trend_from_prices(prices)
+
+
+def _volatility_20d(closes: list[float]) -> float | None:
+  """Annualized 20-day volatility from daily closes."""
+  if len(closes) < 21:
+    return None
+  import math
+
+  rets = []
+  window = closes[-21:]
+  for i in range(1, len(window)):
+    if window[i - 1] > 0:
+      rets.append((window[i] - window[i - 1]) / window[i - 1])
+  if len(rets) < 5:
+    return None
+  mean = sum(rets) / len(rets)
+  var = sum((r - mean) ** 2 for r in rets) / len(rets)
+  return round(math.sqrt(var) * (252 ** 0.5), 4)
 
 
 def explain_trend_narrative(trend: dict, ticker: str) -> dict:
