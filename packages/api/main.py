@@ -21,12 +21,14 @@ from core.models import (
   AlertLog,
   AlertPrefs,
   ForwardReturn,
+  HoldPrefs,
   IngestionRun,
   InvestorStat,
   PortfolioPosition,
   Signal,
   SignalScore,
 )
+from core.hold_prefs import effective_hold_prefs, passes_min_hold_filter
 from core.queue import redis_conn, task_queue
 from ingest.nse import ingest_nse_payloads
 from notifier.dispatch import backfill_gate_passed
@@ -77,6 +79,13 @@ class AlertPrefsUpdate(BaseModel):
   quiet_hours_end: int | None = None
   market_in: bool | None = None
   market_us: bool | None = None
+
+
+class HoldPrefsUpdate(BaseModel):
+  hold_display_mode: str | None = None
+  min_hold_days_filter: int | None = None
+  exit_reminders_enabled: bool | None = None
+  theme_hold_multiplier: float | None = None
 
 
 class NSEIngestPayload(BaseModel):
@@ -331,7 +340,10 @@ def top_picks(
   except Exception:
     ml_meta = None
 
-  for ticker, (exp, item) in sorted(best.items(), key=lambda x: x[0], reverse=True)[:limit]:
+  for ticker, (exp, item) in sorted(best.items(), key=lambda x: x[0], reverse=True):
+    hold_days = (item.get("return_distribution") or {}).get("hold_days")
+    if not passes_min_hold_filter(hold_days, db):
+      continue
     from processor.bulk_investors import bulk_investor_breakdown
 
     week = bulk_confluence(db, ticker, market.upper(), since_days=7)
@@ -354,6 +366,8 @@ def top_picks(
       "data_maturity": maturity,
     }
     items.append(item)
+    if len(items) >= limit:
+      break
 
   scoring_note = (
     "Predictions use rule-based scoring today. ML retrains weekly on realized 3mo outcomes — "
@@ -499,6 +513,8 @@ def live_theme_picks(
     score_dist = sc.return_distribution if sc else None
     hold_days = int(pick.get("sell_horizon_days") or 60)
     tf = _resolve_timeframe(signal, hold_days=hold_days, score_dist=score_dist)
+    if not passes_min_hold_filter(tf.get("hold_days"), db):
+      continue
 
     display_exp = pick["expected_return_pct"]
     display_rationale = pick.get("return_rationale")
@@ -729,6 +745,8 @@ def list_investors(
   _: None = Depends(verify_basic_or_share),
 ) -> dict[str, Any]:
   """Bulk-deal investor leaderboard by past trade count."""
+  from processor.investor_hold import investor_median_peak_days
+
   stats = (
     db.query(InvestorStat)
     .filter(InvestorStat.market == market.upper(), InvestorStat.n_trades >= min_trades)
@@ -755,6 +773,7 @@ def list_investors(
       .limit(5)
       .all()
     )
+    peak = investor_median_peak_days(db, stat.entity_normalized, stat.market)
     items.append({
       "entity": latest.entity if latest else stat.entity_normalized,
       "entity_normalized": stat.entity_normalized,
@@ -762,6 +781,9 @@ def list_investors(
       "win_rate": stat.win_rate,
       "median_return": stat.median_return,
       "n_trades": stat.n_trades,
+      "median_peak_days": peak.get("median_peak_days"),
+      "investor_hold_label": peak.get("label"),
+      "n_labeled_holds": peak.get("n_labeled"),
       "updated_at": stat.updated_at.isoformat() if stat.updated_at else None,
       "recent_deals": [
         {
@@ -926,6 +948,8 @@ def delete_portfolio_position(
 
 @app.get("/entities/{name}")
 def get_entity(name: str, db: Session = Depends(get_db), _: None = Depends(verify_basic)) -> dict[str, Any]:
+  from processor.investor_hold import investor_median_peak_days
+
   normalized = name.upper().strip()
   stats = db.query(InvestorStat).filter(InvestorStat.entity_normalized == normalized).all()
   signals = (
@@ -944,6 +968,7 @@ def get_entity(name: str, db: Session = Depends(get_db), _: None = Depends(verif
         "median_return": s.median_return,
         "n_trades": s.n_trades,
         "updated_at": s.updated_at.isoformat() if s.updated_at else None,
+        **investor_median_peak_days(db, s.entity_normalized, s.market),
       }
       for s in stats
     ],
@@ -1041,16 +1066,41 @@ def update_alert_settings(
 
 
 @app.get("/settings/hold")
-def get_hold_settings(_: None = Depends(verify_basic)) -> dict[str, Any]:
-  """Hold/exit display preferences (Phase 5 — env-backed)."""
+def get_hold_settings(db: Session = Depends(get_db), _: None = Depends(verify_basic)) -> dict[str, Any]:
+  """Hold/exit display preferences (DB-backed, env defaults)."""
+  prefs = effective_hold_prefs(db)
   return {
-    "hold_display_mode": settings.hold_display_mode,
-    "theme_hold_multiplier": settings.theme_hold_multiplier,
-    "min_hold_days_filter": settings.min_hold_days_filter,
-    "exit_reminders_enabled": settings.exit_reminders_enabled,
+    "hold_display_mode": prefs.hold_display_mode,
+    "theme_hold_multiplier": prefs.theme_hold_multiplier,
+    "min_hold_days_filter": prefs.min_hold_days_filter,
+    "exit_reminders_enabled": prefs.exit_reminders_enabled,
     "whatsapp_group_configured": bool((settings.whatsapp_group_id or "").strip()),
     "dashboard_public_url": settings.dashboard_public_url,
   }
+
+
+@app.patch("/settings/hold")
+def update_hold_settings(
+  payload: HoldPrefsUpdate,
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  row = db.query(HoldPrefs).filter(HoldPrefs.id == 1).first()
+  if row is None:
+    row = HoldPrefs()
+    db.add(row)
+  if payload.hold_display_mode is not None:
+    if payload.hold_display_mode not in ("days", "weeks", "both"):
+      raise HTTPException(status_code=400, detail="hold_display_mode must be days, weeks, or both")
+    row.hold_display_mode = payload.hold_display_mode
+  if payload.min_hold_days_filter is not None:
+    row.min_hold_days_filter = max(0, payload.min_hold_days_filter)
+  if payload.exit_reminders_enabled is not None:
+    row.exit_reminders_enabled = payload.exit_reminders_enabled
+  if payload.theme_hold_multiplier is not None:
+    row.theme_hold_multiplier = max(0.5, min(2.0, payload.theme_hold_multiplier))
+  db.commit()
+  return get_hold_settings(db)
 
 
 @app.get("/system")
@@ -1082,6 +1132,39 @@ def system_status(db: Session = Depends(get_db), _: None = Depends(verify_basic)
     else None,
     "health": health(db),
   }
+
+
+@app.post("/system/jobs/forward-backfill")
+def system_forward_backfill(
+  batch_size: int = Query(default=50, le=200),
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from processor.forward_backfill import backfill_mature_forward_returns
+
+  return backfill_mature_forward_returns(db, batch_size=batch_size)
+
+
+@app.post("/system/jobs/nse-backfill")
+def system_nse_backfill(
+  days: int | None = None,
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from ingest.nse import backfill_nse_archive, backfill_nse_historical
+
+  archive = backfill_nse_archive(limit=2000)
+  historical = backfill_nse_historical(days=days or settings.ml_backfill_days)
+  return {"archive": archive, "historical": historical}
+
+
+@app.post("/system/jobs/train")
+def system_train(
+  force: bool = False,
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from processor.ml_jobs import run_scheduled_train
+
+  return run_scheduled_train(force=force)
 
 
 @app.post("/internal/ingest/nse")
@@ -1143,6 +1226,16 @@ def trigger_nse_backfill(
   archive = backfill_nse_archive(limit=2000)
   historical = backfill_nse_historical(days=days or settings.ml_backfill_days)
   return {"archive": archive, "historical": historical}
+
+
+@app.post("/internal/backfill/forward-returns")
+def trigger_forward_backfill(
+  batch_size: int = Query(default=50, le=200),
+  _: None = Depends(verify_internal),
+) -> dict[str, Any]:
+  from processor.forward_backfill import backfill_mature_forward_returns
+
+  return backfill_mature_forward_returns(batch_size=batch_size)
 
 
 @app.post("/internal/train")

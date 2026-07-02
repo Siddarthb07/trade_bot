@@ -44,10 +44,14 @@ def _timeframe_lines(dist: dict) -> list[str]:
 
 
 def send_exit_reminders() -> dict:
-  if not settings.alerts_enabled or not settings.exit_reminders_enabled:
+  db = SessionLocal()
+  from core.hold_prefs import effective_hold_prefs
+
+  prefs = effective_hold_prefs(db)
+  if not settings.alerts_enabled or not prefs.exit_reminders_enabled:
+    db.close()
     return {"sent": 0, "skipped": "disabled"}
 
-  db = SessionLocal()
   sent = 0
   now = datetime.now(timezone.utc)
   since = now - timedelta(days=120)

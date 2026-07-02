@@ -1,45 +1,52 @@
 import { FormEvent, useEffect, useState } from "react";
 import { apiFetch } from "../api";
+import { saveHoldDisplayMode } from "../hooks/useHoldPrefs";
 
-const HOLD_PREFS_KEY = "tradebot_hold_prefs";
-
-interface HoldPrefs {
+interface HoldSettings {
   hold_display_mode: "days" | "weeks" | "both";
+  min_hold_days_filter: number;
+  exit_reminders_enabled: boolean;
+  theme_hold_multiplier: number;
+  whatsapp_group_configured: boolean;
+  dashboard_public_url: string;
 }
 
 export default function SettingsPage() {
   const [prefs, setPrefs] = useState<any>(null);
-  const [holdEnv, setHoldEnv] = useState<any>(null);
-  const [holdLocal, setHoldLocal] = useState<HoldPrefs>({ hold_display_mode: "both" });
+  const [hold, setHold] = useState<HoldSettings | null>(null);
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     apiFetch("/settings/alerts").then(setPrefs);
-    apiFetch("/settings/hold").then(setHoldEnv);
-    const raw = localStorage.getItem(HOLD_PREFS_KEY);
-    if (raw) {
-      try {
-        setHoldLocal(JSON.parse(raw));
-      } catch {
-        /* ignore */
-      }
-    }
+    apiFetch<HoldSettings>("/settings/hold").then(setHold);
   }, []);
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
+    if (!prefs || !hold) return;
     await apiFetch("/settings/alerts", { method: "PATCH", body: JSON.stringify(prefs) });
-    localStorage.setItem(HOLD_PREFS_KEY, JSON.stringify(holdLocal));
+    const updated = await apiFetch<HoldSettings>("/settings/hold", {
+      method: "PATCH",
+      body: JSON.stringify({
+        hold_display_mode: hold.hold_display_mode,
+        min_hold_days_filter: hold.min_hold_days_filter,
+        exit_reminders_enabled: hold.exit_reminders_enabled,
+        theme_hold_multiplier: hold.theme_hold_multiplier,
+      }),
+    });
+    setHold(updated);
+    saveHoldDisplayMode(updated.hold_display_mode);
     setSaved(true);
   }
 
-  if (!prefs) return <p>Loading…</p>;
+  if (!prefs || !hold) return <p>Loading…</p>;
 
   return (
     <div className="settings-page">
       <section className="card">
-        <h2>Alert Settings</h2>
+        <h2>Settings</h2>
         <form onSubmit={onSubmit} className="settings-form">
+          <h3>Alert preferences</h3>
           <label>Min tier
             <select value={prefs.min_tier} onChange={(e) => setPrefs({ ...prefs, min_tier: e.target.value })}>
               <option value="HIGH">HIGH only</option>
@@ -53,24 +60,45 @@ export default function SettingsPage() {
           <p>Dashboard URL for phone links: <code>{prefs.dashboard_public_url}</code></p>
           <p>Global alerts enabled (env): <strong>{String(prefs.alerts_enabled)}</strong></p>
 
-          <h3>Hold & exit display (Phase 5)</h3>
-          <label>Display format (browser)
+          <h3>Hold & exit</h3>
+          <label>Display format
             <select
-              value={holdLocal.hold_display_mode}
-              onChange={(e) => setHoldLocal({ hold_display_mode: e.target.value as HoldPrefs["hold_display_mode"] })}
+              value={hold.hold_display_mode}
+              onChange={(e) => setHold({ ...hold, hold_display_mode: e.target.value as HoldSettings["hold_display_mode"] })}
             >
               <option value="both">Days + weeks</option>
               <option value="days">Days only</option>
               <option value="weeks">Weeks only</option>
             </select>
           </label>
-          {holdEnv && (
-            <>
-              <p className="muted">Server exit reminders: <strong>{String(holdEnv.exit_reminders_enabled)}</strong> (set <code>EXIT_REMINDERS_ENABLED</code> in .env)</p>
-              <p className="muted">WhatsApp group configured: <strong>{String(holdEnv.whatsapp_group_configured)}</strong> (set <code>WHATSAPP_GROUP_ID</code> in .env)</p>
-              <p className="muted">Theme hold multiplier (server): <strong>{holdEnv.theme_hold_multiplier}</strong></p>
-            </>
-          )}
+          <label>Minimum hold days (filter short picks)
+            <input
+              type="number"
+              min={0}
+              max={90}
+              value={hold.min_hold_days_filter}
+              onChange={(e) => setHold({ ...hold, min_hold_days_filter: Number(e.target.value) })}
+            />
+          </label>
+          <label>Theme hold multiplier
+            <input
+              type="number"
+              min={0.5}
+              max={2}
+              step={0.1}
+              value={hold.theme_hold_multiplier}
+              onChange={(e) => setHold({ ...hold, theme_hold_multiplier: Number(e.target.value) })}
+            />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={hold.exit_reminders_enabled}
+              onChange={(e) => setHold({ ...hold, exit_reminders_enabled: e.target.checked })}
+            />
+            {" "}Exit / review WhatsApp reminders
+          </label>
+          <p className="muted">WhatsApp group configured: <strong>{String(hold.whatsapp_group_configured)}</strong> (set <code>WHATSAPP_GROUP_ID</code> in .env)</p>
 
           <button type="submit">Save preferences</button>
           {saved && <p className="ok">Saved</p>}

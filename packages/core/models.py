@@ -126,6 +126,16 @@ class AlertPrefs(Base):
     market_us: Mapped[bool] = mapped_column(Boolean, default=True)
 
 
+class HoldPrefs(Base):
+    __tablename__ = "hold_prefs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, default=1)
+    hold_display_mode: Mapped[str] = mapped_column(String(8), default="both")
+    min_hold_days_filter: Mapped[int] = mapped_column(Integer, default=0)
+    exit_reminders_enabled: Mapped[bool] = mapped_column(Boolean, default=True)
+    theme_hold_multiplier: Mapped[float] = mapped_column(Float, default=1.0)
+
+
 class PortfolioPosition(Base):
     __tablename__ = "portfolio_positions"
 

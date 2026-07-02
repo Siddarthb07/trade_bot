@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import ExpandableStockPanel from "../components/ExpandableStockPanel";
 import CompareTray, { CompareItem } from "../components/CompareTray";
 import StickyHoldBar from "../components/StickyHoldBar";
 import { usePriceCharts } from "../hooks/usePriceCharts";
-import { apiFetch, LiveThemePick, SignalItem } from "../api";
+import { useHoldPrefs } from "../hooks/useHoldPrefs";
+import { apiFetch, LiveThemePick, SignalItem, ThemeSummary } from "../api";
 import { fmtPct, fmtValue } from "../utils/format";
 import {
   bulkHoldMetrics,
@@ -19,7 +21,6 @@ import { TimeframeInfo, tfFromDist } from "../utils/timeframe";
 
 type Tab = "demand" | "bulk" | "all";
 type ExitFilter = "" | "week" | "long";
-type ThemeFilter = "" | "ai_storage_demand";
 
 function pickTf(p: LiveThemePick): TimeframeInfo {
   return {
@@ -47,14 +48,22 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
   const [sortExit, setSortExit] = useState(false);
   const [compareMode, setCompareMode] = useState(false);
   const [compareIds, setCompareIds] = useState<string[]>([]);
+  const holdMode = useHoldPrefs();
 
   const [demand, setDemand] = useState<LiveThemePick[]>([]);
   const [bulkTop, setBulkTop] = useState<SignalItem[]>([]);
   const [bulkScoringNote, setBulkScoringNote] = useState("");
   const [allSignals, setAllSignals] = useState<SignalItem[]>([]);
+  const [themes, setThemes] = useState<ThemeSummary[]>([]);
   const [market, setMarket] = useState("");
-  const [themeFilter, setThemeFilter] = useState<ThemeFilter>("");
+  const [themeFilter, setThemeFilter] = useState("");
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    apiFetch<{ themes: ThemeSummary[] }>("/themes")
+      .then((d) => setThemes(d.themes))
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     async function load() {
@@ -101,11 +110,6 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
     rows = rows.filter((r) => passesExitFilter(r.tf));
     return sortByExit(rows);
   }, [demand, exitFilter, sortExit, themeFilter]);
-
-  const storagePicks = useMemo(
-    () => demand.filter((p) => p.theme_slug === "ai_storage_demand"),
-    [demand],
-  );
 
   const bulkRows = useMemo(() => {
     const rows = bulkTop.map((s) => ({ s, tf: tfFromDist(s.return_distribution) }))
@@ -193,65 +197,85 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
         </p>
       </div>
 
-      <div className="tabs">
-        <button type="button" className={tab === "demand" ? "active" : ""} onClick={() => setTab("demand")}>
-          Demand picks <span className="count">{demand.length}</span>
-        </button>
-        <button type="button" className={tab === "bulk" ? "active" : ""} onClick={() => setTab("bulk")}>
-          Bulk deals <span className="count">{bulkTop.length}</span>
-        </button>
-        <button type="button" className={tab === "all" ? "active" : ""} onClick={() => setTab("all")}>
-          All signals
-        </button>
-      </div>
-
-      {(tab === "demand" || tab === "bulk") && (
-        <div className="sub-tabs">
-          <button type="button" className={pickView === "hold" ? "active" : ""} onClick={() => setPickView("hold")}>
-            Hold plan
-          </button>
-          <button type="button" className={pickView === "profit" ? "active" : ""} onClick={() => setPickView("profit")}>
-            Profit outlook
-          </button>
+      <section className="home-controls">
+        <div className="control-row control-row-primary">
+          <div className="source-tabs">
+            <button type="button" className={tab === "demand" ? "active" : ""} onClick={() => setTab("demand")}>
+              Demand <span className="count">{demand.length}</span>
+            </button>
+            <button type="button" className={tab === "bulk" ? "active" : ""} onClick={() => setTab("bulk")}>
+              Bulk <span className="count">{bulkTop.length}</span>
+            </button>
+            <button type="button" className={tab === "all" ? "active" : ""} onClick={() => setTab("all")}>
+              All signals
+            </button>
+          </div>
+          {(tab === "demand" || tab === "bulk") && (
+            <div className="segmented" role="group" aria-label="Hold or profit view">
+              <button type="button" className={pickView === "hold" ? "active" : ""} onClick={() => setPickView("hold")}>
+                Hold plan
+              </button>
+              <button type="button" className={pickView === "profit" ? "active" : ""} onClick={() => setPickView("profit")}>
+                Profit outlook
+              </button>
+            </div>
+          )}
         </div>
-      )}
 
-      {tab === "demand" && !loading && (
-        <div className="filter-chips">
-          <button
-            type="button"
-            className={`chip${themeFilter === "" && market === "" ? " active" : ""}`}
-            onClick={() => { setThemeFilter(""); setMarket(""); }}
-          >
-            All picks
-          </button>
-          <button
-            type="button"
-            className={`chip${market === "US" ? " active" : ""}`}
-            onClick={() => { setMarket("US"); setThemeFilter(""); }}
-          >
-            US (MU · WDC · AMD)
-          </button>
-          <button
-            type="button"
-            className={`chip${themeFilter === "ai_storage_demand" ? " active" : ""}`}
-            onClick={() => { setThemeFilter("ai_storage_demand"); setMarket(""); }}
-          >
-            Storage theme
-          </button>
-          <button
-            type="button"
-            className={`chip${market === "IN" ? " active" : ""}`}
-            onClick={() => { setMarket("IN"); setThemeFilter(""); }}
-          >
-            India only
-          </button>
+        <div className="control-row">
+          <label className="filter-field">
+            Market
+            <select value={market} onChange={(e) => setMarket(e.target.value)}>
+              <option value="">All</option>
+              <option value="IN">India</option>
+              <option value="US">US</option>
+            </select>
+          </label>
+
+          {tab === "demand" && (
+            <label className="filter-field">
+              Theme
+              <select
+                value={themeFilter}
+                onChange={(e) => setThemeFilter(e.target.value)}
+              >
+                <option value="">All themes</option>
+                {themes.map((t) => (
+                  <option key={t.slug} value={t.slug}>
+                    {t.name.split("&")[0].trim()} ({Math.round((t.theme_heat || 0) * 100)}%)
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+
+          <label className="filter-field">
+            Exit
+            <select value={exitFilter} onChange={(e) => setExitFilter(e.target.value as ExitFilter)}>
+              <option value="">Any time</option>
+              <option value="week">This week</option>
+              <option value="long">60+ days</option>
+            </select>
+          </label>
+
+          <label className="filter-check">
+            <input type="checkbox" checked={sortExit} onChange={(e) => setSortExit(e.target.checked)} />
+            Sort by exit
+          </label>
+          <label className="filter-check">
+            <input type="checkbox" checked={compareMode} onChange={(e) => setCompareMode(e.target.checked)} />
+            Compare
+          </label>
+
+          {tab === "demand" && (
+            <Link to="/themes" className="themes-link">Browse all themes →</Link>
+          )}
         </div>
-      )}
+      </section>
 
-      {tab === "demand" && !loading && market === "IN" && storagePicks.length > 0 && (
+      {tab === "demand" && !loading && market === "IN" && !themeFilter && (
         <p className="muted market-hint">
-          Micron (MU) and Sandisk/WDC are US demand picks — use <strong>US</strong> or <strong>Storage theme</strong> filter.
+          US names (MU, WDC, AMD) are demand picks — switch <strong>Market → US</strong> or pick a theme above.
         </p>
       )}
 
@@ -261,30 +285,9 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
 
       {tab === "bulk" && !loading && (
         <p className="muted market-hint">
-          Bulk deals are NSE India only. US stocks like MU and WDC appear under <strong>Demand picks</strong>.
+          Bulk deals are NSE India only. US stocks appear under <strong>Demand</strong>.
         </p>
       )}
-
-      <div className="tabs tabs-secondary">
-        <select className="tab-select" value={exitFilter} onChange={(e) => setExitFilter(e.target.value as ExitFilter)}>
-          <option value="">All holds</option>
-          <option value="week">Exiting this week</option>
-          <option value="long">Long holds (60+ days)</option>
-        </select>
-        <label className="tab-check">
-          <input type="checkbox" checked={sortExit} onChange={(e) => setSortExit(e.target.checked)} />
-          Sort by exit date
-        </label>
-        <label className="tab-check">
-          <input type="checkbox" checked={compareMode} onChange={(e) => setCompareMode(e.target.checked)} />
-          Compare mode
-        </label>
-        <select className="tab-select" value={market} onChange={(e) => setMarket(e.target.value)}>
-          <option value="">All markets</option>
-          <option value="IN">India</option>
-          <option value="US">US</option>
-        </select>
-      </div>
 
       {loading && <p className="muted">Loading…</p>}
 
@@ -295,7 +298,7 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
           ) : (
             demandRows.map(({ p, tf }, i) => {
               const c = get(p.ticker, p.market);
-              const metrics = pickView === "hold" ? demandHoldMetrics(p, tf) : demandProfitMetrics(p, tf);
+              const metrics = pickView === "hold" ? demandHoldMetrics(p, tf, holdMode) : demandProfitMetrics(p, tf);
               return (
                 <ExpandableStockPanel
                   key={`${p.theme_slug}-${p.ticker}`}
@@ -336,7 +339,7 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
           ) : (
             bulkRows.map(({ s, tf }, i) => {
               const c = get(s.ticker, s.market);
-              const metrics = pickView === "hold" ? bulkHoldMetrics(s, tf) : bulkProfitMetrics(s, tf);
+              const metrics = pickView === "hold" ? bulkHoldMetrics(s, tf, holdMode) : bulkProfitMetrics(s, tf);
               return (
                 <ExpandableStockPanel
                   key={s.id}
@@ -392,14 +395,14 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
                   theme_heat: s.theme?.theme_heat,
                   expected_return_pct: s.return_distribution?.expected_return_pct as number,
                   calibrated_probability: s.calibrated_probability,
-                } as LiveThemePick, tf) : demandProfitMetrics({
+                } as LiveThemePick, tf, holdMode) : demandProfitMetrics({
                   tier: s.tier,
                   expected_return_pct: s.return_distribution?.expected_return_pct as number,
                   calibrated_probability: s.calibrated_probability,
                   fundamentals: s.return_distribution?.fundamentals as LiveThemePick["fundamentals"],
                   return_rationale: s.return_distribution?.return_rationale as string,
                 } as LiveThemePick, tf))
-              : (pickView === "hold" ? bulkHoldMetrics(s, tf) : bulkProfitMetrics(s, tf));
+              : (pickView === "hold" ? bulkHoldMetrics(s, tf, holdMode) : bulkProfitMetrics(s, tf));
             return (
               <ExpandableStockPanel
                 key={s.id}

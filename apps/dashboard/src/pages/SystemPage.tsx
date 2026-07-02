@@ -5,6 +5,7 @@ export default function SystemPage() {
   const [system, setSystem] = useState<any>(null);
   const [runs, setRuns] = useState<any[]>([]);
   const [error, setError] = useState("");
+  const [jobMsg, setJobMsg] = useState("");
 
   useEffect(() => {
     async function load() {
@@ -23,6 +24,19 @@ export default function SystemPage() {
     load();
   }, []);
 
+  async function runMaintenance(path: string, label: string) {
+    setJobMsg(`Running ${label}…`);
+    try {
+      const res = await apiFetch(path, { method: "POST" });
+      setJobMsg(`${label}: ${JSON.stringify(res)}`);
+      const ing = await apiFetch<{ items: any[] }>("/ingestion/runs");
+      setRuns(ing.items);
+    } catch (e) {
+      setJobMsg(`${label} failed — check API logs`);
+      console.error(e);
+    }
+  }
+
   if (error) return <p className="error">{error}</p>;
   if (!system) return <p>Loading…</p>;
 
@@ -38,9 +52,9 @@ export default function SystemPage() {
         <p>Last alert: {system.last_alert ? `${system.last_alert.channel} · ${system.last_alert.status}` : "—"}</p>
       </section>
       <section className="card">
-        <h3>ML Model (Phase 2/5)</h3>
+        <h3>ML pipeline (Phase 2)</h3>
         {!ml ? (
-          <p className="muted">No model trained yet. Run <code>POST /internal/train</code> or wait for Sunday 5:30 AM IST job.</p>
+          <p className="muted">No model trained yet. Label forward returns, then train.</p>
         ) : (
           <>
             <p>Status: <strong>{ml.status}</strong></p>
@@ -52,6 +66,18 @@ export default function SystemPage() {
             )}
           </>
         )}
+        <div className="toolbar" style={{ marginTop: "1rem", gap: "0.5rem", flexWrap: "wrap" }}>
+          <button type="button" className="btn-secondary" onClick={() => runMaintenance("/system/jobs/forward-backfill", "Forward return backfill")}>
+            Label forward returns
+          </button>
+          <button type="button" className="btn-secondary" onClick={() => runMaintenance("/system/jobs/nse-backfill", "NSE backfill")}>
+            NSE archive backfill
+          </button>
+          <button type="button" className="btn-secondary" onClick={() => runMaintenance("/system/jobs/train?force=true", "ML train")}>
+            Train / rescore
+          </button>
+        </div>
+        {jobMsg && <p className="muted">{jobMsg}</p>}
       </section>
       <section className="card">
         <h3>Ingestion Runs</h3>

@@ -2,7 +2,8 @@
 
 import { LiveThemePick, SignalItem } from "../api";
 import { fmtDateLabel, fmtExp, fmtPct, fmtRatio, fmtTrackRecord, fmtValue } from "./format";
-import { TimeframeInfo, tfFromDist } from "./timeframe";
+import { TimeframeInfo, formatHoldLabel, tfFromDist } from "./timeframe";
+import type { HoldDisplayMode } from "../hooks/useHoldPrefs";
 import { Metric } from "../components/StockPanel";
 
 export type PickView = "hold" | "profit";
@@ -22,10 +23,10 @@ function tradeDateMetrics(tf: TimeframeInfo, entryFallback?: string): Metric[] {
   ];
 }
 
-export function demandHoldMetrics(p: LiveThemePick, tf: TimeframeInfo): Metric[] {
+export function demandHoldMetrics(p: LiveThemePick, tf: TimeframeInfo, holdMode: HoldDisplayMode = "both"): Metric[] {
   return [
     ...tradeDateMetrics(tf, p.signal_date),
-    { label: "Hold", value: tf.hold_label_short || `${tf.hold_days ?? "—"} days` },
+    { label: "Hold", value: formatHoldLabel(tf, holdMode) },
     { label: "Tier", value: p.tier || "—" },
     { label: "Theme heat", value: fmtPct(p.theme_heat) },
   ];
@@ -46,7 +47,7 @@ export function demandProfitMetrics(p: LiveThemePick, tf: TimeframeInfo): Metric
   ];
 }
 
-export function bulkHoldMetrics(s: SignalItem, tf: TimeframeInfo): Metric[] {
+export function bulkHoldMetrics(s: SignalItem, tf: TimeframeInfo, holdMode: HoldDisplayMode = "both"): Metric[] {
   const backing = s.investor_backing;
   return [
     ...tradeDateMetrics(tf, s.disclosed_at),
@@ -58,7 +59,7 @@ export function bulkHoldMetrics(s: SignalItem, tf: TimeframeInfo): Metric[] {
       { label: "Investor", value: s.entity?.slice(0, 28) || "—" },
       { label: "Deal size", value: fmtValue(s.value, s.market) },
     ]),
-    { label: "Hold", value: String(tf.hold_label_short || tf.hold_days || "—") },
+    { label: "Hold", value: formatHoldLabel(tf, holdMode) },
     { label: "Investor trades", value: s.n_trades != null ? String(s.n_trades) : "—" },
   ];
 }

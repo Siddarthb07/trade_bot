@@ -4,7 +4,8 @@ import { DetailPriceChart, TrendInfo } from "../components/PriceChart";
 import HoldTimeline, { HoldBanner } from "../components/HoldTimeline";
 import { apiFetch, SignalItem } from "../api";
 import { fmtPct, fmtValue } from "../utils/format";
-import { tfFromDist } from "../utils/timeframe";
+import { formatHoldLabel, tfFromDist } from "../utils/timeframe";
+import { useHoldPrefs } from "../hooks/useHoldPrefs";
 
 interface SignalDetail {
   signal: SignalItem & { calibrated_probability?: number };
@@ -30,6 +31,7 @@ interface SignalDetail {
 export default function SignalPage() {
   const { id } = useParams();
   const [data, setData] = useState<SignalDetail | null>(null);
+  const holdMode = useHoldPrefs();
 
   useEffect(() => {
     if (!id) return;
@@ -75,7 +77,7 @@ export default function SignalPage() {
           <div className="detail-kpis">
             <div><span>Confidence</span><strong>{prob != null ? `${(prob * 100).toFixed(0)}%` : "—"}</strong></div>
             <div><span>Est. return</span><strong className="ok">{dist.expected_return_pct != null ? `+${((dist.expected_return_pct as number) * 100).toFixed(0)}%` : "—"}</strong></div>
-            <div><span>Hold</span><strong>{String(dist.hold_label_long || dist.sell_horizon_label || "—")}</strong></div>
+            <div><span>Hold</span><strong>{formatHoldLabel(tf, holdMode)}</strong></div>
             <div><span>Sell by</span><strong>{String(dist.exit_date_full || dist.exit_date_label || "—")}</strong></div>
             <div><span>Review</span><strong>{String(dist.review_date_label || "—")}</strong></div>
             {!isMacro && <div><span>Deal</span><strong>{fmtValue(s.value, s.market)}</strong></div>}

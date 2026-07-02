@@ -65,9 +65,9 @@ def score_macro_signal(db: Session, signal: Signal) -> SignalScore:
   expected = (pick or {}).get("expected_return_pct") or 0.06
   tier = (pick or {}).get("tier") or "MEDIUM"
   days = (pick or {}).get("sell_horizon_days") or 60
-  from core.config import get_settings
+  from core.hold_prefs import effective_hold_prefs
 
-  days = int(days * get_settings().theme_hold_multiplier)
+  days = int(days * effective_hold_prefs(db).theme_hold_multiplier)
 
   from processor.confluence import apply_bulk_confidence_boost, bulk_confluence
 

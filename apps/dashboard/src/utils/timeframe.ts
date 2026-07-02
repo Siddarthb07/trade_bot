@@ -1,5 +1,7 @@
 /** Timeframe helpers for dashboard (mirrors API return_distribution). */
 
+import type { HoldDisplayMode } from "../hooks/useHoldPrefs";
+
 export interface TimeframeInfo {
   hold_days?: number;
   hold_label_short?: string;
@@ -27,10 +29,17 @@ export function tfFromDist(dist?: Record<string, unknown> | null): TimeframeInfo
   return dist as TimeframeInfo;
 }
 
-export function holdSummary(tf: TimeframeInfo): string {
-  if (tf.hold_label_long) return tf.hold_label_long;
-  if (tf.hold_days) return `Hold ${tf.hold_days} days`;
-  return tf.sell_horizon_label || "—";
+export function formatHoldLabel(tf: TimeframeInfo, mode: HoldDisplayMode = "both"): string {
+  const days = tf.hold_days;
+  if (!days) return tf.hold_label_long || tf.sell_horizon_label || "—";
+  const short = tf.hold_label_short || `~${Math.max(1, Math.round(days / 7))} weeks`;
+  if (mode === "days") return `Hold ${days} days`;
+  if (mode === "weeks") return short.startsWith("Hold") ? short : `Hold ${short}`;
+  return tf.hold_label_long || `Hold ${days} days · ${short}`;
+}
+
+export function holdSummary(tf: TimeframeInfo, mode: HoldDisplayMode = "both"): string {
+  return formatHoldLabel(tf, mode);
 }
 
 export function exitSummary(tf: TimeframeInfo): string {

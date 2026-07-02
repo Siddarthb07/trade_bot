@@ -28,6 +28,9 @@ export default function EntityPage() {
             <div className="metric-row">
               <div className="metric"><span>Track record</span><strong>{fmtTrackRecord(s.win_rate, s.n_trades)}</strong></div>
               <div className="metric"><span>Median return</span><strong>{fmtExp(s.median_return)}</strong></div>
+              {s.label && (
+                <div className="metric"><span>Typical hold</span><strong>{s.label}</strong></div>
+              )}
             </div>
           </div>
         ))}

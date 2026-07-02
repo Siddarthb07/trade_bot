@@ -1,4 +1,5 @@
-import { TimeframeInfo, timelineProgress } from "../utils/timeframe";
+import { TimeframeInfo, formatHoldLabel, timelineProgress } from "../utils/timeframe";
+import { useHoldPrefs } from "../hooks/useHoldPrefs";
 
 export default function HoldTimeline({ tf, compact }: { tf: TimeframeInfo; compact?: boolean }) {
   if (!tf.hold_days) return null;
@@ -28,11 +29,12 @@ export default function HoldTimeline({ tf, compact }: { tf: TimeframeInfo; compa
 }
 
 export function HoldBanner({ tf, compact }: { tf: TimeframeInfo; compact?: boolean }) {
+  const mode = useHoldPrefs();
   if (!tf.hold_days) return null;
   const entry = tf.entry_date_full || tf.entry_date_label;
   return (
     <div className={`hold-banner${compact ? " compact" : ""}`}>
-      <strong>{tf.hold_label_long || `Hold ${tf.hold_days} days`}</strong>
+      <strong>{formatHoldLabel(tf, mode)}</strong>
       {entry && <span>Buy {entry}</span>}
       <span>Sell by {tf.exit_date_full || tf.exit_date_label}</span>
       <span>Review {tf.review_date_label}</span>

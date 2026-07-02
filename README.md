@@ -79,17 +79,6 @@ ALERTS_ENABLED=true
 
 Then `docker compose up -d`.
 
-## Host NSE Fallback
-
-If Docker NSE ingest fails (check **System** page), run host-side `nsepython`:
-
-```powershell
-pip install nsepython
-.\scripts\host_ingest_nse.ps1
-```
-
-Schedule via Task Scheduler daily at 18:15 IST if needed.
-
 ## Schedules (IST)
 
 | Job | Time |
@@ -99,14 +88,6 @@ Schedule via Task Scheduler daily at 18:15 IST if needed.
 | SEC Form 4 | every 6h |
 | SEC 13F | 07:00 |
 | US 13F digest (WhatsApp) | 09:00 |
-
-## Backup
-
-```powershell
-.\scripts\backup_db.ps1
-```
-
-Backups go to `%USERPROFILE%\smartmoney-backups\`.
 
 ## Development
 
@@ -144,6 +125,6 @@ npm run dev
 | Issue | Fix |
 |---|---|
 | WAHA session lost | Re-scan QR at :3001; check `/system` |
-| No NSE data | Run host fallback; check `ingestion_runs` |
+| No NSE data | Check **System** page and `ingestion_runs` |
 | Phone link 404 | Fix `DASHBOARD_PUBLIC_URL` to LAN IP |
 | Alerts not firing | Confirm backfill gate + `ALERTS_ENABLED=true` |

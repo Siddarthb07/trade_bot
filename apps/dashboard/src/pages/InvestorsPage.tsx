@@ -10,7 +10,18 @@ interface InvestorRow {
   win_rate: number | null;
   median_return: number | null;
   n_trades: number;
+  median_peak_days: number | null;
+  investor_hold_label: string | null;
+  n_labeled_holds: number | null;
   recent_deals: { ticker: string; value: number | null; disclosed_at: string; signal_id: string }[];
+}
+
+function fmtTypicalHold(row: InvestorRow): string {
+  if (row.investor_hold_label) return row.investor_hold_label.replace(/^This investor's past bulk buys peaked in /, "~");
+  if (row.median_peak_days != null && row.n_labeled_holds) {
+    return `~${row.median_peak_days} days (${row.n_labeled_holds} labeled)`;
+  }
+  return "No history yet";
 }
 
 export default function InvestorsPage() {
@@ -34,7 +45,7 @@ export default function InvestorsPage() {
           <h2>Investor track record</h2>
           <p>
             Win rates from realized 3-month returns after past bulk buys.
-            Not self-learning — recomputed when forward returns mature.
+            Typical hold uses median days to first positive forward return.
           </p>
         </div>
       </section>
@@ -56,6 +67,7 @@ export default function InvestorsPage() {
                 <th>#</th>
                 <th>Investor</th>
                 <th>Track record</th>
+                <th>Typical hold</th>
                 <th>Median ret.</th>
                 <th>Recent buys</th>
               </tr>
@@ -68,6 +80,7 @@ export default function InvestorsPage() {
                     <Link to={`/entities/${encodeURIComponent(inv.entity)}`}>{inv.entity}</Link>
                   </td>
                   <td>{fmtTrackRecord(inv.win_rate, inv.n_trades)}</td>
+                  <td className="muted">{fmtTypicalHold(inv)}</td>
                   <td>{fmtExp(inv.median_return)}</td>
                   <td className="recent-deals">
                     {inv.recent_deals.slice(0, 3).map((d) => (
