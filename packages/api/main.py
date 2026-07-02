@@ -226,6 +226,9 @@ def _apply_distribution(item: dict[str, Any], dist: dict[str, Any]) -> None:
   item["return_distribution"] = dist
   if dist.get("calibrated_probability") is not None:
     item["calibrated_probability"] = dist.get("calibrated_probability")
+
+
+@app.get("/health")
 def health(db: Session = Depends(get_db)) -> dict[str, Any]:
   try:
     db.execute(func.now())
