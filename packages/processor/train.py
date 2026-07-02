@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import pickle
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -21,6 +22,10 @@ MODEL_PATH = MODEL_DIR / "lgbm_calibrated.pkl"
 META_PATH = MODEL_DIR / "model_meta.json"
 
 settings = get_settings()
+
+
+WINDOW_DAYS = {"1w": 7, "1mo": 30, "3mo": 90, "6mo": 180}
+DEFAULT_HOLD_PRIORS = {"HIGH": 14, "MEDIUM": 28, "LOW": 42, "default": 30}
 
 
 def _load_training_data() -> tuple[np.ndarray, np.ndarray] | None:
@@ -41,9 +46,69 @@ def _load_training_data() -> tuple[np.ndarray, np.ndarray] | None:
       y.append(1 if fr.return_pct > settings.win_threshold_pct else 0)
   finally:
     db.close()
-  if len(X) < 30:
+  if len(X) < settings.ml_train_min_samples:
     return None
   return np.array(X), np.array(y)
+
+
+def compute_hold_priors(db=None) -> dict[str, int]:
+  """Median optimal hold days per tier from labeled forward returns (Phase 2.3)."""
+  import statistics
+
+  close_db = False
+  if db is None:
+    db = SessionLocal()
+    close_db = True
+  tier_days: dict[str, list[int]] = {k: [] for k in DEFAULT_HOLD_PRIORS if k != "default"}
+  try:
+    signals = db.query(Signal).filter(Signal.source.in_(["nse_bulk", "nse_block"])).all()
+    for signal in signals:
+      fr_win = (
+        db.query(ForwardReturn)
+        .filter(ForwardReturn.signal_id == signal.id, ForwardReturn.window == settings.win_window)
+        .first()
+      )
+      if fr_win is None or fr_win.return_pct is None or fr_win.return_pct <= settings.win_threshold_pct:
+        continue
+      score = (
+        db.query(SignalScore)
+        .filter(SignalScore.signal_id == signal.id)
+        .order_by(SignalScore.scored_at.desc())
+        .first()
+      )
+      tier = (score.tier if score else None) or "MEDIUM"
+      if tier not in tier_days:
+        tier = "MEDIUM"
+      for window in ("1w", "1mo", "3mo"):
+        fr = (
+          db.query(ForwardReturn)
+          .filter(ForwardReturn.signal_id == signal.id, ForwardReturn.window == window)
+          .first()
+        )
+        if fr and fr.return_pct is not None and fr.return_pct > settings.win_threshold_pct:
+          tier_days[tier].append(WINDOW_DAYS[window])
+          break
+  finally:
+    if close_db:
+      db.close()
+
+  priors: dict[str, int] = {}
+  for tier, days_list in tier_days.items():
+    priors[tier] = int(statistics.median(days_list)) if days_list else DEFAULT_HOLD_PRIORS[tier]
+  priors["default"] = int(statistics.median([d for lst in tier_days.values() for d in lst])) if any(tier_days.values()) else DEFAULT_HOLD_PRIORS["default"]
+  return priors
+
+
+def load_hold_priors() -> dict[str, int]:
+  if META_PATH.exists():
+    try:
+      meta = json.loads(META_PATH.read_text())
+      priors = meta.get("hold_priors")
+      if isinstance(priors, dict) and priors:
+        return {k: int(v) for k, v in priors.items()}
+    except Exception:
+      pass
+  return dict(DEFAULT_HOLD_PRIORS)
 
 
 def train_model() -> dict:
@@ -77,12 +142,15 @@ def train_model() -> dict:
   with open(MODEL_PATH, "wb") as f:
     pickle.dump(model, f)
 
+  hold_priors = compute_hold_priors()
   meta = {
     "status": "trained",
     "scorer_version": "lgbm-platt-v1",
     "n_samples": int(len(y)),
     "test_accuracy": acc,
     "positive_rate": float(y.mean()),
+    "hold_priors": hold_priors,
+    "trained_at": datetime.now(timezone.utc).isoformat(),
   }
   META_PATH.write_text(json.dumps(meta, indent=2))
   return meta

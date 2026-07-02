@@ -1,1 +1,14 @@
-{"status": "skipped", "reason": "insufficient_labeled_data", "n_samples": 0}
+{
+  "status": "trained",
+  "scorer_version": "lgbm-platt-v1",
+  "n_samples": 188,
+  "test_accuracy": 1.0,
+  "positive_rate": 0.0,
+  "hold_priors": {
+    "HIGH": 14,
+    "MEDIUM": 28,
+    "LOW": 42,
+    "default": 30
+  },
+  "trained_at": "2026-07-01T17:23:40.940823+00:00"
+}

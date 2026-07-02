@@ -55,6 +55,15 @@ def main() -> None:
   n = seed_bulk_only(2000)
   logger.info("Seeded %s new signals", n)
 
+  logger.info("Historical NSE backfill (90 days)...")
+  try:
+    from ingest.nse import backfill_nse_historical
+
+    hist = backfill_nse_historical(days=90)
+    logger.info("Historical backfill: %s", hist)
+  except Exception as exc:
+    logger.warning("Historical backfill failed: %s", exc)
+
   db = SessionLocal()
   all_ids = [str(s.id) for s in db.query(Signal.id).all()]
   db.close()

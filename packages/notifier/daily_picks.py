@@ -13,6 +13,7 @@ from core.models import AlertLog, Signal, SignalScore
 from notifier.ntfy import send_ntfy
 from notifier.templates import daily_picks_message
 from notifier.waha import send_whatsapp, waha_healthy
+from processor.confluence import bulk_confluence
 from zoneinfo import ZoneInfo
 
 logger = logging.getLogger(__name__)
@@ -115,15 +116,36 @@ def send_daily_picks(market: str = "IN", *, force: bool = False) -> dict:
       candidates.append((signal, score, _expected_return(score)))
 
     candidates.sort(key=lambda x: x[2], reverse=True)
-    top = [(s, sc) for s, sc, _ in candidates[: settings.daily_picks_max]]
+
+    # Phase 2.1: one pick per ticker (highest est. return)
+    seen: dict[str, tuple[Signal, SignalScore, float]] = {}
+    deal_counts: dict[str, int] = {}
+    for signal, score, exp in candidates:
+      deal_counts[signal.ticker] = deal_counts.get(signal.ticker, 0) + 1
+      prev = seen.get(signal.ticker)
+      if prev is None or exp > prev[2]:
+        seen[signal.ticker] = (signal, score, exp)
+    deduped = sorted(seen.values(), key=lambda x: x[2], reverse=True)
+    top = [(s, sc) for s, sc, _ in deduped[: settings.daily_picks_max]]
     theme_top = _theme_picks(db, market)
+
+    week_counts_db: dict[str, int] = {}
+    for ticker in seen:
+      week_counts_db[ticker] = bulk_confluence(db, ticker, market, since_days=7)["bulk_deal_count"]
 
     dedup = f"daily_picks:{market}:{day_start.date().isoformat()}"
     if not force and db.query(AlertLog).filter(AlertLog.dedup_key == dedup).first():
       return {"sent": False, "reason": "already_sent_today", "candidates": len(candidates)}
 
     url = settings.dashboard_public_url.rstrip("/")
-    text = daily_picks_message(top, url, market=market, theme_picks=theme_top)
+    text = daily_picks_message(
+      top,
+      url,
+      market=market,
+      theme_picks=theme_top,
+      bulk_deal_counts=deal_counts,
+      bulk_deal_counts_week=week_counts_db,
+    )
 
     if force:
       db.query(AlertLog).filter(AlertLog.dedup_key == dedup).delete()

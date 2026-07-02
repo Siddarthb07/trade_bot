@@ -85,6 +85,30 @@ class NSEClient:
     df = pd.read_csv(io.StringIO(response.text))
     return [self._normalize_archive_row(row, mode) for _, row in df.iterrows() if _valid_archive_row(row)]
 
+  def fetch_historical_deals(
+    self,
+    mode: str,
+    from_date: datetime,
+    to_date: datetime,
+  ) -> list[dict[str, Any]]:
+    """NSE historical bulk/block deals for a date range."""
+    endpoint = "bulk-deals" if mode == "bulk_deals" else "block-deals"
+    url = f"{NSE_HOME}/api/historical/{endpoint}"
+    params = {
+      "from": from_date.strftime("%d-%m-%Y"),
+      "to": to_date.strftime("%d-%m-%Y"),
+    }
+    self._warmup()
+    data = self._get_json(url, params=params)
+    rows = data if isinstance(data, list) else data.get("data", [])
+    out: list[dict[str, Any]] = []
+    for row in rows:
+      try:
+        out.append(self._normalize_live_row(row, mode))
+      except Exception as exc:
+        logger.debug("Skip historical row: %s", exc)
+    return out
+
   def _normalize_live_row(self, row: dict[str, Any], mode: str) -> dict[str, Any]:
     symbol = str(row.get("symbol") or row.get("SYMBOL") or "").strip()
     client = str(row.get("clientName") or row.get("CLIENT_NAME") or row.get("buyerName") or "UNKNOWN")
