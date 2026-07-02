@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import HoldTimeline, { HoldBanner } from "./HoldTimeline";
 import { MiniPriceChart, PricePoint, TrendInfo } from "./PriceChart";
 import { fmtExp, fmtPct, fmtValue, tierClass } from "../utils/format";
+import { TimeframeInfo } from "../utils/timeframe";
 
 export interface Metric {
   label: string;
@@ -19,9 +21,13 @@ export default function StockPanel({
   metrics,
   tags,
   note,
+  timeframe,
+  showTimeline = true,
   prices,
   trend,
   chartLoading,
+  onExpand,
+  expanded,
 }: {
   rank?: number;
   ticker: string;
@@ -33,12 +39,16 @@ export default function StockPanel({
   metrics: Metric[];
   tags?: string[];
   note?: string;
+  timeframe?: TimeframeInfo;
+  showTimeline?: boolean;
   prices?: PricePoint[];
   trend?: TrendInfo;
   chartLoading?: boolean;
+  onExpand?: () => void;
+  expanded?: boolean;
 }) {
   return (
-    <article className="stock-panel">
+    <article className={`stock-panel${expanded ? " is-expanded" : ""}`}>
       <div className="stock-chart-col">
         {chartLoading ? (
           <div className="chart-placeholder">Loading chart…</div>
@@ -61,7 +71,9 @@ export default function StockPanel({
           {tier && <span className={tierClass(tier)}>{tier}</span>}
         </div>
 
-        {note && <p className="stock-note">{note}</p>}
+        {timeframe?.hold_days ? <HoldBanner tf={timeframe} compact={!showTimeline} /> : note && <p className="stock-note">{note}</p>}
+
+        {timeframe?.hold_days && showTimeline && <HoldTimeline tf={timeframe} />}
 
         <div className="metric-row">
           {metrics.map((m) => (
@@ -78,9 +90,16 @@ export default function StockPanel({
               <span key={t} className="tag">{t}</span>
             ))}
           </div>
-          {signalId && (
-            <Link to={`/signals/${signalId}`} className="detail-link">Full thesis & chart →</Link>
-          )}
+          <div className="stock-actions">
+            {onExpand && (
+              <button type="button" className="btn-link" onClick={onExpand}>
+                {expanded ? "Collapse ▲" : "Expand thesis ▼"}
+              </button>
+            )}
+            {signalId && (
+              <Link to={`/signals/${signalId}`} className="detail-link">Full page →</Link>
+            )}
+          </div>
         </div>
       </div>
     </article>
@@ -99,9 +118,9 @@ export function bulkMetrics(s: {
   return [
     { label: "Est. return", value: fmtExp(dist.expected_return_pct as number), accent: true },
     { label: "Confidence", value: fmtPct(s.calibrated_probability) },
+    { label: "Hold", value: String(dist.hold_label_short || dist.sell_horizon_label || "—") },
+    { label: "Sell by", value: String(dist.exit_date_label || "—") },
     { label: "Deal size", value: fmtValue(s.value, s.market || "IN") },
-    { label: "Hold", value: String(dist.sell_horizon_label || "—") },
-    { label: "Investor WR", value: fmtPct(s.historical_win_rate) },
-    { label: "Trades", value: String(s.n_trades ?? "—") },
+    { label: "Left", value: String(dist.countdown_label || "—") },
   ];
 }

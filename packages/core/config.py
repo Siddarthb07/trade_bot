@@ -60,6 +60,22 @@ class Settings(BaseSettings):
     macro_themes_min_composite: float = 0.12
     macro_themes_whatsapp_max: int = 3
     macro_themes_min_probability: float = 0.52
+    # Exit / review WhatsApp reminders (Phase 1)
+    exit_reminders_enabled: bool = True
+    # ML training (Phase 2)
+    ml_train_enabled: bool = True
+    ml_train_min_samples: int = 30
+    ml_backfill_days: int = 90
+    bulk_confidence_boost: float = 0.05
+    # Hold display (Phase 5)
+    hold_display_mode: str = "both"  # days | weeks | both
+    theme_hold_multiplier: float = 1.0
+    min_hold_days_filter: int = 0
+    # WhatsApp link format: sslip (IP→sslip.io), query (?s=&k=), or plain
+    whatsapp_link_mode: str = "sslip"
+    # Holdings digest (active hold window)
+    holdings_whatsapp_max: int = 8
+    holdings_digest_enabled: bool = True
 
 
 @lru_cache

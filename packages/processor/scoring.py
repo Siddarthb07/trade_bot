@@ -65,21 +65,40 @@ def score_macro_signal(db: Session, signal: Signal) -> SignalScore:
   expected = (pick or {}).get("expected_return_pct") or 0.06
   tier = (pick or {}).get("tier") or "MEDIUM"
   days = (pick or {}).get("sell_horizon_days") or 60
-  label = (pick or {}).get("sell_horizon_label") or "~2 months (theme)"
+  from core.config import get_settings
 
+  days = int(days * get_settings().theme_hold_multiplier)
+
+  from processor.confluence import apply_bulk_confidence_boost, bulk_confluence
+
+  conf = bulk_confluence(db, signal.ticker, signal.market, since_days=30)
+  prob = apply_bulk_confidence_boost(prob, bulk_confirmed=conf["bulk_confirmed"]) or prob
+  if conf["bulk_confirmed"] and tier == "MEDIUM" and prob >= 0.58:
+    tier = "HIGH"
+
+  from processor.timeframe import build_timeframe
+  from processor.partial_exit import build_partial_exit_plan
+  from processor.market_data import compute_trend_features
+
+  trend = compute_trend_features(signal.ticker_normalized)
+  tf = build_timeframe(int(days), signal.disclosed_at, volatility_annualized=trend.get("volatility_20d"))
+  tf["partial_exit_plan"] = build_partial_exit_plan(int(days))
   distribution = {
     "median": None,
     "win_rate": None,
     "calibrated_probability": prob,
     "p10": None,
     "p90": None,
-    "sell_horizon_days": days,
-    "sell_horizon_label": label,
     "expected_return_pct": expected,
-    "sell_by_hint": f"Review exit around {days} days",
     "theme_heat": (pick or {}).get("theme_heat"),
     "alignment_score": (pick or {}).get("alignment_score"),
     "composite_score": (pick or {}).get("composite_score"),
+    "bulk_confirmed": conf["bulk_confirmed"],
+    "bulk_deal_count": conf["bulk_deal_count"],
+    "return_breakdown": (pick or {}).get("return_breakdown"),
+    "return_rationale": (pick or {}).get("return_rationale"),
+    "fundamentals": (pick or {}).get("fundamentals"),
+    **tf,
   }
 
   score = (
@@ -151,11 +170,10 @@ def score_signal_ml(db: Session, signal: Signal) -> SignalScore:
     "p90": None,
   }
   feats = build_features(db, signal)
-  horizon = estimate_sell_horizon(feats, signal)
-  distribution["sell_horizon_days"] = horizon.get("days")
-  distribution["sell_horizon_label"] = horizon.get("label")
-  distribution["expected_return_pct"] = horizon.get("expected_return_pct")
-  distribution["sell_by_hint"] = horizon.get("sell_by_hint")
+  horizon = estimate_sell_horizon(feats, signal, db=db)
+  distribution.update({k: v for k, v in horizon.items() if k not in distribution or k in horizon})
+  if horizon.get("expected_return_pct") is not None:
+    distribution["expected_return_pct"] = horizon["expected_return_pct"]
 
   score = (
     db.query(SignalScore)

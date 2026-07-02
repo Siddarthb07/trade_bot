@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from core.models import Signal, SignalScore
@@ -33,29 +33,35 @@ def _score_meta(score: SignalScore) -> dict:
   return {
     "prob": dist.get("calibrated_probability"),
     "expected_pct": dist.get("expected_return_pct"),
-    "horizon_label": dist.get("sell_horizon_label"),
-    "horizon_days": dist.get("sell_horizon_days"),
+    "dist": dist,
   }
 
 
-def _sell_line(meta: dict, disclosed_at: datetime | None = None) -> str:
-  label = meta.get("horizon_label")
-  days = meta.get("horizon_days")
+def _timeframe_lines(dist: dict) -> list[str]:
+  lines: list[str] = []
+  if dist.get("hold_label_long"):
+    lines.append(f"HOLD: {dist['hold_label_long']}")
+  elif dist.get("hold_days"):
+    lines.append(f"HOLD: {dist['hold_days']} days")
+  if dist.get("exit_date_full") or dist.get("exit_date_label"):
+    lines.append(f"SELL BY: {dist.get('exit_date_full') or dist['exit_date_label']}")
+  if dist.get("review_date_label"):
+    lines.append(f"REVIEW: {dist['review_date_label']} (mid-hold)")
+  return lines
+
+
+def _sell_line(meta: dict) -> str:
+  dist = meta.get("dist") or {}
   exp = meta.get("expected_pct")
-  parts: list[str] = []
+  parts = _timeframe_lines(dist)
   if exp is not None:
-    parts.append(f"Est. +{exp * 100:.0f}%")
-  if label:
-    parts.append(f"Hold {label}")
-  if days and disclosed_at:
-    sell_by = (disclosed_at.astimezone(IST) + timedelta(days=int(days))).strftime("%d %b")
-    parts.append(f"Exit ~{sell_by}")
+    parts.append(f"Est +{exp * 100:.0f}%")
   return " · ".join(parts) if parts else ""
 
 
-def _link_block(url: str) -> list[str]:
-  """URL on its own line, column 0 — required for WhatsApp full-link tap."""
-  return ["", url]
+def _link_block(url: str, label: str = "Open") -> list[str]:
+  """Label line + URL at column 0 (WhatsApp linkify-friendly)."""
+  return [label, url]
 
 
 def brief_whatsapp_message(signal: Signal, score: SignalScore, dashboard_url: str) -> str:
@@ -63,17 +69,75 @@ def brief_whatsapp_message(signal: Signal, score: SignalScore, dashboard_url: st
   meta = _score_meta(score)
   prob = meta.get("prob")
   prob_text = f"{prob * 100:.0f}% conf" if prob is not None else ""
-  sell = _sell_line(meta, signal.disclosed_at)
   source_label = signal.source.replace("nse_", "").replace("sec_", "").upper()
   link = signal_dashboard_url(str(signal.id), dashboard_url)
   lines = [
     f"{emoji} {score.tier} · {signal.market} · {signal.ticker} · {signal.action}",
     f"{source_label} · {format_currency(signal.value, signal.market)} · {prob_text}",
   ]
-  if sell:
-    lines.append(sell)
+  for tl in _timeframe_lines(meta["dist"]):
+    lines.append(tl)
   lines.extend(_link_block(link))
   return "\n".join(lines)[:900]
+
+
+def holdings_message(
+  holdings: list[tuple[Signal, SignalScore]],
+  dashboard_url: str,
+  *,
+  market: str = "IN",
+) -> str:
+  """Active holds with sell-by dates and tappable links."""
+  today = datetime.now(IST).strftime("%d %b %Y")
+  home = dashboard_home_url(dashboard_url)
+
+  if not holdings:
+    lines = [
+      f"Trade Bot · Current holds · {today}",
+      f"No active holds in {market} right now.",
+      "Check dashboard for new picks.",
+    ]
+    lines.extend(_link_block(home, "Open dashboard"))
+    return "\n".join(lines)
+
+  lines = [f"Trade Bot · Current holds · {today} · {market}"]
+  lines.append(f"{len(holdings)} stocks in active hold window\n")
+
+  for idx, (signal, score) in enumerate(holdings, start=1):
+    meta = _score_meta(score)
+    dist = meta["dist"]
+    prob = meta.get("prob")
+    exp = meta.get("expected_pct")
+    prob_text = f"{prob * 100:.0f}%" if prob is not None else "—"
+    exp_text = f"+{exp * 100:.0f}%" if exp is not None else "—"
+    link = signal_dashboard_url(str(signal.id), dashboard_url)
+
+    kind = "Bulk" if signal.source in ("nse_bulk", "nse_block") else "Demand"
+    if signal.source == "macro_theme":
+      raw = signal.raw_json or {}
+      kind = raw.get("theme_name") or "Demand"
+      if len(kind) > 24:
+        kind = kind[:22] + "…"
+
+    status = dist.get("hold_status") or "active"
+    status_label = {"active": "Holding", "review_due": "Review now", "exit_window": "Exit window"}.get(status, status)
+    countdown = dist.get("countdown_label") or ""
+
+    lines.append(
+      f"\n{idx}. {TIER_EMOJI.get(score.tier, '⚪')} {signal.ticker} · {kind} · {status_label}"
+    )
+    for tl in _timeframe_lines(dist):
+      lines.append(f"   {tl}")
+    if countdown:
+      lines.append(f"   {countdown}")
+    lines.append(f"   Est {exp_text} · {prob_text} conf")
+    if signal.source in ("nse_bulk", "nse_block") and signal.value:
+      lines.append(f"   Deal {format_currency(signal.value, signal.market)}")
+    lines.extend(_link_block(link))
+
+  lines.append("\nNot investment advice. Same WiFi as PC.")
+  lines.extend(_link_block(home, "Open dashboard"))
+  return "\n".join(lines)[:4000]
 
 
 def daily_picks_message(
@@ -82,6 +146,8 @@ def daily_picks_message(
   *,
   market: str = "IN",
   theme_picks: list[tuple[Signal, SignalScore]] | None = None,
+  bulk_deal_counts: dict[str, int] | None = None,
+  bulk_deal_counts_week: dict[str, int] | None = None,
 ) -> str:
   today = datetime.now(IST).strftime("%d %b")
   home = dashboard_home_url(dashboard_url)
@@ -97,16 +163,18 @@ def daily_picks_message(
     exp = meta.get("expected_pct")
     prob_text = f"{prob * 100:.0f}%" if prob is not None else "—"
     exp_text = f"+{exp * 100:.0f}%" if exp is not None else "—"
-    sell = _sell_line(meta, signal.disclosed_at)
     entity_short = signal.entity[:28] + "…" if len(signal.entity) > 30 else signal.entity
     link = signal_dashboard_url(str(signal.id), dashboard_url)
     lines.append(
       f"\n{idx}. {TIER_EMOJI.get(score.tier, '⚪')} {signal.ticker} · BUY · "
       f"{format_currency(signal.value, signal.market)} · Est {exp_text}"
     )
-    if sell:
-      lines.append(f"   {sell} · {prob_text} conf")
-    lines.append(f"   {entity_short}")
+    for tl in _timeframe_lines(meta["dist"]):
+      lines.append(f"   {tl}")
+    week_n = (bulk_deal_counts_week or {}).get(signal.ticker) or (bulk_deal_counts or {}).get(signal.ticker)
+    if week_n and week_n > 1:
+      lines.append(f"   {week_n} bulk deals this week")
+    lines.append(f"   {prob_text} conf · {entity_short}")
     lines.extend(_link_block(link))
 
   if theme_picks:
@@ -117,7 +185,6 @@ def daily_picks_message(
       exp = meta.get("expected_pct")
       prob_text = f"{prob * 100:.0f}%" if prob is not None else "—"
       exp_text = f"+{exp * 100:.0f}%" if exp is not None else "—"
-      sell = _sell_line(meta, signal.disclosed_at)
       raw = signal.raw_json or {}
       theme_name = raw.get("theme_name") or signal.entity
       theme_short = theme_name[:32] + "…" if len(theme_name) > 34 else theme_name
@@ -125,9 +192,12 @@ def daily_picks_message(
       lines.append(
         f"\nT{idx}. {TIER_EMOJI.get(score.tier, '⚪')} {signal.ticker} · {signal.market} · Est {exp_text}"
       )
+      for tl in _timeframe_lines(meta["dist"]):
+        lines.append(f"   {tl}")
+      if meta["dist"].get("bulk_confirmed"):
+        n = meta["dist"].get("bulk_deal_count") or 0
+        lines.append(f"   Bulk confirmed · {n} deal(s) in 30d")
       lines.append(f"   {theme_short} · {prob_text} conf")
-      if sell:
-        lines.append(f"   {sell}")
       lines.extend(_link_block(link))
 
   lines.append("\nSame WiFi as PC. Not investment advice.")

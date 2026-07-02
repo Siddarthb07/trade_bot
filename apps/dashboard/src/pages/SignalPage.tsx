@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { DetailPriceChart, TrendInfo } from "../components/PriceChart";
+import HoldTimeline, { HoldBanner } from "../components/HoldTimeline";
 import { apiFetch, SignalItem } from "../api";
 import { fmtPct, fmtValue } from "../utils/format";
+import { tfFromDist } from "../utils/timeframe";
 
 interface SignalDetail {
   signal: SignalItem & { calibrated_probability?: number };
   returns: { window: string; return_pct: number | null; price_source: string }[];
-  entity_stats: { win_rate: number | null; median_return: number | null; n_trades: number };
+  entity_stats: { win_rate: number | null; median_return: number | null; n_trades: number; median_peak_days?: number | null; investor_hold_label?: string | null };
   bulk_investors: {
     entity: string; action: string; value: number | null; qty: number | null;
     disclosed_at: string; source: string;
@@ -39,10 +41,24 @@ export default function SignalPage() {
   const s = data.signal;
   const prob = s.calibrated_probability ?? (data.score.calibrated_probability as number | undefined);
   const dist = (data.score.return_distribution || {}) as Record<string, unknown>;
+  const tf = tfFromDist(dist);
   const isMacro = s.source === "macro_theme";
 
   return (
     <div className="detail-page">
+      <section className="card hold-plan-card">
+        <h3>Hold &amp; exit plan</h3>
+        {tf.hold_days ? (
+          <>
+            <HoldBanner tf={tf} />
+            <HoldTimeline tf={tf} />
+            <p className="muted">Exit window: {String(dist.exit_window_label || "—")} · Tier: {String(dist.timeframe_tier || "—")}</p>
+          </>
+        ) : (
+          <p className="muted">No hold window scored yet — re-run rescore or wait for next ingest.</p>
+        )}
+      </section>
+
       <div className="detail-top">
         <section className="card">
           <div className="detail-head">
@@ -59,7 +75,9 @@ export default function SignalPage() {
           <div className="detail-kpis">
             <div><span>Confidence</span><strong>{prob != null ? `${(prob * 100).toFixed(0)}%` : "—"}</strong></div>
             <div><span>Est. return</span><strong className="ok">{dist.expected_return_pct != null ? `+${((dist.expected_return_pct as number) * 100).toFixed(0)}%` : "—"}</strong></div>
-            <div><span>Hold</span><strong>{String(dist.sell_horizon_label || "—")}</strong></div>
+            <div><span>Hold</span><strong>{String(dist.hold_label_long || dist.sell_horizon_label || "—")}</strong></div>
+            <div><span>Sell by</span><strong>{String(dist.exit_date_full || dist.exit_date_label || "—")}</strong></div>
+            <div><span>Review</span><strong>{String(dist.review_date_label || "—")}</strong></div>
             {!isMacro && <div><span>Deal</span><strong>{fmtValue(s.value, s.market)}</strong></div>}
             {isMacro && s.theme?.theme_heat != null && (
               <div><span>Theme heat</span><strong>{Math.round(s.theme.theme_heat * 100)}%</strong></div>
@@ -113,8 +131,13 @@ export default function SignalPage() {
               ))}
             </tbody>
           </table>
-          {!isMacro && (
-            <p className="muted">Investor: WR {fmtPct(data.entity_stats.win_rate, 1)} · median {fmtPct(data.entity_stats.median_return, 1)} · n={data.entity_stats.n_trades}</p>
+      {!isMacro && (
+            <p className="muted">
+              Investor: WR {fmtPct(data.entity_stats.win_rate, 1)} · median {fmtPct(data.entity_stats.median_return, 1)} · n={data.entity_stats.n_trades}
+              {data.entity_stats.investor_hold_label && (
+                <> · {data.entity_stats.investor_hold_label}</>
+              )}
+            </p>
           )}
         </section>
       </div>
@@ -137,6 +160,20 @@ export default function SignalPage() {
           </table>
         </section>
       )}
+
+      {(dist.partial_exit_plan as { day: number; action: string; note: string }[] | undefined)?.length ? (
+        <section className="card">
+          <h3>Staged exit plan</h3>
+          <ul className="exit-stages">
+            {(dist.partial_exit_plan as { day: number; action: string; note: string }[]).map((s) => (
+              <li key={s.day}>
+                <strong>Day {s.day}</strong> — {s.action}
+                <span>{s.note}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <p className="disclaimer">{data.thesis.disclaimer}</p>
     </div>
