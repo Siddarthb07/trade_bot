@@ -17,7 +17,16 @@ from sqlalchemy.orm import Session
 
 from core.config import get_settings
 from core.db import get_db
-from core.models import AlertLog, AlertPrefs, ForwardReturn, IngestionRun, InvestorStat, Signal, SignalScore
+from core.models import (
+  AlertLog,
+  AlertPrefs,
+  ForwardReturn,
+  IngestionRun,
+  InvestorStat,
+  PortfolioPosition,
+  Signal,
+  SignalScore,
+)
 from core.queue import redis_conn, task_queue
 from ingest.nse import ingest_nse_payloads
 from notifier.dispatch import backfill_gate_passed
@@ -83,6 +92,37 @@ class PriceBatchRequest(BaseModel):
   items: list[PriceBatchItem]
 
 
+class PortfolioCreate(BaseModel):
+  ticker: str
+  market: str = "IN"
+  qty: float | None = None
+  entry_price: float | None = None
+  entry_date: datetime | None = None
+  signal_id: str | None = None
+  notes: str | None = None
+
+
+class PortfolioSell(BaseModel):
+  exit_price: float | None = None
+  exit_date: datetime | None = None
+  notes: str | None = None
+
+
+def _forward_returns_map(db: Session, signal_id: uuid.UUID) -> dict[str, float | None]:
+  rows = db.query(ForwardReturn).filter(ForwardReturn.signal_id == signal_id).all()
+  return {r.window: r.return_pct for r in rows}
+
+
+def _signal_data_maturity(db: Session, signal: Signal) -> dict[str, Any]:
+  from processor.data_maturity import data_maturity
+
+  return data_maturity(
+    signal.disclosed_at,
+    forward_returns=_forward_returns_map(db, signal.id),
+    label_window=settings.win_window,
+  )
+
+
 def _latest_score(db: Session, signal_id: uuid.UUID) -> SignalScore | None:
   return (
     db.query(SignalScore)
@@ -90,6 +130,36 @@ def _latest_score(db: Session, signal_id: uuid.UUID) -> SignalScore | None:
     .order_by(desc(SignalScore.scored_at))
     .first()
   )
+
+
+def _stable_signal_entry(signal: Signal | None) -> datetime:
+  """Anchor hold windows to the signal's disclosure calendar day (IST), not request time."""
+  from zoneinfo import ZoneInfo
+
+  IST = ZoneInfo("Asia/Kolkata")
+  src = signal.disclosed_at if signal and signal.disclosed_at else datetime.now(timezone.utc)
+  local = src.astimezone(IST)
+  stable = local.replace(hour=0, minute=0, second=0, microsecond=0)
+  return stable.astimezone(timezone.utc)
+
+
+def _resolve_timeframe(
+  signal: Signal | None,
+  *,
+  hold_days: int,
+  score_dist: dict[str, Any] | None = None,
+  volatility: float | None = None,
+) -> dict[str, Any]:
+  """Recompute hold/sell dates from stable entry — avoids countdown shifting on refresh."""
+  from processor.timeframe import build_timeframe
+
+  days = int(hold_days)
+  if score_dist and score_dist.get("hold_days"):
+    days = int(score_dist["hold_days"])
+  vol = volatility
+  if vol is None and score_dist:
+    vol = score_dist.get("volatility_annualized")
+  return build_timeframe(days, _stable_signal_entry(signal), volatility_annualized=vol)
 
 
 def _serialize_signal(db: Session, signal: Signal) -> dict[str, Any]:
@@ -125,7 +195,37 @@ def _serialize_signal(db: Session, signal: Signal) -> dict[str, Any]:
   return item
 
 
-@app.get("/health")
+def _bulk_expected_return(db: Session, signal: Signal, score: SignalScore | None) -> tuple[float, dict[str, Any]]:
+  """Return (expected_return_pct, merged distribution fields) for ranking bulk picks."""
+  dist: dict[str, Any] = dict(score.return_distribution or {}) if score else {}
+  exp = dist.get("expected_return_pct")
+
+  if exp is None:
+    from processor.features import build_features
+    from processor.horizon import estimate_sell_horizon
+
+    feats = build_features(db, signal)
+    horizon = estimate_sell_horizon(feats, signal, db=db)
+    dist = {**dist, **{k: v for k, v in horizon.items() if v is not None}}
+    exp = dist.get("expected_return_pct")
+    if exp is None:
+      exp = 0.05
+
+  hold_days = int(dist.get("hold_days") or dist.get("sell_horizon_days") or 30)
+  fresh_tf = _resolve_timeframe(
+    signal,
+    hold_days=hold_days,
+    score_dist=dist,
+    volatility=dist.get("volatility_annualized"),
+  )
+  dist = {**dist, **fresh_tf}
+  return float(exp), dist
+
+
+def _apply_distribution(item: dict[str, Any], dist: dict[str, Any]) -> None:
+  item["return_distribution"] = dist
+  if dist.get("calibrated_probability") is not None:
+    item["calibrated_probability"] = dist.get("calibrated_probability")
 def health(db: Session = Depends(get_db)) -> dict[str, Any]:
   try:
     db.execute(func.now())
@@ -176,37 +276,101 @@ def list_signals(
 @app.get("/signals/top-picks")
 def top_picks(
   market: str = "IN",
-  limit: int = Query(default=5, le=10),
+  limit: int = Query(default=10, le=25),
+  days: int = Query(default=14, ge=1, le=90),
   db: Session = Depends(get_db),
   _: None = Depends(verify_basic_or_share),
 ) -> dict[str, Any]:
   from datetime import timedelta
-  from zoneinfo import ZoneInfo
 
-  ist = ZoneInfo("Asia/Kolkata")
-  day_start = datetime.now(ist).replace(hour=0, minute=0, second=0, microsecond=0).astimezone(timezone.utc)
+  from processor.confluence import bulk_confluence
+
+  since = datetime.now(timezone.utc) - timedelta(days=days)
   signals = (
     db.query(Signal)
     .filter(
       Signal.market == market.upper(),
-      Signal.disclosed_at >= day_start - timedelta(hours=6),
+      Signal.disclosed_at >= since,
+      Signal.source.in_(["nse_bulk", "nse_block"]),
     )
+    .order_by(desc(Signal.disclosed_at))
     .all()
   )
-  ranked: list[tuple[float, dict]] = []
+  ranked: list[tuple[float, dict, int]] = []
+  deal_counts: dict[str, int] = {}
   for signal in signals:
     if signal.action.upper() not in ("BUY", "P", "A"):
       continue
+    deal_counts[signal.ticker] = deal_counts.get(signal.ticker, 0) + 1
     score = _latest_score(db, signal.id)
-    if not score or not score.return_distribution:
-      continue
-    exp = score.return_distribution.get("expected_return_pct")
-    if exp is None:
-      continue
-    ranked.append((float(exp), _serialize_signal(db, signal)))
-  ranked.sort(key=lambda x: x[0], reverse=True)
-  items = [item for _, item in ranked[:limit]]
-  return {"items": items, "ranked_by": "expected_return_pct"}
+    exp, dist = _bulk_expected_return(db, signal, score)
+    item = _serialize_signal(db, signal)
+    _apply_distribution(item, dist)
+    ranked.append((exp, item, deal_counts[signal.ticker]))
+
+  # One row per ticker (highest est. return in window)
+  best: dict[str, tuple[float, dict]] = {}
+  for exp, item, _ in ranked:
+    ticker = item["ticker"]
+    prev = best.get(ticker)
+    if prev is None or exp > prev[0]:
+      best[ticker] = (exp, item)
+
+  items: list[dict] = []
+  ml_meta: dict[str, Any] | None = None
+  try:
+    import json
+    from pathlib import Path
+
+    meta_path = Path("/app/models/model_meta.json")
+    if meta_path.exists():
+      ml_meta = json.loads(meta_path.read_text())
+  except Exception:
+    ml_meta = None
+
+  for ticker, (exp, item) in sorted(best.items(), key=lambda x: x[0], reverse=True)[:limit]:
+    from processor.bulk_investors import bulk_investor_breakdown
+
+    week = bulk_confluence(db, ticker, market.upper(), since_days=7)
+    backing = bulk_investor_breakdown(db, ticker, market.upper(), since_days=days)
+    item["bulk_deal_count"] = deal_counts.get(ticker, 1)
+    item["bulk_deal_count_week"] = week["bulk_deal_count"]
+    item["investor_backing"] = backing
+    scorer = item.get("scorer_version") or ""
+    sig = db.query(Signal).filter(Signal.id == uuid.UUID(item["id"])).first()
+    maturity = _signal_data_maturity(db, sig) if sig else None
+    item["prediction"] = {
+      "method": "ml" if "lgbm" in scorer else "rules",
+      "scorer_version": scorer or "interim-v1",
+      "lead_investor_win_rate": item.get("historical_win_rate"),
+      "lead_investor_median_return": (item.get("return_distribution") or {}).get("median"),
+      "lead_investor_n_trades": item.get("n_trades"),
+      "backing_win_rate": backing.get("aggregate_win_rate"),
+      "backing_median_return": backing.get("aggregate_median_return"),
+      "tracked_past_trades": backing.get("tracked_past_trades"),
+      "data_maturity": maturity,
+    }
+    items.append(item)
+
+  scoring_note = (
+    "Predictions use rule-based scoring today. ML retrains weekly on realized 3mo outcomes — "
+    "not self-learning from dashboard use. Win rates need matured forward returns."
+  )
+  if ml_meta and ml_meta.get("status") == "trained":
+    scoring_note = (
+      f"ML model ({ml_meta.get('scorer_version')}) trained on {ml_meta.get('n_samples')} outcomes — "
+      "retrains weekly. Most bulk picks still use interim rules until enough labeled data. "
+      "Not self-learning from your usage."
+    )
+
+  return {
+    "items": items,
+    "ranked_by": "expected_return_pct",
+    "deduped_by": "ticker",
+    "window_days": days,
+    "scoring_note": scoring_note,
+    "ml_model": ml_meta,
+  }
 
 
 @app.get("/themes")
@@ -229,6 +393,7 @@ def list_themes(
     proxy = compute_trend_features(normalize_ticker(theme.proxy_ticker, "US"))
     proxy_3m = float(proxy.get("return_3m") or 0)
     heat = max(0.0, min(1.0, proxy_3m / 0.12))
+    proxy_prices = fetch_price_history(normalize_ticker(theme.proxy_ticker, "US"), days=120)
     top = by_theme.get(theme.slug, [])[:5]
     themes_out.append({
       "slug": theme.slug,
@@ -238,6 +403,7 @@ def list_themes(
       "proxy_ticker": theme.proxy_ticker,
       "theme_heat": round(heat, 3),
       "proxy_return_3m": proxy.get("return_3m"),
+      "proxy_prices": proxy_prices[-60:],
       "top_picks": top,
     })
   return {"themes": themes_out, "disclaimer": "Thematic research from public prices — not investment advice."}
@@ -280,20 +446,18 @@ def theme_top_picks(
 @app.get("/themes/live-picks")
 def live_theme_picks(
   market: str | None = None,
-  limit: int = Query(default=20, le=50),
+  limit: int = Query(default=30, le=50),
   no_bulk_only: bool = False,
   min_composite: float | None = None,
   db: Session = Depends(get_db),
   _: None = Depends(verify_basic_or_share),
 ) -> dict[str, Any]:
   """Always-computed demand picks (works even if daily ingest hasn't run)."""
-  from datetime import timedelta
-
   from processor.macro_themes import rank_all_picks
+  from processor.confluence import apply_bulk_confidence_boost, bulk_confluence
 
   min_c = min_composite if min_composite is not None else settings.macro_themes_min_composite
   picks = rank_all_picks(market=market, min_composite=min_c)
-  since = datetime.now(timezone.utc) - timedelta(days=30)
 
   seen: set[str] = set()
   items: list[dict[str, Any]] = []
@@ -303,19 +467,19 @@ def live_theme_picks(
       continue
     seen.add(key)
 
-    bulk_count = (
-      db.query(Signal)
-      .filter(
-        Signal.ticker == pick["ticker"],
-        Signal.market == pick["market"],
-        Signal.source.in_(["nse_bulk", "nse_block", "sec_form4", "sec_13f"]),
-        Signal.disclosed_at >= since,
-      )
-      .count()
-    )
-    has_bulk = bulk_count > 0
+    conf = bulk_confluence(db, pick["ticker"], pick["market"], since_days=30)
+    has_bulk = conf["has_bulk_deal"]
     if no_bulk_only and has_bulk:
       continue
+
+    prob = apply_bulk_confidence_boost(
+      pick.get("calibrated_probability"),
+      bulk_confirmed=conf["bulk_confirmed"],
+      boost=settings.bulk_confidence_boost,
+    )
+    tier = pick.get("tier")
+    if conf["bulk_confirmed"] and tier == "MEDIUM" and prob and prob >= 0.58:
+      tier = "HIGH"
 
     signal = (
       db.query(Signal)
@@ -328,6 +492,25 @@ def live_theme_picks(
       .first()
     )
 
+    sc = _latest_score(db, signal.id) if signal else None
+    score_dist = sc.return_distribution if sc else None
+    hold_days = int(pick.get("sell_horizon_days") or 60)
+    tf = _resolve_timeframe(signal, hold_days=hold_days, score_dist=score_dist)
+
+    display_exp = pick["expected_return_pct"]
+    display_rationale = pick.get("return_rationale")
+    display_breakdown = pick.get("return_breakdown")
+    display_fundamentals = pick.get("fundamentals")
+    if score_dist:
+      if score_dist.get("expected_return_pct") is not None:
+        display_exp = float(score_dist["expected_return_pct"])
+      if score_dist.get("return_rationale"):
+        display_rationale = score_dist["return_rationale"]
+      if score_dist.get("return_breakdown"):
+        display_breakdown = score_dist["return_breakdown"]
+      if score_dist.get("fundamentals"):
+        display_fundamentals = score_dist["fundamentals"]
+
     items.append({
       "theme_slug": pick["theme_slug"],
       "theme_name": pick["theme_name"],
@@ -337,13 +520,24 @@ def live_theme_picks(
       "company_name": pick["company_name"],
       "theme_heat": pick["theme_heat"],
       "alignment_score": pick["alignment_score"],
-      "calibrated_probability": pick["calibrated_probability"],
-      "expected_return_pct": pick["expected_return_pct"],
-      "tier": pick["tier"],
+      "calibrated_probability": prob,
+      "expected_return_pct": display_exp,
+      "return_breakdown": display_breakdown,
+      "return_rationale": display_rationale,
+      "fundamentals": display_fundamentals,
+      "tier": tier,
       "composite_score": pick["composite_score"],
       "signal_id": str(signal.id) if signal else None,
+      "signal_date": signal.disclosed_at.isoformat() if signal else None,
       "has_bulk_deal": has_bulk,
-      "sell_horizon_label": pick.get("sell_horizon_label"),
+      "bulk_confirmed": conf["bulk_confirmed"],
+      "bulk_deal_count": conf["bulk_deal_count"],
+      **{k: tf.get(k) for k in (
+        "hold_days", "hold_label_long", "hold_label_short",
+        "entry_date", "entry_date_label", "entry_date_full",
+        "exit_date_label", "exit_date_full", "exit_window_label",
+        "review_date_label", "countdown_label", "hold_status", "timeframe_tier", "days_remaining",
+      )},
     })
     if len(items) >= limit:
       break
@@ -357,19 +551,35 @@ def batch_price_history(
   _: None = Depends(verify_basic_or_share),
 ) -> dict[str, Any]:
   from core.tickers import normalize_ticker
-  from processor.market_data import compute_trend_features, fetch_price_history
+  from processor.market_data import fetch_price_history, trend_from_prices
 
   items: list[dict[str, Any]] = []
-  for row in payload.items[:24]:
+  for row in payload.items[:40]:
     norm = normalize_ticker(row.ticker, row.market.upper())
     prices = fetch_price_history(norm, days=180)
-    trend = compute_trend_features(norm)
+    trend = trend_from_prices(prices)
     items.append({
       "ticker": row.ticker.upper(),
       "market": row.market.upper(),
       "prices": prices,
       "trend": trend,
     })
+  return {"items": items}
+
+
+@app.post("/market/fundamentals/batch")
+def batch_fundamentals(
+  payload: PriceBatchRequest,
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from core.tickers import normalize_ticker
+  from processor.fundamentals import fetch_fundamentals
+
+  items: list[dict[str, Any]] = []
+  for row in payload.items[:40]:
+    norm = normalize_ticker(row.ticker, row.market.upper())
+    fund = fetch_fundamentals(norm)
+    items.append({"ticker": row.ticker.upper(), "market": row.market.upper(), **fund})
   return {"items": items}
 
 
@@ -424,6 +634,9 @@ def get_signal(
   }
   thesis = build_thesis(db, signal, score_dict)
   price_history = fetch_price_history(signal.ticker_normalized, days=180)
+  from processor.investor_hold import investor_median_peak_days
+
+  inv_hold = investor_median_peak_days(db, signal.entity_normalized, signal.market)
   return {
     "signal": _serialize_signal(db, signal),
     "returns": [
@@ -434,6 +647,8 @@ def get_signal(
       "win_rate": entity_stats.win_rate if entity_stats else None,
       "median_return": entity_stats.median_return if entity_stats else None,
       "n_trades": entity_stats.n_trades if entity_stats else 0,
+      "median_peak_days": inv_hold.get("median_peak_days"),
+      "investor_hold_label": inv_hold.get("label"),
     },
     "cluster_peers": [_serialize_signal(db, p) for p in peers],
     "bulk_investors": [
@@ -451,6 +666,259 @@ def get_signal(
     "thesis": thesis,
     "score": score_dict,
   }
+
+
+@app.get("/signals/{signal_id}/brief")
+def get_signal_brief(
+  signal_id: str,
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Lightweight thesis + bulk table for expandable list rows (Phase 3.2)."""
+  signal = db.query(Signal).filter(Signal.id == uuid.UUID(signal_id)).first()
+  if not signal:
+    raise HTTPException(status_code=404, detail="Signal not found")
+  score = _latest_score(db, signal.id)
+  score_dict = {
+    "return_distribution": score.return_distribution if score else None,
+    "tier": score.tier if score else None,
+  }
+  thesis = build_thesis(db, signal, score_dict)
+  bulk_investors = (
+    db.query(Signal)
+    .filter(
+      Signal.ticker == signal.ticker,
+      Signal.market == signal.market,
+      Signal.source.in_(["nse_bulk", "nse_block"]),
+    )
+    .order_by(desc(Signal.disclosed_at))
+    .limit(10)
+    .all()
+  )
+  dist = score.return_distribution if score else {}
+  return {
+    "signal_id": str(signal.id),
+    "ticker": signal.ticker,
+    "summary": thesis.get("summary"),
+    "bull_case": (thesis.get("bull_case") or [])[:4],
+    "risks": (thesis.get("risks") or [])[:3],
+    "bulk_investors": [
+      {
+        "entity": b.entity,
+        "action": b.action,
+        "value": b.value,
+        "disclosed_at": b.disclosed_at.isoformat(),
+      }
+      for b in bulk_investors
+    ],
+    "partial_exit_plan": dist.get("partial_exit_plan") if dist else None,
+    "investor_hold_label": dist.get("investor_hold_label") if dist else None,
+    "data_maturity": _signal_data_maturity(db, signal),
+  }
+
+
+@app.get("/investors")
+def list_investors(
+  market: str = "IN",
+  min_trades: int = Query(default=1, ge=0),
+  limit: int = Query(default=50, le=100),
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Bulk-deal investor leaderboard by past trade count."""
+  stats = (
+    db.query(InvestorStat)
+    .filter(InvestorStat.market == market.upper(), InvestorStat.n_trades >= min_trades)
+    .order_by(desc(InvestorStat.n_trades))
+    .limit(limit)
+    .all()
+  )
+  items: list[dict[str, Any]] = []
+  for stat in stats:
+    latest = (
+      db.query(Signal)
+      .filter(Signal.entity_normalized == stat.entity_normalized, Signal.market == stat.market)
+      .order_by(desc(Signal.disclosed_at))
+      .first()
+    )
+    recent = (
+      db.query(Signal)
+      .filter(
+        Signal.entity_normalized == stat.entity_normalized,
+        Signal.market == stat.market,
+        Signal.source.in_(["nse_bulk", "nse_block"]),
+      )
+      .order_by(desc(Signal.disclosed_at))
+      .limit(5)
+      .all()
+    )
+    items.append({
+      "entity": latest.entity if latest else stat.entity_normalized,
+      "entity_normalized": stat.entity_normalized,
+      "market": stat.market,
+      "win_rate": stat.win_rate,
+      "median_return": stat.median_return,
+      "n_trades": stat.n_trades,
+      "updated_at": stat.updated_at.isoformat() if stat.updated_at else None,
+      "recent_deals": [
+        {
+          "ticker": s.ticker,
+          "value": s.value,
+          "disclosed_at": s.disclosed_at.isoformat(),
+          "signal_id": str(s.id),
+        }
+        for s in recent
+      ],
+    })
+  return {
+    "items": items,
+    "market": market.upper(),
+    "disclaimer": "Win rates from realized 3mo forward returns after bulk buys — not a guarantee.",
+  }
+
+
+def _serialize_portfolio(p: PortfolioPosition) -> dict[str, Any]:
+  return {
+    "id": str(p.id),
+    "ticker": p.ticker,
+    "market": p.market,
+    "status": p.status,
+    "qty": p.qty,
+    "entry_price": p.entry_price,
+    "entry_date": p.entry_date.isoformat(),
+    "exit_price": p.exit_price,
+    "exit_date": p.exit_date.isoformat() if p.exit_date else None,
+    "signal_id": str(p.signal_id) if p.signal_id else None,
+    "notes": p.notes,
+    "source": p.source,
+    "return_pct": (
+      (p.exit_price - p.entry_price) / p.entry_price
+      if p.status == "sold" and p.entry_price and p.exit_price and p.entry_price > 0
+      else None
+    ),
+  }
+
+
+@app.get("/portfolio")
+def list_portfolio(
+  status: str | None = None,
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  q = db.query(PortfolioPosition).order_by(desc(PortfolioPosition.entry_date))
+  if status:
+    q = q.filter(PortfolioPosition.status == status.lower())
+  rows = q.all()
+  open_rows = [p for p in rows if p.status == "open"]
+  sold_rows = [p for p in rows if p.status == "sold"]
+  return {
+    "open": [_serialize_portfolio(p) for p in open_rows],
+    "sold": [_serialize_portfolio(p) for p in sold_rows],
+    "summary": {
+      "open_count": len(open_rows),
+      "sold_count": len(sold_rows),
+    },
+  }
+
+
+@app.post("/portfolio")
+def create_portfolio_position(
+  payload: PortfolioCreate,
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from core.tickers import normalize_ticker
+
+  entry_dt = payload.entry_date or datetime.now(timezone.utc)
+  if entry_dt.tzinfo is None:
+    entry_dt = entry_dt.replace(tzinfo=timezone.utc)
+  sig_id = uuid.UUID(payload.signal_id) if payload.signal_id else None
+  pos = PortfolioPosition(
+    ticker=payload.ticker.upper(),
+    market=payload.market.upper(),
+    status="open",
+    qty=payload.qty,
+    entry_price=payload.entry_price,
+    entry_date=entry_dt,
+    signal_id=sig_id,
+    notes=payload.notes,
+    source="signal" if sig_id else "manual",
+  )
+  db.add(pos)
+  db.commit()
+  db.refresh(pos)
+  return {"item": _serialize_portfolio(pos)}
+
+
+@app.post("/portfolio/from-signal/{signal_id}")
+def portfolio_from_signal(
+  signal_id: str,
+  qty: float | None = None,
+  entry_price: float | None = None,
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  signal = db.query(Signal).filter(Signal.id == uuid.UUID(signal_id)).first()
+  if not signal:
+    raise HTTPException(status_code=404, detail="Signal not found")
+  implied = None
+  if entry_price is None and signal.value and signal.qty and signal.qty > 0:
+    implied = signal.value / signal.qty
+  pos = PortfolioPosition(
+    ticker=signal.ticker,
+    market=signal.market,
+    status="open",
+    qty=qty or signal.qty,
+    entry_price=entry_price or implied,
+    entry_date=datetime.now(timezone.utc),
+    signal_id=signal.id,
+    notes=f"From {signal.source} · {signal.entity}",
+    source="signal",
+  )
+  db.add(pos)
+  db.commit()
+  db.refresh(pos)
+  return {"item": _serialize_portfolio(pos)}
+
+
+@app.patch("/portfolio/{position_id}/sell")
+def sell_portfolio_position(
+  position_id: str,
+  payload: PortfolioSell,
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  pos = db.query(PortfolioPosition).filter(PortfolioPosition.id == uuid.UUID(position_id)).first()
+  if not pos:
+    raise HTTPException(status_code=404, detail="Position not found")
+  if pos.status == "sold":
+    raise HTTPException(status_code=400, detail="Already sold")
+  exit_dt = payload.exit_date or datetime.now(timezone.utc)
+  if exit_dt.tzinfo is None:
+    exit_dt = exit_dt.replace(tzinfo=timezone.utc)
+  pos.status = "sold"
+  pos.exit_price = payload.exit_price
+  pos.exit_date = exit_dt
+  if payload.notes:
+    pos.notes = (pos.notes or "") + f" | Sold: {payload.notes}"
+  pos.updated_at = datetime.now(timezone.utc)
+  db.commit()
+  db.refresh(pos)
+  return {"item": _serialize_portfolio(pos)}
+
+
+@app.delete("/portfolio/{position_id}")
+def delete_portfolio_position(
+  position_id: str,
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  pos = db.query(PortfolioPosition).filter(PortfolioPosition.id == uuid.UUID(position_id)).first()
+  if not pos:
+    raise HTTPException(status_code=404, detail="Position not found")
+  db.delete(pos)
+  db.commit()
+  return {"deleted": position_id}
 
 
 @app.get("/entities/{name}")
@@ -569,8 +1037,31 @@ def update_alert_settings(
   return get_alert_settings(db)
 
 
+@app.get("/settings/hold")
+def get_hold_settings(_: None = Depends(verify_basic)) -> dict[str, Any]:
+  """Hold/exit display preferences (Phase 5 — env-backed)."""
+  return {
+    "hold_display_mode": settings.hold_display_mode,
+    "theme_hold_multiplier": settings.theme_hold_multiplier,
+    "min_hold_days_filter": settings.min_hold_days_filter,
+    "exit_reminders_enabled": settings.exit_reminders_enabled,
+    "whatsapp_group_configured": bool((settings.whatsapp_group_id or "").strip()),
+    "dashboard_public_url": settings.dashboard_public_url,
+  }
+
+
 @app.get("/system")
 def system_status(db: Session = Depends(get_db), _: None = Depends(verify_basic)) -> dict[str, Any]:
+  import json
+  from pathlib import Path
+
+  model_meta = None
+  meta_path = Path("/app/models/model_meta.json")
+  if meta_path.exists():
+    try:
+      model_meta = json.loads(meta_path.read_text())
+    except Exception:
+      model_meta = {"status": "unreadable"}
   last_alert = db.query(AlertLog).order_by(desc(AlertLog.sent_at)).first()
   return {
     "signals_total": db.query(Signal).count(),
@@ -578,6 +1069,7 @@ def system_status(db: Session = Depends(get_db), _: None = Depends(verify_basic)
       Signal.created_at >= datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
     ).count(),
     "queue_depth": len(task_queue),
+    "ml_model": model_meta,
     "last_alert": {
       "channel": last_alert.channel,
       "status": last_alert.status,
@@ -605,6 +1097,18 @@ def trigger_daily_picks(
   return send_daily_picks(market=market, force=force)
 
 
+@app.post("/internal/holdings")
+def trigger_holdings_digest(
+  market: str = "IN",
+  force: bool = False,
+  limit: int = Query(default=8, le=15),
+  _: None = Depends(verify_internal),
+) -> dict[str, Any]:
+  from notifier.holdings import send_holdings_digest
+
+  return send_holdings_digest(market=market, force=force, limit=limit)
+
+
 @app.post("/internal/ingest/macro")
 def trigger_macro_ingest(
   market: str | None = None,
@@ -613,3 +1117,36 @@ def trigger_macro_ingest(
   from ingest.macro import ingest_macro_themes
 
   return ingest_macro_themes(market=market or None)
+
+
+@app.post("/internal/rescore")
+def trigger_rescore(db: Session = Depends(get_db), _: None = Depends(verify_internal)) -> dict[str, Any]:
+  from core.models import Signal
+  from processor.scoring import score_signal
+
+  signals = db.query(Signal).all()
+  for signal in signals:
+    score_signal(db, signal)
+  return {"rescored": len(signals)}
+
+
+@app.post("/internal/backfill/nse")
+def trigger_nse_backfill(
+  days: int | None = None,
+  _: None = Depends(verify_internal),
+) -> dict[str, Any]:
+  from ingest.nse import backfill_nse_archive, backfill_nse_historical
+
+  archive = backfill_nse_archive(limit=2000)
+  historical = backfill_nse_historical(days=days or settings.ml_backfill_days)
+  return {"archive": archive, "historical": historical}
+
+
+@app.post("/internal/train")
+def trigger_train(
+  force: bool = False,
+  _: None = Depends(verify_internal),
+) -> dict[str, Any]:
+  from processor.ml_jobs import run_scheduled_train
+
+  return run_scheduled_train(force=force)

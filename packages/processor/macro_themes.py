@@ -11,6 +11,9 @@ from processor.market_data import compute_trend_features
 
 SOURCE = "macro_theme"
 
+_RANK_CACHE_TTL_SEC = 900  # align with price cache — stable returns between refreshes
+_rank_cache: dict[tuple[str, float], tuple[float, list[dict[str, Any]]]] = {}
+
 
 @dataclass(frozen=True)
 class ThemeStock:
@@ -173,10 +176,15 @@ def _clamp(value: float, lo: float, hi: float) -> float:
 
 
 def evaluate_pick(theme: MacroTheme, stock: ThemeStock) -> dict[str, Any]:
-  """Score one stock against its theme using public price data only."""
+  """Score one stock against its theme using public price + fundamentals."""
+  from core.tickers import normalize_ticker
+  from processor.fundamentals import fetch_fundamentals
+  from processor.return_model import estimate_theme_returns
+
   proxy = compute_trend_features(normalize_ticker(theme.proxy_ticker, "US" if "." not in theme.proxy_ticker else "IN"))
   ticker_norm = normalize_ticker(stock.ticker, stock.market)
   trend = compute_trend_features(ticker_norm)
+  fundamentals = fetch_fundamentals(ticker_norm)
 
   proxy_1m = float(proxy.get("return_1m") or 0)
   proxy_3m = float(proxy.get("return_3m") or 0)
@@ -196,18 +204,22 @@ def evaluate_pick(theme: MacroTheme, stock: ThemeStock) -> dict[str, Any]:
     alignment += 0.06
   if trend.get("momentum") == "bullish" and proxy.get("momentum") in ("bullish", "neutral"):
     alignment += 0.05
+  # Relative strength vs theme proxy — differentiates peers in same theme
+  rel = stock_3m - proxy_3m
+  if rel > 0.04:
+    alignment += 0.06
+  elif rel < -0.06:
+    alignment -= 0.04
 
-  prob = 0.48 + theme_heat * 0.14 + alignment
-  if trend.get("momentum") == "bullish":
-    prob += 0.04
-  elif trend.get("momentum") == "bearish":
-    prob -= 0.07
-  if not trend.get("above_ma50"):
-    prob -= 0.03
-  prob = _clamp(prob, 0.35, 0.78)
-
-  expected = 0.05 + theme_heat * 0.14 + max(0.0, stock_3m) * 0.35 + alignment * 0.5
-  expected = _clamp(expected, 0.04, 0.32)
+  returns = estimate_theme_returns(
+    theme_heat=theme_heat,
+    alignment=alignment,
+    stock_trend=trend,
+    proxy_trend=proxy,
+    fundamentals=fundamentals,
+  )
+  prob = returns["calibrated_probability"]
+  expected = returns["expected_return_pct"]
 
   if theme_heat >= 0.65 and alignment >= 0.15:
     tier = "HIGH"
@@ -234,8 +246,11 @@ def evaluate_pick(theme: MacroTheme, stock: ThemeStock) -> dict[str, Any]:
     "theme_heat": round(theme_heat, 3),
     "alignment_score": round(alignment, 3),
     "composite_score": round(composite, 3),
-    "calibrated_probability": round(prob, 4),
-    "expected_return_pct": round(expected, 4),
+    "calibrated_probability": prob,
+    "expected_return_pct": expected,
+    "return_breakdown": returns["return_breakdown"],
+    "return_rationale": returns["return_rationale"],
+    "fundamentals": fundamentals,
     "tier": tier,
     "sell_horizon_days": days,
     "sell_horizon_label": label,
@@ -247,6 +262,14 @@ def evaluate_pick(theme: MacroTheme, stock: ThemeStock) -> dict[str, Any]:
 
 
 def rank_all_picks(*, market: str | None = None, min_composite: float = 0.12) -> list[dict[str, Any]]:
+  import time
+
+  cache_key = (market or "", round(min_composite, 4))
+  now = time.monotonic()
+  hit = _rank_cache.get(cache_key)
+  if hit and now - hit[0] < _RANK_CACHE_TTL_SEC:
+    return hit[1]
+
   ranked: list[dict[str, Any]] = []
   for theme in THEMES:
     for stock in theme.stocks:
@@ -259,6 +282,7 @@ def rank_all_picks(*, market: str | None = None, min_composite: float = 0.12) ->
       if ev["composite_score"] >= min_composite:
         ranked.append(ev)
   ranked.sort(key=lambda x: (x["composite_score"], x["expected_return_pct"]), reverse=True)
+  _rank_cache[cache_key] = (now, ranked)
   return ranked
 
 

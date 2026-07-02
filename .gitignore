@@ -15,3 +15,13 @@ docker-compose.override.yml
 waha-qr.png
 models/*.pkl
 models/*.joblib
+tmp-*.json
+
+# Local-only planning / review docs (not for GitHub)
+docs/LLM_COUNCIL_RATING.md
+docs/LLM_COUNCIL_RATING_V2.md
+docs/TRADE_AUTOMATION_PLAN.md
+docs/TRADE_BOT_DEEP_DIVE.md
+docs/ANIMA_DEEP_DIVE.md
+docs/PHASE_COMMITS.md
+docs/INDEX.md

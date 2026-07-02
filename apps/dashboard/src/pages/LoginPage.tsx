@@ -12,10 +12,17 @@ export default function LoginPage() {
     e.preventDefault();
     setAuth(username, password);
     try {
-      await apiFetch("/health");
+      await apiFetch("/signals?limit=1");
       navigate("/");
-    } catch {
-      setError("Login failed");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "";
+      if (msg.includes("502") || msg.includes("Failed to fetch")) {
+        setError("API unavailable — run: docker compose up -d api dashboard");
+      } else if (msg.includes("401")) {
+        setError("Wrong username or password");
+      } else {
+        setError("Login failed");
+      }
       sessionStorage.removeItem("auth");
     }
   }

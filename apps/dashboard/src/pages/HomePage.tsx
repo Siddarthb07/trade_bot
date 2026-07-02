@@ -1,36 +1,117 @@
 import { useEffect, useMemo, useState } from "react";
-import StockPanel, { bulkMetrics } from "../components/StockPanel";
+import ExpandableStockPanel from "../components/ExpandableStockPanel";
+import CompareTray, { CompareItem } from "../components/CompareTray";
+import StickyHoldBar from "../components/StickyHoldBar";
 import { usePriceCharts } from "../hooks/usePriceCharts";
 import { apiFetch, LiveThemePick, SignalItem } from "../api";
-import { fmtExp, fmtPct } from "../utils/format";
+import { fmtPct, fmtValue } from "../utils/format";
+import {
+  bulkHoldMetrics,
+  bulkProfitMetrics,
+  demandHoldMetrics,
+  demandProfitMetrics,
+  pickRationale,
+  PickView,
+  signalRationale,
+  signalTf,
+} from "../utils/metrics";
+import { TimeframeInfo, tfFromDist } from "../utils/timeframe";
 
 type Tab = "demand" | "bulk" | "all";
+type ExitFilter = "" | "week" | "long";
+type ThemeFilter = "" | "ai_storage_demand";
+
+function pickTf(p: LiveThemePick): TimeframeInfo {
+  return {
+    hold_days: p.hold_days,
+    hold_label_long: p.hold_label_long,
+    hold_label_short: p.hold_label_short,
+    entry_date: p.entry_date,
+    entry_date_label: p.entry_date_label,
+    entry_date_full: p.entry_date_full,
+    exit_date_label: p.exit_date_label,
+    exit_date_full: p.exit_date_full,
+    exit_window_label: p.exit_window_label,
+    review_date_label: p.review_date_label,
+    countdown_label: p.countdown_label,
+    hold_status: p.hold_status,
+    timeframe_tier: p.timeframe_tier,
+    days_remaining: p.days_remaining,
+  };
+}
 
 export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }) {
   const [tab, setTab] = useState<Tab>(defaultTab);
+  const [pickView, setPickView] = useState<PickView>("hold");
+  const [exitFilter, setExitFilter] = useState<ExitFilter>("");
+  const [sortExit, setSortExit] = useState(false);
+  const [compareMode, setCompareMode] = useState(false);
+  const [compareIds, setCompareIds] = useState<string[]>([]);
 
   const [demand, setDemand] = useState<LiveThemePick[]>([]);
   const [bulkTop, setBulkTop] = useState<SignalItem[]>([]);
+  const [bulkScoringNote, setBulkScoringNote] = useState("");
   const [allSignals, setAllSignals] = useState<SignalItem[]>([]);
   const [market, setMarket] = useState("");
+  const [themeFilter, setThemeFilter] = useState<ThemeFilter>("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function load() {
       setLoading(true);
-      const m = market ? `&market=${market}` : "";
-      const [d, b, all] = await Promise.all([
-        apiFetch<{ items: LiveThemePick[] }>(`/themes/live-picks?limit=20&no_bulk_only=true${m}`),
-        apiFetch<{ items: SignalItem[] }>(`/signals/top-picks?market=${market || "IN"}&limit=10`),
-        apiFetch<{ items: SignalItem[] }>(`/signals?limit=40${market ? `&market=${market}` : ""}`),
-      ]);
-      setDemand(d.items);
-      setBulkTop(b.items);
-      setAllSignals(all.items);
-      setLoading(false);
+      try {
+        const m = market ? `&market=${market}` : "";
+        const [d, b, all] = await Promise.all([
+          apiFetch<{ items: LiveThemePick[] }>(`/themes/live-picks?limit=30&no_bulk_only=true${m}`),
+          apiFetch<{ items: SignalItem[]; scoring_note?: string }>(`/signals/top-picks?market=${market || "IN"}&limit=20&days=14`),
+          apiFetch<{ items: SignalItem[] }>(`/signals?limit=40${market ? `&market=${market}` : ""}`),
+        ]);
+        setDemand(d.items);
+        setBulkTop(b.items);
+        setBulkScoringNote(b.scoring_note || "");
+        setAllSignals(all.items);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
     }
-    load().catch(console.error);
+    load();
   }, [market]);
+
+  function passesExitFilter(tf: TimeframeInfo) {
+    if (!exitFilter) return true;
+    const rem = tf.days_remaining;
+    if (rem == null) return true;
+    if (exitFilter === "week") return rem <= 7;
+    if (exitFilter === "long") return (tf.hold_days || 0) >= 60;
+    return true;
+  }
+
+  function sortByExit<T extends { tf: TimeframeInfo }>(rows: T[]) {
+    if (!sortExit) return rows;
+    return [...rows].sort((a, b) => (a.tf.days_remaining ?? 999) - (b.tf.days_remaining ?? 999));
+  }
+
+  const demandRows = useMemo(() => {
+    let rows = demand.map((p) => ({ p, tf: pickTf(p) }));
+    if (themeFilter) {
+      rows = rows.filter((r) => r.p.theme_slug === themeFilter);
+    }
+    rows = rows.filter((r) => passesExitFilter(r.tf));
+    return sortByExit(rows);
+  }, [demand, exitFilter, sortExit, themeFilter]);
+
+  const storagePicks = useMemo(
+    () => demand.filter((p) => p.theme_slug === "ai_storage_demand"),
+    [demand],
+  );
+
+  const bulkRows = useMemo(() => {
+    const rows = bulkTop.map((s) => ({ s, tf: tfFromDist(s.return_distribution) }))
+      .filter((r) => passesExitFilter(r.tf));
+    return sortByExit(rows);
+  }, [bulkTop, exitFilter, sortExit]);
 
   const chartRequests = useMemo(() => {
     if (tab === "demand") return demand.map((p) => ({ ticker: p.ticker, market: p.market }));
@@ -44,11 +125,72 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
     setTab(defaultTab);
   }, [defaultTab]);
 
+  function onCompareToggle(id: string, selected: boolean) {
+    setCompareIds((prev) => {
+      if (selected) {
+        if (prev.includes(id)) return prev;
+        if (prev.length >= 3) return prev;
+        return [...prev, id];
+      }
+      return prev.filter((x) => x !== id);
+    });
+  }
+
+  const compareItems: CompareItem[] = useMemo(() => {
+    return compareIds.map((id) => {
+      const bulk = bulkTop.find((s) => s.id === id);
+      if (bulk) {
+        const c = get(bulk.ticker, bulk.market);
+        return {
+          id,
+          ticker: bulk.ticker,
+          market: bulk.market,
+          tier: bulk.tier,
+          expected: bulk.return_distribution?.expected_return_pct as number | undefined,
+          prob: bulk.calibrated_probability,
+          tf: tfFromDist(bulk.return_distribution),
+          prices: c?.prices,
+          trend: c?.trend,
+        };
+      }
+      const pick = demand.find((p) => p.signal_id === id);
+      if (pick) {
+        const c = get(pick.ticker, pick.market);
+        return {
+          id,
+          ticker: pick.ticker,
+          market: pick.market,
+          tier: pick.tier,
+          expected: pick.expected_return_pct,
+          prob: pick.calibrated_probability,
+          tf: pickTf(pick),
+          prices: c?.prices,
+          trend: c?.trend,
+        };
+      }
+      return { id, ticker: "?", market: "?" };
+    });
+  }, [compareIds, bulkTop, demand, get]);
+
+  const stickyTf = useMemo(() => {
+    const rows = tab === "demand" ? demandRows : tab === "bulk" ? bulkRows : [];
+    const urgent = rows.find((r) => (r.tf.days_remaining ?? 999) <= 7);
+    return urgent?.tf;
+  }, [tab, demandRows, bulkRows]);
+
   return (
-    <div>
+    <div className="home-page">
+      {pickView === "hold" && stickyTf && (
+        <StickyHoldBar tf={stickyTf} label={tab === "bulk" ? "Next bulk exit" : "Next demand exit"} />
+      )}
+
       <div className="page-intro">
         <h2>Trade Bot</h2>
-        <p className="muted">Each row shows a live 6-month price chart plus scores. Demand tab = predicted from world trends, no bulk deal needed.</p>
+        <p className="muted">
+          {pickView === "hold"
+            ? "Hold plan — when to review and sell. No profit targets here."
+            : "Profit outlook — estimated returns with P/E, margins, and rationale."}
+        </p>
       </div>
 
       <div className="tabs">
@@ -61,6 +203,82 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
         <button type="button" className={tab === "all" ? "active" : ""} onClick={() => setTab("all")}>
           All signals
         </button>
+      </div>
+
+      {(tab === "demand" || tab === "bulk") && (
+        <div className="sub-tabs">
+          <button type="button" className={pickView === "hold" ? "active" : ""} onClick={() => setPickView("hold")}>
+            Hold plan
+          </button>
+          <button type="button" className={pickView === "profit" ? "active" : ""} onClick={() => setPickView("profit")}>
+            Profit outlook
+          </button>
+        </div>
+      )}
+
+      {tab === "demand" && !loading && (
+        <div className="filter-chips">
+          <button
+            type="button"
+            className={`chip${themeFilter === "" && market === "" ? " active" : ""}`}
+            onClick={() => { setThemeFilter(""); setMarket(""); }}
+          >
+            All picks
+          </button>
+          <button
+            type="button"
+            className={`chip${market === "US" ? " active" : ""}`}
+            onClick={() => { setMarket("US"); setThemeFilter(""); }}
+          >
+            US (MU · WDC · AMD)
+          </button>
+          <button
+            type="button"
+            className={`chip${themeFilter === "ai_storage_demand" ? " active" : ""}`}
+            onClick={() => { setThemeFilter("ai_storage_demand"); setMarket(""); }}
+          >
+            Storage theme
+          </button>
+          <button
+            type="button"
+            className={`chip${market === "IN" ? " active" : ""}`}
+            onClick={() => { setMarket("IN"); setThemeFilter(""); }}
+          >
+            India only
+          </button>
+        </div>
+      )}
+
+      {tab === "demand" && !loading && market === "IN" && storagePicks.length > 0 && (
+        <p className="muted market-hint">
+          Micron (MU) and Sandisk/WDC are US demand picks — use <strong>US</strong> or <strong>Storage theme</strong> filter.
+        </p>
+      )}
+
+      {tab === "bulk" && !loading && bulkScoringNote && (
+        <p className="muted market-hint scoring-hint">{bulkScoringNote}</p>
+      )}
+
+      {tab === "bulk" && !loading && (
+        <p className="muted market-hint">
+          Bulk deals are NSE India only. US stocks like MU and WDC appear under <strong>Demand picks</strong>.
+        </p>
+      )}
+
+      <div className="tabs tabs-secondary">
+        <select className="tab-select" value={exitFilter} onChange={(e) => setExitFilter(e.target.value as ExitFilter)}>
+          <option value="">All holds</option>
+          <option value="week">Exiting this week</option>
+          <option value="long">Long holds (60+ days)</option>
+        </select>
+        <label className="tab-check">
+          <input type="checkbox" checked={sortExit} onChange={(e) => setSortExit(e.target.checked)} />
+          Sort by exit date
+        </label>
+        <label className="tab-check">
+          <input type="checkbox" checked={compareMode} onChange={(e) => setCompareMode(e.target.checked)} />
+          Compare mode
+        </label>
         <select className="tab-select" value={market} onChange={(e) => setMarket(e.target.value)}>
           <option value="">All markets</option>
           <option value="IN">India</option>
@@ -72,34 +290,34 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
 
       {!loading && tab === "demand" && (
         <div className="panel-list">
-          {demand.length === 0 ? (
-            <p className="muted">No demand picks — theme refresh runs at 6:45 PM IST.</p>
+          {demandRows.length === 0 ? (
+            <p className="muted">No demand picks match filters.</p>
           ) : (
-            demand.map((p, i) => {
+            demandRows.map(({ p, tf }, i) => {
               const c = get(p.ticker, p.market);
+              const metrics = pickView === "hold" ? demandHoldMetrics(p, tf) : demandProfitMetrics(p, tf);
               return (
-                <StockPanel
+                <ExpandableStockPanel
                   key={`${p.theme_slug}-${p.ticker}`}
                   rank={i + 1}
                   ticker={p.ticker}
                   market={p.market}
                   signalId={p.signal_id}
                   headline={`${p.company_name} · ${p.theme_name}`}
-                  subline={p.demand_driver}
+                  subline={pickView === "profit" ? pickRationale(p) : p.demand_driver}
                   tier={p.tier}
-                  note={p.sell_horizon_label}
-                  metrics={[
-                    { label: "Est. return", value: fmtExp(p.expected_return_pct), accent: true },
-                    { label: "Confidence", value: fmtPct(p.calibrated_probability) },
-                    { label: "Theme heat", value: fmtPct(p.theme_heat) },
-                    { label: "Alignment", value: fmtPct(p.alignment_score) },
-                    { label: "1mo", value: fmtPct(c?.trend?.return_1m, 1) },
-                    { label: "3mo", value: fmtPct(c?.trend?.return_3m, 1) },
-                  ]}
+                  timeframe={tf}
+                  showTimeline={pickView === "hold"}
+                  compareMode={compareMode}
+                  compareSelected={p.signal_id ? compareIds.includes(p.signal_id) : false}
+                  onCompareToggle={onCompareToggle}
+                  metrics={metrics}
                   tags={[
+                    pickView === "hold" ? "Hold plan" : "Profit outlook",
+                    p.market,
                     "Demand pick",
-                    p.has_bulk_deal ? "Also has bulk" : "No bulk deal",
-                    c?.trend?.momentum || "",
+                    p.bulk_confirmed ? "Bulk confirmed" : p.has_bulk_deal ? "Also has bulk" : "No bulk deal",
+                    tf.timeframe_tier || "",
                   ].filter(Boolean)}
                   prices={c?.prices}
                   trend={c?.trend}
@@ -113,23 +331,45 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
 
       {!loading && tab === "bulk" && (
         <div className="panel-list">
-          {bulkTop.length === 0 ? (
-            <p className="muted">No bulk picks today yet.</p>
+          {bulkRows.length === 0 ? (
+            <p className="muted">No NSE bulk/block deals in the last 14 days{market ? ` for ${market}` : ""}. Check back after the 18:15 IST ingest.</p>
           ) : (
-            bulkTop.map((s, i) => {
+            bulkRows.map(({ s, tf }, i) => {
               const c = get(s.ticker, s.market);
+              const metrics = pickView === "hold" ? bulkHoldMetrics(s, tf) : bulkProfitMetrics(s, tf);
               return (
-                <StockPanel
+                <ExpandableStockPanel
                   key={s.id}
                   rank={i + 1}
                   ticker={s.ticker}
                   market={s.market}
                   signalId={s.id}
                   headline={`${s.ticker} · ${s.action} · ${s.entity}`}
-                  subline={`Deal ${fmtPct(s.calibrated_probability)} confidence · ${new Date(s.disclosed_at).toLocaleDateString()}`}
+                  subline={pickView === "profit" ? signalRationale(s) : [
+                    s.investor_backing
+                      ? `${fmtValue(s.investor_backing.total_value, s.market)} backed · ${s.investor_backing.investor_count} investors`
+                      : fmtValue(s.value, s.market),
+                    new Date(s.disclosed_at).toLocaleDateString(),
+                    fmtPct(s.calibrated_probability, 1) + " conf",
+                    s.bulk_deal_count_week && s.bulk_deal_count_week > 1
+                      ? `${s.bulk_deal_count_week} bulk deals this week`
+                      : null,
+                  ].filter(Boolean).join(" · ")}
                   tier={s.tier}
-                  metrics={bulkMetrics(s)}
-                  tags={["NSE bulk/block", s.source.replace("nse_", "")]}
+                  timeframe={tf}
+                  showTimeline={pickView === "hold"}
+                  compareMode={compareMode}
+                  compareSelected={compareIds.includes(s.id)}
+                  onCompareToggle={onCompareToggle}
+                  metrics={metrics}
+                  investorBacking={s.investor_backing}
+                  prediction={s.prediction}
+                  tags={[
+                    pickView === "hold" ? "Hold plan" : "Profit outlook",
+                    "NSE bulk/block",
+                    s.source.replace("nse_", ""),
+                    tf.timeframe_tier || "",
+                  ].filter(Boolean)}
                   prices={c?.prices}
                   trend={c?.trend}
                   chartLoading={chartsLoading && !c}
@@ -145,8 +385,23 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
           {allSignals.map((s, i) => {
             const c = get(s.ticker, s.market);
             const isMacro = s.source === "macro_theme";
+            const tf = signalTf(s);
+            const metrics = isMacro
+              ? (pickView === "hold" ? demandHoldMetrics({
+                  tier: s.tier,
+                  theme_heat: s.theme?.theme_heat,
+                  expected_return_pct: s.return_distribution?.expected_return_pct as number,
+                  calibrated_probability: s.calibrated_probability,
+                } as LiveThemePick, tf) : demandProfitMetrics({
+                  tier: s.tier,
+                  expected_return_pct: s.return_distribution?.expected_return_pct as number,
+                  calibrated_probability: s.calibrated_probability,
+                  fundamentals: s.return_distribution?.fundamentals as LiveThemePick["fundamentals"],
+                  return_rationale: s.return_distribution?.return_rationale as string,
+                } as LiveThemePick, tf))
+              : (pickView === "hold" ? bulkHoldMetrics(s, tf) : bulkProfitMetrics(s, tf));
             return (
-              <StockPanel
+              <ExpandableStockPanel
                 key={s.id}
                 rank={i + 1}
                 ticker={s.ticker}
@@ -155,12 +410,10 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
                 headline={isMacro ? `${s.ticker} · ${s.theme?.name || s.entity}` : `${s.ticker} · ${s.entity}`}
                 subline={`${s.action} · ${s.source} · ${new Date(s.disclosed_at).toLocaleDateString()}`}
                 tier={s.tier}
-                metrics={isMacro ? [
-                  { label: "Est. return", value: fmtExp(s.return_distribution?.expected_return_pct as number), accent: true },
-                  { label: "Confidence", value: fmtPct(s.calibrated_probability) },
-                  { label: "Theme heat", value: fmtPct(s.theme?.theme_heat) },
-                ] : bulkMetrics(s)}
-                tags={[isMacro ? "Demand" : "Bulk", s.market]}
+                timeframe={tf}
+                showTimeline={pickView === "hold"}
+                metrics={metrics}
+                tags={[isMacro ? "Demand" : "Bulk", s.market, pickView === "hold" ? "Hold" : "Profit"]}
                 prices={c?.prices}
                 trend={c?.trend}
                 chartLoading={chartsLoading && !c}
@@ -169,6 +422,8 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
           })}
         </div>
       )}
+
+      <CompareTray items={compareItems} onClear={() => setCompareIds([])} />
     </div>
   );
 }

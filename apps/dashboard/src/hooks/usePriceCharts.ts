@@ -28,7 +28,7 @@ export function usePriceCharts(requests: { ticker: string; market: string }[]) {
           "/market/price-history/batch",
           {
             method: "POST",
-            body: JSON.stringify({ items: requests.slice(0, 24) }),
+            body: JSON.stringify({ items: requests.slice(0, 36) }),
           },
         );
         if (cancelled) return;
