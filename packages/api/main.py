@@ -24,6 +24,7 @@ from core.models import (
   HoldPrefs,
   IngestionRun,
   InvestorStat,
+  EodPrice,
   PortfolioPosition,
   Signal,
   SignalScore,
@@ -206,7 +207,7 @@ def _append_bulk_backed_demand_picks(
     .filter(
       Signal.market == "IN",
       Signal.disclosed_at >= since,
-      Signal.source.in_(["nse_bulk", "nse_block"]),
+      Signal.source.in_(["nse_bulk", "nse_block", "bse_bulk"]),
       Signal.action.in_(["BUY", "P", "A"]),
     )
     .order_by(desc(Signal.disclosed_at))
@@ -365,7 +366,7 @@ def _serialize_signal(db: Session, signal: Signal) -> dict[str, Any]:
       "theme_heat": raw.get("theme_heat"),
       "alignment_score": raw.get("alignment_score"),
     }
-  if signal.source in ("nse_bulk", "nse_block"):
+  if signal.source in ("nse_bulk", "nse_block", "bse_bulk"):
     _attach_investor_intel(db, item, signal, ticker=signal.ticker, market=signal.market)
   elif signal.market.upper() == "IN":
     _attach_investor_intel(db, item, signal, ticker=signal.ticker, market=signal.market)
@@ -471,7 +472,7 @@ def top_picks(
     .filter(
       Signal.market == market.upper(),
       Signal.disclosed_at >= since,
-      Signal.source.in_(["nse_bulk", "nse_block"]),
+      Signal.source.in_(["nse_bulk", "nse_block", "bse_bulk"]),
     )
     .order_by(desc(Signal.disclosed_at))
     .all()
@@ -802,7 +803,7 @@ def get_signal(
     .filter(
       Signal.ticker == signal.ticker,
       Signal.market == signal.market,
-      Signal.source.in_(["nse_bulk", "nse_block"]),
+      Signal.source.in_(["nse_bulk", "nse_block", "bse_bulk"]),
     )
     .order_by(desc(Signal.disclosed_at))
     .limit(25)
@@ -873,7 +874,7 @@ def get_signal_brief(
     .filter(
       Signal.ticker == signal.ticker,
       Signal.market == signal.market,
-      Signal.source.in_(["nse_bulk", "nse_block"]),
+      Signal.source.in_(["nse_bulk", "nse_block", "bse_bulk"]),
     )
     .order_by(desc(Signal.disclosed_at))
     .limit(10)
@@ -932,7 +933,7 @@ def list_investors(
       .filter(
         Signal.entity_normalized == stat.entity_normalized,
         Signal.market == stat.market,
-        Signal.source.in_(["nse_bulk", "nse_block"]),
+        Signal.source.in_(["nse_bulk", "nse_block", "bse_bulk"]),
       )
       .order_by(desc(Signal.disclosed_at))
       .limit(5)
@@ -1266,6 +1267,45 @@ def update_hold_settings(
     row.theme_hold_multiplier = max(0.5, min(2.0, payload.theme_hold_multiplier))
   db.commit()
   return get_hold_settings(db)
+
+
+@app.get("/system/label-stats")
+def system_label_stats(
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.train import _load_meta, _train_sources
+
+  sources = sorted(_train_sources())
+  in_bulk = (
+    db.query(Signal)
+    .filter(Signal.market == "IN", Signal.source.in_(sources))
+    .count()
+  )
+  labeled = (
+    db.query(Signal.id)
+    .join(ForwardReturn, ForwardReturn.signal_id == Signal.id)
+    .filter(
+      Signal.market == "IN",
+      Signal.source.in_(sources),
+      ForwardReturn.window == settings.win_window,
+      ForwardReturn.return_pct.isnot(None),
+    )
+    .distinct()
+    .count()
+  )
+  eod_total = db.query(EodPrice).count()
+  meta = _load_meta()
+  return {
+    "in_bulk_signals": in_bulk,
+    "in_bulk_labeled_3mo": labeled,
+    "label_target_bulk": 500,
+    "label_target_labeled": 30,
+    "eod_price_rows": eod_total,
+    "ml_model": meta,
+    "win_window": settings.win_window,
+    "train_sources": sources,
+  }
 
 
 @app.get("/system")

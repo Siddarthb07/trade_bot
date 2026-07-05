@@ -80,7 +80,7 @@ def score_macro_signal(db: Session, signal: Signal) -> SignalScore:
   from processor.partial_exit import build_partial_exit_plan
   from processor.timeframe import build_timeframe, signal_entry_anchor
 
-  trend = compute_trend_features(signal.ticker_normalized)
+  trend = compute_trend_features(signal.ticker_normalized, db=db, market=signal.market)
   tf = build_timeframe(int(days), signal_entry_anchor(signal.disclosed_at), volatility_annualized=trend.get("volatility_20d"))
   tf["partial_exit_plan"] = build_partial_exit_plan(int(days))
   distribution = {
@@ -136,9 +136,10 @@ def score_signal_ml(db: Session, signal: Signal) -> SignalScore:
 
   ml = None
   try:
-    from processor.train import predict_signal
+    from processor.train import model_is_trained, predict_signal
 
-    ml = predict_signal(db, signal)
+    if model_is_trained():
+      ml = predict_signal(db, signal)
   except Exception:
     ml = None
   scorer_version = "interim-v1"

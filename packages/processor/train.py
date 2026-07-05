@@ -10,7 +10,6 @@ from pathlib import Path
 
 import numpy as np
 from sklearn.calibration import CalibratedClassifierCV
-from sklearn.model_selection import train_test_split
 
 from core.config import get_settings
 from core.db import SessionLocal
@@ -28,11 +27,46 @@ WINDOW_DAYS = {"1w": 7, "1mo": 30, "3mo": 90, "6mo": 180}
 DEFAULT_HOLD_PRIORS = {"HIGH": 14, "MEDIUM": 28, "LOW": 42, "default": 30}
 
 
-def _load_training_data() -> tuple[np.ndarray, np.ndarray] | None:
-  db = SessionLocal()
-  X, y = [], []
+def training_allowed(positive_rate: float, *, min_rate: float | None = None) -> bool:
+  threshold = settings.ml_min_positive_rate if min_rate is None else min_rate
+  return positive_rate >= threshold
+
+
+def _train_markets() -> set[str]:
+  return {m.strip().upper() for m in settings.ml_train_markets.split(",") if m.strip()}
+
+
+def _train_sources() -> set[str]:
+  return {s.strip() for s in settings.ml_train_sources.split(",") if s.strip()}
+
+
+def _load_meta() -> dict:
+  if not META_PATH.exists():
+    return {}
   try:
-    signals = db.query(Signal).all()
+    return json.loads(META_PATH.read_text())
+  except Exception:
+    return {}
+
+
+def _write_meta(meta: dict) -> dict:
+  MODEL_DIR.mkdir(parents=True, exist_ok=True)
+  META_PATH.write_text(json.dumps(meta, indent=2))
+  return meta
+
+
+def _load_training_rows() -> list[tuple[datetime, list[float], int]] | None:
+  markets = _train_markets()
+  sources = _train_sources()
+  db = SessionLocal()
+  rows: list[tuple[datetime, list[float], int]] = []
+  try:
+    signals = (
+      db.query(Signal)
+      .filter(Signal.market.in_(list(markets)), Signal.source.in_(list(sources)))
+      .order_by(Signal.disclosed_at.asc())
+      .all()
+    )
     for signal in signals:
       fr = (
         db.query(ForwardReturn)
@@ -42,13 +76,30 @@ def _load_training_data() -> tuple[np.ndarray, np.ndarray] | None:
       if fr is None or fr.return_pct is None:
         continue
       feats = build_features(db, signal)
-      X.append(features_to_vector(feats))
-      y.append(1 if fr.return_pct > settings.win_threshold_pct else 0)
+      disclosed = signal.disclosed_at or datetime.now(timezone.utc)
+      rows.append((
+        disclosed,
+        features_to_vector(feats),
+        1 if fr.return_pct > settings.win_threshold_pct else 0,
+      ))
   finally:
     db.close()
-  if len(X) < settings.ml_train_min_samples:
+
+  if len(rows) < settings.ml_train_min_samples:
     return None
-  return np.array(X), np.array(y)
+  return rows
+
+
+def _date_split(rows: list[tuple[datetime, list[float], int]], test_ratio: float = 0.2):
+  n_test = max(1, int(len(rows) * test_ratio))
+  train_rows = rows[:-n_test]
+  test_rows = rows[-n_test:]
+  train_cutoff = train_rows[-1][0].isoformat() if train_rows else None
+  X_train = np.array([r[1] for r in train_rows])
+  y_train = np.array([r[2] for r in train_rows])
+  X_test = np.array([r[1] for r in test_rows])
+  y_test = np.array([r[2] for r in test_rows])
+  return X_train, X_test, y_train, y_test, train_cutoff
 
 
 def compute_hold_priors(db=None) -> dict[str, int]:
@@ -100,34 +151,80 @@ def compute_hold_priors(db=None) -> dict[str, int]:
 
 
 def load_hold_priors() -> dict[str, int]:
-  if META_PATH.exists():
-    try:
-      meta = json.loads(META_PATH.read_text())
-      priors = meta.get("hold_priors")
-      if isinstance(priors, dict) and priors:
-        return {k: int(v) for k, v in priors.items()}
-    except Exception:
-      pass
+  meta = _load_meta()
+  priors = meta.get("hold_priors")
+  if isinstance(priors, dict) and priors:
+    return {k: int(v) for k, v in priors.items()}
   return dict(DEFAULT_HOLD_PRIORS)
 
 
-def train_model() -> dict:
-  data = _load_training_data()
-  MODEL_DIR.mkdir(parents=True, exist_ok=True)
-  if data is None:
-    meta = {"status": "skipped", "reason": "insufficient_labeled_data", "n_samples": 0}
-    META_PATH.write_text(json.dumps(meta))
-    return meta
+def model_is_trained() -> bool:
+  meta = _load_meta()
+  if meta.get("status") != "trained":
+    return False
+  if not MODEL_PATH.exists():
+    return False
+  pos = meta.get("positive_rate")
+  if pos is None:
+    return False
+  return training_allowed(float(pos))
 
-  X, y = data
+
+def train_model() -> dict:
+  rows = _load_training_rows()
+  MODEL_DIR.mkdir(parents=True, exist_ok=True)
+
+  if rows is None:
+    prev = _load_meta()
+    meta = {
+      "status": "skipped",
+      "reason": "insufficient_labeled_data",
+      "n_samples": 0,
+      "train_markets": sorted(_train_markets()),
+      "train_sources": sorted(_train_sources()),
+    }
+    if prev.get("status") == "trained" and MODEL_PATH.exists():
+      meta["note"] = "kept_previous_model"
+      meta["previous_trained_at"] = prev.get("trained_at")
+    return _write_meta(meta)
+
+  y_all = np.array([r[2] for r in rows])
+  pos_rate = float(y_all.mean())
+  n_pos = int(y_all.sum())
+  n_neg = int(len(y_all) - n_pos)
+
+  base_meta = {
+    "n_samples": int(len(rows)),
+    "n_positive": n_pos,
+    "n_negative": n_neg,
+    "positive_rate": pos_rate,
+    "train_markets": sorted(_train_markets()),
+    "train_sources": sorted(_train_sources()),
+    "win_window": settings.win_window,
+    "win_threshold_pct": settings.win_threshold_pct,
+  }
+
+  if not training_allowed(pos_rate):
+    prev = _load_meta()
+    meta = {
+      **base_meta,
+      "status": "skipped",
+      "reason": "positive_rate_too_low",
+      "min_positive_rate": settings.ml_min_positive_rate,
+    }
+    if prev.get("status") == "trained" and MODEL_PATH.exists():
+      meta["note"] = "kept_previous_model"
+      meta["previous_trained_at"] = prev.get("trained_at")
+      return _write_meta(meta)
+    return _write_meta(meta)
+
   try:
     import lightgbm as lgb
   except ImportError:
-    meta = {"status": "skipped", "reason": "lightgbm_not_installed", "n_samples": len(y)}
-    META_PATH.write_text(json.dumps(meta))
-    return meta
+    meta = {**base_meta, "status": "skipped", "reason": "lightgbm_not_installed"}
+    return _write_meta(meta)
 
-  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+  X_train, X_test, y_train, y_test, train_cutoff = _date_split(rows)
   base = lgb.LGBMClassifier(
     n_estimators=100,
     max_depth=5,
@@ -137,27 +234,27 @@ def train_model() -> dict:
   )
   model = CalibratedClassifierCV(base, method="sigmoid", cv=3)
   model.fit(X_train, y_train)
-  acc = float(model.score(X_test, y_test)) if len(X_test) else None
+  acc = float(model.score(X_test, y_test)) if len(y_test) else None
 
   with open(MODEL_PATH, "wb") as f:
     pickle.dump(model, f)
 
   hold_priors = compute_hold_priors()
   meta = {
+    **base_meta,
     "status": "trained",
     "scorer_version": "lgbm-platt-v1",
-    "n_samples": int(len(y)),
     "test_accuracy": acc,
-    "positive_rate": float(y.mean()),
+    "train_cutoff_date": train_cutoff,
+    "split_method": "date_holdout_80_20",
     "hold_priors": hold_priors,
     "trained_at": datetime.now(timezone.utc).isoformat(),
   }
-  META_PATH.write_text(json.dumps(meta, indent=2))
-  return meta
+  return _write_meta(meta)
 
 
 def load_model():
-  if not MODEL_PATH.exists():
+  if not model_is_trained():
     return None
   try:
     with open(MODEL_PATH, "rb") as f:

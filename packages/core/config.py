@@ -65,6 +65,9 @@ class Settings(BaseSettings):
     # ML training (Phase 2)
     ml_train_enabled: bool = True
     ml_train_min_samples: int = 30
+    ml_min_positive_rate: float = 0.05
+    ml_train_markets: str = "IN"
+    ml_train_sources: str = "nse_bulk,nse_block,bse_bulk"
     ml_backfill_days: int = 90
     bulk_confidence_boost: float = 0.05
     # Hold display (Phase 5)

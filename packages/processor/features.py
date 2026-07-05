@@ -42,7 +42,7 @@ def build_features(db: Session, signal: Signal) -> dict[str, float | int | bool 
     .scalar()
   ) or 0
 
-  trend = compute_trend_features(signal.ticker_normalized)
+  trend = compute_trend_features(signal.ticker_normalized, db=db, market=signal.market)
   action_buy = 1 if signal.action.upper() in ("BUY", "P", "A") else 0
 
   return {

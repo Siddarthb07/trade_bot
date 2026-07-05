@@ -31,11 +31,29 @@ def _cache_set(key: str, data: list[dict]) -> None:
   _price_cache[key] = (time.monotonic(), data)
 
 
-def fetch_price_history(ticker_normalized: str, days: int = 180) -> list[dict]:
+def fetch_price_history(
+  ticker_normalized: str,
+  days: int = 180,
+  *,
+  db=None,
+  market: str | None = None,
+) -> list[dict]:
   cache_key = f"{ticker_normalized}:{days}"
   cached = _cache_get(cache_key)
   if cached is not None:
     return cached
+
+  if db is not None:
+    try:
+      from processor.eod_cache import fetch_eod_history, infer_market
+
+      mkt = infer_market(ticker_normalized, market)
+      eod = fetch_eod_history(db, ticker_normalized, mkt, days=days)
+      if len(eod) >= 20:
+        _cache_set(cache_key, eod)
+        return eod
+    except Exception as exc:
+      logger.debug("EOD cache miss for %s: %s", ticker_normalized, exc)
 
   try:
     ticker = yf.Ticker(ticker_normalized)
@@ -96,8 +114,13 @@ def trend_from_prices(prices: list[dict]) -> dict:
   return _trend_from_closes(closes)
 
 
-def compute_trend_features(ticker_normalized: str) -> dict:
-  prices = fetch_price_history(ticker_normalized, days=120)
+def compute_trend_features(
+  ticker_normalized: str,
+  *,
+  db=None,
+  market: str | None = None,
+) -> dict:
+  prices = fetch_price_history(ticker_normalized, days=120, db=db, market=market)
   return trend_from_prices(prices)
 
 
