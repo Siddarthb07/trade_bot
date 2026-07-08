@@ -14,7 +14,7 @@
 | IN bulk signals in DB | ~123 | ≥ 500 |
 | API restart → `/health` | 502 (Redis DNS) | `status: ok` within 60s |
 | Feature trend fetch | 100% yfinance live | ≥ 80% from `eod_prices` cache |
-| Share token | default `smtrack-read-key` | random 32+ char, documented rotation |
+| Share token | weak/default token | random 32+ char, documented rotation |
 | Labeled IN bulk 3mo forward returns | low | ≥ 30 (enables retrain) |
 
 ---
@@ -72,7 +72,7 @@ flowchart LR
 
 ### Acceptance
 
-- `docker compose restart api` → within 60s `curl -u admin:pass http://192.168.1.15/api/health` returns `"status":"ok"`
+- `docker compose restart api` → within 60s `curl -u admin:pass http://192.168.1.42/api/health` returns `"status":"ok"`
 - No import-time Redis crash in api logs
 
 ### Files
@@ -250,7 +250,7 @@ flowchart LR
 
 ## Track E — Rotate share token
 
-**Problem:** Default `smtrack-read-key` gates full ranked pick index + all signal detail via `/h/{token}` and `/s/{id}/{token}`.
+**Problem:** A guessable share token gates the full ranked pick index + all signal detail via `/h/{token}` and `/s/{id}/{token}`.
 
 ### Tasks
 
@@ -275,7 +275,7 @@ flowchart LR
 5. **Restart + smoke**
    ```powershell
    docker compose restart api dashboard worker
-   curl -u admin:pass "http://192.168.1.15/api/share/ranked-picks?limit=3" -H "X-Share-Token: <new>"
+   curl -u admin:pass "http://192.168.1.42/api/share/ranked-picks?limit=3" -H "X-Share-Token: <new>"
    ```
    - Old token → 401
    - New token → 200
@@ -284,7 +284,7 @@ flowchart LR
 
 ### Acceptance
 
-- Old `smtrack-read-key` rejected
+- Old token rejected
 - WhatsApp links use new token after one test send
 - `.env.example` has no guessable default
 
@@ -329,20 +329,20 @@ flowchart LR
 
 ```powershell
 # 1. Health
-curl -u admin:changeme http://192.168.1.15/api/health
+curl -u admin:changeme http://192.168.1.42/api/health
 
 # 2. Label stats
-curl -u admin:changeme http://192.168.1.15/api/system/label-stats
+curl -u admin:changeme http://192.168.1.42/api/system/label-stats
 
 # 3. ML meta
 docker compose exec worker cat /app/models/model_meta.json
 
 # 4. EOD coverage
-curl -u admin:changeme http://192.168.1.15/api/system/snapshots/eod
+curl -u admin:changeme http://192.168.1.42/api/system/snapshots/eod
 
 # 5. Share token
-curl -H "X-Share-Token: OLD" http://192.168.1.15/api/share/ranked-picks   # expect 401
-curl -H "X-Share-Token: NEW" http://192.168.1.15/api/share/ranked-picks   # expect 200
+curl -H "X-Share-Token: OLD" http://192.168.1.42/api/share/ranked-picks   # expect 401
+curl -H "X-Share-Token: NEW" http://192.168.1.42/api/share/ranked-picks   # expect 200
 
 # 6. Tests
 docker compose run --rm worker pytest tests/test_train_gate.py tests/test_nse_normalize.py -q

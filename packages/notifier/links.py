@@ -2,7 +2,7 @@
 
 WhatsApp on Android often linkifies only the IP (or treats it as a phone number),
 dropping the path. Fixes:
-  1. sslip.io hostname — http://192.168.1.15/x → http://192-168-1-15.sslip.io/x
+  1. sslip.io hostname — http://192.168.1.42/x → http://192-168-1-42.sslip.io/x
   2. No :port in URL (use port 80)
   3. Query fallback — http://host/?s={id}&k={token} (when path links fail)
   4. URL on its own line at column 0 in templates

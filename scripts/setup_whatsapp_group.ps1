@@ -1,12 +1,12 @@
 # Requires WAHA linked. Creates a dedicated WhatsApp GROUP (not self-DM).
 # Usage:
 #   docker compose exec processor python /app/scripts/setup_whatsapp_group.py --list
-#   docker compose exec processor python /app/scripts/setup_whatsapp_group.py --create --phone 919606754584
+#   docker compose exec processor python /app/scripts/setup_whatsapp_group.py --create --phone 91XXXXXXXXXX
 
 param(
   [switch]$List,
   [switch]$Create,
-  [string]$Phone = "919606754584"
+  [string]$Phone = ""
 )
 
 $root = Split-Path -Parent $PSScriptRoot
@@ -18,6 +18,10 @@ if ($List) {
 }
 
 if ($Create) {
+  if (-not $Phone) {
+    Write-Error "Pass -Phone 91XXXXXXXXXX or set WHATSAPP_TO in .env"
+    exit 1
+  }
   docker compose exec -T processor python /app/scripts/setup_whatsapp_group.py --create --phone $Phone
   exit $LASTEXITCODE
 }

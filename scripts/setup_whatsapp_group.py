@@ -16,7 +16,7 @@ def main() -> None:
   parser.add_argument("--list", action="store_true", help="List existing group chats")
   parser.add_argument("--create", action="store_true", help="Create Trade Bot Alerts group")
   parser.add_argument("--name", default="Trade Bot Alerts", help="Group name")
-  parser.add_argument("--phone", default="", help="Your phone (919606754584) to add to group")
+  parser.add_argument("--phone", default="", help="E.164 phone to add (e.g. 91XXXXXXXXXX); defaults to WHATSAPP_TO in .env")
   args = parser.parse_args()
   settings = get_settings()
 

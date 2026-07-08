@@ -1,9 +1,25 @@
 # Request WAHA pairing code for phone login (no QR scan)
 param(
-  [string]$Phone = "919606754584",
+  [string]$Phone = "",
   [string]$ApiUrl = "http://127.0.0.1:3001",
-  [string]$ApiKey = "smtracker-waha-key-7f3a9c2e1b8d4f6a"
+  [string]$ApiKey = ""
 )
+
+if (-not $Phone) {
+  $Phone = $env:WHATSAPP_TO
+}
+if (-not $Phone) {
+  Write-Error "Set WHATSAPP_TO in .env or pass -Phone 91XXXXXXXXXX"
+  exit 1
+}
+
+if (-not $ApiKey) {
+  $ApiKey = $env:WAHA_API_KEY
+}
+if (-not $ApiKey) {
+  Write-Error "Set WAHA_API_KEY in .env or pass -ApiKey"
+  exit 1
+}
 
 $headers = @{
   "X-Api-Key"    = $ApiKey
