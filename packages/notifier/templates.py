@@ -148,9 +148,51 @@ def daily_picks_message(
   theme_picks: list[tuple[Signal, SignalScore]] | None = None,
   bulk_deal_counts: dict[str, int] | None = None,
   bulk_deal_counts_week: dict[str, int] | None = None,
+  unified: list[dict] | None = None,
 ) -> str:
   today = datetime.now(IST).strftime("%d %b")
   home = dashboard_home_url(dashboard_url)
+
+  if unified:
+    if not unified:
+      lines_empty = [f"Trade Bot · {today}", "No high-conviction picks today."]
+      lines_empty.extend(_link_block(home))
+      return "\n".join(lines_empty)
+
+    lines = [
+      f"Trade Bot · Top {len(unified)} Picks · {today} · {market}",
+      "Ranked: smart-money backing → est. return",
+    ]
+    for row in unified:
+      signal: Signal = row["signal"]
+      score: SignalScore = row["score"]
+      meta = _score_meta(score)
+      prob = meta.get("prob")
+      exp = row.get("expected_return_pct") if row.get("expected_return_pct") is not None else meta.get("expected_pct")
+      prob_text = f"{prob * 100:.0f}%" if prob is not None else "—"
+      exp_text = f"+{exp * 100:.0f}%" if exp is not None else "—"
+      kind = row.get("kind") or "Pick"
+      link = signal_dashboard_url(str(signal.id), dashboard_url)
+      lines.append(
+        f"\n{row['rank_index']}. {TIER_EMOJI.get(score.tier, '⚪')} {signal.ticker} · {kind} · Est {exp_text}"
+      )
+      for tl in _timeframe_lines(meta["dist"]):
+        lines.append(f"   {tl}")
+      week_n = row.get("bulk_deal_count_week")
+      if week_n and week_n > 1:
+        lines.append(f"   {week_n} bulk deals this week")
+      theme_name = row.get("theme_name")
+      if theme_name and kind == "Demand":
+        theme_short = theme_name[:32] + "…" if len(theme_name) > 34 else theme_name
+        lines.append(f"   {theme_short}")
+      if signal.source in ("nse_bulk", "nse_block") and signal.value:
+        lines.append(f"   Deal {format_currency(signal.value, signal.market)}")
+      lines.append(f"   {prob_text} conf")
+      lines.extend(_link_block(link))
+    lines.append("\nSame WiFi as PC. Not investment advice.")
+    lines.extend(_link_block(home))
+    return "\n".join(lines)[:3500]
+
   if not picks:
     lines_empty = [f"Trade Bot · {today}", "No high-conviction BUY picks today."]
     lines_empty.extend(_link_block(home))

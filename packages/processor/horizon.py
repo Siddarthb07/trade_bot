@@ -8,7 +8,7 @@ from core.models import Signal
 from processor.investor_hold import blend_investor_hold_days, investor_median_peak_days
 from processor.market_data import compute_trend_features
 from processor.partial_exit import build_partial_exit_plan
-from processor.timeframe import build_timeframe
+from processor.timeframe import build_timeframe, signal_entry_anchor
 from processor.train import load_hold_priors
 
 

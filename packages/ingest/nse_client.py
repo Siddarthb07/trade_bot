@@ -85,6 +85,38 @@ class NSEClient:
     df = pd.read_csv(io.StringIO(response.text))
     return [self._normalize_archive_row(row, mode) for _, row in df.iterrows() if _valid_archive_row(row)]
 
+  def fetch_fii_dii(self) -> list[dict[str, Any]]:
+    self._warmup()
+    data = self._get_json(f"{NSE_HOME}/api/fiidiiTradeReact")
+    return data if isinstance(data, list) else data.get("data", [])
+
+  def fetch_corp_announcements(
+    self,
+    from_date: datetime,
+    to_date: datetime,
+  ) -> list[dict[str, Any]]:
+    self._warmup()
+    params = {
+      "index": "equities",
+      "from_date": from_date.strftime("%d-%m-%Y"),
+      "to_date": to_date.strftime("%d-%m-%Y"),
+    }
+    data = self._get_json(f"{NSE_HOME}/api/corporate-announcements", params=params)
+    if isinstance(data, list):
+      return data
+    return data.get("data", []) if isinstance(data, dict) else []
+
+  def fetch_bhavcopy_csv(self, trade_date: datetime) -> str | None:
+    """Full equity bhavcopy for a trading day (DDMMYYYY)."""
+    self._warmup()
+    fname = trade_date.strftime("%d%m%Y")
+    url = f"https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_{fname}.csv"
+    self._throttle()
+    response = self.session.get(url, timeout=90)
+    if response.status_code != 200 or "SYMBOL" not in response.text[:200].upper():
+      return None
+    return response.text
+
   def fetch_historical_deals(
     self,
     mode: str,

@@ -28,6 +28,7 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/s/:id/:token" element={<ShareSignalPage />} />
       <Route path="/h/:token" element={<ShareHomePage />} />
+      <Route path="/share" element={<ShareHomePage />} />
       <Route path="/open" element={<ShareQueryPage />} />
       <Route element={<RequireAuth><Layout /></RequireAuth>}>
         <Route path="/" element={<Navigate to="/demand" replace />} />

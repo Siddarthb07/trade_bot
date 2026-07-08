@@ -52,8 +52,8 @@ class Settings(BaseSettings):
     daily_picks_max: int = 5
     daily_picks_min_probability: float = 0.50
     daily_picks_min_expected_return_pct: float = 0.04
-    # Token for phone links from WhatsApp (?k=...) — opens signal without manual login
-    dashboard_share_token: str = "smtrack-read-key"
+    # Token for phone links from WhatsApp (?k=...) — set in .env (generate with secrets.token_urlsafe(32))
+    dashboard_share_token: str = ""
     # Macro / world-affairs theme picks
     macro_themes_enabled: bool = True
     macro_themes_max_signals: int = 30
@@ -79,6 +79,8 @@ class Settings(BaseSettings):
     # Holdings digest (active hold window)
     holdings_whatsapp_max: int = 8
     holdings_digest_enabled: bool = True
+    # Free macro APIs (optional — FRED key is free at fred.stlouisfed.org)
+    fred_api_key: str = ""
 
 
 @lru_cache

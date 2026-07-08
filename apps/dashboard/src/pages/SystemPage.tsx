@@ -73,6 +73,9 @@ export default function SystemPage() {
           <button type="button" className="btn-secondary" onClick={() => runMaintenance("/system/jobs/nse-backfill", "NSE backfill")}>
             NSE archive backfill
           </button>
+          <button type="button" className="btn-secondary" onClick={() => runMaintenance("/system/jobs/pull-free-data", "Pull all free APIs")}>
+            Pull all free APIs
+          </button>
           <button type="button" className="btn-secondary" onClick={() => runMaintenance("/system/jobs/train?force=true", "ML train")}>
             Train / rescore
           </button>

@@ -216,6 +216,24 @@ export interface LiveThemePick {
   fundamentals?: Fundamentals;
   return_breakdown?: ReturnBreakdown;
   return_rationale?: string;
+  rank_index?: number;
+}
+
+export interface RankedSharePick {
+  rank_index: number;
+  kind: string;
+  ticker: string;
+  market: string;
+  tier?: string;
+  expected_return_pct?: number;
+  calibrated_probability?: number;
+  theme_name?: string | null;
+  bulk_deal_count_week?: number;
+  signal_id: string;
+  share_url: string;
+  hold_label_long?: string;
+  exit_date_label?: string;
+  investor_backing?: BulkInvestorBacking;
 }
 
 export interface ThemeSummary {

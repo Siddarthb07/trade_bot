@@ -1,14 +1,21 @@
 {
-  "status": "trained",
-  "scorer_version": "lgbm-platt-v1",
-  "n_samples": 188,
-  "test_accuracy": 1.0,
+  "n_samples": 99,
+  "n_positive": 0,
+  "n_negative": 99,
   "positive_rate": 0.0,
-  "hold_priors": {
-    "HIGH": 14,
-    "MEDIUM": 28,
-    "LOW": 42,
-    "default": 30
-  },
-  "trained_at": "2026-07-01T17:23:40.940823+00:00"
+  "train_markets": [
+    "IN"
+  ],
+  "train_sources": [
+    "bse_bulk",
+    "nse_block",
+    "nse_bulk"
+  ],
+  "win_window": "3mo",
+  "win_threshold_pct": 0.0,
+  "status": "skipped",
+  "reason": "positive_rate_too_low",
+  "min_positive_rate": 0.05,
+  "note": "kept_previous_model",
+  "previous_trained_at": "2026-07-01T17:23:40.940823+00:00"
 }

@@ -12,6 +12,7 @@ from zoneinfo import ZoneInfo
 
 from ingest.macro import ingest_macro_themes
 from ingest.nse import ingest_nse_block_intraday, ingest_nse_eod
+from ingest.pull_free import pull_all_free_data
 from ingest.sec import ingest_13f, ingest_form4
 from notifier.daily_picks import send_daily_picks
 from notifier.digest import send_daily_digest
@@ -37,6 +38,7 @@ def main() -> None:
   scheduler = BlockingScheduler(timezone=IST)
   scheduler.add_job(ingest_nse_block_intraday, CronTrigger(hour=10, minute=35, timezone=IST), id="nse_block")
   scheduler.add_job(ingest_nse_eod, CronTrigger(hour=18, minute=15, timezone=IST), id="nse_eod")
+  scheduler.add_job(pull_all_free_data, CronTrigger(hour=19, minute=0, timezone=IST), id="pull_free_data")
   scheduler.add_job(run_scheduled_forward_backfill, CronTrigger(hour=18, minute=35, timezone=IST), id="forward_backfill")
   scheduler.add_job(ingest_macro_themes, CronTrigger(hour=18, minute=45, timezone=IST), id="macro_themes")
   scheduler.add_job(send_exit_reminders, CronTrigger(hour="8,19", minute=0, timezone=IST), id="exit_reminders")

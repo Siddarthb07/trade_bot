@@ -35,7 +35,7 @@ def ingest_form4() -> dict:
   new_ids: list[str] = []
   rows_in = 0
   try:
-    filings = get_filings(form="4").head(100)
+    filings = get_filings(form="4").head(300)
     rows_in = len(filings)
     for filing in filings:
       try:
@@ -175,6 +175,61 @@ def backfill_sec(limit: int = 100) -> dict:
     finish_ingestion_run(db, run, rows_in=rows_in, rows_new=len(new_ids))
   except Exception as exc:
     finish_ingestion_run(db, run, rows_in=0, rows_new=len(new_ids), status="failed", error=str(exc))
+    raise
+  finally:
+    db.close()
+  enqueue_process_batch(new_ids)
+  return {"rows_in": rows_in, "rows_new": len(new_ids)}
+
+
+def ingest_sec_8k() -> dict:
+  """Material US corporate events (8-K filings)."""
+  _ensure_identity()
+  db = SessionLocal()
+  run = start_ingestion_run(db, "ingest_sec_8k")
+  new_ids: list[str] = []
+  rows_in = 0
+  try:
+    filings = get_filings(form="8-K").head(150)
+    rows_in = len(filings)
+    for filing in filings:
+      try:
+        entity = filing.company or "UNKNOWN"
+        ticker = "UNKNOWN"
+        try:
+          obj = filing.obj()
+          issuer = getattr(obj, "issuer", None)
+          if issuer:
+            ticker = getattr(issuer, "ticker", None) or getattr(issuer, "symbol", None) or ticker
+        except Exception:
+          pass
+        disclosed = getattr(filing, "filing_date", None) or datetime.now(timezone.utc)
+        if not isinstance(disclosed, datetime):
+          disclosed = datetime.combine(disclosed, datetime.min.time(), tzinfo=timezone.utc)
+        payload = {
+          "source": "sec_8k",
+          "source_ref": _make_ref(filing.accession_number, ticker, entity, "INFO"),
+          "market": "US",
+          "entity": entity,
+          "ticker": ticker,
+          "action": "INFO",
+          "qty": None,
+          "value": None,
+          "disclosed_at": disclosed,
+          "source_url": filing.filing_url,
+          "raw_json": {
+            "accession": filing.accession_number,
+            "description": getattr(filing, "description", None),
+          },
+        }
+        signal, created = upsert_signal(db, payload)
+        if created and signal:
+          new_ids.append(str(signal.id))
+      except Exception as exc:
+        logger.warning("8-K parse failed for %s: %s", filing, exc)
+    finish_ingestion_run(db, run, rows_in=rows_in, rows_new=len(new_ids))
+  except Exception as exc:
+    finish_ingestion_run(db, run, rows_in=rows_in, rows_new=len(new_ids), status="failed", error=str(exc))
     raise
   finally:
     db.close()

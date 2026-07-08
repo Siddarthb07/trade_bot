@@ -7,7 +7,6 @@ from datetime import datetime, timezone
 from typing import Any
 
 import httpx
-import redis
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
@@ -24,13 +23,14 @@ from core.models import (
   HoldPrefs,
   IngestionRun,
   InvestorStat,
+  MarketSnapshot,
   EodPrice,
   PortfolioPosition,
   Signal,
   SignalScore,
 )
 from core.hold_prefs import effective_hold_prefs, passes_min_hold_filter
-from core.queue import redis_conn, task_queue
+from core.queue import queue_depth, redis_ping
 from ingest.nse import ingest_nse_payloads
 from notifier.dispatch import backfill_gate_passed
 from notifier.waha import waha_healthy
@@ -286,6 +286,21 @@ def _append_bulk_backed_demand_picks(
   items[:0] = bulk_rows[:remaining]
 
 
+def _demand_pick_sort_key(row: dict[str, Any]) -> tuple[int, int, float]:
+  backing = row.get("investor_backing") or {}
+  inv_n = len(backing.get("investors") or [])
+  bulk = 1 if inv_n or row.get("bulk_backed") else 0
+  score = float(row.get("expected_return_pct") or row.get("composite_score") or 0)
+  return (bulk, inv_n, score)
+
+
+def _rank_and_index_demand_items(items: list[dict[str, Any]], limit: int) -> list[dict[str, Any]]:
+  ranked = sorted(items, key=_demand_pick_sort_key, reverse=True)[:limit]
+  for idx, row in enumerate(ranked, start=1):
+    row["rank_index"] = idx
+  return ranked
+
+
 def _latest_score(db: Session, signal_id: uuid.UUID) -> SignalScore | None:
   return (
     db.query(SignalScore)
@@ -414,9 +429,10 @@ def health(db: Session = Depends(get_db)) -> dict[str, Any]:
   except Exception:
     db_ok = False
   try:
-    redis_ok = redis_conn.ping()
+    redis_ok = redis_ping()
   except Exception:
     redis_ok = False
+  depth = queue_depth()
   return {
     "status": "ok" if db_ok and redis_ok else "degraded",
     "db": db_ok,
@@ -424,7 +440,7 @@ def health(db: Session = Depends(get_db)) -> dict[str, Any]:
     "waha": waha_healthy(),
     "alerts_enabled": settings.alerts_enabled,
     "backfill_gate_passed": backfill_gate_passed(db),
-    "queue_depth": len(task_queue),
+    "queue_depth": depth,
   }
 
 
@@ -541,6 +557,53 @@ def top_picks(
     "window_days": days,
     "scoring_note": scoring_note,
     "ml_model": ml_meta,
+  }
+
+
+@app.get("/share/ranked-picks")
+def share_ranked_picks(
+  market: str = "IN",
+  limit: int = Query(default=10, le=25),
+  days: int = Query(default=14, ge=1, le=90),
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Unified bulk + demand picks with rank_index and WhatsApp-friendly share URLs."""
+  from notifier.links import signal_dashboard_url
+  from notifier.ranking import collect_unified_ranked_picks
+
+  url = settings.dashboard_public_url.rstrip("/")
+  rows = collect_unified_ranked_picks(db, market, limit=limit, days=days)
+  items: list[dict[str, Any]] = []
+  for row in rows:
+    signal: Signal = row["signal"]
+    score: SignalScore = row["score"]
+    dist = score.return_distribution or {}
+    item = _serialize_signal(db, signal)
+    _apply_distribution(item, dist)
+    if signal.source in ("nse_bulk", "nse_block", "bse_bulk"):
+      _attach_investor_intel(db, item, signal, ticker=signal.ticker, market=signal.market, since_days=days)
+    items.append({
+      "rank_index": row["rank_index"],
+      "kind": row["kind"],
+      "ticker": signal.ticker,
+      "market": signal.market,
+      "tier": score.tier,
+      "expected_return_pct": row["expected_return_pct"],
+      "calibrated_probability": dist.get("calibrated_probability"),
+      "theme_name": row.get("theme_name"),
+      "bulk_deal_count_week": row.get("bulk_deal_count_week"),
+      "signal_id": str(signal.id),
+      "share_url": signal_dashboard_url(str(signal.id), url),
+      "hold_label_long": dist.get("hold_label_long"),
+      "exit_date_label": dist.get("exit_date_label"),
+      "investor_backing": item.get("investor_backing"),
+    })
+  return {
+    "items": items,
+    "ranked_by": "investor_backing_then_expected_return",
+    "market": market.upper(),
+    "window_days": days,
   }
 
 
@@ -727,7 +790,13 @@ def live_theme_picks(
   if include_bulk_backed and (not market or market.upper() == "IN"):
     _append_bulk_backed_demand_picks(db, items, seen, limit=limit)
 
-  return {"items": items, "ranked_by": "composite_score", "source": "live", "disclaimer": "Thematic research from public prices — not investment advice."}
+  items = _rank_and_index_demand_items(items, limit)
+  return {
+    "items": items,
+    "ranked_by": "investor_backing_then_expected_return",
+    "source": "live",
+    "disclaimer": "Thematic research from public prices — not investment advice.",
+  }
 
 
 @app.post("/market/price-history/batch")
@@ -1326,7 +1395,7 @@ def system_status(db: Session = Depends(get_db), _: None = Depends(verify_basic)
     "signals_today": db.query(Signal).filter(
       Signal.created_at >= datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
     ).count(),
-    "queue_depth": len(task_queue),
+    "queue_depth": queue_depth(),
     "ml_model": model_meta,
     "last_alert": {
       "channel": last_alert.channel,
@@ -1370,6 +1439,59 @@ def system_train(
   from processor.ml_jobs import run_scheduled_train
 
   return run_scheduled_train(force=force)
+
+
+@app.post("/system/jobs/pull-free-data")
+def system_pull_free_data(
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from ingest.pull_free import pull_all_free_data
+
+  return pull_all_free_data()
+
+
+@app.get("/market/snapshots")
+def list_market_snapshots(
+  source: str | None = None,
+  limit: int = Query(default=20, le=100),
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  query = db.query(MarketSnapshot).order_by(desc(MarketSnapshot.as_of))
+  if source:
+    query = query.filter(MarketSnapshot.source == source)
+  rows = query.limit(limit).all()
+  return {
+    "items": [
+      {
+        "source": r.source,
+        "snapshot_key": r.snapshot_key,
+        "market": r.market,
+        "as_of": r.as_of.isoformat(),
+        "payload": r.payload,
+      }
+      for r in rows
+    ],
+  }
+
+
+@app.get("/market/eod-prices/stats")
+def eod_price_stats(
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  total = db.query(EodPrice).count()
+  latest = db.query(EodPrice).order_by(desc(EodPrice.trade_date)).first()
+  by_source = (
+    db.query(EodPrice.source, func.count(EodPrice.id))
+    .group_by(EodPrice.source)
+    .all()
+  )
+  return {
+    "total_rows": total,
+    "latest_trade_date": str(latest.trade_date) if latest else None,
+    "by_source": {src: cnt for src, cnt in by_source},
+  }
 
 
 @app.post("/internal/ingest/nse")

@@ -1,17 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import ExpandableStockPanel from "../components/ExpandableStockPanel";
 import StatCard from "../components/StatCard";
 import { usePriceCharts } from "../hooks/usePriceCharts";
-import { apiFetch, LiveThemePick, SignalItem } from "../api";
-import { fmtExp, fmtPct, fmtValue, tierClass } from "../utils/format";
-import { tfFromDist } from "../utils/timeframe";
+import { apiFetch, LiveThemePick } from "../api";
+import { fmtExp, fmtPct, fmtValue } from "../utils/format";
 
 export default function DemandPicksPage() {
   const [picks, setPicks] = useState<LiveThemePick[]>([]);
   const [market, setMarket] = useState("");
   const [themeFilter, setThemeFilter] = useState("");
-  const [showBulkConfirmed, setShowBulkConfirmed] = useState(false);
+  const [showThemeOnly, setShowThemeOnly] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,7 +17,7 @@ export default function DemandPicksPage() {
       setLoading(true);
       try {
         const params = new URLSearchParams({ limit: "30" });
-        if (!showBulkConfirmed) params.set("no_bulk_only", "true");
+        if (showThemeOnly) params.set("no_bulk_only", "true");
         if (market) params.set("market", market);
         const live = await apiFetch<{ items: LiveThemePick[] }>(`/themes/live-picks?${params}`);
         setPicks(live.items);
@@ -30,11 +28,12 @@ export default function DemandPicksPage() {
       }
     }
     load();
-  }, [market, showBulkConfirmed]);
+  }, [market, showThemeOnly]);
 
   const filtered = useMemo(() => {
-    if (!themeFilter) return picks;
-    return picks.filter((p) => p.theme_slug === themeFilter);
+    let rows = picks;
+    if (themeFilter) rows = rows.filter((p) => p.theme_slug === themeFilter);
+    return rows;
   }, [picks, themeFilter]);
 
   const themes = useMemo(() => {
@@ -79,8 +78,8 @@ export default function DemandPicksPage() {
           ))}
         </select>
         <label className="tab-check">
-          <input type="checkbox" checked={showBulkConfirmed} onChange={(e) => setShowBulkConfirmed(e.target.checked)} />
-          Include bulk-confirmed
+          <input type="checkbox" checked={showThemeOnly} onChange={(e) => setShowThemeOnly(e.target.checked)} />
+          Theme-only (hide bulk-backed)
         </label>
       </div>
 
@@ -92,7 +91,7 @@ export default function DemandPicksPage() {
         </section>
       ) : (
         <div className="panel-list">
-          {filtered.map((p, i) => {
+          {filtered.map((p) => {
             const c = get(p.ticker, p.market);
             const tf = {
               hold_days: p.hold_days,
@@ -105,15 +104,19 @@ export default function DemandPicksPage() {
               timeframe_tier: p.timeframe_tier,
               days_remaining: p.days_remaining,
             };
+            const rank = p.rank_index ?? filtered.indexOf(p) + 1;
+            const subline = p.investor_backing
+              ? `${fmtValue(p.investor_backing.total_value, p.market)} backed · ${p.investor_backing.investor_count} investors`
+              : p.demand_driver;
             return (
               <ExpandableStockPanel
                 key={`${p.theme_slug}-${p.ticker}`}
-                rank={i + 1}
+                rank={rank}
                 ticker={p.ticker}
                 market={p.market}
                 signalId={p.signal_id}
                 headline={`${p.company_name} · ${p.theme_name}`}
-                subline={p.demand_driver}
+                subline={subline}
                 tier={p.tier}
                 timeframe={tf}
                 metrics={[
@@ -124,9 +127,12 @@ export default function DemandPicksPage() {
                 ]}
                 tags={[
                   p.market,
+                  p.bulk_backed ? "Smart-money" : "",
                   !p.has_bulk_deal ? "No bulk deal" : "",
                   p.bulk_confirmed ? "Bulk confirmed" : "",
                 ].filter(Boolean)}
+                investorBacking={p.investor_backing}
+                prediction={p.prediction}
                 prices={c?.prices}
                 trend={c?.trend}
                 chartLoading={chartsLoading && !c}

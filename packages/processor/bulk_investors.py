@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 from core.models import InvestorStat, Signal
 from core.tickers import normalize_entity
 
-BULK_SOURCES = ("nse_bulk", "nse_block")
+BULK_SOURCES = ("nse_bulk", "nse_block", "bse_bulk")
 BUY_ACTIONS = ("BUY", "P", "A")
 
 

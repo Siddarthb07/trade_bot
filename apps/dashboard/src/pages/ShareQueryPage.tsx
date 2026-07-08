@@ -14,7 +14,7 @@ export default function ShareQueryPage() {
       navigate(`/signals/${s}`, { replace: true });
       return;
     }
-    navigate("/demand", { replace: true });
+    navigate("/share", { replace: true });
   }, [params, navigate]);
 
   return <p>Opening…</p>;

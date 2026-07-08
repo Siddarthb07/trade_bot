@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 from core.models import Signal
 
-BULK_SOURCES = ("nse_bulk", "nse_block")
+BULK_SOURCES = ("nse_bulk", "nse_block", "bse_bulk")
 
 
 def bulk_confluence(

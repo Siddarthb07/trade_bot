@@ -317,7 +317,7 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
               return (
                 <ExpandableStockPanel
                   key={`${p.theme_slug}-${p.ticker}`}
-                  rank={i + 1}
+                  rank={p.rank_index ?? i + 1}
                   ticker={p.ticker}
                   market={p.market}
                   signalId={p.signal_id}
