@@ -1367,7 +1367,8 @@ def system_label_stats(
   meta = _load_meta()
   return {
     "in_bulk_signals": in_bulk,
-    "in_bulk_labeled_3mo": labeled,
+    "in_bulk_labeled": labeled,
+    "in_bulk_labeled_3mo": labeled,  # backwards-compatible alias
     "label_target_bulk": 500,
     "label_target_labeled": 30,
     "eod_price_rows": eod_total,

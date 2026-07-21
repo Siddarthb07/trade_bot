@@ -28,6 +28,9 @@ def process_batch(signal_ids: list[str]) -> dict:
           continue
         returns = compute_forward_returns(signal.ticker_normalized, signal.disclosed_at)
         for window, (return_pct, price_source) in returns.items():
+          # Never persist immature/missing as 0.0 — wait until the window matures.
+          if return_pct is None:
+            continue
           fr = (
             db.query(ForwardReturn)
             .filter(ForwardReturn.signal_id == signal.id, ForwardReturn.window == window)

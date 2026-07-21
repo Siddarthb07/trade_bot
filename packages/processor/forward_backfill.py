@@ -25,7 +25,13 @@ def _needs_label(db: Session, signal: Signal, window: str, now: datetime) -> boo
     .filter(ForwardReturn.signal_id == signal.id, ForwardReturn.window == window)
     .first()
   )
-  return fr is None or fr.return_pct is None
+  if fr is None or fr.return_pct is None:
+    return True
+  # Recompute fake early labels (clamped-to-last-bar zeros / missing source).
+  src = (fr.price_source or "").lower()
+  if src in ("", "missing", "immature"):
+    return True
+  return False
 
 
 def backfill_mature_forward_returns(
@@ -59,9 +65,15 @@ def backfill_mature_forward_returns(
       if not windows:
         continue
       try:
-        returns = compute_forward_returns(signal.ticker_normalized, signal.disclosed_at)
+        returns = compute_forward_returns(
+          signal.ticker_normalized,
+          signal.disclosed_at,
+          db=db,
+        )
         for window in windows:
           return_pct, price_source = returns.get(window, (None, "missing"))
+          if return_pct is None:
+            continue
           fr = (
             db.query(ForwardReturn)
             .filter(ForwardReturn.signal_id == signal.id, ForwardReturn.window == window)

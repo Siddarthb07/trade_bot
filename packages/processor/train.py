@@ -68,12 +68,17 @@ def _load_training_rows() -> list[tuple[datetime, list[float], int]] | None:
       .all()
     )
     for signal in signals:
+      # Train on buy-side accumulation only (sells are a different problem).
+      if signal.action.upper() not in ("BUY", "P", "A"):
+        continue
       fr = (
         db.query(ForwardReturn)
         .filter(ForwardReturn.signal_id == signal.id, ForwardReturn.window == settings.win_window)
         .first()
       )
       if fr is None or fr.return_pct is None:
+        continue
+      if (fr.price_source or "").lower() in ("", "missing", "immature"):
         continue
       feats = build_features(db, signal)
       disclosed = signal.disclosed_at or datetime.now(timezone.utc)

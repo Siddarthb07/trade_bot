@@ -96,10 +96,19 @@ def backfill_nse_historical(days: int = 90) -> dict:
     payloads: list[dict] = []
     chunk_start = start
     while chunk_start < end:
-      chunk_end = min(chunk_start + timedelta(days=7), end)
+      # historicalOR CSV accepts multi-month windows; ~30d keeps payloads manageable.
+      chunk_end = min(chunk_start + timedelta(days=30), end)
       for mode in ("bulk_deals", "block_deals"):
         try:
-          payloads.extend(client.fetch_historical_deals(mode, chunk_start, chunk_end))
+          chunk = client.fetch_historical_deals(mode, chunk_start, chunk_end)
+          payloads.extend(chunk)
+          logger.info(
+            "Historical %s %s-%s rows=%s",
+            mode,
+            chunk_start.date(),
+            chunk_end.date(),
+            len(chunk),
+          )
         except Exception as exc:
           logger.warning("Historical %s %s-%s failed: %s", mode, chunk_start.date(), chunk_end.date(), exc)
       chunk_start = chunk_end + timedelta(days=1)

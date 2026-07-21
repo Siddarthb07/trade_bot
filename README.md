@@ -2,7 +2,7 @@
 
 Personal research and alerting system for Indian (NSE) and US (SEC) institutional activity. Runs entirely on your Windows PC via Docker.
 
-**Not investment advice.** Uses public disclosures only. Historical win rates are not calibrated probabilities until the Platt scorer ships (Phase 5).
+**Not investment advice.** Uses public disclosures only. Live scores use LightGBM + Platt calibration when the model is `trained` — see [docs/ML_TRAINING.md](docs/ML_TRAINING.md) for current stats and how to retrain on more data.
 
 ## Prerequisites
 
@@ -57,6 +57,20 @@ DASHBOARD_PUBLIC_URL=http://192.168.1.42:3000
 ```
 
 Allow Windows Firewall inbound on port 3000 from your LAN.
+
+## ML model
+
+| | |
+|---|---|
+| Status | `trained` (see `models/model_meta.json`) |
+| Samples / win rate | 645 labeled BUY deals · ~35% positive (`1mo`) |
+| Docs | **[Model stats + retrain guide](docs/ML_TRAINING.md)** |
+
+```powershell
+docker compose run --rm worker python scripts/backfill_nse.py historical 180
+docker compose run --rm processor python scripts/label_until_ready.py
+docker compose run --rm processor python scripts/train_only.py
+```
 
 ## Backfill Before Alerts
 

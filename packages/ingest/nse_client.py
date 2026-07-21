@@ -50,6 +50,12 @@ class NSEClient:
   def _warmup(self) -> None:
     self._throttle()
     self.session.get(NSE_HOME, timeout=30)
+    # Cookie + referer path used by NSE historicalOR CSV downloads.
+    self._throttle()
+    self.session.get(
+      f"{NSE_HOME}/report-detail/display-bulk-and-block-deals",
+      timeout=30,
+    )
 
   def _get_json(self, url: str, params: dict[str, Any] | None = None) -> Any:
     for attempt in range(3):
@@ -123,23 +129,48 @@ class NSEClient:
     from_date: datetime,
     to_date: datetime,
   ) -> list[dict[str, Any]]:
-    """NSE historical bulk/block deals for a date range."""
-    endpoint = "bulk-deals" if mode == "bulk_deals" else "block-deals"
-    url = f"{NSE_HOME}/api/historical/{endpoint}"
+    """NSE historical bulk/block deals via historicalOR CSV (public report API)."""
+    option = "bulk_deals" if "bulk" in mode else "block_deals"
+    url = f"{NSE_HOME}/api/historicalOR/bulk-block-short-deals"
     params = {
+      "optionType": option,
       "from": from_date.strftime("%d-%m-%Y"),
       "to": to_date.strftime("%d-%m-%Y"),
+      "csv": "true",
     }
     self._warmup()
-    data = self._get_json(url, params=params)
-    rows = data if isinstance(data, list) else data.get("data", [])
-    out: list[dict[str, Any]] = []
-    for row in rows:
+    for attempt in range(3):
+      self._throttle()
       try:
-        out.append(self._normalize_live_row(row, mode))
-      except Exception as exc:
-        logger.debug("Skip historical row: %s", exc)
-    return out
+        response = self.session.get(url, params=params, timeout=90)
+        if response.status_code in (403, 503):
+          self._warmup()
+          time.sleep(2 ** attempt)
+          continue
+        response.raise_for_status()
+        # utf-8-sig strips BOM so the Date column is not mangled (ï»¿"Date ").
+        df = pd.read_csv(io.BytesIO(response.content), encoding="utf-8-sig")
+        if df.empty:
+          return []
+        df.columns = [str(c).replace("\ufeff", "").strip().strip('"').strip() for c in df.columns]
+        # Some NSE CSV dumps literally say "no records" in the first cell.
+        first = str(df.iloc[0, 0]).strip().lower() if len(df) else ""
+        if "no record" in first:
+          return []
+        out: list[dict[str, Any]] = []
+        for _, row in df.iterrows():
+          if not _valid_archive_row(row):
+            continue
+          try:
+            out.append(self._normalize_archive_row(row, mode))
+          except Exception as exc:
+            logger.debug("Skip historical row: %s", exc)
+        return out
+      except requests.RequestException as exc:
+        logger.warning("NSE historicalOR failed attempt %s: %s", attempt + 1, exc)
+        self._warmup()
+        time.sleep(2 ** attempt)
+    raise RuntimeError(f"NSE historicalOR failed after retries: {url}")
 
   def _normalize_live_row(self, row: dict[str, Any], mode: str) -> dict[str, Any]:
     symbol = str(row.get("symbol") or row.get("SYMBOL") or "").strip()
@@ -189,7 +220,11 @@ class NSEClient:
     value = _to_float(row.get("VALUE") or row.get("Value"))
     if value is None and qty and price:
       value = qty * price
-    disclosed = _parse_date(row.get("DATE") or row.get("Date"))
+    disclosed = _parse_date(
+      row.get("DATE")
+      or row.get("Date")
+      or _fuzzy_row_value(row, "date")
+    )
     source = "nse_bulk" if "bulk" in mode else "nse_block"
     source_ref = _make_ref(source, symbol, client, action, disclosed, qty, price)
     return {
@@ -216,6 +251,16 @@ def _sanitize_row_json(row: pd.Series) -> dict | None:
       continue
     data[str(k)] = v if not isinstance(v, float) else (None if math.isnan(v) else v)
   return data or None
+
+
+def _fuzzy_row_value(row: pd.Series, needle: str) -> Any:
+  """Match CSV columns even when BOM/quotes corrupt the header."""
+  needle_l = needle.lower()
+  for key, value in row.items():
+    key_norm = str(key).replace("\ufeff", "").strip().strip('"').strip().lower()
+    if needle_l in key_norm:
+      return value
+  return None
 
 
 def _valid_archive_row(row: pd.Series) -> bool:
