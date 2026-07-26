@@ -60,9 +60,23 @@ def build_features(db: Session, signal: Signal) -> dict[str, float | int | bool 
   }
 
 
+FEATURE_KEYS = [
+  "win_rate",
+  "n_trades",
+  "median_return",
+  "deal_size_pctile",
+  "cluster_count",
+  "action_buy",
+  "log_value",
+  "return_1m",
+  "return_3m",
+  "above_ma50",
+  "market_in",
+]
+
+
 def features_to_vector(features: dict) -> list[float]:
-  keys = ["win_rate", "n_trades", "median_return", "deal_size_pctile", "cluster_count", "action_buy", "log_value", "return_1m", "return_3m", "above_ma50", "market_in"]
-  return [float(features.get(k, 0) or 0) for k in keys]
+  return [float(features.get(k, 0) or 0) for k in FEATURE_KEYS]
 
 
 def estimate_interim_probability(features: dict) -> float:

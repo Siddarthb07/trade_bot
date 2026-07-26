@@ -47,9 +47,11 @@ def backfill_mature_forward_returns(
   run = start_ingestion_run(db, "forward_return_backfill")
   processed = 0
   windows_labeled = 0
+  prediction_events_labeled = 0
   errors = 0
   now = datetime.now(timezone.utc)
   markets_seen: set[str] = set()
+  pending_learn = False
 
   try:
     min_age = now - timedelta(days=min(WINDOW_DAYS.values()))
@@ -57,6 +59,11 @@ def backfill_mature_forward_returns(
     if markets:
       query = query.filter(Signal.market.in_([m.upper() for m in markets]))
     candidates = query.order_by(Signal.disclosed_at.asc()).limit(batch_size * 5).all()
+
+    from core.config import get_settings
+    from processor.prediction_events import label_prediction_events_for_signal
+
+    win_window = get_settings().win_window
 
     for signal in candidates:
       if processed >= batch_size:
@@ -85,6 +92,17 @@ def backfill_mature_forward_returns(
           fr.return_pct = return_pct
           fr.price_source = price_source
           windows_labeled += 1
+          if window == win_window:
+            n_ev = label_prediction_events_for_signal(
+              db,
+              signal.id,
+              return_pct=return_pct,
+              price_source=price_source,
+              window=window,
+            )
+            if n_ev:
+              prediction_events_labeled += n_ev
+              pending_learn = True
         db.commit()
         markets_seen.add(signal.market)
         processed += 1
@@ -96,6 +114,16 @@ def backfill_mature_forward_returns(
     for market in markets_seen:
       recompute_investor_stats(db, market)
 
+    learn_meta = None
+    if pending_learn:
+      try:
+        from processor.learn import learn_from_outcomes
+
+        learn_meta = learn_from_outcomes()
+      except Exception as exc:
+        logger.exception("Online learn after backfill failed: %s", exc)
+        learn_meta = {"status": "error", "error": str(exc)}
+
     finish_ingestion_run(
       db,
       run,
@@ -104,7 +132,13 @@ def backfill_mature_forward_returns(
       status="success" if errors == 0 else "partial",
       error=f"{errors} signal errors" if errors else None,
     )
-    result = {"processed_signals": processed, "windows_labeled": windows_labeled, "errors": errors}
+    result = {
+      "processed_signals": processed,
+      "windows_labeled": windows_labeled,
+      "prediction_events_labeled": prediction_events_labeled,
+      "learn": learn_meta,
+      "errors": errors,
+    }
     logger.info("Forward return backfill: %s", result)
     return result
   except Exception as exc:

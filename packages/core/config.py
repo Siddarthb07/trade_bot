@@ -70,6 +70,23 @@ class Settings(BaseSettings):
     ml_train_sources: str = "nse_bulk,nse_block,bse_bulk"
     ml_backfill_days: int = 90
     bulk_confidence_boost: float = 0.05
+    # Online learning (Part A)
+    ml_online_learn_enabled: bool = True
+    ml_max_accuracy_drop: float = 0.08
+    ml_live_cal_min_trades: int = 10
+    ml_live_cal_max_shift: float = 0.08
+    # Execution (Part B) — paper by default
+    exec_mode_in: str = "paper"  # off | paper | live
+    exec_mode_us: str = "paper"
+    exec_live_ack_in: bool = False
+    exec_live_ack_us: bool = False
+    exec_min_size_frac: float = 0.25
+    alpaca_api_key: str = ""
+    alpaca_secret_key: str = ""
+    alpaca_paper: bool = True
+    kite_api_key: str = ""
+    kite_api_secret: str = ""
+    kite_access_token: str = ""
     # Hold display (Phase 5)
     hold_display_mode: str = "both"  # days | weeks | both
     theme_hold_multiplier: float = 1.0

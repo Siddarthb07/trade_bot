@@ -144,13 +144,22 @@ def score_signal_ml(db: Session, signal: Signal) -> SignalScore:
     ml = None
   scorer_version = "interim-v1"
   calibrated_prob = None
+  raw_prob = None
+  live_shift = 0.0
   if ml:
-    calibrated_prob = ml["calibrated_probability"]
+    raw_prob = ml["calibrated_probability"]
     scorer_version = "lgbm-platt-v1"
   else:
     feats = build_features(db, signal)
-    calibrated_prob = estimate_interim_probability(feats)
+    raw_prob = estimate_interim_probability(feats)
     scorer_version = "interim-features-v1"
+
+  try:
+    from processor.live_calibrate import apply_live_calibration
+
+    calibrated_prob, live_shift = apply_live_calibration(raw_prob)
+  except Exception:
+    calibrated_prob = raw_prob
 
   tier = "LOW"
   prob_for_tier = calibrated_prob if calibrated_prob is not None else win_rate
@@ -167,6 +176,8 @@ def score_signal_ml(db: Session, signal: Signal) -> SignalScore:
     "median": stat.median_return if stat else None,
     "win_rate": win_rate,
     "calibrated_probability": calibrated_prob,
+    "raw_probability": raw_prob,
+    "live_cal_shift": live_shift,
     "p10": None,
     "p90": None,
   }
@@ -191,6 +202,21 @@ def score_signal_ml(db: Session, signal: Signal) -> SignalScore:
   score.return_distribution = distribution
   score.scored_at = datetime.now(timezone.utc)
   score.scorer_version = scorer_version
+
+  try:
+    from processor.prediction_events import upsert_bulk_prediction_event
+
+    upsert_bulk_prediction_event(
+      db,
+      signal,
+      features=feats,
+      predicted_prob=calibrated_prob,
+      predicted_tier=tier,
+      scorer_version=scorer_version,
+    )
+  except Exception:
+    pass
+
   db.commit()
   db.refresh(score)
   return score

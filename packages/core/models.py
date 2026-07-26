@@ -1,5 +1,7 @@
 """SQLAlchemy models."""
 
+from __future__ import annotations
+
 import uuid
 from datetime import date, datetime
 from typing import Any
@@ -184,3 +186,95 @@ class EodPrice(Base):
     volume: Mapped[int | None] = mapped_column(Integer, nullable=True)
     source: Mapped[str] = mapped_column(String(32), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class PredictionEvent(Base):
+    __tablename__ = "prediction_events"
+
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    signal_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("signals.id"), nullable=True, index=True)
+    position_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("portfolio_positions.id"), nullable=True, index=True)
+    order_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True, index=True)
+    kind: Mapped[str] = mapped_column(String(16), nullable=False, index=True)
+    scorer_version: Mapped[str] = mapped_column(String(32), nullable=False)
+    model_trained_at: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    features: Mapped[dict[str, Any] | None] = mapped_column(JSONB, nullable=True)
+    feature_vector: Mapped[list[Any] | None] = mapped_column(JSONB, nullable=True)
+    predicted_prob: Mapped[float | None] = mapped_column(Float, nullable=True)
+    predicted_tier: Mapped[str | None] = mapped_column(String(8), nullable=True)
+    labeled: Mapped[bool] = mapped_column(Boolean, default=False)
+    actual_return_pct: Mapped[float | None] = mapped_column(Float, nullable=True)
+    actual_win: Mapped[bool | None] = mapped_column(Boolean, nullable=True)
+    label_window: Mapped[str | None] = mapped_column(String(8), nullable=True)
+    labeled_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class Order(Base):
+    __tablename__ = "orders"
+
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    market: Mapped[str] = mapped_column(String(4), nullable=False, index=True)
+    currency: Mapped[str] = mapped_column(String(8), nullable=False)
+    broker: Mapped[str] = mapped_column(String(16), nullable=False)
+    ticker: Mapped[str] = mapped_column(String(32), nullable=False, index=True)
+    ticker_normalized: Mapped[str] = mapped_column(String(40), nullable=False)
+    side: Mapped[str] = mapped_column(String(8), nullable=False)
+    qty: Mapped[float] = mapped_column(Float, nullable=False)
+    notional: Mapped[float | None] = mapped_column(Float, nullable=True)
+    limit_price: Mapped[float | None] = mapped_column(Float, nullable=True)
+    status: Mapped[str] = mapped_column(String(16), nullable=False, index=True)
+    reject_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+    strategy_id: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    predicted_prob: Mapped[float | None] = mapped_column(Float, nullable=True)
+    sized_notional: Mapped[float | None] = mapped_column(Float, nullable=True)
+    signal_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("signals.id"), nullable=True)
+    position_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("portfolio_positions.id"), nullable=True)
+    broker_order_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    book: Mapped[str] = mapped_column(String(16), default="swing")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+
+class Fill(Base):
+    __tablename__ = "fills"
+
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    order_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("orders.id"), nullable=False, index=True)
+    qty: Mapped[float] = mapped_column(Float, nullable=False)
+    price: Mapped[float] = mapped_column(Float, nullable=False)
+    fee: Mapped[float] = mapped_column(Float, default=0.0)
+    filled_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class TradeRiskState(Base):
+    __tablename__ = "trade_risk_state"
+
+    market: Mapped[str] = mapped_column(String(4), primary_key=True)
+    max_notional_per_trade: Mapped[float] = mapped_column(Float, nullable=False)
+    max_open_notional: Mapped[float] = mapped_column(Float, nullable=False)
+    max_open_positions: Mapped[int] = mapped_column(Integer, default=1)
+    max_daily_loss: Mapped[float] = mapped_column(Float, nullable=False)
+    max_trades_per_day: Mapped[int] = mapped_column(Integer, default=3)
+    min_prob: Mapped[float] = mapped_column(Float, default=0.62)
+    kill_switch: Mapped[bool] = mapped_column(Boolean, default=True)
+    ladder_stage: Mapped[int] = mapped_column(Integer, default=0)
+    exec_mode: Mapped[str] = mapped_column(String(8), default="paper")
+    session_armed: Mapped[bool] = mapped_column(Boolean, default=False)
+    daily_realized_pnl: Mapped[float] = mapped_column(Float, default=0.0)
+    daily_pnl_date: Mapped[date | None] = mapped_column(Date, nullable=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+
+class StrategyCandidate(Base):
+    __tablename__ = "strategy_candidates"
+
+    id: Mapped[str] = mapped_column(String(32), primary_key=True)
+    family: Mapped[str] = mapped_column(String(32), nullable=False)
+    status: Mapped[str] = mapped_column(String(16), default="candidate")
+    live_enabled: Mapped[bool] = mapped_column(Boolean, default=False)
+    source_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+    last_report: Mapped[dict[str, Any] | None] = mapped_column(JSONB, nullable=True)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
