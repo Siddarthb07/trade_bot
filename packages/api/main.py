@@ -25,9 +25,12 @@ from core.models import (
   InvestorStat,
   MarketSnapshot,
   EodPrice,
+  Order,
   PortfolioPosition,
+  PredictionEvent,
   Signal,
   SignalScore,
+  TradeRiskState,
 )
 from core.hold_prefs import effective_hold_prefs, passes_min_hold_filter
 from core.queue import queue_depth, redis_ping
@@ -1162,6 +1165,32 @@ def sell_portfolio_position(
   if payload.notes:
     pos.notes = (pos.notes or "") + f" | Sold: {payload.notes}"
   pos.updated_at = datetime.now(timezone.utc)
+  if pos.entry_price and payload.exit_price and pos.entry_price > 0:
+    try:
+      from processor.live_calibrate import fit_live_calibration
+      from processor.prediction_events import record_live_pnl_event
+
+      ret = float(payload.exit_price) / float(pos.entry_price) - 1.0
+      predicted = None
+      if pos.signal_id:
+        sc = (
+          db.query(SignalScore)
+          .filter(SignalScore.signal_id == pos.signal_id)
+          .order_by(desc(SignalScore.scored_at))
+          .first()
+        )
+        if sc and sc.return_distribution:
+          predicted = sc.return_distribution.get("calibrated_probability")
+      record_live_pnl_event(
+        db,
+        position_id=pos.id,
+        signal_id=pos.signal_id,
+        predicted_prob=predicted,
+        actual_return_pct=ret,
+      )
+      fit_live_calibration(db)
+    except Exception:
+      pass
   db.commit()
   db.refresh(pos)
   return {"item": _serialize_portfolio(pos)}
@@ -1365,6 +1394,9 @@ def system_label_stats(
   )
   eod_total = db.query(EodPrice).count()
   meta = _load_meta()
+  pe_total = db.query(PredictionEvent).count()
+  pe_labeled = db.query(PredictionEvent).filter(PredictionEvent.labeled.is_(True)).count()
+  pe_live = db.query(PredictionEvent).filter(PredictionEvent.kind == "live_pnl").count()
   return {
     "in_bulk_signals": in_bulk,
     "in_bulk_labeled": labeled,
@@ -1373,9 +1405,314 @@ def system_label_stats(
     "label_target_labeled": 30,
     "eod_price_rows": eod_total,
     "ml_model": meta,
+    "prediction_events": {
+      "total": pe_total,
+      "labeled": pe_labeled,
+      "live_pnl": pe_live,
+    },
+    "last_learn_at": meta.get("last_learn_at"),
+    "learn_status": meta.get("learn_status") or meta.get("status"),
+    "live_calibration": meta.get("live_calibration"),
     "win_window": settings.win_window,
     "train_sources": sources,
   }
+
+
+@app.get("/exec/status")
+def exec_status(
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from broker.risk import ensure_risk_state
+  from broker.session import session_snapshot
+
+  books = {}
+  for m in ("IN", "US"):
+    row = ensure_risk_state(db, m)
+    open_n = (
+      db.query(func.count(PortfolioPosition.id))
+      .filter(PortfolioPosition.market == m, PortfolioPosition.status == "open")
+      .scalar()
+      or 0
+    )
+    books[m] = {
+      "kill_switch": row.kill_switch,
+      "session_armed": row.session_armed,
+      "exec_mode": row.exec_mode,
+      "max_notional_per_trade": row.max_notional_per_trade,
+      "max_open_notional": row.max_open_notional,
+      "max_daily_loss": row.max_daily_loss,
+      "daily_realized_pnl": row.daily_realized_pnl,
+      "ladder_stage": row.ladder_stage,
+      "open_positions": open_n,
+    }
+  last_order = db.query(Order).order_by(desc(Order.created_at)).first()
+  return {
+    "session": session_snapshot(),
+    "books": books,
+    "last_order": {
+      "id": str(last_order.id),
+      "ticker": last_order.ticker,
+      "market": last_order.market,
+      "status": last_order.status,
+      "created_at": last_order.created_at.isoformat() if last_order.created_at else None,
+    }
+    if last_order
+    else None,
+  }
+
+
+@app.get("/exec/orders")
+def exec_orders(
+  market: str | None = None,
+  day: str | None = None,
+  limit: int = Query(default=50, le=200),
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  q = db.query(Order).order_by(desc(Order.created_at))
+  if market:
+    q = q.filter(Order.market == market.upper())
+  if day:
+    start = datetime.fromisoformat(day).replace(tzinfo=timezone.utc)
+    end = start.replace(hour=23, minute=59, second=59)
+    q = q.filter(Order.created_at >= start, Order.created_at <= end)
+  rows = q.limit(limit).all()
+  items = []
+  for o in rows:
+    items.append({
+      "id": str(o.id),
+      "market": o.market,
+      "ticker": o.ticker,
+      "side": o.side,
+      "qty": o.qty,
+      "notional": o.notional,
+      "sized_notional": o.sized_notional,
+      "status": o.status,
+      "reject_reason": o.reject_reason,
+      "strategy_id": o.strategy_id,
+      "predicted_prob": o.predicted_prob,
+      "broker": o.broker,
+      "book": o.book,
+      "created_at": o.created_at.isoformat() if o.created_at else None,
+    })
+  return {"items": items, "count": len(items)}
+
+
+@app.post("/exec/arm")
+def exec_arm(
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from broker.risk import arm_sessions
+
+  return {"armed": arm_sessions(db)}
+
+
+@app.post("/exec/kill")
+def exec_kill(
+  market: str = Query(default="ALL"),
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from broker.risk import set_kill
+
+  return {"killed": set_kill(db, market, kill=True)}
+
+
+@app.post("/exec/strategies/seed")
+def exec_strategies_seed(
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from processor.ensemble import seed_strategy_candidates
+
+  return {"seeded": seed_strategy_candidates(db)}
+
+
+@app.get("/exec/strategies")
+def exec_strategies(
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from core.models import StrategyCandidate
+  from processor.ensemble import seed_strategy_candidates
+
+  seed_strategy_candidates(db)
+  rows = db.query(StrategyCandidate).order_by(StrategyCandidate.id).all()
+  return {
+    "items": [
+      {
+        "id": r.id,
+        "family": r.family,
+        "status": r.status,
+        "live_enabled": r.live_enabled,
+        "notes": r.notes,
+      }
+      for r in rows
+    ]
+  }
+
+
+@app.get("/exec/playbooks")
+def exec_playbooks(
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Per-ticker walk-forward playbooks (ambition_pass = live-eligible)."""
+  import json
+  from pathlib import Path
+
+  for path in (Path("/app/models/ticker_playbooks.json"), Path("models/ticker_playbooks.json")):
+    if path.exists():
+      try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        playbooks = data.get("playbooks") or {}
+        return {
+          "generated_at": data.get("generated_at"),
+          "ambition_hit_pct": data.get("ambition_hit_pct"),
+          "items": [
+            {
+              "ticker": t,
+              "status": p.get("status"),
+              "ambition_pass": p.get("ambition_pass"),
+              "strategy_id": p.get("strategy_id"),
+              "secondary_strategy_id": p.get("secondary_strategy_id"),
+              "oos_hit_rate": p.get("oos_hit_rate"),
+              "oos_expectancy": p.get("oos_expectancy"),
+              "n_trades": p.get("n_trades"),
+              "max_dd": p.get("max_dd"),
+            }
+            for t, p in sorted(playbooks.items())
+          ],
+          "disclaimer": data.get("disclaimer"),
+        }
+      except Exception as e:
+        return {"items": [], "error": str(e)}
+  return {"items": [], "error": "ticker_playbooks.json not found — run scripts/paper_5y_backtest.py"}
+
+
+@app.get("/exec/adaptive-profiles")
+def exec_adaptive_profiles(
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Per-ticker adaptive_edge profiles (85% holdout gate)."""
+  from processor.adaptive_edge import load_profiles
+
+  data = load_profiles()
+  profiles = data.get("profiles") or {}
+  return {
+    "generated_at": data.get("generated_at"),
+    "target_hit_pct": data.get("target_hit_pct"),
+    "eligible_tickers": data.get("eligible_tickers") or [],
+    "items": [
+      {
+        "ticker": t,
+        "ambition_pass": p.get("ambition_pass"),
+        "tp": p.get("tp"),
+        "sl": p.get("sl"),
+        "horizon": p.get("horizon"),
+        "min_peers": p.get("min_peers"),
+        "effective_target": p.get("effective_target"),
+        "holdout_oos": p.get("holdout_oos"),
+      }
+      for t, p in sorted(profiles.items())
+    ],
+  }
+
+
+@app.post("/exec/day-sim")
+def exec_day_sim(
+  asof: str = Query(default="2024-08-23"),
+  capital: float = Query(default=10_000.0, ge=100, le=10_000_000),
+  market: str = Query(default="IN"),
+  max_positions: int = Query(default=3, ge=1, le=10),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  """Paper-simulate adaptive_edge for one calendar day with full ledger + PnL."""
+  from processor.day_sim import simulate_day
+
+  currency = "INR" if market.upper() == "IN" else "USD"
+  return simulate_day(
+    asof=asof,
+    capital=capital,
+    currency=currency,
+    market=market.upper(),
+    max_positions=max_positions,
+  )
+
+
+@app.get("/exec/live")
+def exec_live(
+  limit: int = Query(default=40, le=100),
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Fast live tape: recent orders + risk books + last fill."""
+  from broker.risk import ensure_risk_state
+  from broker.session import session_snapshot
+  from core.models import Fill
+
+  books = {}
+  for m in ("IN", "US"):
+    row = ensure_risk_state(db, m)
+    books[m] = {
+      "kill_switch": row.kill_switch,
+      "session_armed": row.session_armed,
+      "exec_mode": row.exec_mode,
+      "daily_realized_pnl": row.daily_realized_pnl,
+      "max_notional_per_trade": row.max_notional_per_trade,
+    }
+  orders = db.query(Order).order_by(desc(Order.created_at)).limit(limit).all()
+  fills = db.query(Fill).order_by(desc(Fill.filled_at)).limit(limit).all() if hasattr(Fill, "filled_at") else []
+  tape = []
+  for o in orders:
+    tape.append(
+      {
+        "kind": "order",
+        "id": str(o.id),
+        "ts": o.created_at.isoformat() if o.created_at else None,
+        "market": o.market,
+        "ticker": o.ticker,
+        "side": o.side,
+        "qty": o.qty,
+        "notional": o.sized_notional or o.notional,
+        "status": o.status,
+        "strategy_id": o.strategy_id,
+        "predicted_prob": o.predicted_prob,
+        "reject_reason": o.reject_reason,
+      }
+    )
+  for f in fills:
+    tape.append(
+      {
+        "kind": "fill",
+        "id": str(getattr(f, "id", "")),
+        "ts": f.filled_at.isoformat() if getattr(f, "filled_at", None) else None,
+        "ticker": getattr(f, "ticker", None),
+        "side": getattr(f, "side", None),
+        "qty": getattr(f, "qty", None),
+        "price": getattr(f, "price", None),
+        "fee": getattr(f, "fee", None),
+      }
+    )
+  tape.sort(key=lambda x: x.get("ts") or "", reverse=True)
+  return {
+    "session": session_snapshot(),
+    "books": books,
+    "tape": tape[:limit],
+    "polled_at": datetime.now(timezone.utc).isoformat(),
+  }
+
+
+
+@app.post("/system/jobs/learn")
+def system_learn(
+  force: bool = False,
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from processor.learn import learn_from_outcomes
+
+  return learn_from_outcomes(force=force)
 
 
 @app.get("/system")

@@ -34,8 +34,38 @@ def run_scheduled_nse_historical_backfill() -> dict:
   return backfill_nse_historical(days=settings.ml_backfill_days)
 
 
+def run_sentiment_ingest() -> dict:
+  from processor.sentiment import ingest_sentiment_snapshot
+
+  return ingest_sentiment_snapshot()
+
+
+def run_in_flatten() -> dict:
+  from broker.daytrade import run_in_day_flatten_if_due
+
+  return run_in_day_flatten_if_due()
+
+
+def run_us_flatten() -> dict:
+  from broker.daytrade import run_us_day_flatten_if_due
+
+  return run_us_day_flatten_if_due()
+
+
+def run_seed_strategies() -> dict:
+  from processor.ensemble import seed_strategy_candidates
+
+  return {"seeded": seed_strategy_candidates()}
+
+
 def main() -> None:
   scheduler = BlockingScheduler(timezone=IST)
+  # Seed strategy registry once at start
+  try:
+    run_seed_strategies()
+  except Exception as exc:
+    logger.warning("Strategy seed failed: %s", exc)
+
   scheduler.add_job(ingest_nse_block_intraday, CronTrigger(hour=10, minute=35, timezone=IST), id="nse_block")
   scheduler.add_job(ingest_nse_eod, CronTrigger(hour=18, minute=15, timezone=IST), id="nse_eod")
   scheduler.add_job(pull_all_free_data, CronTrigger(hour=19, minute=0, timezone=IST), id="pull_free_data")
@@ -49,6 +79,10 @@ def main() -> None:
   scheduler.add_job(ingest_form4, CronTrigger(hour="*/6"), id="sec_form4")
   scheduler.add_job(ingest_13f, CronTrigger(hour=7, minute=0, timezone=IST), id="sec_13f")
   scheduler.add_job(send_daily_digest, CronTrigger(hour=9, minute=0, timezone=IST), id="us_digest")
+  # Autonomy: sentiment hourly, IN flatten near close, US flatten near US close (IST ~01:15 / 01:45 DST-ish)
+  scheduler.add_job(run_sentiment_ingest, CronTrigger(minute=20), id="wsb_sentiment")
+  scheduler.add_job(run_in_flatten, CronTrigger(hour=15, minute=16, timezone=IST), id="in_day_flatten")
+  scheduler.add_job(run_us_flatten, CronTrigger(hour=1, minute=15, timezone=IST), id="us_day_flatten")
 
   def shutdown(_signum, _frame):
     logger.info("Shutting down scheduler")

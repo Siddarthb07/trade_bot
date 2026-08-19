@@ -44,6 +44,18 @@ def process_batch(signal_ids: list[str]) -> dict:
         db.commit()
         recompute_investor_stats(db, signal.market)
         score = score_signal(db, signal)
+        try:
+          from broker.executor import try_auto_trade_signal
+          from processor.market_data import compute_trend_features
+
+          dist = score.return_distribution or {}
+          prob = dist.get("calibrated_probability")
+          trend = compute_trend_features(signal.ticker_normalized, db=db, market=signal.market)
+          last_px = trend.get("current_price")
+          if prob is not None and last_px:
+            try_auto_trade_signal(db, signal, float(prob), float(last_px))
+        except Exception as exc:
+          logger.debug("Auto-trade skip for %s: %s", sid, exc)
         maybe_notify_signal(db, signal, score)
         processed += 1
       except Exception as exc:
