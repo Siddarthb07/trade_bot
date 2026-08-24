@@ -77,7 +77,8 @@ export default function PortfolioPage() {
           <h2>Portfolio — owned & sold</h2>
           <p>
             Track what you bought and sold. Use <strong>I own this</strong> on bulk picks, or add manually below.
-            Automated broker execution is planned — see docs/TRADE_AUTOMATION_PLAN.md.
+            Automated broker execution is live in paper mode — open <Link to="/exec">Exec</Link> to monitor trades.
+            See docs/TRADE_AUTOMATION_PLAN.md.
           </p>
         </div>
       </section>

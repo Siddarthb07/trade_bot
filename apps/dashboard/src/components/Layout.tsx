@@ -4,6 +4,7 @@ const MAIN = [
   { to: "/demand", label: "Demand picks" },
   { to: "/bulk", label: "Bulk deals" },
   { to: "/portfolio", label: "Portfolio" },
+  { to: "/exec", label: "Live" },
   { to: "/investors", label: "Investors" },
   { to: "/themes", label: "Themes" },
 ];

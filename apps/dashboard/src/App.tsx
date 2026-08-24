@@ -15,6 +15,7 @@ import SystemPage from "./pages/SystemPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import InvestorsPage from "./pages/InvestorsPage";
 import ThemesPage from "./pages/ThemesPage";
+import ExecPage from "./pages/ExecPage";
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   if (!isAuthed()) return <Navigate to="/login" replace />;
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/demand" element={<HomePage defaultTab="demand" />} />
         <Route path="/bulk" element={<HomePage defaultTab="bulk" />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/exec" element={<ExecPage />} />
         <Route path="/investors" element={<InvestorsPage />} />
         <Route path="/themes" element={<ThemesPage />} />
         <Route path="/signals/:id" element={<SignalPage />} />
