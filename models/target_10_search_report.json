@@ -1,0 +1,2158 @@
+{
+  "generated_at": "2026-08-28T18:03:23.306965+05:30",
+  "target_return_pct_minimum": 10.0,
+  "sessions": [
+    "2026-08-13",
+    "2026-08-14",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28"
+  ],
+  "winners": [],
+  "ranked": [
+    {
+      "name": "tr10_us_50x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0,
+        "market": "US",
+        "currency": "USD"
+      },
+      "min_return_pct": -6.87,
+      "max_return_pct": 9.249,
+      "avg_return_pct": 0.107,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 12,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -6.87,
+          "n_trades": 1,
+          "pnl": -793.1,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "AMD",
+              "lev": 10.639,
+              "pnl_pct": -0.745,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 9.249,
+          "n_trades": 1,
+          "pnl": 871.21,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "AMD",
+              "lev": 5.318,
+              "pnl_pct": 1.637,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -3.464,
+          "n_trades": 1,
+          "pnl": -505.38,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "AMD",
+              "lev": 15.91,
+              "pnl_pct": -0.317,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -6.614,
+          "n_trades": 1,
+          "pnl": -749.19,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 8.811,
+              "pnl_pct": -0.85,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.423,
+          "n_trades": 1,
+          "pnl": 239.9,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "AAPL",
+              "lev": 10.216,
+              "pnl_pct": 0.235,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -6.37,
+          "n_trades": 1,
+          "pnl": -707.4,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 7.067,
+              "pnl_pct": -1.0,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -6.255,
+          "n_trades": 1,
+          "pnl": -687.66,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 6.246,
+              "pnl_pct": -1.1,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 8.366,
+          "n_trades": 1,
+          "pnl": 719.96,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 11.62,
+              "pnl_pct": 0.619,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 9.069,
+          "n_trades": 1,
+          "pnl": 840.5,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 6.594,
+              "pnl_pct": 1.274,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -5.416,
+          "n_trades": 1,
+          "pnl": -590.6,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "META",
+              "lev": 4.925,
+              "pnl_pct": -1.199,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 6.162,
+          "n_trades": 1,
+          "pnl": 565.47,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 5.044,
+              "pnl_pct": 1.121,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 50.0,
+          "trades": []
+        }
+      ]
+    },
+    {
+      "name": "tr10_us_75x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.5,
+        "min_or_pct": 0.0015,
+        "target_return_pct": 10.0,
+        "market": "US",
+        "currency": "USD"
+      },
+      "min_return_pct": -6.87,
+      "max_return_pct": 9.249,
+      "avg_return_pct": 0.107,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 12,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -6.87,
+          "n_trades": 1,
+          "pnl": -793.1,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "AMD",
+              "lev": 10.639,
+              "pnl_pct": -0.745,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 9.249,
+          "n_trades": 1,
+          "pnl": 871.21,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "AMD",
+              "lev": 5.318,
+              "pnl_pct": 1.637,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -3.464,
+          "n_trades": 1,
+          "pnl": -505.38,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "AMD",
+              "lev": 15.91,
+              "pnl_pct": -0.317,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -6.614,
+          "n_trades": 1,
+          "pnl": -749.19,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 8.811,
+              "pnl_pct": -0.85,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.423,
+          "n_trades": 1,
+          "pnl": 239.9,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "AAPL",
+              "lev": 10.216,
+              "pnl_pct": 0.235,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -6.37,
+          "n_trades": 1,
+          "pnl": -707.4,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 7.067,
+              "pnl_pct": -1.0,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -6.255,
+          "n_trades": 1,
+          "pnl": -687.66,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 6.246,
+              "pnl_pct": -1.1,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 8.366,
+          "n_trades": 1,
+          "pnl": 719.96,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 11.62,
+              "pnl_pct": 0.619,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 9.069,
+          "n_trades": 1,
+          "pnl": 840.5,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 6.594,
+              "pnl_pct": 1.274,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -5.416,
+          "n_trades": 1,
+          "pnl": -590.6,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "META",
+              "lev": 4.925,
+              "pnl_pct": -1.199,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 6.162,
+          "n_trades": 1,
+          "pnl": 565.47,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "COIN",
+              "lev": 5.044,
+              "pnl_pct": 1.121,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 75.0,
+          "trades": []
+        }
+      ]
+    },
+    {
+      "name": "tr10_in_50x_tight_or",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.58,
+        "min_or_pct": 0.005,
+        "target_return_pct": 10.0,
+        "tp_override": 0.008,
+        "market": "IN",
+        "currency": "INR"
+      },
+      "min_return_pct": -8.623,
+      "max_return_pct": 3.657,
+      "avg_return_pct": -1.534,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 12,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 50.0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 50.0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -3.604,
+          "n_trades": 1,
+          "pnl": -734.98,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 12.5,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 50.0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 50.0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 50.0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -6.746,
+          "n_trades": 1,
+          "pnl": -1048.81,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 12.5,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 3.657,
+          "n_trades": 1,
+          "pnl": -10.06,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 12.5,
+              "pnl_pct": -0.008,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 50.0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -8.623,
+          "n_trades": 1,
+          "pnl": -1236.14,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 12.5,
+              "pnl_pct": -0.988,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 50.0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -3.089,
+          "n_trades": 1,
+          "pnl": -683.56,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 12.5,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tr10_in_25x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 25.0,
+        "conf_floor": 0.55,
+        "min_or_pct": 0.003,
+        "target_return_pct": 10.0,
+        "market": "IN",
+        "currency": "INR"
+      },
+      "min_return_pct": -13.223,
+      "max_return_pct": 6.363,
+      "avg_return_pct": -4.001,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 12,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 6.363,
+          "n_trades": 1,
+          "pnl": -99.97,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -13.223,
+          "n_trades": 1,
+          "pnl": -2055.7,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -7.064,
+          "n_trades": 1,
+          "pnl": -1440.56,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 24.975,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "leverage": 25.0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.353,
+          "n_trades": 1,
+          "pnl": -400.48,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -5.547,
+          "n_trades": 1,
+          "pnl": -1289.25,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.526,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -9.769,
+          "n_trades": 1,
+          "pnl": -1518.66,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 18.1,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 6.363,
+          "n_trades": 1,
+          "pnl": -99.96,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -13.223,
+          "n_trades": 1,
+          "pnl": -2055.66,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -6.751,
+          "n_trades": 1,
+          "pnl": -967.85,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 9.787,
+              "pnl_pct": -0.988,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -6.317,
+          "n_trades": 1,
+          "pnl": -1366.08,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.202,
+          "n_trades": 1,
+          "pnl": -487.41,
+          "leverage": 25.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 8.913,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tr10_chase_3x50",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0,
+        "max_chase_attempts": 3,
+        "market": "IN",
+        "currency": "INR"
+      },
+      "min_return_pct": -13.493,
+      "max_return_pct": 6.493,
+      "avg_return_pct": -2.829,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 12,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.57,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.01,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.6,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "JSWSTEEL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.278,
+          "n_trades": 1,
+          "pnl": -778.07,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.311,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.421,
+          "n_trades": 1,
+          "pnl": -408.65,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.02,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.01,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.0,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.61,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.61,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "BAJFINANCE.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -6.446,
+          "n_trades": 1,
+          "pnl": -1393.95,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.64,
+          "n_trades": 1,
+          "pnl": -829.43,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 18.854,
+              "pnl_pct": -0.44,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tr10_in_50x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.0025,
+        "target_return_pct": 10.0,
+        "market": "IN",
+        "currency": "INR"
+      },
+      "min_return_pct": -13.493,
+      "max_return_pct": 6.493,
+      "avg_return_pct": -4.074,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 12,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.01,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.64,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -7.201,
+          "n_trades": 1,
+          "pnl": -1468.49,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 24.975,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.278,
+          "n_trades": 1,
+          "pnl": -778.07,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.311,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.421,
+          "n_trades": 1,
+          "pnl": -408.65,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -5.661,
+          "n_trades": 1,
+          "pnl": -1315.56,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.526,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -9.769,
+          "n_trades": 1,
+          "pnl": -1518.66,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 18.1,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.0,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.61,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -6.751,
+          "n_trades": 1,
+          "pnl": -967.85,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 9.787,
+              "pnl_pct": -0.988,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -6.446,
+          "n_trades": 1,
+          "pnl": -1393.95,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.202,
+          "n_trades": 1,
+          "pnl": -487.41,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 8.913,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tr10_in_75x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0,
+        "market": "IN",
+        "currency": "INR"
+      },
+      "min_return_pct": -13.493,
+      "max_return_pct": 6.493,
+      "avg_return_pct": -4.074,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 12,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.01,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.64,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -7.201,
+          "n_trades": 1,
+          "pnl": -1468.49,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 24.975,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.278,
+          "n_trades": 1,
+          "pnl": -778.07,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.311,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.421,
+          "n_trades": 1,
+          "pnl": -408.65,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -5.661,
+          "n_trades": 1,
+          "pnl": -1315.56,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.526,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -9.769,
+          "n_trades": 1,
+          "pnl": -1518.66,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 18.1,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.0,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.61,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -6.751,
+          "n_trades": 1,
+          "pnl": -967.85,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 9.787,
+              "pnl_pct": -0.988,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -6.446,
+          "n_trades": 1,
+          "pnl": -1393.95,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.202,
+          "n_trades": 1,
+          "pnl": -487.41,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 8.913,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tr10_in_100x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 100.0,
+        "conf_floor": 0.5,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0,
+        "market": "IN",
+        "currency": "INR"
+      },
+      "min_return_pct": -13.493,
+      "max_return_pct": 6.493,
+      "avg_return_pct": -4.074,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 12,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.01,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.64,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -7.201,
+          "n_trades": 1,
+          "pnl": -1468.49,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 24.975,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.278,
+          "n_trades": 1,
+          "pnl": -778.07,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.311,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.421,
+          "n_trades": 1,
+          "pnl": -408.65,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -5.661,
+          "n_trades": 1,
+          "pnl": -1315.56,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.526,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -9.769,
+          "n_trades": 1,
+          "pnl": -1518.66,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 18.1,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 6.493,
+          "n_trades": 1,
+          "pnl": -102.0,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -13.493,
+          "n_trades": 1,
+          "pnl": -2097.61,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.839,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -6.751,
+          "n_trades": 1,
+          "pnl": -967.85,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 9.787,
+              "pnl_pct": -0.988,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -6.446,
+          "n_trades": 1,
+          "pnl": -1393.95,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.202,
+          "n_trades": 1,
+          "pnl": -487.41,
+          "leverage": 100.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 8.913,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tr10_chase_5x75",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.5,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0,
+        "max_chase_attempts": 5,
+        "exit_at_session_end": true,
+        "market": "IN",
+        "currency": "INR"
+      },
+      "min_return_pct": -37.637,
+      "max_return_pct": 84.735,
+      "avg_return_pct": 1.05,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 8,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -36.24,
+          "n_trades": 1,
+          "pnl": -4368.83,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.747,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 50.057,
+          "n_trades": 1,
+          "pnl": 4247.84,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": 1.698,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 17.823,
+          "n_trades": 1,
+          "pnl": 1248.39,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "JSWSTEEL.NS",
+              "lev": 17.699,
+              "pnl_pct": 0.705,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -21.18,
+          "n_trades": 1,
+          "pnl": -2865.14,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.145,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -15.356,
+          "n_trades": 1,
+          "pnl": -2283.62,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "SBIN.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.913,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 9.046,
+          "n_trades": 1,
+          "pnl": 152.89,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "MARUTI.NS",
+              "lev": 25.0,
+              "pnl_pct": 0.061,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 10.205,
+          "n_trades": 1,
+          "pnl": 369.3,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 21.645,
+              "pnl_pct": 0.171,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -23.367,
+          "n_trades": 1,
+          "pnl": -3000.22,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 22.222,
+              "pnl_pct": -1.349,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 84.735,
+          "n_trades": 1,
+          "pnl": 7792.35,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 22.272,
+              "pnl_pct": 3.497,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -25.606,
+          "n_trades": 1,
+          "pnl": -3299.69,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "BAJFINANCE.NS",
+              "lev": 24.752,
+              "pnl_pct": -1.332,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -37.637,
+          "n_trades": 1,
+          "pnl": -4508.4,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.802,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.125,
+          "n_trades": 1,
+          "pnl": -389.83,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "WIPRO.NS",
+              "lev": 13.405,
+              "pnl_pct": -0.291,
+              "exit": "session_close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tr10_in_50x_session_end",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0,
+        "exit_at_session_end": true,
+        "market": "IN",
+        "currency": "INR"
+      },
+      "min_return_pct": -37.637,
+      "max_return_pct": 84.735,
+      "avg_return_pct": -1.88,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 10,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 23.111,
+          "n_trades": 1,
+          "pnl": 1589.67,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 23.923,
+              "pnl_pct": 0.664,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -14.376,
+          "n_trades": 1,
+          "pnl": -2054.27,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.619,
+              "pnl_pct": -0.996,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -1.069,
+          "n_trades": 1,
+          "pnl": -593.91,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 16.234,
+              "pnl_pct": -0.366,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -21.18,
+          "n_trades": 1,
+          "pnl": -2865.14,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.145,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -4.14,
+          "n_trades": 1,
+          "pnl": -1090.88,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 22.573,
+              "pnl_pct": -0.483,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -12.974,
+          "n_trades": 1,
+          "pnl": -2045.74,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.818,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -7.924,
+          "n_trades": 1,
+          "pnl": -1144.3,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 11.765,
+              "pnl_pct": -0.972,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -23.367,
+          "n_trades": 1,
+          "pnl": -3000.22,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 22.222,
+              "pnl_pct": -1.349,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 84.735,
+          "n_trades": 1,
+          "pnl": 7792.35,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 22.272,
+              "pnl_pct": 3.497,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -9.156,
+          "n_trades": 1,
+          "pnl": -1105.17,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 6.361,
+              "pnl_pct": -1.737,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -37.637,
+          "n_trades": 1,
+          "pnl": -4508.4,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.802,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 1.422,
+          "n_trades": 1,
+          "pnl": -31.87,
+          "leverage": 50.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 5.794,
+              "pnl_pct": -0.055,
+              "exit": "session_close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tr10_in_75x_session_end",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.5,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0,
+        "exit_at_session_end": true,
+        "market": "IN",
+        "currency": "INR"
+      },
+      "min_return_pct": -37.637,
+      "max_return_pct": 84.735,
+      "avg_return_pct": -1.88,
+      "all_days_at_or_above_target": false,
+      "days_below_target": 10,
+      "target_return_pct": 10.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 23.111,
+          "n_trades": 1,
+          "pnl": 1589.67,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 23.923,
+              "pnl_pct": 0.664,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -14.376,
+          "n_trades": 1,
+          "pnl": -2054.27,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.619,
+              "pnl_pct": -0.996,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -1.069,
+          "n_trades": 1,
+          "pnl": -593.91,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 16.234,
+              "pnl_pct": -0.366,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -21.18,
+          "n_trades": 1,
+          "pnl": -2865.14,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.145,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -4.14,
+          "n_trades": 1,
+          "pnl": -1090.88,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 22.573,
+              "pnl_pct": -0.483,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -12.974,
+          "n_trades": 1,
+          "pnl": -2045.74,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.818,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -7.924,
+          "n_trades": 1,
+          "pnl": -1144.3,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 11.765,
+              "pnl_pct": -0.972,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -23.367,
+          "n_trades": 1,
+          "pnl": -3000.22,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 22.222,
+              "pnl_pct": -1.349,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 84.735,
+          "n_trades": 1,
+          "pnl": 7792.35,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 22.272,
+              "pnl_pct": 3.497,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -9.156,
+          "n_trades": 1,
+          "pnl": -1105.17,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 6.361,
+              "pnl_pct": -1.737,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -37.637,
+          "n_trades": 1,
+          "pnl": -4508.4,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.802,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 1.422,
+          "n_trades": 1,
+          "pnl": -31.87,
+          "leverage": 75.0,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 5.794,
+              "pnl_pct": -0.055,
+              "exit": "session_close"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "goal_met": false
+}

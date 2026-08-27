@@ -1,0 +1,2522 @@
+{
+  "generated_at": "2026-08-28T23:13:58.732802+05:30",
+  "market": "IN",
+  "min_daily_pct_floor": 8.0,
+  "target_ambition_pct": 10.0,
+  "compounding": true,
+  "sessions": [
+    "2026-08-13",
+    "2026-08-14",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28"
+  ],
+  "start_capital_inr": 10000.0,
+  "pass_8pct": [],
+  "pass_10pct": [],
+  "goal_8_met": false,
+  "goal_10_met": false,
+  "ranked": [
+    {
+      "name": "in_tr8_100x_tight",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 100.0,
+        "conf_floor": 0.55,
+        "min_or_pct": 0.004,
+        "target_return_pct": 8.0,
+        "tp_override": 0.01
+      },
+      "min_daily_return_pct": -7.516,
+      "max_daily_return_pct": 3.611,
+      "avg_daily_return_pct": -2.916,
+      "days_at_or_above_8pct": 0,
+      "days_at_or_above_10pct": 0,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -30.541,
+      "final_capital_inr": 6945.85,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 3.611,
+          "capital_start": 10000.0,
+          "capital_end": 10361.06,
+          "n_trades": 1,
+          "pnl": 120.42,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 8.0,
+              "pnl_pct": 0.15,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -7.516,
+          "capital_start": 10361.06,
+          "capital_end": 9582.37,
+          "n_trades": 1,
+          "pnl": -1026.29,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 8.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -2.307,
+          "capital_start": 9582.37,
+          "capital_end": 9361.35,
+          "n_trades": 1,
+          "pnl": -450.75,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 8.0,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "capital_start": 9361.35,
+          "capital_end": 9361.35,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 1.095,
+          "capital_start": 9361.35,
+          "capital_end": 9463.84,
+          "n_trades": 1,
+          "pnl": -122.41,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 8.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "capital_start": 9463.84,
+          "capital_end": 9463.84,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -5.35,
+          "capital_start": 9463.84,
+          "capital_end": 8957.56,
+          "n_trades": 1,
+          "pnl": -732.76,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 8.0,
+              "pnl_pct": -0.967,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -7.516,
+          "capital_start": 8957.56,
+          "capital_end": 8284.35,
+          "n_trades": 1,
+          "pnl": -887.3,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 8.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -7.515,
+          "capital_start": 8284.35,
+          "capital_end": 7661.74,
+          "n_trades": 1,
+          "pnl": -820.59,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 8.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -7.516,
+          "capital_start": 7661.74,
+          "capital_end": 7085.92,
+          "n_trades": 1,
+          "pnl": -758.92,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 8.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 0.0,
+          "capital_start": 7085.92,
+          "capital_end": 7085.92,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -1.977,
+          "capital_start": 7085.92,
+          "capital_end": 6945.85,
+          "n_trades": 1,
+          "pnl": -309.99,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 8.0,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr10_100x_tight",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 100.0,
+        "conf_floor": 0.55,
+        "min_or_pct": 0.004,
+        "target_return_pct": 10.0,
+        "tp_override": 0.01
+      },
+      "min_daily_return_pct": -9.394,
+      "max_daily_return_pct": 4.513,
+      "avg_daily_return_pct": -3.645,
+      "days_at_or_above_8pct": 0,
+      "days_at_or_above_10pct": 0,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -36.895,
+      "final_capital_inr": 6310.53,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 4.513,
+          "capital_start": 10000.0,
+          "capital_end": 10451.32,
+          "n_trades": 1,
+          "pnl": 150.52,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 10.0,
+              "pnl_pct": 0.15,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -9.394,
+          "capital_start": 10451.32,
+          "capital_end": 9469.48,
+          "n_trades": 1,
+          "pnl": -1294.04,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 10.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -2.883,
+          "capital_start": 9469.48,
+          "capital_end": 9196.46,
+          "n_trades": 1,
+          "pnl": -556.79,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 10.0,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "capital_start": 9196.46,
+          "capital_end": 9196.46,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 1.369,
+          "capital_start": 9196.46,
+          "capital_end": 9322.32,
+          "n_trades": 1,
+          "pnl": -150.32,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 10.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "capital_start": 9322.32,
+          "capital_end": 9322.32,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -6.687,
+          "capital_start": 9322.32,
+          "capital_end": 8698.94,
+          "n_trades": 1,
+          "pnl": -902.25,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 10.0,
+              "pnl_pct": -0.967,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -9.394,
+          "capital_start": 8698.94,
+          "capital_end": 7881.72,
+          "n_trades": 1,
+          "pnl": -1077.09,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 10.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -9.394,
+          "capital_start": 7881.72,
+          "capital_end": 7141.28,
+          "n_trades": 1,
+          "pnl": -975.89,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 10.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -9.394,
+          "capital_start": 7141.28,
+          "capital_end": 6470.4,
+          "n_trades": 1,
+          "pnl": -884.21,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 10.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 0.0,
+          "capital_start": 6470.4,
+          "capital_end": 6470.4,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.471,
+          "capital_start": 6470.4,
+          "capital_end": 6310.53,
+          "n_trades": 1,
+          "pnl": -353.84,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 10.0,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr8_chase3_50x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 8.0,
+        "max_chase_attempts": 3
+      },
+      "min_daily_return_pct": -18.789,
+      "max_daily_return_pct": 5.194,
+      "avg_daily_return_pct": -3.871,
+      "days_at_or_above_8pct": 0,
+      "days_at_or_above_10pct": 0,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -41.098,
+      "final_capital_inr": 5890.23,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -13.713,
+          "capital_start": 10000.0,
+          "capital_end": 8628.67,
+          "n_trades": 1,
+          "pnl": -1969.51,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.984,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 5.194,
+          "capital_start": 8628.67,
+          "capital_end": 9076.88,
+          "n_trades": 1,
+          "pnl": -70.42,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -11.185,
+          "capital_start": 9076.88,
+          "capital_end": 8061.64,
+          "n_trades": 1,
+          "pnl": -1558.56,
+          "trades": [
+            {
+              "ticker": "JSWSTEEL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.858,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.222,
+          "capital_start": 8061.64,
+          "capital_end": 8043.72,
+          "n_trades": 1,
+          "pnl": -501.8,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.311,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 2.737,
+          "capital_start": 8043.72,
+          "capital_end": 8263.89,
+          "n_trades": 1,
+          "pnl": -262.97,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 5.194,
+          "capital_start": 8263.89,
+          "capital_end": 8693.15,
+          "n_trades": 1,
+          "pnl": -67.45,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 5.194,
+          "capital_start": 8693.15,
+          "capital_end": 9144.71,
+          "n_trades": 1,
+          "pnl": -70.95,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 5.194,
+          "capital_start": 9144.71,
+          "capital_end": 9619.71,
+          "n_trades": 1,
+          "pnl": -74.62,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -18.789,
+          "capital_start": 9619.71,
+          "capital_end": 7812.28,
+          "n_trades": 1,
+          "pnl": -2382.16,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -18.789,
+          "capital_start": 7812.28,
+          "capital_end": 6344.45,
+          "n_trades": 1,
+          "pnl": -1934.57,
+          "trades": [
+            {
+              "ticker": "BAJFINANCE.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -5.157,
+          "capital_start": 6344.45,
+          "capital_end": 6017.29,
+          "n_trades": 1,
+          "pnl": -707.5,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.112,
+          "capital_start": 6017.29,
+          "capital_end": 5890.23,
+          "n_trades": 1,
+          "pnl": -399.27,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 15.083,
+              "pnl_pct": -0.44,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr8_75x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.5,
+        "min_or_pct": 0.002,
+        "target_return_pct": 8.0
+      },
+      "min_daily_return_pct": -18.789,
+      "max_daily_return_pct": 5.194,
+      "avg_daily_return_pct": -5.12,
+      "days_at_or_above_8pct": 0,
+      "days_at_or_above_10pct": 0,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -48.808,
+      "final_capital_inr": 5119.21,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 5.194,
+          "capital_start": 10000.0,
+          "capital_end": 10519.44,
+          "n_trades": 1,
+          "pnl": -81.61,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -18.789,
+          "capital_start": 10519.44,
+          "capital_end": 8542.96,
+          "n_trades": 1,
+          "pnl": -2604.93,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -5.761,
+          "capital_start": 8542.96,
+          "capital_end": 8050.84,
+          "n_trades": 1,
+          "pnl": -1003.62,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 19.98,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "capital_start": 8050.84,
+          "capital_end": 8050.84,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 0.0,
+          "capital_start": 8050.84,
+          "capital_end": 8050.84,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -4.528,
+          "capital_start": 8050.84,
+          "capital_end": 7686.26,
+          "n_trades": 1,
+          "pnl": -847.31,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.526,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -9.683,
+          "capital_start": 7686.26,
+          "capital_end": 6942.02,
+          "n_trades": 1,
+          "pnl": -1077.18,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 14.48,
+              "pnl_pct": -0.967,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 5.194,
+          "capital_start": 6942.02,
+          "capital_end": 7302.61,
+          "n_trades": 1,
+          "pnl": -56.65,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -18.789,
+          "capital_start": 7302.61,
+          "capital_end": 5930.54,
+          "n_trades": 1,
+          "pnl": -1808.36,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -7.355,
+          "capital_start": 5930.54,
+          "capital_end": 5494.36,
+          "n_trades": 1,
+          "pnl": -574.89,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 7.829,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -5.157,
+          "capital_start": 5494.36,
+          "capital_end": 5211.03,
+          "n_trades": 1,
+          "pnl": -612.71,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -1.762,
+          "capital_start": 5211.03,
+          "capital_end": 5119.21,
+          "n_trades": 1,
+          "pnl": -203.21,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 7.131,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr8_50x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 8.0
+      },
+      "min_daily_return_pct": -18.789,
+      "max_daily_return_pct": 5.194,
+      "avg_daily_return_pct": -6.486,
+      "days_at_or_above_8pct": 0,
+      "days_at_or_above_10pct": 0,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -56.956,
+      "final_capital_inr": 4304.42,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -13.713,
+          "capital_start": 10000.0,
+          "capital_end": 8628.67,
+          "n_trades": 1,
+          "pnl": -1969.51,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.984,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -18.789,
+          "capital_start": 8628.67,
+          "capital_end": 7007.45,
+          "n_trades": 1,
+          "pnl": -2136.73,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -5.761,
+          "capital_start": 7007.45,
+          "capital_end": 6603.78,
+          "n_trades": 1,
+          "pnl": -823.23,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 19.98,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.222,
+          "capital_start": 6603.78,
+          "capital_end": 6589.1,
+          "n_trades": 1,
+          "pnl": -411.07,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.311,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 2.737,
+          "capital_start": 6589.1,
+          "capital_end": 6769.45,
+          "n_trades": 1,
+          "pnl": -215.41,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -4.529,
+          "capital_start": 6769.45,
+          "capital_end": 6462.89,
+          "n_trades": 1,
+          "pnl": -712.45,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.526,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -9.683,
+          "capital_start": 6462.89,
+          "capital_end": 5837.1,
+          "n_trades": 1,
+          "pnl": -905.73,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 14.48,
+              "pnl_pct": -0.967,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 5.194,
+          "capital_start": 5837.1,
+          "capital_end": 6140.3,
+          "n_trades": 1,
+          "pnl": -47.63,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -18.789,
+          "capital_start": 6140.3,
+          "capital_end": 4986.61,
+          "n_trades": 1,
+          "pnl": -1520.54,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -7.355,
+          "capital_start": 4986.61,
+          "capital_end": 4619.85,
+          "n_trades": 1,
+          "pnl": -483.38,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 7.829,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -5.157,
+          "capital_start": 4619.85,
+          "capital_end": 4381.62,
+          "n_trades": 1,
+          "pnl": -515.19,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -1.762,
+          "capital_start": 4381.62,
+          "capital_end": 4304.42,
+          "n_trades": 1,
+          "pnl": -170.87,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 7.131,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr10_chase3_50x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0,
+        "max_chase_attempts": 3
+      },
+      "min_daily_return_pct": -23.486,
+      "max_daily_return_pct": 6.493,
+      "avg_daily_return_pct": -4.839,
+      "days_at_or_above_8pct": 0,
+      "days_at_or_above_10pct": 0,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -49.587,
+      "final_capital_inr": 5041.31,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -17.142,
+          "capital_start": 10000.0,
+          "capital_end": 8285.84,
+          "n_trades": 1,
+          "pnl": -2461.89,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.984,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 6.493,
+          "capital_start": 8285.84,
+          "capital_end": 8823.84,
+          "n_trades": 1,
+          "pnl": -84.53,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -13.981,
+          "capital_start": 8823.84,
+          "capital_end": 7590.17,
+          "n_trades": 1,
+          "pnl": -1893.9,
+          "trades": [
+            {
+              "ticker": "JSWSTEEL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.858,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.278,
+          "capital_start": 7590.17,
+          "capital_end": 7569.08,
+          "n_trades": 1,
+          "pnl": -590.58,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.311,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.421,
+          "capital_start": 7569.08,
+          "capital_end": 7828.05,
+          "n_trades": 1,
+          "pnl": -309.32,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.163,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 6.493,
+          "capital_start": 7828.05,
+          "capital_end": 8336.32,
+          "n_trades": 1,
+          "pnl": -79.87,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 6.493,
+          "capital_start": 8336.32,
+          "capital_end": 8877.6,
+          "n_trades": 1,
+          "pnl": -85.05,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 6.493,
+          "capital_start": 8877.6,
+          "capital_end": 9454.01,
+          "n_trades": 1,
+          "pnl": -90.56,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -23.486,
+          "capital_start": 9454.01,
+          "capital_end": 7233.64,
+          "n_trades": 1,
+          "pnl": -2926.4,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -23.486,
+          "capital_start": 7233.64,
+          "capital_end": 5534.75,
+          "n_trades": 1,
+          "pnl": -2239.12,
+          "trades": [
+            {
+              "ticker": "BAJFINANCE.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -6.446,
+          "capital_start": 5534.75,
+          "capital_end": 5177.99,
+          "n_trades": 1,
+          "pnl": -771.51,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.64,
+          "capital_start": 5177.99,
+          "capital_end": 5041.31,
+          "n_trades": 1,
+          "pnl": -429.47,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 18.854,
+              "pnl_pct": -0.44,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr10_75x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.5,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0
+      },
+      "min_daily_return_pct": -23.486,
+      "max_daily_return_pct": 6.493,
+      "avg_daily_return_pct": -6.399,
+      "days_at_or_above_8pct": 0,
+      "days_at_or_above_10pct": 0,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -57.554,
+      "final_capital_inr": 4244.61,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 6.493,
+          "capital_start": 10000.0,
+          "capital_end": 10649.3,
+          "n_trades": 1,
+          "pnl": -102.01,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -23.486,
+          "capital_start": 10649.3,
+          "capital_end": 8148.21,
+          "n_trades": 1,
+          "pnl": -3296.38,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -7.201,
+          "capital_start": 8148.21,
+          "capital_end": 7561.48,
+          "n_trades": 1,
+          "pnl": -1196.56,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 24.975,
+              "pnl_pct": -0.588,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "capital_start": 7561.48,
+          "capital_end": 7561.48,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 0.0,
+          "capital_start": 7561.48,
+          "capital_end": 7561.48,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -5.661,
+          "capital_start": 7561.48,
+          "capital_end": 7133.45,
+          "n_trades": 1,
+          "pnl": -994.76,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.526,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -12.104,
+          "capital_start": 7133.45,
+          "capital_end": 6270.05,
+          "n_trades": 1,
+          "pnl": -1249.62,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 18.1,
+              "pnl_pct": -0.967,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 6.493,
+          "capital_start": 6270.05,
+          "capital_end": 6677.16,
+          "n_trades": 1,
+          "pnl": -63.95,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -23.486,
+          "capital_start": 6677.16,
+          "capital_end": 5108.96,
+          "n_trades": 1,
+          "pnl": -2066.85,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -9.194,
+          "capital_start": 5108.96,
+          "capital_end": 4639.23,
+          "n_trades": 1,
+          "pnl": -619.11,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 9.787,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -6.446,
+          "capital_start": 4639.23,
+          "capital_end": 4340.19,
+          "n_trades": 1,
+          "pnl": -646.68,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.202,
+          "capital_start": 4340.19,
+          "capital_end": 4244.61,
+          "n_trades": 1,
+          "pnl": -211.54,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 8.913,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr10_50x",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0
+      },
+      "min_daily_return_pct": -23.486,
+      "max_daily_return_pct": 6.493,
+      "avg_daily_return_pct": -6.513,
+      "days_at_or_above_8pct": 0,
+      "days_at_or_above_10pct": 0,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -58.178,
+      "final_capital_inr": 4182.25,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 6.493,
+          "capital_start": 10000.0,
+          "capital_end": 10649.3,
+          "n_trades": 1,
+          "pnl": -102.01,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -23.486,
+          "capital_start": 10649.3,
+          "capital_end": 8148.21,
+          "n_trades": 1,
+          "pnl": -3296.38,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 0.0,
+          "capital_start": 8148.21,
+          "capital_end": 8148.21,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "capital_start": 8148.21,
+          "capital_end": 8148.21,
+          "n_trades": 0,
+          "pnl": 0,
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -8.564,
+          "capital_start": 8148.21,
+          "capital_end": 7450.38,
+          "n_trades": 1,
+          "pnl": -1308.17,
+          "trades": [
+            {
+              "ticker": "BAJFINANCE.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.642,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -5.661,
+          "capital_start": 7450.38,
+          "capital_end": 7028.64,
+          "n_trades": 1,
+          "pnl": -980.14,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.526,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -12.103,
+          "capital_start": 7028.64,
+          "capital_end": 6177.93,
+          "n_trades": 1,
+          "pnl": -1231.26,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 18.1,
+              "pnl_pct": -0.967,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 6.493,
+          "capital_start": 6177.93,
+          "capital_end": 6579.06,
+          "n_trades": 1,
+          "pnl": -63.02,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.041,
+              "exit": "take_profit"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -23.486,
+          "capital_start": 6579.06,
+          "capital_end": 5033.9,
+          "n_trades": 1,
+          "pnl": -2036.49,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -9.194,
+          "capital_start": 5033.9,
+          "capital_end": 4571.07,
+          "n_trades": 1,
+          "pnl": -610.01,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 9.787,
+              "pnl_pct": -1.238,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -6.446,
+          "capital_start": 4571.07,
+          "capital_end": 4276.43,
+          "n_trades": 1,
+          "pnl": -637.19,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.557,
+              "exit": "session_horizon"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -2.202,
+          "capital_start": 4276.43,
+          "capital_end": 4182.25,
+          "n_trades": 1,
+          "pnl": -208.44,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 8.913,
+              "pnl_pct": -0.547,
+              "exit": "session_horizon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr8_chase5_75x_sess",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.5,
+        "min_or_pct": 0.0018,
+        "target_return_pct": 8.0,
+        "max_chase_attempts": 5,
+        "exit_at_session_end": true
+      },
+      "min_daily_return_pct": -30.11,
+      "max_daily_return_pct": 67.786,
+      "avg_daily_return_pct": 3.573,
+      "days_at_or_above_8pct": 4,
+      "days_at_or_above_10pct": 3,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": 6.518,
+      "final_capital_inr": 10651.77,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 3.805,
+          "capital_start": 10000.0,
+          "capital_end": 10380.54,
+          "n_trades": 1,
+          "pnl": -220.3,
+          "trades": [
+            {
+              "ticker": "JSWSTEEL.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.11,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 40.046,
+          "capital_start": 10380.54,
+          "capital_end": 14537.48,
+          "n_trades": 1,
+          "pnl": 3527.59,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": 1.698,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 14.258,
+          "capital_start": 14537.48,
+          "capital_end": 16610.23,
+          "n_trades": 1,
+          "pnl": 1451.86,
+          "trades": [
+            {
+              "ticker": "JSWSTEEL.NS",
+              "lev": 14.159,
+              "pnl_pct": 0.705,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -16.944,
+          "capital_start": 16610.23,
+          "capital_end": 13795.8,
+          "n_trades": 1,
+          "pnl": -3807.25,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.145,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -12.285,
+          "capital_start": 13795.8,
+          "capital_end": 12101.03,
+          "n_trades": 1,
+          "pnl": -2520.34,
+          "trades": [
+            {
+              "ticker": "SBIN.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.913,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 7.237,
+          "capital_start": 12101.03,
+          "capital_end": 12976.74,
+          "n_trades": 1,
+          "pnl": 148.01,
+          "trades": [
+            {
+              "ticker": "MARUTI.NS",
+              "lev": 20.0,
+              "pnl_pct": 0.061,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 8.164,
+          "capital_start": 12976.74,
+          "capital_end": 14036.13,
+          "n_trades": 1,
+          "pnl": 383.38,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 17.316,
+              "pnl_pct": 0.171,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -18.694,
+          "capital_start": 14036.13,
+          "capital_end": 11412.17,
+          "n_trades": 1,
+          "pnl": -3368.98,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 17.778,
+              "pnl_pct": -1.349,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 67.786,
+          "capital_start": 11412.17,
+          "capital_end": 19148.02,
+          "n_trades": 1,
+          "pnl": 7113.98,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 17.817,
+              "pnl_pct": 3.497,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -20.485,
+          "capital_start": 19148.02,
+          "capital_end": 15225.46,
+          "n_trades": 1,
+          "pnl": -5054.69,
+          "trades": [
+            {
+              "ticker": "BAJFINANCE.NS",
+              "lev": 19.802,
+              "pnl_pct": -1.332,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -30.11,
+          "capital_start": 15225.46,
+          "capital_end": 10641.12,
+          "n_trades": 1,
+          "pnl": -5491.39,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.802,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.1,
+          "capital_start": 10641.12,
+          "capital_end": 10651.77,
+          "n_trades": 1,
+          "pnl": -331.87,
+          "trades": [
+            {
+              "ticker": "WIPRO.NS",
+              "lev": 10.724,
+              "pnl_pct": -0.291,
+              "exit": "session_close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr8_50x_sess_end",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 8.0,
+        "exit_at_session_end": true
+      },
+      "min_daily_return_pct": -30.11,
+      "max_daily_return_pct": 67.786,
+      "avg_daily_return_pct": -1.504,
+      "days_at_or_above_8pct": 2,
+      "days_at_or_above_10pct": 2,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -37.372,
+      "final_capital_inr": 6262.82,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 18.49,
+          "capital_start": 10000.0,
+          "capital_end": 11848.98,
+          "n_trades": 1,
+          "pnl": 1271.78,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 19.139,
+              "pnl_pct": 0.664,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -11.501,
+          "capital_start": 11848.98,
+          "capital_end": 10486.25,
+          "n_trades": 1,
+          "pnl": -1947.26,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 16.495,
+              "pnl_pct": -0.996,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -0.855,
+          "capital_start": 10486.25,
+          "capital_end": 10396.59,
+          "n_trades": 1,
+          "pnl": -498.22,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 12.987,
+              "pnl_pct": -0.366,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -16.944,
+          "capital_start": 10396.59,
+          "capital_end": 8635.0,
+          "n_trades": 1,
+          "pnl": -2383.02,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.145,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -3.313,
+          "capital_start": 8635.0,
+          "capital_end": 8348.96,
+          "n_trades": 1,
+          "pnl": -753.61,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 18.059,
+              "pnl_pct": -0.483,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -10.379,
+          "capital_start": 8348.96,
+          "capital_end": 7482.44,
+          "n_trades": 1,
+          "pnl": -1366.39,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 20.0,
+              "pnl_pct": -0.818,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -6.339,
+          "capital_start": 7482.44,
+          "capital_end": 7008.12,
+          "n_trades": 1,
+          "pnl": -684.97,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 9.412,
+              "pnl_pct": -0.972,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -18.694,
+          "capital_start": 7008.12,
+          "capital_end": 5698.0,
+          "n_trades": 1,
+          "pnl": -1682.1,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 17.778,
+              "pnl_pct": -1.349,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 67.786,
+          "capital_start": 5698.0,
+          "capital_end": 9560.44,
+          "n_trades": 1,
+          "pnl": 3551.94,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 17.817,
+              "pnl_pct": 3.497,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -7.325,
+          "capital_start": 9560.44,
+          "capital_end": 8860.11,
+          "n_trades": 1,
+          "pnl": -845.3,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 5.089,
+              "pnl_pct": -1.737,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -30.11,
+          "capital_start": 8860.11,
+          "capital_end": 6192.36,
+          "n_trades": 1,
+          "pnl": -3195.6,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 20.0,
+              "pnl_pct": -1.802,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 1.138,
+          "capital_start": 6192.36,
+          "capital_end": 6262.82,
+          "n_trades": 1,
+          "pnl": -15.79,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 4.635,
+              "pnl_pct": -0.055,
+              "exit": "session_close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr10_chase5_75x_sess",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.5,
+        "min_or_pct": 0.0018,
+        "target_return_pct": 10.0,
+        "max_chase_attempts": 5,
+        "exit_at_session_end": true
+      },
+      "min_daily_return_pct": -37.637,
+      "max_daily_return_pct": 84.735,
+      "avg_daily_return_pct": 4.467,
+      "days_at_or_above_8pct": 5,
+      "days_at_or_above_10pct": 4,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -2.349,
+      "final_capital_inr": 9765.15,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 4.757,
+          "capital_start": 10000.0,
+          "capital_end": 10475.67,
+          "n_trades": 1,
+          "pnl": -275.39,
+          "trades": [
+            {
+              "ticker": "JSWSTEEL.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.11,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 50.057,
+          "capital_start": 10475.67,
+          "capital_end": 15719.47,
+          "n_trades": 1,
+          "pnl": 4449.9,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": 1.698,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 17.823,
+          "capital_start": 15719.47,
+          "capital_end": 18521.1,
+          "n_trades": 1,
+          "pnl": 1962.4,
+          "trades": [
+            {
+              "ticker": "JSWSTEEL.NS",
+              "lev": 17.699,
+              "pnl_pct": 0.705,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -21.18,
+          "capital_start": 18521.1,
+          "capital_end": 14598.35,
+          "n_trades": 1,
+          "pnl": -5306.56,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.145,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -15.356,
+          "capital_start": 14598.35,
+          "capital_end": 12356.65,
+          "n_trades": 1,
+          "pnl": -3333.7,
+          "trades": [
+            {
+              "ticker": "SBIN.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.913,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 9.046,
+          "capital_start": 12356.65,
+          "capital_end": 13474.41,
+          "n_trades": 1,
+          "pnl": 188.91,
+          "trades": [
+            {
+              "ticker": "MARUTI.NS",
+              "lev": 25.0,
+              "pnl_pct": 0.061,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 10.205,
+          "capital_start": 13474.41,
+          "capital_end": 14849.44,
+          "n_trades": 1,
+          "pnl": 497.61,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 21.645,
+              "pnl_pct": 0.171,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -23.367,
+          "capital_start": 14849.44,
+          "capital_end": 11379.52,
+          "n_trades": 1,
+          "pnl": -4455.14,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 22.222,
+              "pnl_pct": -1.349,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 84.735,
+          "capital_start": 11379.52,
+          "capital_end": 21021.99,
+          "n_trades": 1,
+          "pnl": 8867.33,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 22.272,
+              "pnl_pct": 3.497,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -25.606,
+          "capital_start": 21021.99,
+          "capital_end": 15639.04,
+          "n_trades": 1,
+          "pnl": -6936.59,
+          "trades": [
+            {
+              "ticker": "BAJFINANCE.NS",
+              "lev": 24.752,
+              "pnl_pct": -1.332,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -37.637,
+          "capital_start": 15639.04,
+          "capital_end": 9752.95,
+          "n_trades": 1,
+          "pnl": -7050.71,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.802,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.125,
+          "capital_start": 9752.95,
+          "capital_end": 9765.15,
+          "n_trades": 1,
+          "pnl": -380.2,
+          "trades": [
+            {
+              "ticker": "WIPRO.NS",
+              "lev": 13.405,
+              "pnl_pct": -0.291,
+              "exit": "session_close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "in_tr10_50x_sess_end",
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 50.0,
+        "conf_floor": 0.52,
+        "min_or_pct": 0.002,
+        "target_return_pct": 10.0,
+        "exit_at_session_end": true
+      },
+      "min_daily_return_pct": -37.637,
+      "max_daily_return_pct": 84.735,
+      "avg_daily_return_pct": -1.88,
+      "days_at_or_above_8pct": 2,
+      "days_at_or_above_10pct": 2,
+      "all_days_ge_8pct": false,
+      "all_days_ge_10pct": false,
+      "compound_total_pct": -48.641,
+      "final_capital_inr": 5135.88,
+      "start_capital_inr": 10000.0,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 23.111,
+          "capital_start": 10000.0,
+          "capital_end": 12311.15,
+          "n_trades": 1,
+          "pnl": 1589.67,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 23.923,
+              "pnl_pct": 0.664,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -14.376,
+          "capital_start": 12311.15,
+          "capital_end": 10541.27,
+          "n_trades": 1,
+          "pnl": -2529.04,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 20.619,
+              "pnl_pct": -0.996,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -1.069,
+          "capital_start": 10541.27,
+          "capital_end": 10428.61,
+          "n_trades": 1,
+          "pnl": -626.05,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 16.234,
+              "pnl_pct": -0.366,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -21.18,
+          "capital_start": 10428.61,
+          "capital_end": 8219.84,
+          "n_trades": 1,
+          "pnl": -2987.95,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.145,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -4.141,
+          "capital_start": 8219.84,
+          "capital_end": 7879.49,
+          "n_trades": 1,
+          "pnl": -896.69,
+          "trades": [
+            {
+              "ticker": "TATASTEEL.NS",
+              "lev": 22.573,
+              "pnl_pct": -0.483,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -12.974,
+          "capital_start": 7879.49,
+          "capital_end": 6857.24,
+          "n_trades": 1,
+          "pnl": -1611.94,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 25.0,
+              "pnl_pct": -0.818,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -7.924,
+          "capital_start": 6857.24,
+          "capital_end": 6313.88,
+          "n_trades": 1,
+          "pnl": -784.67,
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "lev": 11.765,
+              "pnl_pct": -0.972,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -23.367,
+          "capital_start": 6313.88,
+          "capital_end": 4838.49,
+          "n_trades": 1,
+          "pnl": -1894.3,
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "lev": 22.222,
+              "pnl_pct": -1.349,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 84.735,
+          "capital_start": 4838.49,
+          "capital_end": 8938.4,
+          "n_trades": 1,
+          "pnl": 3770.32,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 22.272,
+              "pnl_pct": 3.497,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -9.156,
+          "capital_start": 8938.4,
+          "capital_end": 8119.98,
+          "n_trades": 1,
+          "pnl": -987.85,
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "lev": 6.361,
+              "pnl_pct": -1.737,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -37.637,
+          "capital_start": 8119.98,
+          "capital_end": 5063.85,
+          "n_trades": 1,
+          "pnl": -3660.81,
+          "trades": [
+            {
+              "ticker": "HDFCBANK.NS",
+              "lev": 25.0,
+              "pnl_pct": -1.802,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 1.422,
+          "capital_start": 5063.85,
+          "capital_end": 5135.88,
+          "n_trades": 1,
+          "pnl": -16.14,
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "lev": 5.794,
+              "pnl_pct": -0.055,
+              "exit": "session_close"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

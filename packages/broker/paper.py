@@ -9,18 +9,33 @@ from broker.base import AccountSnapshot, BrokerPosition, OrderRequest, OrderResu
 
 
 class PaperBroker:
-  def __init__(self, market: str, *, starting_cash: float, currency: str):
+  def __init__(self, market: str, *, starting_cash: float, currency: str, leverage_max: float = 1.0):
     self.market = market.upper()
     self.name = "paper"
     self.currency = currency
     self.cash = float(starting_cash)
+    self.initial_equity = float(starting_cash)
+    self.leverage_max = max(1.0, float(leverage_max))
+    self.borrowed = 0.0
     self.positions: dict[str, BrokerPosition] = {}
 
+  def _gross_exposure(self) -> float:
+    return sum(p.qty * p.avg_price for p in self.positions.values())
+
+  def equity(self) -> float:
+    return self.cash + self._gross_exposure() - self.borrowed
+
+  def buying_power(self) -> float:
+    eq = max(0.0, self.equity())
+    cap = eq * self.leverage_max
+    return max(0.0, cap - self._gross_exposure())
+
   def get_account(self) -> AccountSnapshot:
+    bp = self.buying_power() if self.leverage_max > 1.0 else self.cash
     return AccountSnapshot(
       market=self.market,
       cash=self.cash,
-      buying_power=self.cash,
+      buying_power=bp,
       currency=self.currency,
     )
 
@@ -37,9 +52,17 @@ class PaperBroker:
     cost = px * order.qty
     fee = abs(cost) * 0.0002
     if order.side == "buy":
-      if cost + fee > self.cash + 1e-9:
+      total = cost + fee
+      if self._gross_exposure() + cost > max(0.0, self.equity()) * self.leverage_max + 1e-9:
+        return OrderResult(status="rejected", broker=self.name, reject_reason="over_leverage")
+      if self.leverage_max > 1.0 and total > self.cash + 1e-9:
+        borrow = total - self.cash
+        self.borrowed += borrow
+        self.cash = 0.0
+      elif total > self.cash + 1e-9:
         return OrderResult(status="rejected", broker=self.name, reject_reason="insufficient_paper_cash")
-      self.cash -= cost + fee
+      else:
+        self.cash -= total
       prev = self.positions.get(order.ticker_normalized)
       if prev:
         new_qty = prev.qty + order.qty
@@ -52,6 +75,10 @@ class PaperBroker:
       if not prev or prev.qty < order.qty - 1e-9:
         return OrderResult(status="rejected", broker=self.name, reject_reason="no_position")
       self.cash += cost - fee
+      if self.borrowed > 0 and self.cash > 0:
+        repay = min(self.borrowed, self.cash)
+        self.borrowed -= repay
+        self.cash -= repay
       left = prev.qty - order.qty
       if left <= 1e-9:
         self.positions.pop(order.ticker_normalized, None)

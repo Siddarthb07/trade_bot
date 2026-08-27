@@ -1,0 +1,2030 @@
+{
+  "windows": [
+    {
+      "id": "march_crash",
+      "label": "historical_bad",
+      "start": "2026-03-09",
+      "end": "2026-03-27",
+      "nifty_return_pct": -10.59,
+      "bar_interval": "1h",
+      "sessions": [
+        "2026-03-09",
+        "2026-03-10",
+        "2026-03-11",
+        "2026-03-12",
+        "2026-03-13",
+        "2026-03-16",
+        "2026-03-17",
+        "2026-03-18",
+        "2026-03-19",
+        "2026-03-20",
+        "2026-03-23",
+        "2026-03-24",
+        "2026-03-25",
+        "2026-03-26",
+        "2026-03-27"
+      ],
+      "configs": {
+        "in_tr10_orwidth_chase5_75x": {
+          "name": "in_tr10_orwidth_chase5_75x",
+          "params": {
+            "filter_mode": "target_return",
+            "max_leverage": 75.0,
+            "conf_floor": 0.48,
+            "min_or_pct": 0.0015,
+            "target_return_pct": 10.0,
+            "exit_at_session_end": true,
+            "rank_by": "or_width",
+            "max_chase_attempts": 5,
+            "bar_interval": "1h"
+          },
+          "min_daily_return_pct": 0.0,
+          "max_daily_return_pct": 0.0,
+          "avg_daily_return_pct": 0.0,
+          "days_at_or_above_8pct": 0,
+          "days_at_or_above_10pct": 0,
+          "all_days_ge_8pct": false,
+          "all_days_ge_10pct": false,
+          "compound_total_pct": 0.0,
+          "final_capital_inr": 10000.0,
+          "start_capital_inr": 10000.0,
+          "days": [
+            {
+              "asof": "2026-03-09",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-10",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-11",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-12",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-13",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-16",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-17",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-18",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-19",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-20",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-23",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-24",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-25",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-26",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-27",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            }
+          ]
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "name": "in_tr8_orwidth_chase5_75x",
+          "params": {
+            "filter_mode": "target_return",
+            "max_leverage": 75.0,
+            "conf_floor": 0.48,
+            "min_or_pct": 0.0015,
+            "target_return_pct": 8.0,
+            "exit_at_session_end": true,
+            "rank_by": "or_width",
+            "max_chase_attempts": 5,
+            "bar_interval": "1h"
+          },
+          "min_daily_return_pct": 0.0,
+          "max_daily_return_pct": 0.0,
+          "avg_daily_return_pct": 0.0,
+          "days_at_or_above_8pct": 0,
+          "days_at_or_above_10pct": 0,
+          "all_days_ge_8pct": false,
+          "all_days_ge_10pct": false,
+          "compound_total_pct": 0.0,
+          "final_capital_inr": 10000.0,
+          "start_capital_inr": 10000.0,
+          "days": [
+            {
+              "asof": "2026-03-09",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-10",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-11",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-12",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-13",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-16",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-17",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-18",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-19",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-20",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-23",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-24",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-25",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-26",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            },
+            {
+              "asof": "2026-03-27",
+              "return_pct": 0.0,
+              "capital_start": 10000.0,
+              "capital_end": 10000.0,
+              "n_trades": 0,
+              "pnl": 0,
+              "trades": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "july_chop",
+      "label": "bad_market",
+      "start": "2026-07-06",
+      "end": "2026-07-24",
+      "nifty_return_pct": -2.71,
+      "bar_interval": "auto",
+      "sessions": [
+        "2026-07-06",
+        "2026-07-07",
+        "2026-07-08",
+        "2026-07-09",
+        "2026-07-10",
+        "2026-07-13",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-16",
+        "2026-07-17",
+        "2026-07-20",
+        "2026-07-21",
+        "2026-07-22",
+        "2026-07-23",
+        "2026-07-24"
+      ],
+      "configs": {
+        "in_tr10_orwidth_chase5_75x": {
+          "name": "in_tr10_orwidth_chase5_75x",
+          "params": {
+            "filter_mode": "target_return",
+            "max_leverage": 75.0,
+            "conf_floor": 0.48,
+            "min_or_pct": 0.0015,
+            "target_return_pct": 10.0,
+            "exit_at_session_end": true,
+            "rank_by": "or_width",
+            "max_chase_attempts": 5,
+            "bar_interval": "auto"
+          },
+          "min_daily_return_pct": -32.501,
+          "max_daily_return_pct": 19.901,
+          "avg_daily_return_pct": -6.873,
+          "days_at_or_above_8pct": 2,
+          "days_at_or_above_10pct": 2,
+          "all_days_ge_8pct": false,
+          "all_days_ge_10pct": false,
+          "compound_total_pct": -71.731,
+          "final_capital_inr": 2826.9,
+          "start_capital_inr": 10000.0,
+          "days": [
+            {
+              "asof": "2026-07-06",
+              "return_pct": 16.219,
+              "capital_start": 10000.0,
+              "capital_end": 11621.87,
+              "n_trades": 1,
+              "pnl": 1062.58,
+              "trades": [
+                {
+                  "ticker": "HINDALCO.NS",
+                  "lev": 18.553,
+                  "pnl_pct": 0.572,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-07",
+              "return_pct": 1.502,
+              "capital_start": 11621.87,
+              "capital_end": 11796.46,
+              "n_trades": 1,
+              "pnl": -524.69,
+              "trades": [
+                {
+                  "ticker": "INFY.NS",
+                  "lev": 20.04,
+                  "pnl_pct": -0.225,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-08",
+              "return_pct": -27.683,
+              "capital_start": 11796.46,
+              "capital_end": 8530.89,
+              "n_trades": 1,
+              "pnl": -3913.88,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 18.45,
+                  "pnl_pct": -1.797,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-09",
+              "return_pct": -30.645,
+              "capital_start": 8530.89,
+              "capital_end": 5916.58,
+              "n_trades": 1,
+              "pnl": -3250.5,
+              "trades": [
+                {
+                  "ticker": "ICICIBANK.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -1.523,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-10",
+              "return_pct": 19.901,
+              "capital_start": 5916.58,
+              "capital_end": 7094.05,
+              "n_trades": 1,
+              "pnl": 731.76,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 25.0,
+                  "pnl_pct": 0.494,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-13",
+              "return_pct": -1.155,
+              "capital_start": 7094.05,
+              "capital_end": 7012.1,
+              "n_trades": 1,
+              "pnl": -448.91,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 17.241,
+                  "pnl_pct": -0.367,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-14",
+              "return_pct": -13.537,
+              "capital_start": 7012.1,
+              "capital_end": 6062.88,
+              "n_trades": 1,
+              "pnl": -1108.47,
+              "trades": [
+                {
+                  "ticker": "HINDALCO.NS",
+                  "lev": 7.634,
+                  "pnl_pct": -2.07,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-15",
+              "return_pct": -3.55,
+              "capital_start": 6062.88,
+              "capital_end": 5847.67,
+              "n_trades": 1,
+              "pnl": -345.43,
+              "trades": [
+                {
+                  "ticker": "TCS.NS",
+                  "lev": 7.174,
+                  "pnl_pct": -0.794,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-16",
+              "return_pct": -2.793,
+              "capital_start": 5847.67,
+              "capital_end": 5684.34,
+              "n_trades": 1,
+              "pnl": -445.24,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 16.077,
+                  "pnl_pct": -0.473,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-17",
+              "return_pct": -32.501,
+              "capital_start": 5684.34,
+              "capital_end": 3836.88,
+              "n_trades": 1,
+              "pnl": -2271.22,
+              "trades": [
+                {
+                  "ticker": "HINDALCO.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -1.597,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-20",
+              "return_pct": -14.131,
+              "capital_start": 3836.88,
+              "capital_end": 3294.69,
+              "n_trades": 1,
+              "pnl": -773.55,
+              "trades": [
+                {
+                  "ticker": "HINDALCO.NS",
+                  "lev": 20.161,
+                  "pnl_pct": -0.999,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-21",
+              "return_pct": -9.013,
+              "capital_start": 3294.69,
+              "capital_end": 2997.73,
+              "n_trades": 1,
+              "pnl": -543.72,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.66,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-22",
+              "return_pct": -4.061,
+              "capital_start": 2997.73,
+              "capital_end": 2875.99,
+              "n_trades": 1,
+              "pnl": -344.82,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 24.814,
+                  "pnl_pct": -0.463,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-23",
+              "return_pct": 1.648,
+              "capital_start": 2875.99,
+              "capital_end": 2923.39,
+              "n_trades": 1,
+              "pnl": -168.44,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.234,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-24",
+              "return_pct": -3.301,
+              "capital_start": 2923.39,
+              "capital_end": 2826.9,
+              "n_trades": 1,
+              "pnl": -185.69,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 10.183,
+                  "pnl_pct": -0.623,
+                  "exit": "session_close"
+                }
+              ]
+            }
+          ]
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "name": "in_tr8_orwidth_chase5_75x",
+          "params": {
+            "filter_mode": "target_return",
+            "max_leverage": 75.0,
+            "conf_floor": 0.48,
+            "min_or_pct": 0.0015,
+            "target_return_pct": 8.0,
+            "exit_at_session_end": true,
+            "rank_by": "or_width",
+            "max_chase_attempts": 5,
+            "bar_interval": "auto"
+          },
+          "min_daily_return_pct": -26.001,
+          "max_daily_return_pct": 15.921,
+          "avg_daily_return_pct": -5.499,
+          "days_at_or_above_8pct": 2,
+          "days_at_or_above_10pct": 2,
+          "all_days_ge_8pct": false,
+          "all_days_ge_10pct": false,
+          "compound_total_pct": -62.009,
+          "final_capital_inr": 3799.08,
+          "start_capital_inr": 10000.0,
+          "days": [
+            {
+              "asof": "2026-07-06",
+              "return_pct": 12.975,
+              "capital_start": 10000.0,
+              "capital_end": 11297.46,
+              "n_trades": 1,
+              "pnl": 850.04,
+              "trades": [
+                {
+                  "ticker": "HINDALCO.NS",
+                  "lev": 14.842,
+                  "pnl_pct": 0.572,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-07",
+              "return_pct": 1.202,
+              "capital_start": 11297.46,
+              "capital_end": 11433.23,
+              "n_trades": 1,
+              "pnl": -408.05,
+              "trades": [
+                {
+                  "ticker": "INFY.NS",
+                  "lev": 16.032,
+                  "pnl_pct": -0.225,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-08",
+              "return_pct": -22.146,
+              "capital_start": 11433.23,
+              "capital_end": 8901.22,
+              "n_trades": 1,
+              "pnl": -3034.7,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 14.76,
+                  "pnl_pct": -1.797,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-09",
+              "return_pct": -24.516,
+              "capital_start": 8901.22,
+              "capital_end": 6718.98,
+              "n_trades": 1,
+              "pnl": -2713.27,
+              "trades": [
+                {
+                  "ticker": "ICICIBANK.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -1.523,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-10",
+              "return_pct": 15.921,
+              "capital_start": 6718.98,
+              "capital_end": 7788.7,
+              "n_trades": 1,
+              "pnl": 664.79,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 20.0,
+                  "pnl_pct": 0.494,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-13",
+              "return_pct": -0.924,
+              "capital_start": 7788.7,
+              "capital_end": 7716.72,
+              "n_trades": 1,
+              "pnl": -394.3,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 13.793,
+                  "pnl_pct": -0.367,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-14",
+              "return_pct": -10.829,
+              "capital_start": 7716.72,
+              "capital_end": 6881.06,
+              "n_trades": 1,
+              "pnl": -975.84,
+              "trades": [
+                {
+                  "ticker": "HINDALCO.NS",
+                  "lev": 6.107,
+                  "pnl_pct": -2.07,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-15",
+              "return_pct": -2.84,
+              "capital_start": 6881.06,
+              "capital_end": 6685.67,
+              "n_trades": 1,
+              "pnl": -313.62,
+              "trades": [
+                {
+                  "ticker": "TCS.NS",
+                  "lev": 5.739,
+                  "pnl_pct": -0.794,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-16",
+              "return_pct": -2.234,
+              "capital_start": 6685.67,
+              "capital_end": 6536.28,
+              "n_trades": 1,
+              "pnl": -407.25,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 12.862,
+                  "pnl_pct": -0.473,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-17",
+              "return_pct": -26.001,
+              "capital_start": 6536.28,
+              "capital_end": 4836.8,
+              "n_trades": 1,
+              "pnl": -2089.28,
+              "trades": [
+                {
+                  "ticker": "HINDALCO.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -1.597,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-20",
+              "return_pct": -11.305,
+              "capital_start": 4836.8,
+              "capital_end": 4290.0,
+              "n_trades": 1,
+              "pnl": -780.12,
+              "trades": [
+                {
+                  "ticker": "HINDALCO.NS",
+                  "lev": 16.129,
+                  "pnl_pct": -0.999,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-21",
+              "return_pct": -7.21,
+              "capital_start": 4290.0,
+              "capital_end": 3980.67,
+              "n_trades": 1,
+              "pnl": -566.38,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.66,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-22",
+              "return_pct": -3.249,
+              "capital_start": 3980.67,
+              "capital_end": 3851.35,
+              "n_trades": 1,
+              "pnl": -366.29,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 19.851,
+                  "pnl_pct": -0.463,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-23",
+              "return_pct": 1.318,
+              "capital_start": 3851.35,
+              "capital_end": 3902.13,
+              "n_trades": 1,
+              "pnl": -180.45,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.234,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-07-24",
+              "return_pct": -2.641,
+              "capital_start": 3902.13,
+              "capital_end": 3799.08,
+              "n_trades": 1,
+              "pnl": -198.3,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 8.147,
+                  "pnl_pct": -0.623,
+                  "exit": "session_close"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "aug_chop",
+      "label": "bad_market",
+      "start": "2026-08-03",
+      "end": "2026-08-21",
+      "nifty_return_pct": -2.11,
+      "bar_interval": "auto",
+      "sessions": [
+        "2026-08-03",
+        "2026-08-04",
+        "2026-08-05",
+        "2026-08-06",
+        "2026-08-07",
+        "2026-08-10",
+        "2026-08-11",
+        "2026-08-12",
+        "2026-08-13",
+        "2026-08-14",
+        "2026-08-17",
+        "2026-08-18",
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21"
+      ],
+      "configs": {
+        "in_tr10_orwidth_chase5_75x": {
+          "name": "in_tr10_orwidth_chase5_75x",
+          "params": {
+            "filter_mode": "target_return",
+            "max_leverage": 75.0,
+            "conf_floor": 0.48,
+            "min_or_pct": 0.0015,
+            "target_return_pct": 10.0,
+            "exit_at_session_end": true,
+            "rank_by": "or_width",
+            "max_chase_attempts": 5,
+            "bar_interval": "auto"
+          },
+          "min_daily_return_pct": -34.582,
+          "max_daily_return_pct": 50.057,
+          "avg_daily_return_pct": 1.218,
+          "days_at_or_above_8pct": 5,
+          "days_at_or_above_10pct": 4,
+          "all_days_ge_8pct": false,
+          "all_days_ge_10pct": false,
+          "compound_total_pct": -6.457,
+          "final_capital_inr": 9354.26,
+          "start_capital_inr": 10000.0,
+          "days": [
+            {
+              "asof": "2026-08-03",
+              "return_pct": -1.157,
+              "capital_start": 10000.0,
+              "capital_end": 9884.32,
+              "n_trades": 1,
+              "pnl": -535.87,
+              "trades": [
+                {
+                  "ticker": "SBIN.NS",
+                  "lev": 14.006,
+                  "pnl_pct": -0.382,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-04",
+              "return_pct": -1.784,
+              "capital_start": 9884.32,
+              "capital_end": 9707.95,
+              "n_trades": 1,
+              "pnl": -621.55,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 15.015,
+                  "pnl_pct": -0.419,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-05",
+              "return_pct": -34.582,
+              "capital_start": 9707.95,
+              "capital_end": 6350.71,
+              "n_trades": 1,
+              "pnl": -4080.62,
+              "trades": [
+                {
+                  "ticker": "TCS.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -1.681,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-06",
+              "return_pct": 1.309,
+              "capital_start": 6350.71,
+              "capital_end": 6433.82,
+              "n_trades": 1,
+              "pnl": -393.52,
+              "trades": [
+                {
+                  "ticker": "ICICIBANK.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.248,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-07",
+              "return_pct": 12.982,
+              "capital_start": 6433.82,
+              "capital_end": 7269.05,
+              "n_trades": 1,
+              "pnl": 351.22,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 25.0,
+                  "pnl_pct": 0.218,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-10",
+              "return_pct": -14.88,
+              "capital_start": 7269.05,
+              "capital_end": 6187.45,
+              "n_trades": 1,
+              "pnl": -1583.83,
+              "trades": [
+                {
+                  "ticker": "INFY.NS",
+                  "lev": 23.095,
+                  "pnl_pct": -0.943,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-11",
+              "return_pct": -0.855,
+              "capital_start": 6187.45,
+              "capital_end": 6134.53,
+              "n_trades": 1,
+              "pnl": -517.11,
+              "trades": [
+                {
+                  "ticker": "RELIANCE.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.334,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-12",
+              "return_pct": -9.327,
+              "capital_start": 6134.53,
+              "capital_end": 5562.39,
+              "n_trades": 1,
+              "pnl": -1031.62,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.672,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-13",
+              "return_pct": 4.757,
+              "capital_start": 5562.39,
+              "capital_end": 5826.98,
+              "n_trades": 1,
+              "pnl": -153.17,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.11,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-14",
+              "return_pct": 50.057,
+              "capital_start": 5826.98,
+              "capital_end": 8743.78,
+              "n_trades": 1,
+              "pnl": 2475.21,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 25.0,
+                  "pnl_pct": 1.698,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-17",
+              "return_pct": 17.823,
+              "capital_start": 8743.78,
+              "capital_end": 10302.16,
+              "n_trades": 1,
+              "pnl": 1091.56,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 17.699,
+                  "pnl_pct": 0.705,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-18",
+              "return_pct": -21.18,
+              "capital_start": 10302.16,
+              "capital_end": 8120.17,
+              "n_trades": 1,
+              "pnl": -2951.71,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -1.145,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-19",
+              "return_pct": -4.141,
+              "capital_start": 8120.17,
+              "capital_end": 7783.95,
+              "n_trades": 1,
+              "pnl": -885.82,
+              "trades": [
+                {
+                  "ticker": "TATASTEEL.NS",
+                  "lev": 22.573,
+                  "pnl_pct": -0.483,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-20",
+              "return_pct": 9.046,
+              "capital_start": 7783.95,
+              "capital_end": 8488.07,
+              "n_trades": 1,
+              "pnl": 119.0,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 25.0,
+                  "pnl_pct": 0.061,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-21",
+              "return_pct": 10.205,
+              "capital_start": 8488.07,
+              "capital_end": 9354.26,
+              "n_trades": 1,
+              "pnl": 313.47,
+              "trades": [
+                {
+                  "ticker": "TCS.NS",
+                  "lev": 21.645,
+                  "pnl_pct": 0.171,
+                  "exit": "session_close"
+                }
+              ]
+            }
+          ]
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "name": "in_tr8_orwidth_chase5_75x",
+          "params": {
+            "filter_mode": "target_return",
+            "max_leverage": 75.0,
+            "conf_floor": 0.48,
+            "min_or_pct": 0.0015,
+            "target_return_pct": 8.0,
+            "exit_at_session_end": true,
+            "rank_by": "or_width",
+            "max_chase_attempts": 5,
+            "bar_interval": "auto"
+          },
+          "min_daily_return_pct": -27.666,
+          "max_daily_return_pct": 40.045,
+          "avg_daily_return_pct": 0.975,
+          "days_at_or_above_8pct": 4,
+          "days_at_or_above_10pct": 3,
+          "all_days_ge_8pct": false,
+          "all_days_ge_10pct": false,
+          "compound_total_pct": -1.295,
+          "final_capital_inr": 9870.49,
+          "start_capital_inr": 10000.0,
+          "days": [
+            {
+              "asof": "2026-08-03",
+              "return_pct": -0.925,
+              "capital_start": 10000.0,
+              "capital_end": 9907.47,
+              "n_trades": 1,
+              "pnl": -428.66,
+              "trades": [
+                {
+                  "ticker": "SBIN.NS",
+                  "lev": 11.204,
+                  "pnl_pct": -0.382,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-04",
+              "return_pct": -1.427,
+              "capital_start": 9907.47,
+              "capital_end": 9766.05,
+              "n_trades": 1,
+              "pnl": -498.4,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 12.012,
+                  "pnl_pct": -0.419,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-05",
+              "return_pct": -27.666,
+              "capital_start": 9766.05,
+              "capital_end": 7064.19,
+              "n_trades": 1,
+              "pnl": -3284.04,
+              "trades": [
+                {
+                  "ticker": "TCS.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -1.681,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-06",
+              "return_pct": 1.047,
+              "capital_start": 7064.19,
+              "capital_end": 7138.14,
+              "n_trades": 1,
+              "pnl": -350.19,
+              "trades": [
+                {
+                  "ticker": "ICICIBANK.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.248,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-07",
+              "return_pct": 10.385,
+              "capital_start": 7138.14,
+              "capital_end": 7879.47,
+              "n_trades": 1,
+              "pnl": 311.74,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 20.0,
+                  "pnl_pct": 0.218,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-10",
+              "return_pct": -11.904,
+              "capital_start": 7879.47,
+              "capital_end": 6941.53,
+              "n_trades": 1,
+              "pnl": -1373.47,
+              "trades": [
+                {
+                  "ticker": "INFY.NS",
+                  "lev": 18.476,
+                  "pnl_pct": -0.943,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-11",
+              "return_pct": -0.684,
+              "capital_start": 6941.53,
+              "capital_end": 6894.03,
+              "n_trades": 1,
+              "pnl": -464.1,
+              "trades": [
+                {
+                  "ticker": "RELIANCE.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.334,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-12",
+              "return_pct": -7.461,
+              "capital_start": 6894.03,
+              "capital_end": 6379.65,
+              "n_trades": 1,
+              "pnl": -927.47,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.672,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-13",
+              "return_pct": 3.805,
+              "capital_start": 6379.65,
+              "capital_end": 6622.42,
+              "n_trades": 1,
+              "pnl": -140.55,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.11,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-14",
+              "return_pct": 40.045,
+              "capital_start": 6622.42,
+              "capital_end": 9274.4,
+              "n_trades": 1,
+              "pnl": 2250.48,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 20.0,
+                  "pnl_pct": 1.698,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-17",
+              "return_pct": 14.258,
+              "capital_start": 9274.4,
+              "capital_end": 10596.74,
+              "n_trades": 1,
+              "pnl": 926.22,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 14.159,
+                  "pnl_pct": 0.705,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-18",
+              "return_pct": -16.944,
+              "capital_start": 10596.74,
+              "capital_end": 8801.23,
+              "n_trades": 1,
+              "pnl": -2428.9,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -1.145,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-19",
+              "return_pct": -3.312,
+              "capital_start": 8801.23,
+              "capital_end": 8509.69,
+              "n_trades": 1,
+              "pnl": -768.11,
+              "trades": [
+                {
+                  "ticker": "TATASTEEL.NS",
+                  "lev": 18.059,
+                  "pnl_pct": -0.483,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-20",
+              "return_pct": 7.237,
+              "capital_start": 8509.69,
+              "capital_end": 9125.5,
+              "n_trades": 1,
+              "pnl": 104.09,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 20.0,
+                  "pnl_pct": 0.061,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-21",
+              "return_pct": 8.164,
+              "capital_start": 9125.5,
+              "capital_end": 9870.49,
+              "n_trades": 1,
+              "pnl": 269.6,
+              "trades": [
+                {
+                  "ticker": "TCS.NS",
+                  "lev": 17.316,
+                  "pnl_pct": 0.171,
+                  "exit": "session_close"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "benchmark_15d",
+      "label": "benchmark",
+      "start": "2026-08-10",
+      "end": "2026-08-28",
+      "nifty_return_pct": -1.66,
+      "bar_interval": "auto",
+      "sessions": [
+        "2026-08-10",
+        "2026-08-11",
+        "2026-08-12",
+        "2026-08-13",
+        "2026-08-14",
+        "2026-08-17",
+        "2026-08-18",
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28"
+      ],
+      "configs": {
+        "in_tr10_orwidth_chase5_75x": {
+          "name": "in_tr10_orwidth_chase5_75x",
+          "params": {
+            "filter_mode": "target_return",
+            "max_leverage": 75.0,
+            "conf_floor": 0.48,
+            "min_or_pct": 0.0015,
+            "target_return_pct": 10.0,
+            "exit_at_session_end": true,
+            "rank_by": "or_width",
+            "max_chase_attempts": 5,
+            "bar_interval": "auto"
+          },
+          "min_daily_return_pct": -25.606,
+          "max_daily_return_pct": 84.735,
+          "avg_daily_return_pct": 5.62,
+          "days_at_or_above_8pct": 5,
+          "days_at_or_above_10pct": 4,
+          "all_days_ge_8pct": false,
+          "all_days_ge_10pct": false,
+          "compound_total_pct": 45.064,
+          "final_capital_inr": 14506.44,
+          "start_capital_inr": 10000.0,
+          "days": [
+            {
+              "asof": "2026-08-10",
+              "return_pct": -14.88,
+              "capital_start": 10000.0,
+              "capital_end": 8512.05,
+              "n_trades": 1,
+              "pnl": -2178.88,
+              "trades": [
+                {
+                  "ticker": "INFY.NS",
+                  "lev": 23.095,
+                  "pnl_pct": -0.943,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-11",
+              "return_pct": -0.855,
+              "capital_start": 8512.05,
+              "capital_end": 8439.25,
+              "n_trades": 1,
+              "pnl": -711.38,
+              "trades": [
+                {
+                  "ticker": "RELIANCE.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.334,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-12",
+              "return_pct": -9.327,
+              "capital_start": 8439.25,
+              "capital_end": 7652.16,
+              "n_trades": 1,
+              "pnl": -1419.19,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.672,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-13",
+              "return_pct": 4.757,
+              "capital_start": 7652.16,
+              "capital_end": 8016.15,
+              "n_trades": 1,
+              "pnl": -210.72,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.11,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-14",
+              "return_pct": 50.057,
+              "capital_start": 8016.15,
+              "capital_end": 12028.79,
+              "n_trades": 1,
+              "pnl": 3405.13,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 25.0,
+                  "pnl_pct": 1.698,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-17",
+              "return_pct": 17.823,
+              "capital_start": 12028.79,
+              "capital_end": 14172.64,
+              "n_trades": 1,
+              "pnl": 1501.66,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 17.699,
+                  "pnl_pct": 0.705,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-18",
+              "return_pct": -21.18,
+              "capital_start": 14172.64,
+              "capital_end": 11170.89,
+              "n_trades": 1,
+              "pnl": -4060.67,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -1.145,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-19",
+              "return_pct": -4.141,
+              "capital_start": 11170.89,
+              "capital_end": 10708.35,
+              "n_trades": 1,
+              "pnl": -1218.61,
+              "trades": [
+                {
+                  "ticker": "TATASTEEL.NS",
+                  "lev": 22.573,
+                  "pnl_pct": -0.483,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-20",
+              "return_pct": 9.046,
+              "capital_start": 10708.35,
+              "capital_end": 11677.01,
+              "n_trades": 1,
+              "pnl": 163.72,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 25.0,
+                  "pnl_pct": 0.061,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-21",
+              "return_pct": 10.205,
+              "capital_start": 11677.01,
+              "capital_end": 12868.62,
+              "n_trades": 1,
+              "pnl": 431.24,
+              "trades": [
+                {
+                  "ticker": "TCS.NS",
+                  "lev": 21.645,
+                  "pnl_pct": 0.171,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-24",
+              "return_pct": -23.367,
+              "capital_start": 12868.62,
+              "capital_end": 9861.56,
+              "n_trades": 1,
+              "pnl": -3860.86,
+              "trades": [
+                {
+                  "ticker": "VEDL.NS",
+                  "lev": 22.222,
+                  "pnl_pct": -1.349,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-25",
+              "return_pct": 84.735,
+              "capital_start": 9861.56,
+              "capital_end": 18217.78,
+              "n_trades": 1,
+              "pnl": 7684.48,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 22.272,
+                  "pnl_pct": 3.497,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-26",
+              "return_pct": -25.606,
+              "capital_start": 18217.78,
+              "capital_end": 13552.88,
+              "n_trades": 1,
+              "pnl": -6011.29,
+              "trades": [
+                {
+                  "ticker": "BAJFINANCE.NS",
+                  "lev": 24.752,
+                  "pnl_pct": -1.332,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-27",
+              "return_pct": 6.902,
+              "capital_start": 13552.88,
+              "capital_end": 14488.32,
+              "n_trades": 1,
+              "pnl": -82.89,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 25.0,
+                  "pnl_pct": -0.024,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-28",
+              "return_pct": 0.125,
+              "capital_start": 14488.32,
+              "capital_end": 14506.44,
+              "n_trades": 1,
+              "pnl": -564.8,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 13.405,
+                  "pnl_pct": -0.291,
+                  "exit": "session_close"
+                }
+              ]
+            }
+          ]
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "name": "in_tr8_orwidth_chase5_75x",
+          "params": {
+            "filter_mode": "target_return",
+            "max_leverage": 75.0,
+            "conf_floor": 0.48,
+            "min_or_pct": 0.0015,
+            "target_return_pct": 8.0,
+            "exit_at_session_end": true,
+            "rank_by": "or_width",
+            "max_chase_attempts": 5,
+            "bar_interval": "auto"
+          },
+          "min_daily_return_pct": -20.485,
+          "max_daily_return_pct": 67.786,
+          "avg_daily_return_pct": 4.496,
+          "days_at_or_above_8pct": 4,
+          "days_at_or_above_10pct": 3,
+          "all_days_ge_8pct": false,
+          "all_days_ge_10pct": false,
+          "compound_total_pct": 43.53,
+          "final_capital_inr": 14352.97,
+          "start_capital_inr": 10000.0,
+          "days": [
+            {
+              "asof": "2026-08-10",
+              "return_pct": -11.904,
+              "capital_start": 10000.0,
+              "capital_end": 8809.64,
+              "n_trades": 1,
+              "pnl": -1743.1,
+              "trades": [
+                {
+                  "ticker": "INFY.NS",
+                  "lev": 18.476,
+                  "pnl_pct": -0.943,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-11",
+              "return_pct": -0.684,
+              "capital_start": 8809.64,
+              "capital_end": 8749.36,
+              "n_trades": 1,
+              "pnl": -589.0,
+              "trades": [
+                {
+                  "ticker": "RELIANCE.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.334,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-12",
+              "return_pct": -7.461,
+              "capital_start": 8749.36,
+              "capital_end": 8096.55,
+              "n_trades": 1,
+              "pnl": -1177.08,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.672,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-13",
+              "return_pct": 3.805,
+              "capital_start": 8096.55,
+              "capital_end": 8404.65,
+              "n_trades": 1,
+              "pnl": -178.37,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.11,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-14",
+              "return_pct": 40.046,
+              "capital_start": 8404.65,
+              "capital_end": 11770.34,
+              "n_trades": 1,
+              "pnl": 2856.13,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 20.0,
+                  "pnl_pct": 1.698,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-17",
+              "return_pct": 14.258,
+              "capital_start": 11770.34,
+              "capital_end": 13448.55,
+              "n_trades": 1,
+              "pnl": 1175.49,
+              "trades": [
+                {
+                  "ticker": "JSWSTEEL.NS",
+                  "lev": 14.159,
+                  "pnl_pct": 0.705,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-18",
+              "return_pct": -16.944,
+              "capital_start": 13448.55,
+              "capital_end": 11169.84,
+              "n_trades": 1,
+              "pnl": -3082.57,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -1.145,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-19",
+              "return_pct": -3.313,
+              "capital_start": 11169.84,
+              "capital_end": 10799.83,
+              "n_trades": 1,
+              "pnl": -974.82,
+              "trades": [
+                {
+                  "ticker": "TATASTEEL.NS",
+                  "lev": 18.059,
+                  "pnl_pct": -0.483,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-20",
+              "return_pct": 7.237,
+              "capital_start": 10799.83,
+              "capital_end": 11581.38,
+              "n_trades": 1,
+              "pnl": 132.09,
+              "trades": [
+                {
+                  "ticker": "MARUTI.NS",
+                  "lev": 20.0,
+                  "pnl_pct": 0.061,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-21",
+              "return_pct": 8.164,
+              "capital_start": 11581.38,
+              "capital_end": 12526.86,
+              "n_trades": 1,
+              "pnl": 342.16,
+              "trades": [
+                {
+                  "ticker": "TCS.NS",
+                  "lev": 17.316,
+                  "pnl_pct": 0.171,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-24",
+              "return_pct": -18.694,
+              "capital_start": 12526.86,
+              "capital_end": 10185.05,
+              "n_trades": 1,
+              "pnl": -3006.73,
+              "trades": [
+                {
+                  "ticker": "VEDL.NS",
+                  "lev": 17.778,
+                  "pnl_pct": -1.349,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-25",
+              "return_pct": 67.786,
+              "capital_start": 10185.05,
+              "capital_end": 17089.08,
+              "n_trades": 1,
+              "pnl": 6349.03,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 17.817,
+                  "pnl_pct": 3.497,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-26",
+              "return_pct": -20.485,
+              "capital_start": 17089.08,
+              "capital_end": 13588.31,
+              "n_trades": 1,
+              "pnl": -4511.17,
+              "trades": [
+                {
+                  "ticker": "BAJFINANCE.NS",
+                  "lev": 19.802,
+                  "pnl_pct": -1.332,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-27",
+              "return_pct": 5.522,
+              "capital_start": 13588.31,
+              "capital_end": 14338.62,
+              "n_trades": 1,
+              "pnl": -66.48,
+              "trades": [
+                {
+                  "ticker": "ADANIENT.NS",
+                  "lev": 20.0,
+                  "pnl_pct": -0.024,
+                  "exit": "session_close"
+                }
+              ]
+            },
+            {
+              "asof": "2026-08-28",
+              "return_pct": 0.1,
+              "capital_start": 14338.62,
+              "capital_end": 14352.97,
+              "n_trades": 1,
+              "pnl": -447.16,
+              "trades": [
+                {
+                  "ticker": "WIPRO.NS",
+                  "lev": 10.724,
+                  "pnl_pct": -0.291,
+                  "exit": "session_close"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Callable
+from typing import Any, Callable
 
 import numpy as np
 
@@ -73,6 +73,53 @@ def intraday_orb(
   if px < lo:
     return StrategySignal("intraday_orb", "sell", 0.58, "breakdown_below_or")
   return StrategySignal("intraday_orb", "flat", 0.5, "inside_or")
+
+
+def session_or_breakout(
+  bars: list[dict[str, Any]],
+  *,
+  open_range_bars: int = 5,
+) -> dict[str, float | str | None]:
+  """Opening-range metrics for vol-ranked session selection (no future peek)."""
+  closes = [float(b["close"]) for b in bars if b.get("close") is not None]
+  if len(closes) < open_range_bars + 2:
+    return {"side": "flat", "or_width_pct": 0.0, "score": 0.0, "entry_i": 0, "entry_px": 0.0}
+  opening = closes[:open_range_bars]
+  hi, lo = max(opening), min(opening)
+  mid = (hi + lo) / 2.0 if (hi + lo) else closes[open_range_bars]
+  or_width_pct = (hi - lo) / mid if mid > 0 else 0.0
+  entry_i = open_range_bars
+  entry_px = closes[entry_i]
+  side = "flat"
+  conf = 0.5
+  reason = "inside_or"
+  for i in range(open_range_bars, len(closes)):
+    px = closes[i]
+    if px > hi:
+      side = "buy"
+      entry_i = i
+      entry_px = px
+      stretch = (px - hi) / max(hi - lo, 1e-9)
+      conf = min(0.92, 0.62 + stretch * 0.25)
+      reason = "breakout_above_or"
+      break
+    if px < lo:
+      side = "sell"
+      entry_i = i
+      entry_px = px
+      reason = "breakdown_below_or"
+      break
+  # Vol-momentum rank: wide range + strong breakout confidence
+  score = or_width_pct * 100.0 + (conf - 0.5) if side == "buy" else 0.0
+  return {
+    "side": side,
+    "or_width_pct": round(or_width_pct, 5),
+    "score": round(score, 4),
+    "entry_i": entry_i,
+    "entry_px": entry_px,
+    "confidence": conf,
+    "reason": reason,
+  }
 
 
 def market_regime(closes: list[float]) -> str:

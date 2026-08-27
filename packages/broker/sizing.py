@@ -27,6 +27,44 @@ def size_notional(
   return round(frac * max_notional, 4), None
 
 
+def confidence_leverage(
+  conf: float,
+  *,
+  max_leverage: float = 10.0,
+  min_leverage: float = 1.0,
+  conf_floor: float = 0.58,
+  conf_full: float = 0.82,
+  curve: float = 1.8,
+) -> float:
+  """Map confidence to leverage multiplier (sim-only; not live caps).
+
+  Below conf_floor -> min_leverage. At/above conf_full -> max_leverage.
+  curve > 1 keeps leverage low until confidence is genuinely high.
+  """
+  if max_leverage <= min_leverage:
+    return min_leverage
+  if conf < conf_floor:
+    return min_leverage
+  span = max(1e-6, conf_full - conf_floor)
+  t = max(0.0, min(1.0, (conf - conf_floor) / span))
+  t = t**curve
+  return round(min_leverage + t * (max_leverage - min_leverage), 3)
+
+
+def leverage_for_target(
+  target_return_frac: float,
+  tp_frac: float,
+  *,
+  max_leverage: float = 50.0,
+  min_leverage: float = 1.0,
+) -> float:
+  """Leverage needed so a TP hit at tp_frac ~= target_return on equity (sim-only)."""
+  if tp_frac <= 0 or target_return_frac <= 0:
+    return min_leverage
+  lev = target_return_frac / tp_frac
+  return round(max(min_leverage, min(max_leverage, lev)), 3)
+
+
 def qty_from_notional(notional: float, last_price: float, *, allow_fractional: bool) -> tuple[float | None, str | None]:
   if last_price <= 0:
     return None, "invalid_price"

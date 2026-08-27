@@ -1,8 +1,10 @@
-"""Per-market trade risk policy."""
+"""Per-market trade risk policy (kill, arm, caps, weekly loss, live dual-ACK)."""
 
 from __future__ import annotations
 
-from datetime import date, datetime, timezone
+import json
+from datetime import date, datetime, timedelta, timezone
+from pathlib import Path
 
 from sqlalchemy.orm import Session
 
@@ -15,6 +17,66 @@ DEFAULTS = {
   "IN": {"max_notional_per_trade": 1000.0, "max_open_notional": 1000.0, "max_daily_loss": 500.0},
   "US": {"max_notional_per_trade": 10.0, "max_open_notional": 10.0, "max_daily_loss": 5.0},
 }
+
+WEEKLY_LOSS = {"IN": 1500.0, "US": 15.0}
+WEEKLY_PATH = Path(__file__).resolve().parents[2] / "models" / "weekly_risk_state.json"
+LIVE_PHRASE = "I_ACCEPT_MICRO_LIVE_RISK"
+
+
+def _week_start(d: date | None = None) -> str:
+  d = d or date.today()
+  return (d - timedelta(days=d.weekday())).isoformat()
+
+
+def _load_weekly() -> dict:
+  if not WEEKLY_PATH.exists():
+    return {}
+  try:
+    return json.loads(WEEKLY_PATH.read_text(encoding="utf-8"))
+  except Exception:
+    return {}
+
+
+def _save_weekly(data: dict) -> None:
+  WEEKLY_PATH.parent.mkdir(parents=True, exist_ok=True)
+  WEEKLY_PATH.write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+
+def weekly_realized(market: str) -> float:
+  data = _load_weekly()
+  m = market.upper()
+  row = data.get(m) or {}
+  if row.get("week_start") != _week_start():
+    return 0.0
+  return float(row.get("realized_pnl") or 0.0)
+
+
+def record_weekly_pnl(market: str, pnl: float) -> float:
+  data = _load_weekly()
+  m = market.upper()
+  ws = _week_start()
+  row = data.get(m) or {}
+  if row.get("week_start") != ws:
+    row = {"week_start": ws, "realized_pnl": 0.0}
+  row["realized_pnl"] = float(row.get("realized_pnl") or 0.0) + float(pnl)
+  data[m] = row
+  _save_weekly(data)
+  return float(row["realized_pnl"])
+
+
+def live_acks_ok(market: str) -> tuple[bool, str | None]:
+  """Stage D: env ACK flag + confirm phrase both required for live."""
+  m = market.upper()
+  mode = settings.exec_mode_in if m == "IN" else settings.exec_mode_us
+  if mode != "live":
+    return True, None
+  ack = settings.exec_live_ack_in if m == "IN" else settings.exec_live_ack_us
+  if not ack:
+    return False, "live_ack_missing"
+  phrase = (settings.exec_live_confirm_phrase or "").strip()
+  if phrase != LIVE_PHRASE:
+    return False, "live_confirm_phrase_missing"
+  return True, None
 
 
 def ensure_risk_state(db: Session, market: str) -> TradeRiskState:
@@ -59,9 +121,9 @@ def authorize(
   if mode == "off":
     return False, "exec_mode_off", row
   if mode == "live":
-    ack = settings.exec_live_ack_in if market.upper() == "IN" else settings.exec_live_ack_us
-    if not ack:
-      return False, "live_ack_missing", row
+    ok, why = live_acks_ok(market)
+    if not ok:
+      return False, why, row
 
   if row.kill_switch:
     return False, "kill_switch", row
@@ -72,18 +134,22 @@ def authorize(
   if row.daily_realized_pnl <= -abs(row.max_daily_loss):
     return False, "max_daily_loss", row
 
+  weekly = weekly_realized(market)
+  max_weekly = WEEKLY_LOSS.get(market.upper(), WEEKLY_LOSS["US"])
+  # Scale weekly with ladder stage roughly
+  max_weekly = max_weekly * (2 ** max(0, int(row.ladder_stage or 0)))
+  if weekly <= -abs(max_weekly):
+    return False, "max_weekly_loss", row
+
   open_orders = (
     db.query(Order)
     .filter(Order.market == market.upper(), Order.status.in_(["submitted", "filled", "partial"]))
     .all()
   )
-  # Approximate open notional from filled buy orders without closed sells — use open statuses
   open_buy = [o for o in open_orders if o.side == "buy" and o.status in ("submitted", "filled", "partial")]
-  open_notional = sum(float(o.sized_notional or o.notional or 0) for o in open_buy if o.book == book or True)
-  # Count distinct open buy positions roughly by ticker
+  open_notional = sum(float(o.sized_notional or o.notional or 0) for o in open_buy)
   open_tickers = {o.ticker for o in open_buy}
   if len(open_tickers) >= row.max_open_positions and book == "swing":
-    # allow if adding to same ticker notional still under cap — simplify: block new names
     pass
   if open_notional + notional > row.max_open_notional + 1e-9:
     return False, "over_open_notional", row
@@ -125,3 +191,12 @@ def arm_sessions(db: Session, *, markets: list[str] | None = None) -> list[str]:
     out.append(m.upper())
   db.commit()
   return out
+
+
+def end_session_disarm(db: Session, market: str) -> None:
+  """Stage D: kill default on after session until manual re-arm."""
+  row = ensure_risk_state(db, market)
+  row.session_armed = False
+  row.kill_switch = True
+  row.updated_at = datetime.now(timezone.utc)
+  db.commit()

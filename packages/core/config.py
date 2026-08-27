@@ -80,7 +80,15 @@ class Settings(BaseSettings):
     exec_mode_us: str = "paper"
     exec_live_ack_in: bool = False
     exec_live_ack_us: bool = False
+    # Stage D dual ACK: must equal I_ACCEPT_MICRO_LIVE_RISK when mode=live
+    exec_live_confirm_phrase: str = ""
     exec_min_size_frac: float = 0.25
+    # Stage C weekly auto-freeze
+    exec_weekly_freeze_enabled: bool = True
+    # OR-width guarded product (paper month default)
+    orwidth_product: str = "in_tr10_orwidth_chase5_75x_guard"
+    orwidth_max_daily_loss_pct: float = 6.0
+    orwidth_max_trade_risk_pct: float = 6.0
     alpaca_api_key: str = ""
     alpaca_secret_key: str = ""
     alpaca_paper: bool = True

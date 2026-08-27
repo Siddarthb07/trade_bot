@@ -47,7 +47,8 @@ npm run dev -- --host 0.0.0.0 --port 3000
 3. **Self-learn** — frozen `prediction_events`, online retrain, live calibration  
 4. **Paper / live exec** — confidence sizing under ₹1000 IN / $10 US (configurable); Alpaca + Kite adapters; kill switch + session arm  
 5. **Adaptive edge** — expanding-window peer gate; per-ticker ambition pass (≥85% holdout hit + positive expectancy)  
-6. **Live UI** — `/exec` blotter (5s poll) + ₹10k day-sim ledger  
+6. **Live UI** — `/exec` blotter (5s poll) + session day-sim + paper health (Stage A–C)  
+7. **Readiness runbook** — [docs/runbooks/REAL_CAPITAL.md](docs/runbooks/REAL_CAPITAL.md) (personal capital gates; not third-party advice)
 
 ## Live trading (paper first)
 
@@ -58,10 +59,10 @@ npm run dev -- --host 0.0.0.0 --port 3000
 
 ```powershell
 # API day sim (same engine as the dash button)
-curl.exe -u admin:changeme -X POST "http://127.0.0.1:8000/exec/day-sim?asof=2024-08-23&capital=10000&market=IN"
+curl.exe -u admin:changeme -X POST "http://127.0.0.1:8000/exec/day-sim?asof=2024-08-23&capital=10000&market=IN&path_mode=session"
 ```
 
-Exec APIs: `/exec/status`, `/exec/orders`, `/exec/live`, `/exec/arm`, `/exec/kill`, `/exec/strategies`, `/exec/playbooks`, `/exec/adaptive-profiles`, `/exec/day-sim`.
+Exec APIs: `/exec/status`, `/exec/orders`, `/exec/live`, `/exec/arm`, `/exec/kill`, `/exec/strategies`, `/exec/playbooks`, `/exec/adaptive-profiles`, `/exec/day-sim`, `/exec/paper-metrics`, `/exec/receipts`, `/exec/cap-ladder/step-up`.
 
 **Defaults:** `EXEC_MODE_IN=paper`, `EXEC_MODE_US=paper`, kill switch **on** until you arm. Live brokers need keys + ack flags in `.env` (see `.env.example`).
 

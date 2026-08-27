@@ -1,6 +1,7 @@
 {
-  "generated_at": "2026-08-27T16:15:17.390458+00:00",
+  "generated_at": "2026-08-27T17:25:49.924486+00:00",
   "target_hit_pct": 85.0,
+  "min_oos_trades": 30,
   "trials": [
     {
       "round": 1,
@@ -13,48 +14,270 @@
         "tune": true
       },
       "pooled_all": {
-        "n_trades": 7,
-        "hit_rate_pct": 85.71,
-        "expectancy": 0.009531
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": 0.000976
       },
       "pooled_hybrid": {
-        "n_trades": 7,
-        "hit_rate_pct": 85.71,
-        "expectancy": 0.009531
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
       },
-      "eligible_tickers": [
-        "QQQ"
-      ],
+      "eligible_tickers": [],
       "ambition_pass_pooled": false,
-      "ambition_pass_hybrid": true
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 2,
+      "cfg": {
+        "tp": 0.012,
+        "sl": 0.022,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 11,
+        "hit_rate_pct": 72.73,
+        "expectancy": 0.002974
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 3,
+      "cfg": {
+        "tp": 0.015,
+        "sl": 0.025,
+        "horizon": 10,
+        "min_peers": 10,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": 0.00056
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 4,
+      "cfg": {
+        "tp": 0.01,
+        "sl": 0.018,
+        "horizon": 5,
+        "min_peers": 6,
+        "effective_target": 0.88,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 11,
+        "hit_rate_pct": 72.73,
+        "expectancy": 0.002974
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 5,
+      "cfg": {
+        "tp": 0.012,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 10,
+        "effective_target": 0.88,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 11,
+        "hit_rate_pct": 72.73,
+        "expectancy": 0.002974
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 6,
+      "cfg": {
+        "tp": 0.008,
+        "sl": 0.015,
+        "horizon": 5,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 11,
+        "hit_rate_pct": 72.73,
+        "expectancy": 0.002974
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 7,
+      "cfg": {
+        "tp": 0.018,
+        "sl": 0.03,
+        "horizon": 10,
+        "min_peers": 6,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": 0.000143
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 8,
+      "cfg": {
+        "tp": 0.015,
+        "sl": 0.028,
+        "horizon": 12,
+        "min_peers": 6,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": 0.00031
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 9,
+      "cfg": {
+        "tp": 0.012,
+        "sl": 0.025,
+        "horizon": 10,
+        "min_peers": 5,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 13,
+        "hit_rate_pct": 69.23,
+        "expectancy": 0.001363
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 10,
+      "cfg": {
+        "tp": 0.02,
+        "sl": 0.035,
+        "horizon": 12,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": -0.000274
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
     }
   ],
   "best": {
-    "generated_at": "2026-08-27T16:14:37.876169+00:00",
+    "generated_at": "2026-08-27T17:11:30.640191+00:00",
     "target_hit_pct": 85.0,
     "pooled_holdout_oos": {
-      "n_trades": 7,
-      "hit_rate_pct": 85.71,
-      "expectancy": 0.009531
+      "n_trades": 11,
+      "hit_rate_pct": 72.73,
+      "expectancy": 0.002974
     },
     "pooled_holdout_eligible_only": {
-      "n_trades": 7,
-      "hit_rate_pct": 85.71,
-      "expectancy": 0.009531
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
     },
-    "eligible_tickers": [
-      "QQQ"
-    ],
-    "ambition_pass_tickers": 1,
+    "eligible_tickers": [],
+    "ambition_pass_tickers": 0,
     "profiles_path": "C:\\Users\\siddu\\projects\\trade_bot\\models\\ticker_adaptive_profiles.json",
     "state_path": "C:\\Users\\siddu\\projects\\trade_bot\\models\\adaptive_edge_state.json",
     "label": "path_tp_sl_per_ticker_tune",
     "live_params": {
-      "tp": 0.018,
-      "sl": 0.03,
-      "horizon": 10,
+      "tp": 0.012,
+      "sl": 0.022,
+      "horizon": 8,
       "min_peers": 8,
-      "effective_target": 0.88
+      "effective_target": 0.85
     },
     "anti_memorization": [
       "expanding_window_peers_only",
@@ -64,7 +287,7 @@
       "per_ticker_tune_on_validation_only"
     ],
     "ambition_pass_pooled": false,
-    "ambition_pass_hybrid": true
+    "ambition_pass_hybrid": false
   },
   "per_ticker": {
     "RELIANCE.NS": {
@@ -72,8 +295,8 @@
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -87,19 +310,20 @@
         "expectancy": null
       },
       "full_gated": {
-        "n_trades": 11,
-        "hit_rate_pct": 63.64,
-        "expectancy": -0.001897
+        "n_trades": 10,
+        "hit_rate_pct": 70.0,
+        "expectancy": 0.001149
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "chop"
     },
     "TCS.NS": {
       "strategy": "adaptive_edge",
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -115,17 +339,18 @@
       "full_gated": {
         "n_trades": 3,
         "hit_rate_pct": 66.67,
-        "expectancy": -0.001
+        "expectancy": -0.000333
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "chop"
     },
     "INFY.NS": {
       "strategy": "adaptive_edge",
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -143,15 +368,16 @@
         "hit_rate_pct": null,
         "expectancy": null
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "chop"
     },
     "HDFCBANK.NS": {
       "strategy": "adaptive_edge",
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -167,17 +393,18 @@
       "full_gated": {
         "n_trades": 10,
         "hit_rate_pct": 50.0,
-        "expectancy": -0.004445
+        "expectancy": -0.00187
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "chop"
     },
     "ICICIBANK.NS": {
       "strategy": "adaptive_edge",
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -195,15 +422,16 @@
         "hit_rate_pct": null,
         "expectancy": null
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "chop"
     },
     "SBIN.NS": {
       "strategy": "adaptive_edge",
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -221,15 +449,70 @@
         "hit_rate_pct": null,
         "expectancy": null
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "chop"
+    },
+    "ITC.NS": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.012,
+        "sl": 0.022,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 8,
+        "hit_rate_pct": 50.0,
+        "expectancy": -0.006
+      },
+      "ambition_pass": false,
+      "regime": "chop"
+    },
+    "AXISBANK.NS": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.012,
+        "sl": 0.022,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 3,
+        "hit_rate_pct": 33.33,
+        "expectancy": -0.011667
+      },
+      "ambition_pass": false,
+      "regime": "chop"
     },
     "AAPL": {
       "strategy": "adaptive_edge",
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -245,17 +528,18 @@
       "full_gated": {
         "n_trades": 2,
         "hit_rate_pct": 100.0,
-        "expectancy": 0.009
+        "expectancy": 0.011
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "chop"
     },
     "MSFT": {
       "strategy": "adaptive_edge",
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -273,15 +557,16 @@
         "hit_rate_pct": null,
         "expectancy": null
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "trend"
     },
     "GOOGL": {
       "strategy": "adaptive_edge",
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -299,15 +584,97 @@
         "hit_rate_pct": null,
         "expectancy": null
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "chop"
+    },
+    "AMZN": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.015,
+        "sl": 0.03,
+        "horizon": 10,
+        "min_peers": 6,
+        "effective_target": 0.9,
+        "val_hit": 1.0,
+        "val_n": 5,
+        "val_exp": 0.013999999999999999
+      },
+      "holdout_oos": {
+        "n_trades": 4,
+        "hit_rate_pct": 50.0,
+        "expectancy": -0.0085
+      },
+      "full_gated": {
+        "n_trades": 19,
+        "hit_rate_pct": 78.95,
+        "expectancy": 0.005829
+      },
+      "ambition_pass": false,
+      "regime": "trend"
+    },
+    "META": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.012,
+        "sl": 0.022,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ambition_pass": false,
+      "regime": "chop"
+    },
+    "NVDA": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.035,
+        "horizon": 8,
+        "min_peers": 6,
+        "effective_target": 0.85,
+        "val_hit": 0.8571428571428571,
+        "val_n": 7,
+        "val_exp": 0.0025714285714285717
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 19,
+        "hit_rate_pct": 84.21,
+        "expectancy": 0.001895
+      },
+      "ambition_pass": false,
+      "regime": "trend"
     },
     "SPY": {
       "strategy": "adaptive_edge",
       "label": "path_tp_sl",
       "target_hit_pct": 85.0,
       "tuned": {
-        "tp": 0.01,
-        "sl": 0.02,
+        "tp": 0.012,
+        "sl": 0.022,
         "horizon": 8,
         "min_peers": 8,
         "effective_target": 0.85,
@@ -325,7 +692,8 @@
         "hit_rate_pct": null,
         "expectancy": null
       },
-      "ambition_pass": false
+      "ambition_pass": false,
+      "regime": "trend"
     },
     "QQQ": {
       "strategy": "adaptive_edge",
@@ -339,7 +707,7 @@
         "effective_target": 0.88,
         "val_hit": 1.0,
         "val_n": 7,
-        "val_exp": 0.0164469100157635
+        "val_exp": 0.016446894715119224
       },
       "holdout_oos": {
         "n_trades": 7,
@@ -351,48 +719,37 @@
         "hit_rate_pct": 87.5,
         "expectancy": 0.010439
       },
-      "ambition_pass": true
-    }
-  },
-  "alternate_windows": {
-    "recent_2y": {
-      "pooled_holdout_oos": {
-        "n_trades": 7,
-        "hit_rate_pct": 57.14,
-        "expectancy": -0.003857
-      },
-      "pooled_holdout_eligible_only": {
-        "n_trades": 0,
-        "hit_rate_pct": null,
-        "expectancy": null
-      },
-      "eligible_tickers": [],
-      "ambition_pass_hybrid": false,
-      "ambition_pass_pooled": false
+      "ambition_pass": false,
+      "regime": "trend"
     },
-    "recent_1y": {
-      "pooled_holdout_oos": {
+    "IWM": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.012,
+        "sl": 0.022,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
         "n_trades": 0,
         "hit_rate_pct": null,
         "expectancy": null
       },
-      "pooled_holdout_eligible_only": {
+      "full_gated": {
         "n_trades": 0,
         "hit_rate_pct": null,
         "expectancy": null
       },
-      "eligible_tickers": [],
-      "ambition_pass_hybrid": false,
-      "ambition_pass_pooled": false
+      "ambition_pass": false,
+      "regime": "trend"
     }
   },
-  "hypothetical_10k_usd_1_day": {
-    "capital_usd": 10000.0,
-    "if_one_trade_fires_expected_pnl_usd": 95.31,
-    "expected_pnl_usd_average_day": 2.65,
-    "holdout_hit_rate_pct": 85.71,
-    "holdout_n_trades": 7,
-    "mode": "hybrid_eligible_tickers"
-  },
-  "disclaimer": "Holdout OOS only; expanding window; not investment advice."
+  "stage_b_pass": false,
+  "disclaimer": "Not investment advice. Expanding holdout only; ablation is diagnostic."
 }

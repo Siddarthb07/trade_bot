@@ -52,6 +52,21 @@ def run_us_flatten() -> dict:
   return run_us_day_flatten_if_due()
 
 
+def run_weekly_paper_freeze() -> dict:
+  """Stage C: Sunday health check — kill + revoke if expectancy collapsed."""
+  from core.config import get_settings
+  from core.db import SessionLocal
+  from processor.paper_metrics import apply_weekly_freeze_if_needed
+
+  if not get_settings().exec_weekly_freeze_enabled:
+    return {"status": "skip", "reason": "disabled"}
+  db = SessionLocal()
+  try:
+    return apply_weekly_freeze_if_needed(db)
+  finally:
+    db.close()
+
+
 def run_seed_strategies() -> dict:
   from processor.ensemble import seed_strategy_candidates
 
@@ -83,6 +98,7 @@ def main() -> None:
   scheduler.add_job(run_sentiment_ingest, CronTrigger(minute=20), id="wsb_sentiment")
   scheduler.add_job(run_in_flatten, CronTrigger(hour=15, minute=16, timezone=IST), id="in_day_flatten")
   scheduler.add_job(run_us_flatten, CronTrigger(hour=1, minute=15, timezone=IST), id="us_day_flatten")
+  scheduler.add_job(run_weekly_paper_freeze, CronTrigger(day_of_week="sun", hour=6, minute=0, timezone=IST), id="paper_weekly_freeze")
 
   def shutdown(_signum, _frame):
     logger.info("Shutting down scheduler")

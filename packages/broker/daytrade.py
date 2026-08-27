@@ -1,17 +1,17 @@
-"""Day-book flatten + opening-range breakout scan jobs."""
+"""Day-book flatten + opening-range breakout scan jobs (session bars required)."""
 
 from __future__ import annotations
 
 import logging
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
 from sqlalchemy.orm import Session
 
 from broker.executor import get_adapter, submit_sized_order
 from broker.session import should_flatten_in_day, should_flatten_us_day
 from core.db import SessionLocal
-from core.models import Order, PortfolioPosition
-from processor.market_data import fetch_price_history
+from core.models import PortfolioPosition
+from processor.intraday_bars import fetch_intraday_bars, session_closes
 from processor.strategies import intraday_orb
 
 logger = logging.getLogger(__name__)
@@ -21,7 +21,6 @@ def flatten_day_book(db: Session, market: str, *, reason: str) -> dict:
   """Close open auto day-book positions for a market."""
   m = market.upper()
   adapter = get_adapter(m)
-  # Prefer broker flatten when live; also mark local day positions sold
   broker_results = []
   try:
     broker_results = [
@@ -49,7 +48,7 @@ def flatten_day_book(db: Session, market: str, *, reason: str) -> dict:
     pos.updated_at = now
     closed += 1
   db.commit()
-  return {"market": m, "local_closed": closed, "broker": broker_results}
+  return {"market": m, "local_closed": closed, "broker": broker_results, "disarmed": True}
 
 
 def run_in_day_flatten_if_due() -> dict:
@@ -57,7 +56,11 @@ def run_in_day_flatten_if_due() -> dict:
     return {"status": "skip", "reason": "not_flatten_window"}
   db = SessionLocal()
   try:
-    return flatten_day_book(db, "IN", reason="in_session_close")
+    out = flatten_day_book(db, "IN", reason="in_session_close")
+    from broker.risk import end_session_disarm
+
+    end_session_disarm(db, "IN")
+    return out
   finally:
     db.close()
 
@@ -67,22 +70,26 @@ def run_us_day_flatten_if_due() -> dict:
     return {"status": "skip", "reason": "not_flatten_window"}
   db = SessionLocal()
   try:
-    return flatten_day_book(db, "US", reason="us_session_close")
+    out = flatten_day_book(db, "US", reason="us_session_close")
+    from broker.risk import end_session_disarm
+
+    end_session_disarm(db, "US")
+    return out
   finally:
     db.close()
 
 
 def scan_orb_candidates(db: Session, *, market: str, tickers: list[str], book_cap_prob: float = 0.62) -> list[dict]:
-  """Evaluate ORB on recent closes; fire day-book orders when buy signal."""
+  """Evaluate ORB on same-session intraday bars only; refuse daily closes."""
   out = []
+  today = date.today().isoformat()
   for ticker in tickers:
-    hist = fetch_price_history(ticker, days=5, db=db, market=market)
-    closes = [float(p["close"]) for p in hist if p.get("close")]
-    if len(closes) < 10:
+    bars = fetch_intraday_bars(ticker, session_date=today, interval="5m", market=market)
+    closes = session_closes(bars)
+    if len(closes) < 12:
+      out.append({"ticker": ticker, "signal": "flat", "conf": 0.5, "reason": "needs_intraday_session_bars"})
       continue
-    # Approximate ORB with first third of series as "open range"
-    n = max(3, len(closes) // 5)
-    sig = intraday_orb(closes, open_range_bars=n)
+    sig = intraday_orb(closes, open_range_bars=5, session_bars=closes)
     out.append({"ticker": ticker, "signal": sig.side, "conf": sig.confidence, "reason": sig.reason})
     if sig.side == "buy" and sig.confidence >= book_cap_prob:
       submit_sized_order(

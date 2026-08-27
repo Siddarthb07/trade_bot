@@ -1,0 +1,118 @@
+{
+  "windows": [
+    {
+      "id": "july_chop",
+      "n_days": 15,
+      "configs": {
+        "in_tr10_orwidth_chase5_75x": {
+          "compound_pct": -71.731,
+          "final_capital": 2826.9,
+          "avg_daily_pct": -6.873,
+          "worst_day_pct": -32.501,
+          "best_day_pct": 19.901,
+          "n_trades": 15
+        },
+        "in_tr10_orwidth_chase5_75x_guard": {
+          "compound_pct": -33.321,
+          "final_capital": 6667.93,
+          "avg_daily_pct": -2.57,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 3.121,
+          "n_trades": 15
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "compound_pct": -62.009,
+          "final_capital": 3799.08,
+          "avg_daily_pct": -5.499,
+          "worst_day_pct": -26.001,
+          "best_day_pct": 15.921,
+          "n_trades": 15
+        },
+        "in_tr8_orwidth_chase5_75x_guard": {
+          "compound_pct": -31.037,
+          "final_capital": 6896.3,
+          "avg_daily_pct": -2.357,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 3.121,
+          "n_trades": 15
+        }
+      }
+    },
+    {
+      "id": "aug_chop",
+      "n_days": 15,
+      "configs": {
+        "in_tr10_orwidth_chase5_75x": {
+          "compound_pct": -6.457,
+          "final_capital": 9354.26,
+          "avg_daily_pct": 1.218,
+          "worst_day_pct": -34.582,
+          "best_day_pct": 50.057,
+          "n_trades": 15
+        },
+        "in_tr10_orwidth_chase5_75x_guard": {
+          "compound_pct": -30.882,
+          "final_capital": 6911.78,
+          "avg_daily_pct": -2.338,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 3.238,
+          "n_trades": 15
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "compound_pct": -1.295,
+          "final_capital": 9870.49,
+          "avg_daily_pct": 0.975,
+          "worst_day_pct": -27.666,
+          "best_day_pct": 40.045,
+          "n_trades": 15
+        },
+        "in_tr8_orwidth_chase5_75x_guard": {
+          "compound_pct": -30.153,
+          "final_capital": 6984.66,
+          "avg_daily_pct": -2.271,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 3.238,
+          "n_trades": 15
+        }
+      }
+    },
+    {
+      "id": "benchmark_15d",
+      "n_days": 15,
+      "configs": {
+        "in_tr10_orwidth_chase5_75x": {
+          "compound_pct": 45.064,
+          "final_capital": 14506.44,
+          "avg_daily_pct": 5.62,
+          "worst_day_pct": -25.606,
+          "best_day_pct": 84.735,
+          "n_trades": 15
+        },
+        "in_tr10_orwidth_chase5_75x_guard": {
+          "compound_pct": -32.303,
+          "final_capital": 6769.75,
+          "avg_daily_pct": -2.474,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 2.597,
+          "n_trades": 15
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "compound_pct": 43.53,
+          "final_capital": 14352.97,
+          "avg_daily_pct": 4.496,
+          "worst_day_pct": -20.485,
+          "best_day_pct": 67.786,
+          "n_trades": 15
+        },
+        "in_tr8_orwidth_chase5_75x_guard": {
+          "compound_pct": -31.182,
+          "final_capital": 6881.82,
+          "avg_daily_pct": -2.371,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 2.597,
+          "n_trades": 15
+        }
+      }
+    }
+  ]
+}

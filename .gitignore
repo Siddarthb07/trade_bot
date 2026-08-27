@@ -27,3 +27,7 @@ docs/TRADE_AUTOMATION_PLAN.md
 docs/TRADE_BOT_DEEP_DIVE.md
 docs/ANIMA_DEEP_DIVE.md
 docs/INDEX.md
+
+.cursor/council-sessions/
+models/intraday_cache/
+*.log

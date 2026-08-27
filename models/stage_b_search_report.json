@@ -1,0 +1,542 @@
+{
+  "generated_at": "2026-08-27T17:25:49.924486+00:00",
+  "target_hit_pct": 85.0,
+  "min_oos_trades": 30,
+  "trials": [
+    {
+      "round": 1,
+      "cfg": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": 0.000976
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 2,
+      "cfg": {
+        "tp": 0.012,
+        "sl": 0.022,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 11,
+        "hit_rate_pct": 72.73,
+        "expectancy": 0.002974
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 3,
+      "cfg": {
+        "tp": 0.015,
+        "sl": 0.025,
+        "horizon": 10,
+        "min_peers": 10,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": 0.00056
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 4,
+      "cfg": {
+        "tp": 0.01,
+        "sl": 0.018,
+        "horizon": 5,
+        "min_peers": 6,
+        "effective_target": 0.88,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 11,
+        "hit_rate_pct": 72.73,
+        "expectancy": 0.002974
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 5,
+      "cfg": {
+        "tp": 0.012,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 10,
+        "effective_target": 0.88,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 11,
+        "hit_rate_pct": 72.73,
+        "expectancy": 0.002974
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 6,
+      "cfg": {
+        "tp": 0.008,
+        "sl": 0.015,
+        "horizon": 5,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 11,
+        "hit_rate_pct": 72.73,
+        "expectancy": 0.002974
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 7,
+      "cfg": {
+        "tp": 0.018,
+        "sl": 0.03,
+        "horizon": 10,
+        "min_peers": 6,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": 0.000143
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 8,
+      "cfg": {
+        "tp": 0.015,
+        "sl": 0.028,
+        "horizon": 12,
+        "min_peers": 6,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": 0.00031
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 9,
+      "cfg": {
+        "tp": 0.012,
+        "sl": 0.025,
+        "horizon": 10,
+        "min_peers": 5,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 13,
+        "hit_rate_pct": 69.23,
+        "expectancy": 0.001363
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    },
+    {
+      "round": 10,
+      "cfg": {
+        "tp": 0.02,
+        "sl": 0.035,
+        "horizon": 12,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 12,
+        "hit_rate_pct": 66.67,
+        "expectancy": -0.000274
+      },
+      "pooled_hybrid": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": false,
+      "ambition_pass_tickers": 0
+    }
+  ],
+  "best_summary": {
+    "eligible_tickers": [],
+    "ambition_pass_hybrid": false,
+    "ambition_pass_pooled": false,
+    "ambition_pass_tickers": 0,
+    "pooled_holdout_oos": {
+      "n_trades": 11,
+      "hit_rate_pct": 72.73,
+      "expectancy": 0.002974
+    },
+    "pooled_holdout_eligible_only": {
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    "live_params": {
+      "tp": 0.012,
+      "sl": 0.022,
+      "horizon": 8,
+      "min_peers": 8,
+      "effective_target": 0.85
+    }
+  },
+  "ablation_peer_gate": {
+    "RELIANCE.NS": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 10,
+        "hit_rate_pct": 100.0,
+        "expectancy": 0.01046
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "TCS.NS": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 10,
+        "hit_rate_pct": 80.0,
+        "expectancy": 0.0042
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "INFY.NS": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 14,
+        "hit_rate_pct": 57.14,
+        "expectancy": -0.003571
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "HDFCBANK.NS": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 11,
+        "hit_rate_pct": 45.45,
+        "expectancy": -0.002148
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "ICICIBANK.NS": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 11,
+        "hit_rate_pct": 45.45,
+        "expectancy": -0.006851
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "SBIN.NS": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 23,
+        "hit_rate_pct": 69.57,
+        "expectancy": 0.001074
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "ITC.NS": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 12,
+        "hit_rate_pct": 16.67,
+        "expectancy": -0.017333
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "AXISBANK.NS": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 20,
+        "hit_rate_pct": 65.0,
+        "expectancy": 8.2e-05
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "AAPL": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 23,
+        "hit_rate_pct": 47.83,
+        "expectancy": -0.005835
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "MSFT": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 15,
+        "hit_rate_pct": 60.0,
+        "expectancy": -0.0026
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "GOOGL": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 18,
+        "hit_rate_pct": 55.56,
+        "expectancy": -0.002891
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "AMZN": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 17,
+        "hit_rate_pct": 41.18,
+        "expectancy": -0.009
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "META": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 10,
+        "hit_rate_pct": 30.0,
+        "expectancy": -0.009466
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "NVDA": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 23,
+        "hit_rate_pct": 69.57,
+        "expectancy": 0.000652
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "SPY": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 24,
+        "hit_rate_pct": 41.67,
+        "expectancy": -0.005406
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "QQQ": {
+      "gated": {
+        "n_trades": 3,
+        "hit_rate_pct": 66.67,
+        "expectancy": 0.006343
+      },
+      "ungated": {
+        "n_trades": 25,
+        "hit_rate_pct": 52.0,
+        "expectancy": -0.002353
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    },
+    "IWM": {
+      "gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ungated": {
+        "n_trades": 31,
+        "hit_rate_pct": 58.06,
+        "expectancy": -0.001672
+      },
+      "demote_gate_claim": false,
+      "note": "gated_preferred",
+      "min_oos_trades": 30
+    }
+  },
+  "ablation_demotions": [],
+  "profile_validation_errors": [],
+  "stage_b_pass": false,
+  "eligible_tickers": [],
+  "disclaimer": "Not investment advice. Expanding holdout only; ablation is diagnostic."
+}

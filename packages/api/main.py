@@ -1447,9 +1447,14 @@ def exec_status(
       "open_positions": open_n,
     }
   last_order = db.query(Order).order_by(desc(Order.created_at)).first()
+  from broker.risk import weekly_realized
+
+  for m, b in books.items():
+    b["weekly_realized_pnl"] = weekly_realized(m)
   return {
     "session": session_snapshot(),
     "books": books,
+    "disclaimer": "Not investment advice.",
     "last_order": {
       "id": str(last_order.id),
       "ticker": last_order.ticker,
@@ -1603,11 +1608,16 @@ def exec_adaptive_profiles(
   return {
     "generated_at": data.get("generated_at"),
     "target_hit_pct": data.get("target_hit_pct"),
+    "min_oos_trades": data.get("min_oos_trades"),
     "eligible_tickers": data.get("eligible_tickers") or [],
+    "soft_study_tickers": data.get("soft_study_tickers") or [],
+    "stage_b_pass": len(data.get("eligible_tickers") or []) >= 3,
     "items": [
       {
         "ticker": t,
         "ambition_pass": p.get("ambition_pass"),
+        "soft_study_pass": p.get("soft_study_pass"),
+        "regime": p.get("regime"),
         "tp": p.get("tp"),
         "sl": p.get("sl"),
         "horizon": p.get("horizon"),
@@ -1617,6 +1627,7 @@ def exec_adaptive_profiles(
       }
       for t, p in sorted(profiles.items())
     ],
+    "disclaimer": data.get("disclaimer") or "Not investment advice.",
   }
 
 
@@ -1626,10 +1637,23 @@ def exec_day_sim(
   capital: float = Query(default=10_000.0, ge=100, le=10_000_000),
   market: str = Query(default="IN"),
   max_positions: int = Query(default=3, ge=1, le=10),
+  path_mode: str = Query(default="session"),
+  allow_demo_fallback: bool = Query(default=False),
+  filter_mode: str = Query(default="strict"),
   _: None = Depends(verify_basic),
 ) -> dict[str, Any]:
-  """Paper-simulate adaptive_edge for one calendar day with full ledger + PnL."""
+  """Paper-simulate adaptive_edge / session ORB with full ledger + PnL.
+
+  path_mode=session uses intraday bars + modeled costs (Stage A).
+  filter_mode=relaxed lowers gates for sim frequency (not live).
+  allow_demo_fallback marks DEMO fills — never counted as edge.
+  """
   from processor.day_sim import simulate_day
+
+  if path_mode not in ("session", "daily"):
+    return {"error": "path_mode must be session|daily"}
+  if filter_mode not in ("strict", "relaxed", "orb_only", "aggressive"):
+    return {"error": "filter_mode must be strict|relaxed|orb_only|aggressive"}
 
   currency = "INR" if market.upper() == "IN" else "USD"
   return simulate_day(
@@ -1638,7 +1662,114 @@ def exec_day_sim(
     currency=currency,
     market=market.upper(),
     max_positions=max_positions,
+    path_mode=path_mode,
+    allow_demo_fallback=allow_demo_fallback,
+    filter_mode=filter_mode,
   )
+
+
+@app.get("/exec/paper-metrics")
+def exec_paper_metrics(
+  days: int = Query(default=30, ge=7, le=365),
+  market: str | None = None,
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Rolling paper/live blotter expectancy (Stage C dash)."""
+  from processor.paper_metrics import rolling_paper_metrics, stage_c_health
+
+  return {
+    "rolling": rolling_paper_metrics(db, market=market, days=days),
+    "health": stage_c_health(db),
+    "disclaimer": "Not investment advice.",
+  }
+
+
+@app.post("/exec/weekly-freeze")
+def exec_weekly_freeze(
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  """Stage C: if rolling expectancy collapses, kill + revoke eligibility."""
+  from processor.paper_metrics import apply_weekly_freeze_if_needed
+
+  return apply_weekly_freeze_if_needed(db)
+
+
+@app.post("/exec/enable-live")
+def exec_enable_live(
+  market: str = Query(default="IN"),
+  phrase: str = Query(...),
+  ack: bool = Query(default=False),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  """Stage D dual ACK check — does not flip env; validates operator phrase.
+
+  Live still requires EXEC_MODE_*=live, EXEC_LIVE_ACK_*=true, and
+  EXEC_LIVE_CONFIRM_PHRASE=I_ACCEPT_MICRO_LIVE_RISK in the process env.
+  """
+  from broker.risk import LIVE_PHRASE, live_acks_ok
+
+  if phrase.strip() != LIVE_PHRASE:
+    return {
+      "ok": False,
+      "reason": "phrase_mismatch",
+      "expected": LIVE_PHRASE,
+      "hint": "Set EXEC_LIVE_CONFIRM_PHRASE and EXEC_LIVE_ACK_* then restart API.",
+    }
+  if not ack:
+    return {"ok": False, "reason": "ack_checkbox_required"}
+  ok, why = live_acks_ok(market)
+  return {
+    "ok": ok,
+    "reason": why,
+    "market": market.upper(),
+    "caps_unchanged": True,
+    "note": "Micro-live only under ₹1000/$10 until Stage E ladder steps up.",
+    "disclaimer": "Not investment advice. Personal capital only.",
+  }
+
+
+@app.post("/exec/cap-ladder/step-up")
+def exec_cap_step_up(
+  market: str = Query(default="IN"),
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from broker.cap_ladder import try_step_up_caps
+
+  return try_step_up_caps(db, market)
+
+
+@app.post("/exec/cap-ladder/step-down")
+def exec_cap_step_down(
+  market: str = Query(default="IN"),
+  reason: str = Query(default="manual"),
+  db: Session = Depends(get_db),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from broker.cap_ladder import step_down_caps
+
+  return step_down_caps(db, market, reason=reason)
+
+
+@app.get("/exec/receipts")
+def exec_receipts(
+  limit: int = Query(default=40, le=200),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.decision_receipts import recent_receipts
+
+  return {"items": recent_receipts(limit), "disclaimer": "Not investment advice."}
+
+
+@app.post("/exec/model-pin")
+def exec_model_pin(
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  from processor.decision_receipts import freeze_model_pin
+
+  return freeze_model_pin()
 
 
 @app.get("/exec/live")
@@ -1648,9 +1779,10 @@ def exec_live(
   _: None = Depends(verify_basic_or_share),
 ) -> dict[str, Any]:
   """Fast live tape: recent orders + risk books + last fill."""
-  from broker.risk import ensure_risk_state
+  from broker.risk import ensure_risk_state, weekly_realized
   from broker.session import session_snapshot
   from core.models import Fill
+  from processor.paper_metrics import stage_c_health
 
   books = {}
   for m in ("IN", "US"):
@@ -1661,6 +1793,8 @@ def exec_live(
       "exec_mode": row.exec_mode,
       "daily_realized_pnl": row.daily_realized_pnl,
       "max_notional_per_trade": row.max_notional_per_trade,
+      "ladder_stage": row.ladder_stage,
+      "weekly_realized_pnl": weekly_realized(m),
     }
   orders = db.query(Order).order_by(desc(Order.created_at)).limit(limit).all()
   fills = db.query(Fill).order_by(desc(Fill.filled_at)).limit(limit).all() if hasattr(Fill, "filled_at") else []
@@ -1700,9 +1834,9 @@ def exec_live(
     "session": session_snapshot(),
     "books": books,
     "tape": tape[:limit],
-    "polled_at": datetime.now(timezone.utc).isoformat(),
+    "health": stage_c_health(db),
+    "disclaimer": "Not investment advice.",
   }
-
 
 
 @app.post("/system/jobs/learn")

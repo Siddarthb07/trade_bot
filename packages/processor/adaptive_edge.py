@@ -28,6 +28,8 @@ TARGET_HIT = 0.85
 COST_BPS = 10.0
 MIN_SETUP_SCORE = 0.55
 MIN_FIRE_SCORE = 0.58
+# Stage B: ambition live requires enough OOS trades (was 5 — too sparse)
+MIN_OOS_TRADES = 30
 
 
 def _clamp(x: float, lo: float, hi: float) -> float:
@@ -242,11 +244,20 @@ def save_state(st: AdaptiveState, path: Path | None = None) -> None:
   p.write_text(json.dumps(state_to_dict(st), indent=2), encoding="utf-8")
 
 
-def profile_from_state(ticker: str, rep: dict, st: AdaptiveState) -> dict:
+def soft_study_pass(oos: dict, *, min_trades: int = 15, soft_hit: float = 50.0) -> bool:
+  """Paper/study only — never flips ambition_pass / live eligibility."""
+  n = int(oos.get("n_trades") or 0)
+  hit = oos.get("hit_rate_pct")
+  exp = oos.get("expectancy")
+  return bool(n >= min_trades and hit is not None and float(hit) >= soft_hit and (exp or 0) > 0)
+
+
+def profile_from_state(ticker: str, rep: dict, st: AdaptiveState, *, regime: str | None = None) -> dict:
   oos = rep.get("holdout_oos") or {}
   return {
     "ticker": ticker,
     "ambition_pass": bool(rep.get("ambition_pass")),
+    "soft_study_pass": soft_study_pass(oos),
     "tp": st.tp,
     "sl": st.sl,
     "horizon": st.horizon,
@@ -254,20 +265,53 @@ def profile_from_state(ticker: str, rep: dict, st: AdaptiveState) -> dict:
     "effective_target": st.effective_target,
     "holdout_oos": oos,
     "tuned": rep.get("tuned"),
+    "regime": regime or rep.get("regime") or "any",
+    "min_oos_trades": MIN_OOS_TRADES,
     "peers": state_to_dict(st),
   }
 
 
-def save_profiles(profiles: dict[str, dict]) -> None:
+def save_profiles(profiles: dict[str, dict], *, allow_empty_eligible: bool = True) -> None:
+  """Persist profiles. Empty eligible is allowed (fail-closed live) unless caller forbids wipe."""
   eligible = [t for t, p in profiles.items() if p.get("ambition_pass")]
+  soft = [t for t, p in profiles.items() if p.get("soft_study_pass") and not p.get("ambition_pass")]
+  if not allow_empty_eligible and not eligible:
+    raise ValueError("refuse_empty_eligible_overwrite — re-run search or pass allow_empty_eligible=True")
+  # Snapshot previous eligible list for freeze audits
+  prev_eligible: list[str] = []
+  if PROFILE_PATH.exists():
+    try:
+      prev = json.loads(PROFILE_PATH.read_text(encoding="utf-8"))
+      prev_eligible = list(prev.get("eligible_tickers") or [])
+    except Exception:
+      prev_eligible = []
   out = {
     "generated_at": datetime.now(timezone.utc).isoformat(),
     "target_hit_pct": TARGET_HIT * 100,
+    "min_oos_trades": MIN_OOS_TRADES,
     "eligible_tickers": eligible,
+    "soft_study_tickers": soft,
+    "previous_eligible_tickers": prev_eligible,
     "profiles": profiles,
+    "disclaimer": "Not investment advice. Ambition gate requires n_oos>=30, hit>=85%, expectancy>0. soft_study is paper-only.",
   }
   PROFILE_PATH.parent.mkdir(parents=True, exist_ok=True)
   PROFILE_PATH.write_text(json.dumps(out, indent=2), encoding="utf-8")
+  # Side-car freeze stamp for CI / validate script
+  stamp = PROFILE_PATH.with_suffix(".freeze.json")
+  stamp.write_text(
+    json.dumps(
+      {
+        "frozen_at": out["generated_at"],
+        "eligible_tickers": eligible,
+        "soft_study_tickers": soft,
+        "min_oos_trades": MIN_OOS_TRADES,
+        "stage_b_pass": len(eligible) >= 3,
+      },
+      indent=2,
+    ),
+    encoding="utf-8",
+  )
 
 
 def load_profiles() -> dict:
@@ -311,10 +355,26 @@ def adaptive_edge_for_ticker(
   *,
   buy_only: bool = True,
 ) -> StrategySignal:
-  """Per-ticker hybrid: only eligible tickers with their own tuned params."""
+  """Per-ticker hybrid: only eligible tickers with their own tuned params + regime match."""
+  from processor.strategies import market_regime
+
   profile = load_ticker_profile(ticker)
   if not profile or not profile.get("ambition_pass"):
     return StrategySignal("adaptive_edge", "flat", 0.5, f"ticker_not_eligible|{ticker}")
+  oos = profile.get("holdout_oos") or {}
+  if int(oos.get("n_trades") or 0) < MIN_OOS_TRADES and profile.get("ambition_pass"):
+    # Fail closed if stale profile claimed pass with too few trades
+    return StrategySignal("adaptive_edge", "flat", 0.5, f"stale_ambition_n<{MIN_OOS_TRADES}|{ticker}")
+  want = str(profile.get("regime") or "any")
+  if want not in ("any", "", "unknown"):
+    now_reg = market_regime(closes)
+    if now_reg != want:
+      return StrategySignal(
+        "adaptive_edge",
+        "flat",
+        0.5,
+        f"regime_mismatch|want={want}|now={now_reg}|{ticker}",
+      )
   st = state_from_profile(profile)
   sig = decide_from_state(closes, st, buy_only=buy_only)
   if buy_only and sig.side == "sell":
@@ -322,17 +382,34 @@ def adaptive_edge_for_ticker(
   return sig
 
 
-def decide_from_state(closes: list[float], st: AdaptiveState, *, buy_only: bool = False) -> StrategySignal:
+def decide_from_state(
+  closes: list[float],
+  st: AdaptiveState,
+  *,
+  buy_only: bool = False,
+  peer_target: float | None = None,
+  min_fire: float | None = None,
+  skip_peer_gate: bool = False,
+) -> StrategySignal:
   setup = setup_score(closes)
   if setup is None:
     return StrategySignal("adaptive_edge", "flat", 0.5, "no_setup")
   side, score = setup
-  if score < MIN_FIRE_SCORE:
+  floor = MIN_FIRE_SCORE if min_fire is None else min_fire
+  if score < floor:
     return StrategySignal("adaptive_edge", "flat", score, f"score_low|{score:.3f}")
   if buy_only and side == "sell":
     return StrategySignal("adaptive_edge", "flat", 0.5, f"buy_only|score={score:.3f}")
+  if skip_peer_gate and side == "buy":
+    conf = _clamp(0.68 + score * 0.25, 0.68, 0.92)
+    return StrategySignal(
+      "adaptive_edge",
+      side,
+      float(conf),
+      f"gate_ok|relaxed_no_peer|score={score:.3f}|tp={st.tp}|sl={st.sl}",
+    )
   hit, n = st.peer_hit(side, score)
-  need = st.effective_target
+  need = peer_target if peer_target is not None else st.effective_target
   if hit is None or hit < need:
     return StrategySignal(
       "adaptive_edge",
@@ -370,6 +447,7 @@ def _simulate(
   cost: float,
   collect_val: bool,
   collect_oos: bool,
+  use_peer_gate: bool = True,
 ) -> tuple[list[float], list[float], list[float]]:
   val_rets: list[float] = []
   oos_rets: list[float] = []
@@ -383,14 +461,18 @@ def _simulate(
     if setup is None:
       continue
     side, score = setup
-    sig = decide_from_state(window, st, buy_only=True)
+    if use_peer_gate:
+      sig = decide_from_state(window, st, buy_only=True)
+      fire_side = sig.side if sig.side in ("buy", "sell") else None
+    else:
+      # Ablation: fire every setup above MIN_FIRE_SCORE (no peer gate)
+      fire_side = side if score >= MIN_FIRE_SCORE and side == "buy" else None
     out = path_outcome(closes, i, side, tp=st.tp, sl=st.sl, horizon=st.horizon, cost=cost)
     if out is None:
       continue
     won, pnl_struct = out
-    if sig.side in ("buy", "sell"):
-      # evaluate traded side with same path rules
-      tout = path_outcome(closes, i, sig.side, tp=st.tp, sl=st.sl, horizon=st.horizon, cost=cost)
+    if fire_side in ("buy", "sell"):
+      tout = path_outcome(closes, i, fire_side, tp=st.tp, sl=st.sl, horizon=st.horizon, cost=cost)
       if tout is not None:
         _w, tpnl = tout
         all_rets.append(tpnl)
@@ -561,11 +643,12 @@ def expanding_backtest(
     "holdout_oos": oos,
     "full_gated": _pack(all_rets),
     "ambition_pass": bool(
-      oos.get("n_trades", 0) >= 5
+      oos.get("n_trades", 0) >= MIN_OOS_TRADES
       and oos.get("hit_rate_pct") is not None
       and oos["hit_rate_pct"] >= TARGET_HIT * 100
       and (oos.get("expectancy") or 0) > 0
     ),
+    "regime": None,  # filled by pooled_expanding_backtest
     "state": st,
   }
 
@@ -600,9 +683,13 @@ def pooled_expanding_backtest(
       tune=tune,
     )
     st = rep.pop("state", None)
+    from processor.strategies import market_regime
+
+    reg = market_regime(closes)
+    rep["regime"] = reg
     per[ticker] = rep
     if st is not None:
-      profiles[ticker] = profile_from_state(ticker, rep, st)
+      profiles[ticker] = profile_from_state(ticker, rep, st, regime=reg)
       if rep.get("ambition_pass"):
         merged.tp, merged.sl, merged.horizon = st.tp, st.sl, st.horizon
         merged.min_peers = st.min_peers
@@ -641,13 +728,14 @@ def pooled_expanding_backtest(
   save_state(merged)
 
   pass_all = bool(
-    pooled_all.get("n_trades", 0) >= 15
+    pooled_all.get("n_trades", 0) >= MIN_OOS_TRADES
     and pooled_all.get("hit_rate_pct") is not None
     and pooled_all["hit_rate_pct"] >= TARGET_HIT * 100
     and (pooled_all.get("expectancy") or 0) > 0
   )
   pass_hybrid = bool(
-    pooled_eligible.get("n_trades", 0) >= 5
+    ambition >= 3
+    and pooled_eligible.get("n_trades", 0) >= MIN_OOS_TRADES
     and pooled_eligible.get("hit_rate_pct") is not None
     and pooled_eligible["hit_rate_pct"] >= TARGET_HIT * 100
     and (pooled_eligible.get("expectancy") or 0) > 0
@@ -703,6 +791,70 @@ def record_outcome(bin_key: str, side: str, won: bool, score: float | None = Non
   }
 
 
+def ablation_peer_gate(closes: list[float], *, tp: float, sl: float, horizon: int, min_peers: int = 8) -> dict:
+  """Compare gated vs ungated OOS on the same expanding holdout (Stage B ablation)."""
+  n = len(closes)
+  warm = 80
+  if n < warm + 80:
+    return {"error": "insufficient_bars"}
+  holdout_start = int(n * 0.8)
+  val_start = int(holdout_start * 0.85)
+  cost = COST_BPS / 10000.0
+
+  def _pack(rets: list[float]) -> dict:
+    if not rets:
+      return {"n_trades": 0, "hit_rate_pct": None, "expectancy": None}
+    wins = sum(1 for r in rets if r > 0)
+    return {
+      "n_trades": len(rets),
+      "hit_rate_pct": round(100.0 * wins / len(rets), 2),
+      "expectancy": round(sum(rets) / len(rets), 6),
+    }
+
+  st_g = AdaptiveState(min_peers=min_peers, effective_target=TARGET_HIT, tp=tp, sl=sl, horizon=horizon)
+  _, oos_g, _ = _simulate(
+    closes,
+    warm=warm,
+    holdout_start=holdout_start,
+    val_start=val_start,
+    st=st_g,
+    cost=cost,
+    collect_val=False,
+    collect_oos=True,
+    use_peer_gate=True,
+  )
+  st_u = AdaptiveState(min_peers=min_peers, effective_target=TARGET_HIT, tp=tp, sl=sl, horizon=horizon)
+  _, oos_u, _ = _simulate(
+    closes,
+    warm=warm,
+    holdout_start=holdout_start,
+    val_start=val_start,
+    st=st_u,
+    cost=cost,
+    collect_val=False,
+    collect_oos=True,
+    use_peer_gate=False,
+  )
+  gated = _pack(oos_g)
+  ungated = _pack(oos_u)
+  # Peer gate should not lose to ungated on expectancy when both have trades
+  demote = False
+  note = "gated_preferred"
+  if gated["n_trades"] >= 5 and ungated["n_trades"] >= 5:
+    if (ungated.get("expectancy") or 0) > (gated.get("expectancy") or 0) and (
+      (ungated.get("hit_rate_pct") or 0) >= (gated.get("hit_rate_pct") or 0)
+    ):
+      demote = True
+      note = "ungated_beats_gated_on_holdout — document / demote gate claim"
+  return {
+    "gated": gated,
+    "ungated": ungated,
+    "demote_gate_claim": demote,
+    "note": note,
+    "min_oos_trades": MIN_OOS_TRADES,
+  }
+
+
 def iterate_until_ambition(series: dict[str, list[float]], *, max_rounds: int = 6) -> dict:
   """Per-ticker tune=True; success = hybrid pool (eligible tickers only) clears 85%+."""
   trials = []
@@ -714,6 +866,10 @@ def iterate_until_ambition(series: dict[str, list[float]], *, max_rounds: int = 
     dict(tp=0.010, sl=0.018, horizon=5, min_peers=6, effective_target=0.88, tune=True),
     dict(tp=0.012, sl=0.020, horizon=8, min_peers=10, effective_target=0.88, tune=True),
     dict(tp=0.008, sl=0.015, horizon=5, min_peers=8, effective_target=0.85, tune=True),
+    dict(tp=0.018, sl=0.030, horizon=10, min_peers=6, effective_target=0.85, tune=True),
+    dict(tp=0.015, sl=0.028, horizon=12, min_peers=6, effective_target=0.85, tune=True),
+    dict(tp=0.012, sl=0.025, horizon=10, min_peers=5, effective_target=0.85, tune=True),
+    dict(tp=0.020, sl=0.035, horizon=12, min_peers=8, effective_target=0.85, tune=True),
   ]
   best = None
   iterate_until_ambition._best_score = None  # type: ignore[attr-defined]
@@ -732,16 +888,19 @@ def iterate_until_ambition(series: dict[str, list[float]], *, max_rounds: int = 
         "eligible_tickers": rep.get("eligible_tickers"),
         "ambition_pass_pooled": rep.get("ambition_pass_pooled"),
         "ambition_pass_hybrid": rep.get("ambition_pass_hybrid"),
+        "ambition_pass_tickers": rep.get("ambition_pass_tickers"),
       }
     )
     for label, oos in (("hybrid", hybrid), ("all", pooled)):
       hit = oos.get("hit_rate_pct")
       if hit is None:
         continue
+      n_tr = int(oos.get("n_trades") or 0)
       cand = (
-        1 if oos.get("n_trades", 0) >= 8 and (oos.get("expectancy") or 0) > 0 else 0,
+        1 if n_tr >= MIN_OOS_TRADES and (oos.get("expectancy") or 0) > 0 else 0,
+        1 if hit >= TARGET_HIT * 100 else 0,
         hit,
-        int(oos.get("n_trades") or 0),
+        n_tr,
         float(oos.get("expectancy") or -9),
       )
       prev = getattr(iterate_until_ambition, "_best_score", None)

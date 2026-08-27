@@ -1,0 +1,7 @@
+{
+  "frozen_at": "2026-08-27T17:30:24.141024+00:00",
+  "eligible_tickers": [],
+  "soft_study_tickers": [],
+  "min_oos_trades": 30,
+  "stage_b_pass": false
+}

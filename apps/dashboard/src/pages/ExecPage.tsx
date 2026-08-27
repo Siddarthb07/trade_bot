@@ -97,6 +97,11 @@ interface DaySim {
   trades: SimTrade[];
   ledger: Array<Record<string, unknown>>;
   skipped: Array<Record<string, unknown>>;
+  edge_metrics_valid?: boolean;
+  used_demo_fallback?: boolean;
+  demo_badge?: string | null;
+  cost_bps_rt?: number;
+  mode?: string;
   pnl_statement: {
     opening_cash: number;
     closing_cash: number;
@@ -114,9 +119,18 @@ interface DaySim {
       entry: string;
       exit: string;
       exit_reason: string;
+      is_demo_fallback?: boolean;
     }>;
   };
   disclaimer?: string;
+}
+
+interface PaperHealth {
+  m30: { n_trades: number; hit_rate_pct?: number | null; expectancy?: number | null; pass_positive_expectancy: boolean };
+  m90: { n_trades: number; hit_rate_pct?: number | null; expectancy?: number | null; pass_positive_expectancy: boolean };
+  should_freeze: boolean;
+  reasons: string[];
+  pass_stage_c_sketch: boolean;
 }
 
 export default function ExecPage() {
@@ -129,20 +143,25 @@ export default function ExecPage() {
   const [simDate, setSimDate] = useState("2024-08-23");
   const [simCapital, setSimCapital] = useState(10000);
   const [simMarket, setSimMarket] = useState("IN");
+  const [simPath, setSimPath] = useState("session");
+  const [simDemo, setSimDemo] = useState(false);
   const [sim, setSim] = useState<DaySim | null>(null);
   const [simLoading, setSimLoading] = useState(false);
+  const [health, setHealth] = useState<PaperHealth | null>(null);
 
   async function load() {
     try {
       const q = market ? `?market=${market}&limit=100` : "?limit=100";
-      const [s, o, live] = await Promise.all([
+      const [s, o, live, metrics] = await Promise.all([
         apiFetch<ExecStatus>("/exec/status"),
         apiFetch<{ items: OrderRow[] }>(`/exec/orders${q}`),
-        apiFetch<{ tape: TapeItem[] }>("/exec/live?limit=40").catch(() => ({ tape: [] })),
+        apiFetch<{ tape: TapeItem[]; health?: PaperHealth }>("/exec/live?limit=40").catch(() => ({ tape: [] })),
+        apiFetch<{ health: PaperHealth }>("/exec/paper-metrics?days=30").catch(() => null),
       ]);
       setStatus(s);
       setOrders(o.items || []);
       setTape(live.tape || []);
+      setHealth(metrics?.health || live.health || null);
       setMsg("");
     } catch (e) {
       console.error(e);
@@ -179,10 +198,13 @@ export default function ExecPage() {
         capital: String(simCapital),
         market: simMarket,
         max_positions: "3",
+        path_mode: simPath,
+        allow_demo_fallback: String(simDemo),
       });
       const res = await apiFetch<DaySim>(`/exec/day-sim?${q}`, { method: "POST", body: "{}" });
       setSim(res);
-      setMsg(`Day sim ${res.asof}: ${res.n_trades} trades · PnL ${res.currency} ${res.realized_pnl}`);
+      const badge = res.demo_badge ? ` · ${res.demo_badge}` : "";
+      setMsg(`Day sim ${res.asof}: ${res.n_trades} trades · PnL ${res.currency} ${res.realized_pnl}${badge}`);
     } catch (e) {
       setMsg(String(e));
     } finally {
@@ -200,7 +222,7 @@ export default function ExecPage() {
         <div>
           <span className="eyebrow">Live</span>
           <h2>Live trading</h2>
-          <p>Watch every order as it fills. Arm sessions for paper/live exec; run a ₹10k day replay below.</p>
+          <p>Paper-first exec tape. Not investment advice. Caps stay tiny until Stage E gates clear.</p>
         </div>
         <div className="hero-actions">
           <button type="button" className="btn" onClick={arm}>Arm sessions</button>
@@ -210,6 +232,39 @@ export default function ExecPage() {
 
       {msg && <p className="muted">{msg}</p>}
       {loading && !status && <p>Loading…</p>}
+
+      {health && (
+        <section className="card">
+          <h3>Paper health (Stage C)</h3>
+          <p className="muted">Rolling expectancy — win rate without n is hidden. Weekly freeze kills if edge collapses.</p>
+          <div className="stat-grid">
+            <div>
+              <span className="eyebrow">30d</span>
+              <strong>
+                n={health.m30.n_trades}
+                {health.m30.n_trades > 0
+                  ? ` · hit ${health.m30.hit_rate_pct ?? "—"}% · exp ${health.m30.expectancy ?? "—"}`
+                  : " · insufficient"}
+              </strong>
+            </div>
+            <div>
+              <span className="eyebrow">90d</span>
+              <strong>
+                n={health.m90.n_trades}
+                {health.m90.n_trades > 0
+                  ? ` · hit ${health.m90.hit_rate_pct ?? "—"}% · exp ${health.m90.expectancy ?? "—"}`
+                  : " · insufficient"}
+              </strong>
+            </div>
+            <div>
+              <span className="eyebrow">Freeze</span>
+              <strong style={{ color: health.should_freeze ? "#b33" : "inherit" }}>
+                {health.should_freeze ? `YES · ${health.reasons.join(", ")}` : "clear"}
+              </strong>
+            </div>
+          </div>
+        </section>
+      )}
 
       {status && (
         <section className="card">
@@ -290,9 +345,9 @@ export default function ExecPage() {
       </section>
 
       <section className="card">
-        <h3>Day sim — ₹10k paper replay</h3>
+        <h3>Day sim — session / daily paper replay</h3>
         <p className="muted">
-          Pick a date (default 2024-08-23). Bot allocates up to 3 IN names from adaptive setups, shows every rupee put/returned and full PnL.
+          Default path is session (5m bars + costs). Demo fallback never counts as edge — shows a DEMO badge.
         </p>
         <div className="row-between" style={{ gap: "0.75rem", flexWrap: "wrap" }}>
           <label>
@@ -316,6 +371,16 @@ export default function ExecPage() {
               <option value="US">US (USD)</option>
             </select>
           </label>
+          <label>
+            Path{" "}
+            <select value={simPath} onChange={(e) => setSimPath(e.target.value)}>
+              <option value="session">session (Stage A)</option>
+              <option value="daily">daily (research)</option>
+            </select>
+          </label>
+          <label>
+            <input type="checkbox" checked={simDemo} onChange={(e) => setSimDemo(e.target.checked)} /> Demo fallback
+          </label>
           <button type="button" className="btn" disabled={simLoading} onClick={runDaySim}>
             {simLoading ? "Simulating…" : "Run day sim"}
           </button>
@@ -323,6 +388,9 @@ export default function ExecPage() {
 
         {sim && (
           <>
+            {sim.demo_badge && (
+              <p style={{ color: "#b33", fontWeight: 600, marginTop: "0.75rem" }}>{sim.demo_badge}</p>
+            )}
             <div className="stat-grid" style={{ marginTop: "1rem" }}>
               <div>
                 <span className="eyebrow">Start</span>
@@ -339,10 +407,13 @@ export default function ExecPage() {
                 </strong>
               </div>
               <div>
-                <span className="eyebrow">Hit rate</span>
+                <span className="eyebrow">Edge hit rate</span>
                 <strong>
-                  {sim.pnl_statement.hit_rate_pct != null ? `${sim.pnl_statement.hit_rate_pct}%` : "—"} ·{" "}
-                  {sim.pnl_statement.wins}W/{sim.pnl_statement.losses}L
+                  {sim.edge_metrics_valid && sim.pnl_statement.hit_rate_pct != null
+                    ? `${sim.pnl_statement.hit_rate_pct}%`
+                    : "n/a (no valid edge fills)"}{" "}
+                  · {sim.pnl_statement.wins}W/{sim.pnl_statement.losses}L
+                  {sim.cost_bps_rt != null ? ` · ~${sim.cost_bps_rt}bps RT` : ""}
                 </strong>
               </div>
             </div>

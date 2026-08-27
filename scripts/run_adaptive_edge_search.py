@@ -21,11 +21,17 @@ UNIVERSE = [
   "HDFCBANK.NS",
   "ICICIBANK.NS",
   "SBIN.NS",
+  "ITC.NS",
+  "AXISBANK.NS",
   "AAPL",
   "MSFT",
   "GOOGL",
+  "AMZN",
+  "META",
+  "NVDA",
   "SPY",
   "QQQ",
+  "IWM",
 ]
 
 

@@ -1,0 +1,1699 @@
+{
+  "generated_at": "2026-08-28T16:14:54.035599+05:30",
+  "target_return_pct": 10.0,
+  "capital_inr": 10000.0,
+  "market": "IN",
+  "sessions": [
+    "2026-08-13",
+    "2026-08-14",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28"
+  ],
+  "ranked": [
+    {
+      "name": "baseline_1x_top1",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.55,
+        "max_positions": 1,
+        "tp_override": 0.015,
+        "sl_override": 0.007,
+        "horizon_override": 4,
+        "max_leverage": 1.0
+      },
+      "max_leverage": 1.0,
+      "n_days": 12,
+      "avg_return_pct": -0.253,
+      "max_return_pct": 0.003,
+      "min_return_pct": -0.49,
+      "total_pnl_inr": -655.82,
+      "avg_trades_per_day": 1.0,
+      "days_at_or_above_target": 0,
+      "days_positive": 1,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -5.178,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.02,
+          "n_trades": 1,
+          "pnl": -31.37,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -0.184,
+          "n_trades": 1,
+          "pnl": -47.81,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -0.489,
+          "n_trades": 1,
+          "pnl": -78.19,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.406,
+          "n_trades": 1,
+          "pnl": -69.93,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -0.212,
+          "n_trades": 1,
+          "pnl": -50.54,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -0.212,
+          "n_trades": 1,
+          "pnl": -50.56,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -0.49,
+          "n_trades": 1,
+          "pnl": -78.37,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -0.275,
+          "n_trades": 1,
+          "pnl": -56.84,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -0.382,
+          "n_trades": 1,
+          "pnl": -67.51,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -0.279,
+          "n_trades": 1,
+          "pnl": -57.23,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.09,
+          "n_trades": 1,
+          "pnl": -38.36,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.003,
+          "n_trades": 1,
+          "pnl": -29.11,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev15x_high_conf",
+      "params": {
+        "filter_mode": "relaxed",
+        "conf_floor": 0.58,
+        "max_positions": 1,
+        "high_conf_floor": 0.72,
+        "tp_override": 0.018,
+        "sl_override": 0.008,
+        "horizon_override": 5,
+        "max_leverage": 15.0,
+        "leverage_conf_full": 0.8
+      },
+      "max_leverage": 15.0,
+      "n_days": 12,
+      "avg_return_pct": -0.226,
+      "max_return_pct": 0.129,
+      "min_return_pct": -0.968,
+      "total_pnl_inr": -972.89,
+      "avg_trades_per_day": 0.75,
+      "days_at_or_above_target": 0,
+      "days_positive": 1,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -5.232,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 0.129,
+          "n_trades": 3,
+          "pnl": -212.9,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -0.58,
+          "n_trades": 2,
+          "pnl": -238.04,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -0.968,
+          "n_trades": 1,
+          "pnl": -157.25,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -0.42,
+          "n_trades": 1,
+          "pnl": -131.98,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -0.774,
+          "n_trades": 1,
+          "pnl": -141.85,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.095,
+          "n_trades": 1,
+          "pnl": -90.87,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "baseline_1x_scalp",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.52,
+        "max_positions": 3,
+        "tp_override": 0.015,
+        "sl_override": 0.007,
+        "horizon_override": 4,
+        "max_leverage": 1.0
+      },
+      "max_leverage": 1.0,
+      "n_days": 12,
+      "avg_return_pct": -0.202,
+      "max_return_pct": -0.093,
+      "min_return_pct": -0.42,
+      "total_pnl_inr": -552.43,
+      "avg_trades_per_day": 2.58,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -5.387,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.236,
+          "n_trades": 3,
+          "pnl": -53.56,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -0.187,
+          "n_trades": 3,
+          "pnl": -48.72,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -0.181,
+          "n_trades": 3,
+          "pnl": -48.06,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.42,
+          "n_trades": 3,
+          "pnl": -71.9,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -0.119,
+          "n_trades": 2,
+          "pnl": -31.86,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -0.138,
+          "n_trades": 3,
+          "pnl": -43.75,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -0.307,
+          "n_trades": 3,
+          "pnl": -60.7,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -0.093,
+          "n_trades": 1,
+          "pnl": -19.33,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -0.343,
+          "n_trades": 3,
+          "pnl": -64.24,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -0.146,
+          "n_trades": 2,
+          "pnl": -34.64,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.098,
+          "n_trades": 2,
+          "pnl": -29.8,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.159,
+          "n_trades": 3,
+          "pnl": -45.87,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev5x_scalp_3pos",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.52,
+        "max_positions": 3,
+        "tp_override": 0.015,
+        "sl_override": 0.007,
+        "horizon_override": 4,
+        "max_leverage": 5.0
+      },
+      "max_leverage": 5.0,
+      "n_days": 12,
+      "avg_return_pct": -0.474,
+      "max_return_pct": -0.135,
+      "min_return_pct": -1.31,
+      "total_pnl_inr": -1295.24,
+      "avg_trades_per_day": 2.58,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -5.973,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.268,
+          "n_trades": 3,
+          "pnl": -83.19,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -0.567,
+          "n_trades": 3,
+          "pnl": -147.0,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -0.608,
+          "n_trades": 3,
+          "pnl": -122.85,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.671,
+          "n_trades": 3,
+          "pnl": -114.89,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -0.351,
+          "n_trades": 2,
+          "pnl": -88.45,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -0.206,
+          "n_trades": 3,
+          "pnl": -65.16,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -1.31,
+          "n_trades": 3,
+          "pnl": -248.67,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -0.135,
+          "n_trades": 1,
+          "pnl": -27.86,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -0.624,
+          "n_trades": 3,
+          "pnl": -115.21,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -0.48,
+          "n_trades": 2,
+          "pnl": -110.32,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.196,
+          "n_trades": 2,
+          "pnl": -64.27,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.274,
+          "n_trades": 3,
+          "pnl": -107.37,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev25x_aggressive_top1",
+      "params": {
+        "filter_mode": "aggressive",
+        "conf_floor": 0.5,
+        "max_positions": 1,
+        "tp_override": 0.02,
+        "sl_override": 0.008,
+        "horizon_override": 5,
+        "max_leverage": 25.0,
+        "leverage_conf_full": 0.72
+      },
+      "max_leverage": 25.0,
+      "n_days": 12,
+      "avg_return_pct": -1.194,
+      "max_return_pct": 0.0,
+      "min_return_pct": -2.259,
+      "total_pnl_inr": -3594.2,
+      "avg_trades_per_day": 2.25,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 3.7,
+      "avg_daily_hit_rate_pct": 2.78,
+      "target_return_pct": 10.0,
+      "score_vs_target": -7.243,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -1.021,
+          "n_trades": 5,
+          "pnl": -556.9,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -2.149,
+          "n_trades": 4,
+          "pnl": -580.64,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -1.762,
+          "n_trades": 4,
+          "pnl": -409.05,
+          "hit_rate_pct": 25.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.851,
+          "n_trades": 3,
+          "pnl": -341.19,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -0.583,
+          "n_trades": 1,
+          "pnl": -183.31,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -1.564,
+          "n_trades": 1,
+          "pnl": -254.83,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -2.259,
+          "n_trades": 2,
+          "pnl": -456.05,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -1.209,
+          "n_trades": 2,
+          "pnl": -295.96,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -1.933,
+          "n_trades": 5,
+          "pnl": -516.27,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev10x_wide_tp_top1",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.55,
+        "max_positions": 1,
+        "tp_override": 0.03,
+        "sl_override": 0.012,
+        "horizon_override": 8,
+        "max_leverage": 10.0
+      },
+      "max_leverage": 10.0,
+      "n_days": 12,
+      "avg_return_pct": -1.43,
+      "max_return_pct": 0.0,
+      "min_return_pct": -4.394,
+      "total_pnl_inr": -3185.15,
+      "avg_trades_per_day": 0.75,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -8.024,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -2.088,
+          "n_trades": 1,
+          "pnl": -362.2,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -4.394,
+          "n_trades": 1,
+          "pnl": -732.86,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -3.909,
+          "n_trades": 1,
+          "pnl": -582.15,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.497,
+          "n_trades": 1,
+          "pnl": -244.02,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -0.181,
+          "n_trades": 1,
+          "pnl": -56.84,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -1.237,
+          "n_trades": 1,
+          "pnl": -235.4,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -2.974,
+          "n_trades": 1,
+          "pnl": -498.8,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.594,
+          "n_trades": 1,
+          "pnl": -200.64,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.285,
+          "n_trades": 1,
+          "pnl": -272.24,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev10x_top1",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.52,
+        "max_positions": 1,
+        "tp_override": 0.015,
+        "sl_override": 0.007,
+        "horizon_override": 4,
+        "max_leverage": 10.0,
+        "leverage_conf_full": 0.75
+      },
+      "max_leverage": 10.0,
+      "n_days": 12,
+      "avg_return_pct": -1.943,
+      "max_return_pct": 0.03,
+      "min_return_pct": -4.903,
+      "total_pnl_inr": -5082.11,
+      "avg_trades_per_day": 1.0,
+      "days_at_or_above_target": 0,
+      "days_positive": 1,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -8.595,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.167,
+          "n_trades": 1,
+          "pnl": -266.28,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -1.842,
+          "n_trades": 1,
+          "pnl": -478.07,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -4.885,
+          "n_trades": 1,
+          "pnl": -781.9,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -2.18,
+          "n_trades": 1,
+          "pnl": -375.71,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.115,
+          "n_trades": 1,
+          "pnl": -505.37,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -0.631,
+          "n_trades": 1,
+          "pnl": -150.65,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -4.903,
+          "n_trades": 1,
+          "pnl": -783.74,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -0.729,
+          "n_trades": 1,
+          "pnl": -150.8,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -2.404,
+          "n_trades": 1,
+          "pnl": -425.33,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -2.786,
+          "n_trades": 1,
+          "pnl": -572.28,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.703,
+          "n_trades": 1,
+          "pnl": -300.88,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.03,
+          "n_trades": 1,
+          "pnl": -291.1,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev15x_top1",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.55,
+        "max_positions": 1,
+        "tp_override": 0.015,
+        "sl_override": 0.007,
+        "horizon_override": 4,
+        "max_leverage": 15.0,
+        "leverage_conf_full": 0.78
+      },
+      "max_leverage": 15.0,
+      "n_days": 12,
+      "avg_return_pct": -1.809,
+      "max_return_pct": 0.045,
+      "min_return_pct": -7.355,
+      "total_pnl_inr": -5287.22,
+      "avg_trades_per_day": 1.0,
+      "days_at_or_above_target": 0,
+      "days_positive": 1,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -8.885,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.192,
+          "n_trades": 1,
+          "pnl": -306.1,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -2.763,
+          "n_trades": 1,
+          "pnl": -717.1,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -0.077,
+          "n_trades": 1,
+          "pnl": -63.47,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -2.263,
+          "n_trades": 1,
+          "pnl": -389.97,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -3.173,
+          "n_trades": 1,
+          "pnl": -758.06,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -0.549,
+          "n_trades": 1,
+          "pnl": -131.09,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -7.355,
+          "n_trades": 1,
+          "pnl": -1175.6,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -0.61,
+          "n_trades": 1,
+          "pnl": -126.21,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -0.317,
+          "n_trades": 1,
+          "pnl": -89.97,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -3.663,
+          "n_trades": 1,
+          "pnl": -752.44,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.796,
+          "n_trades": 1,
+          "pnl": -340.57,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.045,
+          "n_trades": 1,
+          "pnl": -436.64,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev20x_top2",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.52,
+        "max_positions": 2,
+        "tp_override": 0.015,
+        "sl_override": 0.007,
+        "horizon_override": 4,
+        "max_leverage": 20.0
+      },
+      "max_leverage": 20.0,
+      "n_days": 12,
+      "avg_return_pct": -1.984,
+      "max_return_pct": -0.434,
+      "min_return_pct": -5.879,
+      "total_pnl_inr": -5311.64,
+      "avg_trades_per_day": 1.92,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -9.152,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.649,
+          "n_trades": 2,
+          "pnl": -266.07,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -2.692,
+          "n_trades": 2,
+          "pnl": -659.31,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -3.312,
+          "n_trades": 2,
+          "pnl": -567.51,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -2.039,
+          "n_trades": 2,
+          "pnl": -341.82,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.835,
+          "n_trades": 2,
+          "pnl": -451.02,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -0.574,
+          "n_trades": 2,
+          "pnl": -159.03,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -5.879,
+          "n_trades": 2,
+          "pnl": -1074.91,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -0.434,
+          "n_trades": 1,
+          "pnl": -89.73,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -2.291,
+          "n_trades": 2,
+          "pnl": -394.36,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -2.6,
+          "n_trades": 2,
+          "pnl": -591.16,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.847,
+          "n_trades": 2,
+          "pnl": -290.39,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.656,
+          "n_trades": 2,
+          "pnl": -426.33,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev20x_wide_tp_top1",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.55,
+        "max_positions": 1,
+        "tp_override": 0.04,
+        "sl_override": 0.015,
+        "horizon_override": 10,
+        "max_leverage": 20.0
+      },
+      "max_leverage": 20.0,
+      "n_days": 12,
+      "avg_return_pct": -2.565,
+      "max_return_pct": 0.0,
+      "min_return_pct": -8.654,
+      "total_pnl_inr": -5880.56,
+      "avg_trades_per_day": 0.75,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -10.578,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -3.776,
+          "n_trades": 1,
+          "pnl": -668.29,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -8.654,
+          "n_trades": 1,
+          "pnl": -1452.34,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -7.34,
+          "n_trades": 1,
+          "pnl": -1104.45,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -2.873,
+          "n_trades": 1,
+          "pnl": -453.18,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -0.226,
+          "n_trades": 1,
+          "pnl": -71.09,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -2.372,
+          "n_trades": 1,
+          "pnl": -439.67,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -4.439,
+          "n_trades": 1,
+          "pnl": -835.97,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.073,
+          "n_trades": 1,
+          "pnl": -272.28,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -1.021,
+          "n_trades": 1,
+          "pnl": -583.29,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev20x_top1",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.55,
+        "max_positions": 1,
+        "tp_override": 0.02,
+        "sl_override": 0.008,
+        "horizon_override": 5,
+        "max_leverage": 20.0,
+        "leverage_conf_full": 0.8
+      },
+      "max_leverage": 20.0,
+      "n_days": 12,
+      "avg_return_pct": -2.84,
+      "max_return_pct": -0.097,
+      "min_return_pct": -8.375,
+      "total_pnl_inr": -7181.93,
+      "avg_trades_per_day": 1.0,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -10.936,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -2.148,
+          "n_trades": 1,
+          "pnl": -544.61,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -3.684,
+          "n_trades": 1,
+          "pnl": -956.13,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -0.097,
+          "n_trades": 1,
+          "pnl": -69.83,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.925,
+          "n_trades": 1,
+          "pnl": -378.7,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -8.375,
+          "n_trades": 1,
+          "pnl": -1348.21,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -0.765,
+          "n_trades": 1,
+          "pnl": -160.41,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -7.762,
+          "n_trades": 1,
+          "pnl": -1363.34,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -0.865,
+          "n_trades": 1,
+          "pnl": -157.64,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -0.375,
+          "n_trades": 1,
+          "pnl": -100.51,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -5.355,
+          "n_trades": 1,
+          "pnl": -981.32,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -2.092,
+          "n_trades": 1,
+          "pnl": -508.86,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.641,
+          "n_trades": 1,
+          "pnl": -612.37,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev25x_top1_high",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.58,
+        "max_positions": 1,
+        "high_conf_floor": 0.68,
+        "tp_override": 0.02,
+        "sl_override": 0.008,
+        "horizon_override": 5,
+        "max_leverage": 25.0,
+        "leverage_conf_full": 0.78
+      },
+      "max_leverage": 25.0,
+      "n_days": 12,
+      "avg_return_pct": -4.13,
+      "max_return_pct": 0.0,
+      "min_return_pct": -12.028,
+      "total_pnl_inr": -9920.23,
+      "avg_trades_per_day": 0.67,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -13.601,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -2.823,
+          "n_trades": 1,
+          "pnl": -715.7,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -4.605,
+          "n_trades": 1,
+          "pnl": -1195.17,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -9.355,
+          "n_trades": 1,
+          "pnl": -1519.49,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -12.028,
+          "n_trades": 1,
+          "pnl": -1936.29,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -9.703,
+          "n_trades": 1,
+          "pnl": -1704.17,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -7.504,
+          "n_trades": 1,
+          "pnl": -1375.12,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -2.686,
+          "n_trades": 1,
+          "pnl": -653.21,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.859,
+          "n_trades": 1,
+          "pnl": -821.08,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev30x_allin_best",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.5,
+        "max_positions": 1,
+        "tp_override": 0.035,
+        "sl_override": 0.012,
+        "horizon_override": 8,
+        "max_leverage": 30.0,
+        "leverage_conf_full": 0.7
+      },
+      "max_leverage": 30.0,
+      "n_days": 12,
+      "avg_return_pct": -6.832,
+      "max_return_pct": 0.0,
+      "min_return_pct": -17.983,
+      "total_pnl_inr": -15228.22,
+      "avg_trades_per_day": 0.75,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -18.845,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -11.98,
+          "n_trades": 1,
+          "pnl": -2078.62,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -13.182,
+          "n_trades": 1,
+          "pnl": -2198.6,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -17.983,
+          "n_trades": 1,
+          "pnl": -2678.0,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -10.964,
+          "n_trades": 1,
+          "pnl": -1787.51,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.108,
+          "n_trades": 1,
+          "pnl": -348.29,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -9.031,
+          "n_trades": 1,
+          "pnl": -1718.6,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -13.002,
+          "n_trades": 1,
+          "pnl": -2180.62,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -3.708,
+          "n_trades": 1,
+          "pnl": -1252.67,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -1.031,
+          "n_trades": 1,
+          "pnl": -985.31,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    },
+    {
+      "name": "lev30x_extreme_top1",
+      "params": {
+        "filter_mode": "orb_only",
+        "conf_floor": 0.6,
+        "max_positions": 1,
+        "high_conf_floor": 0.7,
+        "tp_override": 0.025,
+        "sl_override": 0.01,
+        "horizon_override": 6,
+        "max_leverage": 30.0,
+        "leverage_conf_full": 0.75
+      },
+      "max_leverage": 30.0,
+      "n_days": 12,
+      "avg_return_pct": -7.163,
+      "max_return_pct": 0.0,
+      "min_return_pct": -16.596,
+      "total_pnl_inr": -15103.74,
+      "avg_trades_per_day": 0.67,
+      "days_at_or_above_target": 0,
+      "days_positive": 0,
+      "pooled_hit_rate_pct": 0.0,
+      "avg_daily_hit_rate_pct": 0.0,
+      "target_return_pct": 10.0,
+      "score_vs_target": -19.064,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -8.313,
+          "n_trades": 1,
+          "pnl": -1486.96,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -14.189,
+          "n_trades": 1,
+          "pnl": -2299.19,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": -16.596,
+          "n_trades": 1,
+          "pnl": -2539.55,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -16.106,
+          "n_trades": 1,
+          "pnl": -2490.61,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -13.037,
+          "n_trades": 1,
+          "pnl": -2184.18,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "pnl": 0,
+          "hit_rate_pct": null
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -12.598,
+          "n_trades": 1,
+          "pnl": -2140.31,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -4.367,
+          "n_trades": 1,
+          "pnl": -1005.62,
+          "hit_rate_pct": 0.0
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.75,
+          "n_trades": 1,
+          "pnl": -957.32,
+          "hit_rate_pct": 0.0
+        }
+      ]
+    }
+  ],
+  "best": {
+    "name": "baseline_1x_top1",
+    "params": {
+      "filter_mode": "orb_only",
+      "conf_floor": 0.55,
+      "max_positions": 1,
+      "tp_override": 0.015,
+      "sl_override": 0.007,
+      "horizon_override": 4,
+      "max_leverage": 1.0
+    },
+    "max_leverage": 1.0,
+    "n_days": 12,
+    "avg_return_pct": -0.253,
+    "max_return_pct": 0.003,
+    "min_return_pct": -0.49,
+    "total_pnl_inr": -655.82,
+    "avg_trades_per_day": 1.0,
+    "days_at_or_above_target": 0,
+    "days_positive": 1,
+    "pooled_hit_rate_pct": 0.0,
+    "avg_daily_hit_rate_pct": 0.0,
+    "target_return_pct": 10.0,
+    "score_vs_target": -5.178,
+    "days": [
+      {
+        "asof": "2026-08-13",
+        "return_pct": -0.02,
+        "n_trades": 1,
+        "pnl": -31.37,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-14",
+        "return_pct": -0.184,
+        "n_trades": 1,
+        "pnl": -47.81,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-17",
+        "return_pct": -0.489,
+        "n_trades": 1,
+        "pnl": -78.19,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-18",
+        "return_pct": -0.406,
+        "n_trades": 1,
+        "pnl": -69.93,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-19",
+        "return_pct": -0.212,
+        "n_trades": 1,
+        "pnl": -50.54,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-20",
+        "return_pct": -0.212,
+        "n_trades": 1,
+        "pnl": -50.56,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-21",
+        "return_pct": -0.49,
+        "n_trades": 1,
+        "pnl": -78.37,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-24",
+        "return_pct": -0.275,
+        "n_trades": 1,
+        "pnl": -56.84,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-25",
+        "return_pct": -0.382,
+        "n_trades": 1,
+        "pnl": -67.51,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-26",
+        "return_pct": -0.279,
+        "n_trades": 1,
+        "pnl": -57.23,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-27",
+        "return_pct": -0.09,
+        "n_trades": 1,
+        "pnl": -38.36,
+        "hit_rate_pct": 0.0
+      },
+      {
+        "asof": "2026-08-28",
+        "return_pct": 0.003,
+        "n_trades": 1,
+        "pnl": -29.11,
+        "hit_rate_pct": 0.0
+      }
+    ]
+  },
+  "disclaimer": "Sim-only; session ORB + modeled costs; not investment advice."
+}

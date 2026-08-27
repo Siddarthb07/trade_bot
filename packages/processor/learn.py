@@ -82,7 +82,12 @@ def _frozen_rows() -> list[tuple[datetime, list[float], int]] | None:
 
 
 def _update_adaptive_from_events() -> dict:
-  """Feed labeled adaptive / live_pnl outcomes into expanding-window bins."""
+  """Feed labeled adaptive / live_pnl outcomes into expanding-window bins.
+
+  Stage B hard rule: online learn may update peers / effective_target / min_peers only.
+  Never retune TP/SL/horizon from live labels — those come from offline
+  scripts/run_adaptive_edge_search.py on expanding validation windows only.
+  """
   try:
     from processor.adaptive_edge import record_outcome
   except Exception as e:
