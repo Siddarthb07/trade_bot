@@ -92,7 +92,23 @@ scoring still uses the new pickle on the next process pass.
 | Cleaner labels | Prefer EOD cache coverage; missing Yahoo symbols stay unlabeled |
 | Verify gate | Confirm `status` is `trained` and `positive_rate ≥ 0.05` in `model_meta.json` |
 
-### One-shot refresh (copy-paste)
+### Online learning (2026-08)
+
+After each matured `win_window` label, the bot stamps `prediction_events` and may
+call `learn_from_outcomes()` (champion/challenger; keeps previous model if
+accuracy drops more than `ML_MAX_ACCURACY_DROP`). Manual:
+
+```powershell
+docker compose run --rm processor python -c "from processor.learn import learn_from_outcomes; print(learn_from_outcomes(force=True))"
+```
+
+Strategy benchmark (synthetic or DB):
+
+```powershell
+docker compose run --rm processor python scripts/run_strategy_benchmark.py
+```
+
+See also [STRATEGIES.md](./STRATEGIES.md).
 
 ```powershell
 docker compose run --rm worker python scripts/backfill_nse.py historical 180

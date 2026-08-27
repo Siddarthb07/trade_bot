@@ -1,0 +1,2118 @@
+{
+  "generated_at": "2026-08-27T11:28:36.968264+00:00",
+  "rows": [
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 6,
+      "hit_rate_pct": 50.0,
+      "expectancy": 0.002799
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 64,
+      "hit_rate_pct": 42.19,
+      "expectancy": -0.001464
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 64,
+      "hit_rate_pct": 42.19,
+      "expectancy": -0.001464
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 59,
+      "hit_rate_pct": 42.37,
+      "expectancy": -0.000754
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 1,
+      "hit_rate_pct": 100.0,
+      "expectancy": 0.013155
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 45,
+      "hit_rate_pct": 48.89,
+      "expectancy": 0.001257
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 22,
+      "hit_rate_pct": 45.45,
+      "expectancy": -0.001405
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "RELIANCE.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 9,
+      "hit_rate_pct": 22.22,
+      "expectancy": -0.005471
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 59,
+      "hit_rate_pct": 37.29,
+      "expectancy": -0.002299
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 59,
+      "hit_rate_pct": 37.29,
+      "expectancy": -0.002299
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 47,
+      "hit_rate_pct": 36.17,
+      "expectancy": -0.002497
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 6,
+      "hit_rate_pct": 16.67,
+      "expectancy": -0.002803
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 38,
+      "hit_rate_pct": 55.26,
+      "expectancy": -0.00017
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 19,
+      "hit_rate_pct": 63.16,
+      "expectancy": 0.002029
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "TCS.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 7,
+      "hit_rate_pct": 57.14,
+      "expectancy": 0.002798
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 1,
+      "hit_rate_pct": 100.0,
+      "expectancy": 0.008756
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 51,
+      "hit_rate_pct": 41.18,
+      "expectancy": -0.003499
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 51,
+      "hit_rate_pct": 41.18,
+      "expectancy": -0.003499
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 39,
+      "hit_rate_pct": 38.46,
+      "expectancy": -0.003428
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 2,
+      "hit_rate_pct": 50.0,
+      "expectancy": 0.001847
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 42,
+      "hit_rate_pct": 57.14,
+      "expectancy": 0.00409
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 21,
+      "hit_rate_pct": 66.67,
+      "expectancy": 0.007486
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "INFY.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 5,
+      "hit_rate_pct": 20.0,
+      "expectancy": -0.006577
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 64,
+      "hit_rate_pct": 40.62,
+      "expectancy": -0.002324
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 64,
+      "hit_rate_pct": 40.62,
+      "expectancy": -0.002324
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 44,
+      "hit_rate_pct": 40.91,
+      "expectancy": -0.003159
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 6,
+      "hit_rate_pct": 50.0,
+      "expectancy": -0.005559
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 44,
+      "hit_rate_pct": 45.45,
+      "expectancy": -0.002187
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 22,
+      "hit_rate_pct": 45.45,
+      "expectancy": -0.002502
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "HDFCBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 17,
+      "hit_rate_pct": 64.71,
+      "expectancy": 0.00481
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 1,
+      "hit_rate_pct": 100.0,
+      "expectancy": 0.019671
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 54,
+      "hit_rate_pct": 53.7,
+      "expectancy": 0.000624
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 54,
+      "hit_rate_pct": 53.7,
+      "expectancy": 0.000624
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 42,
+      "hit_rate_pct": 57.14,
+      "expectancy": 1.2e-05
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 2,
+      "hit_rate_pct": 50.0,
+      "expectancy": 0.003036
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 58,
+      "hit_rate_pct": 50.0,
+      "expectancy": -0.001237
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 29,
+      "hit_rate_pct": 41.38,
+      "expectancy": -0.003581
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "ICICIBANK.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 15,
+      "hit_rate_pct": 40.0,
+      "expectancy": -0.000526
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 1,
+      "hit_rate_pct": 0.0,
+      "expectancy": -0.006695
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 42,
+      "hit_rate_pct": 45.24,
+      "expectancy": -0.00168
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 42,
+      "hit_rate_pct": 45.24,
+      "expectancy": -0.00168
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 36,
+      "hit_rate_pct": 47.22,
+      "expectancy": -0.00174
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 2,
+      "hit_rate_pct": 100.0,
+      "expectancy": 0.02024
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 49,
+      "hit_rate_pct": 34.69,
+      "expectancy": -0.001704
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 24,
+      "hit_rate_pct": 33.33,
+      "expectancy": -0.000646
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SBIN.NS",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 12,
+      "hit_rate_pct": 58.33,
+      "expectancy": -0.001244
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 1,
+      "hit_rate_pct": 100.0,
+      "expectancy": 0.008486
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 39,
+      "hit_rate_pct": 38.46,
+      "expectancy": -0.002976
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 39,
+      "hit_rate_pct": 38.46,
+      "expectancy": -0.002976
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 31,
+      "hit_rate_pct": 35.48,
+      "expectancy": -0.005037
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 2,
+      "hit_rate_pct": 50.0,
+      "expectancy": -0.00723
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 45,
+      "hit_rate_pct": 48.89,
+      "expectancy": -0.001172
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 23,
+      "hit_rate_pct": 56.52,
+      "expectancy": 0.001999
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "AAPL",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 16,
+      "hit_rate_pct": 31.25,
+      "expectancy": -0.005335
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 1,
+      "hit_rate_pct": 0.0,
+      "expectancy": -0.006859
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 45,
+      "hit_rate_pct": 53.33,
+      "expectancy": 0.003318
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 45,
+      "hit_rate_pct": 53.33,
+      "expectancy": 0.003318
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 43,
+      "hit_rate_pct": 53.49,
+      "expectancy": 0.004738
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 52,
+      "hit_rate_pct": 40.38,
+      "expectancy": -0.001456
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 26,
+      "hit_rate_pct": 42.31,
+      "expectancy": -0.000404
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "MSFT",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 8,
+      "hit_rate_pct": 62.5,
+      "expectancy": 0.008893
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 45,
+      "hit_rate_pct": 51.11,
+      "expectancy": 0.002649
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 45,
+      "hit_rate_pct": 51.11,
+      "expectancy": 0.002649
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 39,
+      "hit_rate_pct": 48.72,
+      "expectancy": 0.000886
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 1,
+      "hit_rate_pct": 100.0,
+      "expectancy": 0.005453
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 47,
+      "hit_rate_pct": 57.45,
+      "expectancy": 0.00053
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 24,
+      "hit_rate_pct": 62.5,
+      "expectancy": 0.002542
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "GOOGL",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 10,
+      "hit_rate_pct": 30.0,
+      "expectancy": -0.003684
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 65,
+      "hit_rate_pct": 53.85,
+      "expectancy": 0.000555
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 65,
+      "hit_rate_pct": 53.85,
+      "expectancy": 0.000555
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 57,
+      "hit_rate_pct": 54.39,
+      "expectancy": 0.000678
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 1,
+      "hit_rate_pct": 100.0,
+      "expectancy": 0.014316
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 36,
+      "hit_rate_pct": 50.0,
+      "expectancy": 0.000553
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 18,
+      "hit_rate_pct": 55.56,
+      "expectancy": 0.002468
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "SPY",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "trend_follow",
+      "min_conf": 0.55,
+      "n_trades": 10,
+      "hit_rate_pct": 60.0,
+      "expectancy": -0.002832
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "trend_follow",
+      "min_conf": 0.6,
+      "n_trades": 1,
+      "hit_rate_pct": 100.0,
+      "expectancy": 0.00151
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "trend_follow",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "trend_follow",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "trend_follow",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "trend_follow",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "trend_follow",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "trend_follow",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.55,
+      "n_trades": 45,
+      "hit_rate_pct": 44.44,
+      "expectancy": -0.003188
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.6,
+      "n_trades": 45,
+      "hit_rate_pct": 44.44,
+      "expectancy": -0.003188
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.65,
+      "n_trades": 43,
+      "hit_rate_pct": 44.19,
+      "expectancy": -0.0032
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mean_rev_chop",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mom_cross",
+      "min_conf": 0.55,
+      "n_trades": 42,
+      "hit_rate_pct": 52.38,
+      "expectancy": 0.000982
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mom_cross",
+      "min_conf": 0.6,
+      "n_trades": 21,
+      "hit_rate_pct": 47.62,
+      "expectancy": 0.001507
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mom_cross",
+      "min_conf": 0.65,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mom_cross",
+      "min_conf": 0.7,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mom_cross",
+      "min_conf": 0.75,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mom_cross",
+      "min_conf": 0.8,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mom_cross",
+      "min_conf": 0.85,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    },
+    {
+      "ticker": "QQQ",
+      "strategy": "mom_cross",
+      "min_conf": 0.9,
+      "n_trades": 0,
+      "hit_rate_pct": null,
+      "expectancy": null
+    }
+  ],
+  "best_ambition": []
+}

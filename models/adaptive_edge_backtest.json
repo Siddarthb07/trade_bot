@@ -1,0 +1,398 @@
+{
+  "generated_at": "2026-08-27T16:15:17.390458+00:00",
+  "target_hit_pct": 85.0,
+  "trials": [
+    {
+      "round": 1,
+      "cfg": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "tune": true
+      },
+      "pooled_all": {
+        "n_trades": 7,
+        "hit_rate_pct": 85.71,
+        "expectancy": 0.009531
+      },
+      "pooled_hybrid": {
+        "n_trades": 7,
+        "hit_rate_pct": 85.71,
+        "expectancy": 0.009531
+      },
+      "eligible_tickers": [
+        "QQQ"
+      ],
+      "ambition_pass_pooled": false,
+      "ambition_pass_hybrid": true
+    }
+  ],
+  "best": {
+    "generated_at": "2026-08-27T16:14:37.876169+00:00",
+    "target_hit_pct": 85.0,
+    "pooled_holdout_oos": {
+      "n_trades": 7,
+      "hit_rate_pct": 85.71,
+      "expectancy": 0.009531
+    },
+    "pooled_holdout_eligible_only": {
+      "n_trades": 7,
+      "hit_rate_pct": 85.71,
+      "expectancy": 0.009531
+    },
+    "eligible_tickers": [
+      "QQQ"
+    ],
+    "ambition_pass_tickers": 1,
+    "profiles_path": "C:\\Users\\siddu\\projects\\trade_bot\\models\\ticker_adaptive_profiles.json",
+    "state_path": "C:\\Users\\siddu\\projects\\trade_bot\\models\\adaptive_edge_state.json",
+    "label": "path_tp_sl_per_ticker_tune",
+    "live_params": {
+      "tp": 0.018,
+      "sl": 0.03,
+      "horizon": 10,
+      "min_peers": 8,
+      "effective_target": 0.88
+    },
+    "anti_memorization": [
+      "expanding_window_peers_only",
+      "holdout_not_used_for_tp_sl_search",
+      "fixed_a_priori_target_85",
+      "peer_memory_capped",
+      "per_ticker_tune_on_validation_only"
+    ],
+    "ambition_pass_pooled": false,
+    "ambition_pass_hybrid": true
+  },
+  "per_ticker": {
+    "RELIANCE.NS": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 11,
+        "hit_rate_pct": 63.64,
+        "expectancy": -0.001897
+      },
+      "ambition_pass": false
+    },
+    "TCS.NS": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 3,
+        "hit_rate_pct": 66.67,
+        "expectancy": -0.001
+      },
+      "ambition_pass": false
+    },
+    "INFY.NS": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ambition_pass": false
+    },
+    "HDFCBANK.NS": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 10,
+        "hit_rate_pct": 50.0,
+        "expectancy": -0.004445
+      },
+      "ambition_pass": false
+    },
+    "ICICIBANK.NS": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ambition_pass": false
+    },
+    "SBIN.NS": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ambition_pass": false
+    },
+    "AAPL": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 2,
+        "hit_rate_pct": 100.0,
+        "expectancy": 0.009
+      },
+      "ambition_pass": false
+    },
+    "MSFT": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ambition_pass": false
+    },
+    "GOOGL": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ambition_pass": false
+    },
+    "SPY": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.01,
+        "sl": 0.02,
+        "horizon": 8,
+        "min_peers": 8,
+        "effective_target": 0.85,
+        "val_hit": -1.0,
+        "val_n": 0,
+        "val_exp": 0.0
+      },
+      "holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "full_gated": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "ambition_pass": false
+    },
+    "QQQ": {
+      "strategy": "adaptive_edge",
+      "label": "path_tp_sl",
+      "target_hit_pct": 85.0,
+      "tuned": {
+        "tp": 0.018,
+        "sl": 0.03,
+        "horizon": 10,
+        "min_peers": 8,
+        "effective_target": 0.88,
+        "val_hit": 1.0,
+        "val_n": 7,
+        "val_exp": 0.0164469100157635
+      },
+      "holdout_oos": {
+        "n_trades": 7,
+        "hit_rate_pct": 85.71,
+        "expectancy": 0.009531
+      },
+      "full_gated": {
+        "n_trades": 24,
+        "hit_rate_pct": 87.5,
+        "expectancy": 0.010439
+      },
+      "ambition_pass": true
+    }
+  },
+  "alternate_windows": {
+    "recent_2y": {
+      "pooled_holdout_oos": {
+        "n_trades": 7,
+        "hit_rate_pct": 57.14,
+        "expectancy": -0.003857
+      },
+      "pooled_holdout_eligible_only": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_hybrid": false,
+      "ambition_pass_pooled": false
+    },
+    "recent_1y": {
+      "pooled_holdout_oos": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "pooled_holdout_eligible_only": {
+        "n_trades": 0,
+        "hit_rate_pct": null,
+        "expectancy": null
+      },
+      "eligible_tickers": [],
+      "ambition_pass_hybrid": false,
+      "ambition_pass_pooled": false
+    }
+  },
+  "hypothetical_10k_usd_1_day": {
+    "capital_usd": 10000.0,
+    "if_one_trade_fires_expected_pnl_usd": 95.31,
+    "expected_pnl_usd_average_day": 2.65,
+    "holdout_hit_rate_pct": 85.71,
+    "holdout_n_trades": 7,
+    "mode": "hybrid_eligible_tickers"
+  },
+  "disclaimer": "Holdout OOS only; expanding window; not investment advice."
+}

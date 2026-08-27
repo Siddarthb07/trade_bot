@@ -1,0 +1,2120 @@
+{
+  "mode": "paper_playbook_audit",
+  "generated_at": "2026-08-27T11:29:08.952351+00:00",
+  "cost_bps": 10.0,
+  "universe": [
+    "RELIANCE.NS",
+    "TCS.NS",
+    "INFY.NS",
+    "HDFCBANK.NS",
+    "ICICIBANK.NS",
+    "SBIN.NS",
+    "AAPL",
+    "MSFT",
+    "GOOGL",
+    "SPY",
+    "QQQ"
+  ],
+  "measurement": "entry_only_no_ma_state_orb_disabled_on_daily",
+  "playbook_summary": {
+    "ambition_pass_tickers": 0,
+    "soft_pass_tickers": 5,
+    "path": "C:\\Users\\siddu\\projects\\trade_bot\\models\\ticker_playbooks.json"
+  },
+  "windows": [
+    {
+      "label": "full_5y",
+      "years": 5,
+      "pooled": {
+        "mom_cross": {
+          "strategy": "mom_cross",
+          "n_trades": 498,
+          "hit_rate_pct": 48.8,
+          "expectancy": -0.000145,
+          "total_return_compounded_pct": -12.46,
+          "avg_win": 0.011434,
+          "avg_loss": -0.011178,
+          "profit_factor": 0.975,
+          "trades_per_year": 99.6
+        },
+        "mean_rev_bb": {
+          "strategy": "mean_rev_bb",
+          "n_trades": 1509,
+          "hit_rate_pct": 46.72,
+          "expectancy": -0.000308,
+          "total_return_compounded_pct": -49.81,
+          "avg_win": 0.011885,
+          "avg_loss": -0.010999,
+          "profit_factor": 0.947,
+          "trades_per_year": 301.8
+        },
+        "trend_follow": {
+          "strategy": "trend_follow",
+          "n_trades": 115,
+          "hit_rate_pct": 46.09,
+          "expectancy": -0.000575,
+          "total_return_compounded_pct": -7.48,
+          "avg_win": 0.010654,
+          "avg_loss": -0.010174,
+          "profit_factor": 0.895,
+          "trades_per_year": 23.0
+        },
+        "mean_rev_chop": {
+          "strategy": "mean_rev_chop",
+          "n_trades": 573,
+          "hit_rate_pct": 45.55,
+          "expectancy": -0.000957,
+          "total_return_compounded_pct": -46.72,
+          "avg_win": 0.01185,
+          "avg_loss": -0.01167,
+          "profit_factor": 0.849,
+          "trades_per_year": 114.6
+        },
+        "playbook_router": {
+          "strategy": "playbook_router",
+          "n_trades": 5,
+          "hit_rate_pct": 80.0,
+          "expectancy": 0.009884,
+          "total_return_compounded_pct": 4.98,
+          "avg_win": 0.013415,
+          "avg_loss": -0.004241,
+          "profit_factor": 12.653,
+          "trades_per_year": 1.0
+        }
+      },
+      "per_ticker": {
+        "RELIANCE.NS": {
+          "bars": 1240,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 45,
+            "hit_rate_pct": 48.89,
+            "expectancy": 0.001257,
+            "total_return_compounded_pct": 5.49,
+            "avg_win": 0.010551,
+            "avg_loss": -0.007633,
+            "profit_factor": 1.322,
+            "trades_per_year": 9.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 136,
+            "hit_rate_pct": 45.59,
+            "expectancy": -6e-05,
+            "total_return_compounded_pct": -2.38,
+            "avg_win": 0.012026,
+            "avg_loss": -0.010186,
+            "profit_factor": 0.989,
+            "trades_per_year": 27.2
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 6,
+            "hit_rate_pct": 50.0,
+            "expectancy": 0.002799,
+            "total_return_compounded_pct": 1.67,
+            "avg_win": 0.007816,
+            "avg_loss": -0.002217,
+            "profit_factor": 3.525,
+            "trades_per_year": 1.2
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 64,
+            "hit_rate_pct": 42.19,
+            "expectancy": -0.001464,
+            "total_return_compounded_pct": -9.73,
+            "avg_win": 0.013192,
+            "avg_loss": -0.012159,
+            "profit_factor": 0.792,
+            "trades_per_year": 12.8
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 1,
+            "hit_rate_pct": 100.0,
+            "expectancy": 0.013155,
+            "total_return_compounded_pct": 1.32,
+            "avg_win": 0.013155,
+            "avg_loss": 0,
+            "profit_factor": null,
+            "trades_per_year": 0.2
+          }
+        },
+        "TCS.NS": {
+          "bars": 1240,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 38,
+            "hit_rate_pct": 55.26,
+            "expectancy": -0.00017,
+            "total_return_compounded_pct": -0.91,
+            "avg_win": 0.007968,
+            "avg_loss": -0.010222,
+            "profit_factor": 0.963,
+            "trades_per_year": 7.6
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 135,
+            "hit_rate_pct": 46.67,
+            "expectancy": 0.00024,
+            "total_return_compounded_pct": 1.86,
+            "avg_win": 0.010764,
+            "avg_loss": -0.008969,
+            "profit_factor": 1.05,
+            "trades_per_year": 27.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 9,
+            "hit_rate_pct": 22.22,
+            "expectancy": -0.005471,
+            "total_return_compounded_pct": -4.88,
+            "avg_win": 0.011473,
+            "avg_loss": -0.010312,
+            "profit_factor": 0.318,
+            "trades_per_year": 1.8
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 59,
+            "hit_rate_pct": 37.29,
+            "expectancy": -0.002299,
+            "total_return_compounded_pct": -13.23,
+            "avg_win": 0.012038,
+            "avg_loss": -0.010824,
+            "profit_factor": 0.661,
+            "trades_per_year": 11.8
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "INFY.NS": {
+          "bars": 1240,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 42,
+            "hit_rate_pct": 57.14,
+            "expectancy": 0.00409,
+            "total_return_compounded_pct": 17.73,
+            "avg_win": 0.014794,
+            "avg_loss": -0.010182,
+            "profit_factor": 1.937,
+            "trades_per_year": 8.4
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 140,
+            "hit_rate_pct": 50.0,
+            "expectancy": -0.001466,
+            "total_return_compounded_pct": -20.05,
+            "avg_win": 0.010023,
+            "avg_loss": -0.012954,
+            "profit_factor": 0.774,
+            "trades_per_year": 28.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 7,
+            "hit_rate_pct": 57.14,
+            "expectancy": 0.002798,
+            "total_return_compounded_pct": 1.96,
+            "avg_win": 0.008135,
+            "avg_loss": -0.004318,
+            "profit_factor": 2.512,
+            "trades_per_year": 1.4
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 51,
+            "hit_rate_pct": 41.18,
+            "expectancy": -0.003499,
+            "total_return_compounded_pct": -16.87,
+            "avg_win": 0.008228,
+            "avg_loss": -0.011707,
+            "profit_factor": 0.492,
+            "trades_per_year": 10.2
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "HDFCBANK.NS": {
+          "bars": 1240,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 44,
+            "hit_rate_pct": 45.45,
+            "expectancy": -0.002187,
+            "total_return_compounded_pct": -9.53,
+            "avg_win": 0.008163,
+            "avg_loss": -0.010812,
+            "profit_factor": 0.629,
+            "trades_per_year": 8.8
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 148,
+            "hit_rate_pct": 39.19,
+            "expectancy": -0.00141,
+            "total_return_compounded_pct": -20.27,
+            "avg_win": 0.012589,
+            "avg_loss": -0.010431,
+            "profit_factor": 0.778,
+            "trades_per_year": 29.6
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 5,
+            "hit_rate_pct": 20.0,
+            "expectancy": -0.006577,
+            "total_return_compounded_pct": -3.29,
+            "avg_win": 0.010474,
+            "avg_loss": -0.010839,
+            "profit_factor": 0.242,
+            "trades_per_year": 1.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 64,
+            "hit_rate_pct": 40.62,
+            "expectancy": -0.002324,
+            "total_return_compounded_pct": -14.35,
+            "avg_win": 0.010415,
+            "avg_loss": -0.01104,
+            "profit_factor": 0.645,
+            "trades_per_year": 12.8
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "ICICIBANK.NS": {
+          "bars": 1240,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 58,
+            "hit_rate_pct": 50.0,
+            "expectancy": -0.001237,
+            "total_return_compounded_pct": -7.42,
+            "avg_win": 0.009195,
+            "avg_loss": -0.01167,
+            "profit_factor": 0.788,
+            "trades_per_year": 11.6
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 131,
+            "hit_rate_pct": 51.15,
+            "expectancy": 0.000537,
+            "total_return_compounded_pct": 5.88,
+            "avg_win": 0.010271,
+            "avg_loss": -0.009653,
+            "profit_factor": 1.114,
+            "trades_per_year": 26.2
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 17,
+            "hit_rate_pct": 64.71,
+            "expectancy": 0.00481,
+            "total_return_compounded_pct": 8.38,
+            "avg_win": 0.011622,
+            "avg_loss": -0.007678,
+            "profit_factor": 2.775,
+            "trades_per_year": 3.4
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 54,
+            "hit_rate_pct": 53.7,
+            "expectancy": 0.000624,
+            "total_return_compounded_pct": 2.71,
+            "avg_win": 0.010182,
+            "avg_loss": -0.010462,
+            "profit_factor": 1.129,
+            "trades_per_year": 10.8
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "SBIN.NS": {
+          "bars": 1240,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 49,
+            "hit_rate_pct": 34.69,
+            "expectancy": -0.001704,
+            "total_return_compounded_pct": -8.39,
+            "avg_win": 0.010533,
+            "avg_loss": -0.008204,
+            "profit_factor": 0.682,
+            "trades_per_year": 9.8
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 143,
+            "hit_rate_pct": 46.15,
+            "expectancy": -3.3e-05,
+            "total_return_compounded_pct": -3.19,
+            "avg_win": 0.013546,
+            "avg_loss": -0.011671,
+            "profit_factor": 0.995,
+            "trades_per_year": 28.6
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 15,
+            "hit_rate_pct": 40.0,
+            "expectancy": -0.000526,
+            "total_return_compounded_pct": -0.9,
+            "avg_win": 0.009972,
+            "avg_loss": -0.007525,
+            "profit_factor": 0.883,
+            "trades_per_year": 3.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 42,
+            "hit_rate_pct": 45.24,
+            "expectancy": -0.00168,
+            "total_return_compounded_pct": -7.48,
+            "avg_win": 0.012833,
+            "avg_loss": -0.013669,
+            "profit_factor": 0.776,
+            "trades_per_year": 8.4
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 4,
+            "hit_rate_pct": 75.0,
+            "expectancy": 0.009067,
+            "total_return_compounded_pct": 3.61,
+            "avg_win": 0.013502,
+            "avg_loss": -0.004241,
+            "profit_factor": 9.551,
+            "trades_per_year": 0.8
+          }
+        },
+        "AAPL": {
+          "bars": 1254,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 45,
+            "hit_rate_pct": 48.89,
+            "expectancy": -0.001172,
+            "total_return_compounded_pct": -5.62,
+            "avg_win": 0.011614,
+            "avg_loss": -0.013402,
+            "profit_factor": 0.829,
+            "trades_per_year": 9.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 137,
+            "hit_rate_pct": 45.99,
+            "expectancy": -0.001205,
+            "total_return_compounded_pct": -17.71,
+            "avg_win": 0.01249,
+            "avg_loss": -0.012865,
+            "profit_factor": 0.827,
+            "trades_per_year": 27.4
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 12,
+            "hit_rate_pct": 58.33,
+            "expectancy": -0.001244,
+            "total_return_compounded_pct": -1.56,
+            "avg_win": 0.007552,
+            "avg_loss": -0.013559,
+            "profit_factor": 0.78,
+            "trades_per_year": 2.4
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 39,
+            "hit_rate_pct": 38.46,
+            "expectancy": -0.002976,
+            "total_return_compounded_pct": -11.39,
+            "avg_win": 0.010951,
+            "avg_loss": -0.01168,
+            "profit_factor": 0.586,
+            "trades_per_year": 7.8
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "MSFT": {
+          "bars": 1254,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 52,
+            "hit_rate_pct": 40.38,
+            "expectancy": -0.001456,
+            "total_return_compounded_pct": -7.97,
+            "avg_win": 0.01257,
+            "avg_loss": -0.010957,
+            "profit_factor": 0.777,
+            "trades_per_year": 10.4
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 132,
+            "hit_rate_pct": 53.03,
+            "expectancy": 0.001027,
+            "total_return_compounded_pct": 11.7,
+            "avg_win": 0.013789,
+            "avg_loss": -0.013382,
+            "profit_factor": 1.163,
+            "trades_per_year": 26.4
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 16,
+            "hit_rate_pct": 31.25,
+            "expectancy": -0.005335,
+            "total_return_compounded_pct": -8.46,
+            "avg_win": 0.012205,
+            "avg_loss": -0.013307,
+            "profit_factor": 0.417,
+            "trades_per_year": 3.2
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 45,
+            "hit_rate_pct": 53.33,
+            "expectancy": 0.003318,
+            "total_return_compounded_pct": 14.6,
+            "avg_win": 0.017264,
+            "avg_loss": -0.012621,
+            "profit_factor": 1.563,
+            "trades_per_year": 9.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "GOOGL": {
+          "bars": 1254,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 47,
+            "hit_rate_pct": 57.45,
+            "expectancy": 0.00053,
+            "total_return_compounded_pct": 1.12,
+            "avg_win": 0.015959,
+            "avg_loss": -0.020301,
+            "profit_factor": 1.061,
+            "trades_per_year": 9.4
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 143,
+            "hit_rate_pct": 47.55,
+            "expectancy": -0.000627,
+            "total_return_compounded_pct": -11.7,
+            "avg_win": 0.015851,
+            "avg_loss": -0.015567,
+            "profit_factor": 0.923,
+            "trades_per_year": 28.6
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 8,
+            "hit_rate_pct": 62.5,
+            "expectancy": 0.008893,
+            "total_return_compounded_pct": 7.17,
+            "avg_win": 0.02213,
+            "avg_loss": -0.01317,
+            "profit_factor": 2.801,
+            "trades_per_year": 1.6
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 45,
+            "hit_rate_pct": 51.11,
+            "expectancy": 0.002649,
+            "total_return_compounded_pct": 11.41,
+            "avg_win": 0.018297,
+            "avg_loss": -0.01371,
+            "profit_factor": 1.395,
+            "trades_per_year": 9.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "SPY": {
+          "bars": 1254,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 36,
+            "hit_rate_pct": 50.0,
+            "expectancy": 0.000553,
+            "total_return_compounded_pct": 1.79,
+            "avg_win": 0.010173,
+            "avg_loss": -0.009066,
+            "profit_factor": 1.122,
+            "trades_per_year": 7.2
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 134,
+            "hit_rate_pct": 48.51,
+            "expectancy": 0.000569,
+            "total_return_compounded_pct": 6.66,
+            "avg_win": 0.00832,
+            "avg_loss": -0.006733,
+            "profit_factor": 1.164,
+            "trades_per_year": 26.8
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 10,
+            "hit_rate_pct": 30.0,
+            "expectancy": -0.003684,
+            "total_return_compounded_pct": -3.67,
+            "avg_win": 0.008779,
+            "avg_loss": -0.009025,
+            "profit_factor": 0.417,
+            "trades_per_year": 2.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 65,
+            "hit_rate_pct": 53.85,
+            "expectancy": 0.000555,
+            "total_return_compounded_pct": 3.14,
+            "avg_win": 0.008769,
+            "avg_loss": -0.009027,
+            "profit_factor": 1.133,
+            "trades_per_year": 13.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "QQQ": {
+          "bars": 1254,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 42,
+            "hit_rate_pct": 52.38,
+            "expectancy": 0.000982,
+            "total_return_compounded_pct": 3.71,
+            "avg_win": 0.012799,
+            "avg_loss": -0.012017,
+            "profit_factor": 1.172,
+            "trades_per_year": 8.4
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 130,
+            "hit_rate_pct": 40.77,
+            "expectancy": -0.000752,
+            "total_return_compounded_pct": -10.77,
+            "avg_win": 0.010763,
+            "avg_loss": -0.008677,
+            "profit_factor": 0.854,
+            "trades_per_year": 26.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 10,
+            "hit_rate_pct": 60.0,
+            "expectancy": -0.002832,
+            "total_return_compounded_pct": -2.89,
+            "avg_win": 0.006116,
+            "avg_loss": -0.016253,
+            "profit_factor": 0.564,
+            "trades_per_year": 2.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 45,
+            "hit_rate_pct": 44.44,
+            "expectancy": -0.003188,
+            "total_return_compounded_pct": -13.85,
+            "avg_win": 0.009141,
+            "avg_loss": -0.013051,
+            "profit_factor": 0.56,
+            "trades_per_year": 9.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        }
+      }
+    },
+    {
+      "label": "recent_2y",
+      "years": 2,
+      "pooled": {
+        "mom_cross": {
+          "strategy": "mom_cross",
+          "n_trades": 183,
+          "hit_rate_pct": 50.82,
+          "expectancy": 0.00081,
+          "total_return_compounded_pct": 13.85,
+          "avg_win": 0.010511,
+          "avg_loss": -0.009215,
+          "profit_factor": 1.179,
+          "trades_per_year": 91.5
+        },
+        "mean_rev_bb": {
+          "strategy": "mean_rev_bb",
+          "n_trades": 567,
+          "hit_rate_pct": 46.03,
+          "expectancy": -0.000805,
+          "total_return_compounded_pct": -42.99,
+          "avg_win": 0.012508,
+          "avg_loss": -0.012161,
+          "profit_factor": 0.877,
+          "trades_per_year": 283.5
+        },
+        "trend_follow": {
+          "strategy": "trend_follow",
+          "n_trades": 47,
+          "hit_rate_pct": 48.94,
+          "expectancy": -0.000185,
+          "total_return_compounded_pct": -1.19,
+          "avg_win": 0.008661,
+          "avg_loss": -0.008662,
+          "profit_factor": 0.958,
+          "trades_per_year": 23.5
+        },
+        "mean_rev_chop": {
+          "strategy": "mean_rev_chop",
+          "n_trades": 215,
+          "hit_rate_pct": 42.79,
+          "expectancy": -0.001816,
+          "total_return_compounded_pct": -34.53,
+          "avg_win": 0.01208,
+          "avg_loss": -0.01221,
+          "profit_factor": 0.74,
+          "trades_per_year": 107.5
+        },
+        "playbook_router": {
+          "strategy": "playbook_router",
+          "n_trades": 2,
+          "hit_rate_pct": 100.0,
+          "expectancy": 0.006591,
+          "total_return_compounded_pct": 1.32,
+          "avg_win": 0.006591,
+          "avg_loss": 0,
+          "profit_factor": null,
+          "trades_per_year": 1.0
+        }
+      },
+      "per_ticker": {
+        "RELIANCE.NS": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 23,
+            "hit_rate_pct": 39.13,
+            "expectancy": -0.001132,
+            "total_return_compounded_pct": -2.7,
+            "avg_win": 0.008567,
+            "avg_loss": -0.007367,
+            "profit_factor": 0.748,
+            "trades_per_year": 11.5
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 46,
+            "hit_rate_pct": 50.0,
+            "expectancy": -0.001286,
+            "total_return_compounded_pct": -6.23,
+            "avg_win": 0.009863,
+            "avg_loss": -0.012436,
+            "profit_factor": 0.793,
+            "trades_per_year": 23.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 4,
+            "hit_rate_pct": 25.0,
+            "expectancy": -0.001318,
+            "total_return_compounded_pct": -0.53,
+            "avg_win": 0.00138,
+            "avg_loss": -0.002217,
+            "profit_factor": 0.207,
+            "trades_per_year": 2.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 23,
+            "hit_rate_pct": 47.83,
+            "expectancy": -0.00265,
+            "total_return_compounded_pct": -6.26,
+            "avg_win": 0.011802,
+            "avg_loss": -0.015897,
+            "profit_factor": 0.681,
+            "trades_per_year": 11.5
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 1,
+            "hit_rate_pct": 100.0,
+            "expectancy": 0.013155,
+            "total_return_compounded_pct": 1.32,
+            "avg_win": 0.013155,
+            "avg_loss": 0,
+            "profit_factor": null,
+            "trades_per_year": 0.5
+          }
+        },
+        "TCS.NS": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 13,
+            "hit_rate_pct": 69.23,
+            "expectancy": 0.003051,
+            "total_return_compounded_pct": 4.0,
+            "avg_win": 0.006149,
+            "avg_loss": -0.003919,
+            "profit_factor": 3.53,
+            "trades_per_year": 6.5
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 52,
+            "hit_rate_pct": 42.31,
+            "expectancy": -0.000378,
+            "total_return_compounded_pct": -2.7,
+            "avg_win": 0.012619,
+            "avg_loss": -0.009909,
+            "profit_factor": 0.934,
+            "trades_per_year": 26.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 2,
+            "hit_rate_pct": 0.0,
+            "expectancy": -0.004993,
+            "total_return_compounded_pct": -1.0,
+            "avg_win": 0,
+            "avg_loss": -0.004993,
+            "profit_factor": 0.0,
+            "trades_per_year": 1.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 22,
+            "hit_rate_pct": 31.82,
+            "expectancy": -0.003798,
+            "total_return_compounded_pct": -8.19,
+            "avg_win": 0.010471,
+            "avg_loss": -0.010457,
+            "profit_factor": 0.467,
+            "trades_per_year": 11.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "INFY.NS": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 17,
+            "hit_rate_pct": 52.94,
+            "expectancy": 0.005983,
+            "total_return_compounded_pct": 10.25,
+            "avg_win": 0.017915,
+            "avg_loss": -0.007442,
+            "profit_factor": 2.708,
+            "trades_per_year": 8.5
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 44,
+            "hit_rate_pct": 54.55,
+            "expectancy": 0.002704,
+            "total_return_compounded_pct": 12.07,
+            "avg_win": 0.012793,
+            "avg_loss": -0.009403,
+            "profit_factor": 1.633,
+            "trades_per_year": 22.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 3,
+            "hit_rate_pct": 66.67,
+            "expectancy": 0.002319,
+            "total_return_compounded_pct": 0.69,
+            "avg_win": 0.007277,
+            "avg_loss": -0.007597,
+            "profit_factor": 1.916,
+            "trades_per_year": 1.5
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 16,
+            "hit_rate_pct": 31.25,
+            "expectancy": -0.001224,
+            "total_return_compounded_pct": -2.04,
+            "avg_win": 0.011303,
+            "avg_loss": -0.006918,
+            "profit_factor": 0.743,
+            "trades_per_year": 8.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "HDFCBANK.NS": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 15,
+            "hit_rate_pct": 40.0,
+            "expectancy": -0.003284,
+            "total_return_compounded_pct": -4.88,
+            "avg_win": 0.004898,
+            "avg_loss": -0.008739,
+            "profit_factor": 0.374,
+            "trades_per_year": 7.5
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 55,
+            "hit_rate_pct": 32.73,
+            "expectancy": -0.003495,
+            "total_return_compounded_pct": -17.87,
+            "avg_win": 0.010053,
+            "avg_loss": -0.010086,
+            "profit_factor": 0.485,
+            "trades_per_year": 27.5
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 2,
+            "hit_rate_pct": 0.0,
+            "expectancy": -0.004492,
+            "total_return_compounded_pct": -0.9,
+            "avg_win": 0,
+            "avg_loss": -0.004492,
+            "profit_factor": 0.0,
+            "trades_per_year": 1.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 30,
+            "hit_rate_pct": 30.0,
+            "expectancy": -0.003243,
+            "total_return_compounded_pct": -9.42,
+            "avg_win": 0.008776,
+            "avg_loss": -0.008395,
+            "profit_factor": 0.448,
+            "trades_per_year": 15.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "ICICIBANK.NS": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 24,
+            "hit_rate_pct": 54.17,
+            "expectancy": 0.001366,
+            "total_return_compounded_pct": 3.15,
+            "avg_win": 0.009524,
+            "avg_loss": -0.008276,
+            "profit_factor": 1.36,
+            "trades_per_year": 12.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 48,
+            "hit_rate_pct": 45.83,
+            "expectancy": -0.00127,
+            "total_return_compounded_pct": -6.3,
+            "avg_win": 0.009857,
+            "avg_loss": -0.010685,
+            "profit_factor": 0.781,
+            "trades_per_year": 24.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 6,
+            "hit_rate_pct": 83.33,
+            "expectancy": 0.008641,
+            "total_return_compounded_pct": 5.28,
+            "avg_win": 0.010376,
+            "avg_loss": -3.4e-05,
+            "profit_factor": 1535.933,
+            "trades_per_year": 3.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 23,
+            "hit_rate_pct": 43.48,
+            "expectancy": -0.002766,
+            "total_return_compounded_pct": -6.39,
+            "avg_win": 0.009379,
+            "avg_loss": -0.012109,
+            "profit_factor": 0.596,
+            "trades_per_year": 11.5
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "SBIN.NS": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 18,
+            "hit_rate_pct": 50.0,
+            "expectancy": 0.00059,
+            "total_return_compounded_pct": 0.95,
+            "avg_win": 0.008566,
+            "avg_loss": -0.007386,
+            "profit_factor": 1.16,
+            "trades_per_year": 9.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 53,
+            "hit_rate_pct": 52.83,
+            "expectancy": -0.000801,
+            "total_return_compounded_pct": -4.72,
+            "avg_win": 0.009425,
+            "avg_loss": -0.012255,
+            "profit_factor": 0.861,
+            "trades_per_year": 26.5
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 6,
+            "hit_rate_pct": 33.33,
+            "expectancy": -0.006116,
+            "total_return_compounded_pct": -3.64,
+            "avg_win": 0.003805,
+            "avg_loss": -0.011076,
+            "profit_factor": 0.172,
+            "trades_per_year": 3.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 12,
+            "hit_rate_pct": 50.0,
+            "expectancy": -0.003796,
+            "total_return_compounded_pct": -4.62,
+            "avg_win": 0.008002,
+            "avg_loss": -0.015594,
+            "profit_factor": 0.513,
+            "trades_per_year": 6.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 1,
+            "hit_rate_pct": 100.0,
+            "expectancy": 2.7e-05,
+            "total_return_compounded_pct": 0.0,
+            "avg_win": 2.7e-05,
+            "avg_loss": 0,
+            "profit_factor": null,
+            "trades_per_year": 0.5
+          }
+        },
+        "AAPL": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 16,
+            "hit_rate_pct": 50.0,
+            "expectancy": -0.002481,
+            "total_return_compounded_pct": -4.03,
+            "avg_win": 0.006895,
+            "avg_loss": -0.011857,
+            "profit_factor": 0.581,
+            "trades_per_year": 8.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 61,
+            "hit_rate_pct": 40.98,
+            "expectancy": -0.002888,
+            "total_return_compounded_pct": -18.03,
+            "avg_win": 0.015319,
+            "avg_loss": -0.015531,
+            "profit_factor": 0.685,
+            "trades_per_year": 30.5
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 5,
+            "hit_rate_pct": 80.0,
+            "expectancy": 0.001569,
+            "total_return_compounded_pct": 0.78,
+            "avg_win": 0.004295,
+            "avg_loss": -0.009337,
+            "profit_factor": 1.84,
+            "trades_per_year": 2.5
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 18,
+            "hit_rate_pct": 38.89,
+            "expectancy": -0.003684,
+            "total_return_compounded_pct": -6.68,
+            "avg_win": 0.010382,
+            "avg_loss": -0.012635,
+            "profit_factor": 0.523,
+            "trades_per_year": 9.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "MSFT": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 20,
+            "hit_rate_pct": 45.0,
+            "expectancy": 0.000802,
+            "total_return_compounded_pct": 1.33,
+            "avg_win": 0.015134,
+            "avg_loss": -0.010924,
+            "profit_factor": 1.133,
+            "trades_per_year": 10.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 55,
+            "hit_rate_pct": 43.64,
+            "expectancy": -0.001539,
+            "total_return_compounded_pct": -9.35,
+            "avg_win": 0.015183,
+            "avg_loss": -0.014485,
+            "profit_factor": 0.811,
+            "trades_per_year": 27.5
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 6,
+            "hit_rate_pct": 50.0,
+            "expectancy": 0.003141,
+            "total_return_compounded_pct": 1.84,
+            "avg_win": 0.016586,
+            "avg_loss": -0.010304,
+            "profit_factor": 1.61,
+            "trades_per_year": 3.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 16,
+            "hit_rate_pct": 31.25,
+            "expectancy": 0.000853,
+            "total_return_compounded_pct": 0.63,
+            "avg_win": 0.029927,
+            "avg_loss": -0.012362,
+            "profit_factor": 1.1,
+            "trades_per_year": 8.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "GOOGL": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 13,
+            "hit_rate_pct": 61.54,
+            "expectancy": 0.000988,
+            "total_return_compounded_pct": 1.04,
+            "avg_win": 0.013699,
+            "avg_loss": -0.019349,
+            "profit_factor": 1.133,
+            "trades_per_year": 6.5
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 56,
+            "hit_rate_pct": 48.21,
+            "expectancy": -0.002457,
+            "total_return_compounded_pct": -14.22,
+            "avg_win": 0.014904,
+            "avg_loss": -0.018621,
+            "profit_factor": 0.745,
+            "trades_per_year": 28.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 3,
+            "hit_rate_pct": 66.67,
+            "expectancy": 0.005531,
+            "total_return_compounded_pct": 1.59,
+            "avg_win": 0.0176,
+            "avg_loss": -0.018605,
+            "profit_factor": 1.892,
+            "trades_per_year": 1.5
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 14,
+            "hit_rate_pct": 57.14,
+            "expectancy": 0.000579,
+            "total_return_compounded_pct": 0.45,
+            "avg_win": 0.016979,
+            "avg_loss": -0.021288,
+            "profit_factor": 1.063,
+            "trades_per_year": 7.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "SPY": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 12,
+            "hit_rate_pct": 41.67,
+            "expectancy": 0.000911,
+            "total_return_compounded_pct": 1.03,
+            "avg_win": 0.012313,
+            "avg_loss": -0.007234,
+            "profit_factor": 1.216,
+            "trades_per_year": 6.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 46,
+            "hit_rate_pct": 52.17,
+            "expectancy": 0.003179,
+            "total_return_compounded_pct": 14.74,
+            "avg_win": 0.012704,
+            "avg_loss": -0.007212,
+            "profit_factor": 1.922,
+            "trades_per_year": 23.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 6,
+            "hit_rate_pct": 16.67,
+            "expectancy": -0.005108,
+            "total_return_compounded_pct": -3.04,
+            "avg_win": 0.006891,
+            "avg_loss": -0.007507,
+            "profit_factor": 0.184,
+            "trades_per_year": 3.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 24,
+            "hit_rate_pct": 62.5,
+            "expectancy": 0.003318,
+            "total_return_compounded_pct": 7.93,
+            "avg_win": 0.012075,
+            "avg_loss": -0.011276,
+            "profit_factor": 1.785,
+            "trades_per_year": 12.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "QQQ": {
+          "bars": 501,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 12,
+            "hit_rate_pct": 66.67,
+            "expectancy": 0.003218,
+            "total_return_compounded_pct": 3.8,
+            "avg_win": 0.011381,
+            "avg_loss": -0.013109,
+            "profit_factor": 1.736,
+            "trades_per_year": 6.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 51,
+            "hit_rate_pct": 47.06,
+            "expectancy": 0.001001,
+            "total_return_compounded_pct": 3.98,
+            "avg_win": 0.014034,
+            "avg_loss": -0.010584,
+            "profit_factor": 1.179,
+            "trades_per_year": 25.5
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 4,
+            "hit_rate_pct": 75.0,
+            "expectancy": -0.004797,
+            "total_return_compounded_pct": -1.97,
+            "avg_win": 0.004914,
+            "avg_loss": -0.033929,
+            "profit_factor": 0.435,
+            "trades_per_year": 2.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 17,
+            "hit_rate_pct": 52.94,
+            "expectancy": -0.003235,
+            "total_return_compounded_pct": -5.67,
+            "avg_win": 0.01019,
+            "avg_loss": -0.018339,
+            "profit_factor": 0.625,
+            "trades_per_year": 8.5
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        }
+      }
+    },
+    {
+      "label": "recent_1y",
+      "years": 1,
+      "pooled": {
+        "mom_cross": {
+          "strategy": "mom_cross",
+          "n_trades": 86,
+          "hit_rate_pct": 48.84,
+          "expectancy": 0.002636,
+          "total_return_compounded_pct": 23.85,
+          "avg_win": 0.015,
+          "avg_loss": -0.009167,
+          "profit_factor": 1.562,
+          "trades_per_year": 86.0
+        },
+        "mean_rev_bb": {
+          "strategy": "mean_rev_bb",
+          "n_trades": 248,
+          "hit_rate_pct": 45.16,
+          "expectancy": -0.001185,
+          "total_return_compounded_pct": -28.4,
+          "avg_win": 0.013078,
+          "avg_loss": -0.012932,
+          "profit_factor": 0.833,
+          "trades_per_year": 248.0
+        },
+        "trend_follow": {
+          "strategy": "trend_follow",
+          "n_trades": 23,
+          "hit_rate_pct": 47.83,
+          "expectancy": -0.000173,
+          "total_return_compounded_pct": -0.62,
+          "avg_win": 0.010337,
+          "avg_loss": -0.009808,
+          "profit_factor": 0.966,
+          "trades_per_year": 23.0
+        },
+        "mean_rev_chop": {
+          "strategy": "mean_rev_chop",
+          "n_trades": 104,
+          "hit_rate_pct": 40.38,
+          "expectancy": -0.003137,
+          "total_return_compounded_pct": -28.83,
+          "avg_win": 0.011349,
+          "avg_loss": -0.012951,
+          "profit_factor": 0.594,
+          "trades_per_year": 104.0
+        },
+        "playbook_router": {
+          "strategy": "playbook_router",
+          "n_trades": 1,
+          "hit_rate_pct": 100.0,
+          "expectancy": 2.7e-05,
+          "total_return_compounded_pct": 0.0,
+          "avg_win": 2.7e-05,
+          "avg_loss": 0,
+          "profit_factor": null,
+          "trades_per_year": 1.0
+        }
+      },
+      "per_ticker": {
+        "RELIANCE.NS": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 10,
+            "hit_rate_pct": 30.0,
+            "expectancy": -0.001797,
+            "total_return_compounded_pct": -1.83,
+            "avg_win": 0.008955,
+            "avg_loss": -0.006404,
+            "profit_factor": 0.599,
+            "trades_per_year": 10.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 19,
+            "hit_rate_pct": 47.37,
+            "expectancy": 0.00025,
+            "total_return_compounded_pct": 0.25,
+            "avg_win": 0.011677,
+            "avg_loss": -0.010034,
+            "profit_factor": 1.047,
+            "trades_per_year": 19.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 2,
+            "hit_rate_pct": 0.0,
+            "expectancy": -0.002281,
+            "total_return_compounded_pct": -0.46,
+            "avg_win": 0,
+            "avg_loss": -0.002281,
+            "profit_factor": 0.0,
+            "trades_per_year": 2.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 11,
+            "hit_rate_pct": 45.45,
+            "expectancy": 0.000379,
+            "total_return_compounded_pct": 0.24,
+            "avg_win": 0.014761,
+            "avg_loss": -0.011606,
+            "profit_factor": 1.06,
+            "trades_per_year": 11.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "TCS.NS": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 5,
+            "hit_rate_pct": 60.0,
+            "expectancy": 0.00538,
+            "total_return_compounded_pct": 2.69,
+            "avg_win": 0.013375,
+            "avg_loss": -0.006613,
+            "profit_factor": 3.034,
+            "trades_per_year": 5.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 25,
+            "hit_rate_pct": 44.0,
+            "expectancy": 0.001637,
+            "total_return_compounded_pct": 3.57,
+            "avg_win": 0.017395,
+            "avg_loss": -0.010744,
+            "profit_factor": 1.272,
+            "trades_per_year": 25.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 1,
+            "hit_rate_pct": 0.0,
+            "expectancy": -0.008889,
+            "total_return_compounded_pct": -0.89,
+            "avg_win": 0,
+            "avg_loss": -0.008889,
+            "profit_factor": 0.0,
+            "trades_per_year": 1.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 7,
+            "hit_rate_pct": 42.86,
+            "expectancy": -0.001462,
+            "total_return_compounded_pct": -1.09,
+            "avg_win": 0.012194,
+            "avg_loss": -0.011704,
+            "profit_factor": 0.781,
+            "trades_per_year": 7.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "INFY.NS": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 8,
+            "hit_rate_pct": 50.0,
+            "expectancy": 0.013981,
+            "total_return_compounded_pct": 11.4,
+            "avg_win": 0.035603,
+            "avg_loss": -0.007642,
+            "profit_factor": 4.659,
+            "trades_per_year": 8.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 20,
+            "hit_rate_pct": 55.0,
+            "expectancy": 0.004448,
+            "total_return_compounded_pct": 9.09,
+            "avg_win": 0.01435,
+            "avg_loss": -0.007654,
+            "profit_factor": 2.291,
+            "trades_per_year": 20.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 6,
+            "hit_rate_pct": 16.67,
+            "expectancy": -0.004196,
+            "total_return_compounded_pct": -2.51,
+            "avg_win": 0.009845,
+            "avg_loss": -0.007004,
+            "profit_factor": 0.281,
+            "trades_per_year": 6.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "HDFCBANK.NS": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 7,
+            "hit_rate_pct": 28.57,
+            "expectancy": -0.004616,
+            "total_return_compounded_pct": -3.25,
+            "avg_win": 0.012201,
+            "avg_loss": -0.011343,
+            "profit_factor": 0.43,
+            "trades_per_year": 7.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 25,
+            "hit_rate_pct": 32.0,
+            "expectancy": -0.002984,
+            "total_return_compounded_pct": -7.47,
+            "avg_win": 0.013413,
+            "avg_loss": -0.010701,
+            "profit_factor": 0.59,
+            "trades_per_year": 25.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 1,
+            "hit_rate_pct": 0.0,
+            "expectancy": -0.008888,
+            "total_return_compounded_pct": -0.89,
+            "avg_win": 0,
+            "avg_loss": -0.008888,
+            "profit_factor": 0.0,
+            "trades_per_year": 1.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 18,
+            "hit_rate_pct": 22.22,
+            "expectancy": -0.00318,
+            "total_return_compounded_pct": -5.68,
+            "avg_win": 0.013661,
+            "avg_loss": -0.007992,
+            "profit_factor": 0.488,
+            "trades_per_year": 18.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "ICICIBANK.NS": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 9,
+            "hit_rate_pct": 66.67,
+            "expectancy": 0.008364,
+            "total_return_compounded_pct": 7.72,
+            "avg_win": 0.01411,
+            "avg_loss": -0.003126,
+            "profit_factor": 9.026,
+            "trades_per_year": 9.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 18,
+            "hit_rate_pct": 38.89,
+            "expectancy": -0.004281,
+            "total_return_compounded_pct": -7.64,
+            "avg_win": 0.012047,
+            "avg_loss": -0.014671,
+            "profit_factor": 0.523,
+            "trades_per_year": 18.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 4,
+            "hit_rate_pct": 75.0,
+            "expectancy": 0.010494,
+            "total_return_compounded_pct": 4.25,
+            "avg_win": 0.014003,
+            "avg_loss": -3.4e-05,
+            "profit_factor": 1243.703,
+            "trades_per_year": 4.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 6,
+            "hit_rate_pct": 0.0,
+            "expectancy": -0.018493,
+            "total_return_compounded_pct": -10.62,
+            "avg_win": 0,
+            "avg_loss": -0.018493,
+            "profit_factor": 0.0,
+            "trades_per_year": 6.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "SBIN.NS": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 8,
+            "hit_rate_pct": 37.5,
+            "expectancy": -0.00057,
+            "total_return_compounded_pct": -0.55,
+            "avg_win": 0.013485,
+            "avg_loss": -0.009003,
+            "profit_factor": 0.899,
+            "trades_per_year": 8.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 30,
+            "hit_rate_pct": 46.67,
+            "expectancy": -0.001877,
+            "total_return_compounded_pct": -5.92,
+            "avg_win": 0.011615,
+            "avg_loss": -0.013683,
+            "profit_factor": 0.743,
+            "trades_per_year": 30.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 3,
+            "hit_rate_pct": 33.33,
+            "expectancy": -0.01031,
+            "total_return_compounded_pct": -3.08,
+            "avg_win": 0.002638,
+            "avg_loss": -0.016784,
+            "profit_factor": 0.079,
+            "trades_per_year": 3.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 8,
+            "hit_rate_pct": 37.5,
+            "expectancy": -0.006205,
+            "total_return_compounded_pct": -4.99,
+            "avg_win": 0.009579,
+            "avg_loss": -0.015675,
+            "profit_factor": 0.367,
+            "trades_per_year": 8.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 1,
+            "hit_rate_pct": 100.0,
+            "expectancy": 2.7e-05,
+            "total_return_compounded_pct": 0.0,
+            "avg_win": 2.7e-05,
+            "avg_loss": 0,
+            "profit_factor": null,
+            "trades_per_year": 1.0
+          }
+        },
+        "AAPL": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 7,
+            "hit_rate_pct": 57.14,
+            "expectancy": 0.002404,
+            "total_return_compounded_pct": 1.68,
+            "avg_win": 0.00751,
+            "avg_loss": -0.004404,
+            "profit_factor": 2.273,
+            "trades_per_year": 7.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 25,
+            "hit_rate_pct": 52.0,
+            "expectancy": 4e-06,
+            "total_return_compounded_pct": -0.15,
+            "avg_win": 0.008082,
+            "avg_loss": -0.008747,
+            "profit_factor": 1.001,
+            "trades_per_year": 25.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 2,
+            "hit_rate_pct": 100.0,
+            "expectancy": 0.00616,
+            "total_return_compounded_pct": 1.24,
+            "avg_win": 0.00616,
+            "avg_loss": 0,
+            "profit_factor": null,
+            "trades_per_year": 2.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 9,
+            "hit_rate_pct": 55.56,
+            "expectancy": -0.001779,
+            "total_return_compounded_pct": -1.62,
+            "avg_win": 0.003795,
+            "avg_loss": -0.008747,
+            "profit_factor": 0.542,
+            "trades_per_year": 9.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "MSFT": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 9,
+            "hit_rate_pct": 33.33,
+            "expectancy": -0.000342,
+            "total_return_compounded_pct": -0.51,
+            "avg_win": 0.022881,
+            "avg_loss": -0.011954,
+            "profit_factor": 0.957,
+            "trades_per_year": 9.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 24,
+            "hit_rate_pct": 37.5,
+            "expectancy": -0.009246,
+            "total_return_compounded_pct": -20.44,
+            "avg_win": 0.012543,
+            "avg_loss": -0.02232,
+            "profit_factor": 0.337,
+            "trades_per_year": 24.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 1,
+            "hit_rate_pct": 0.0,
+            "expectancy": -0.012164,
+            "total_return_compounded_pct": -1.22,
+            "avg_win": 0,
+            "avg_loss": -0.012164,
+            "profit_factor": 0.0,
+            "trades_per_year": 1.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 7,
+            "hit_rate_pct": 28.57,
+            "expectancy": -0.014076,
+            "total_return_compounded_pct": -9.57,
+            "avg_win": 0.003983,
+            "avg_loss": -0.0213,
+            "profit_factor": 0.075,
+            "trades_per_year": 7.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "GOOGL": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 9,
+            "hit_rate_pct": 77.78,
+            "expectancy": 0.006908,
+            "total_return_compounded_pct": 6.19,
+            "avg_win": 0.015642,
+            "avg_loss": -0.023663,
+            "profit_factor": 2.314,
+            "trades_per_year": 9.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 28,
+            "hit_rate_pct": 32.14,
+            "expectancy": -0.004521,
+            "total_return_compounded_pct": -12.6,
+            "avg_win": 0.019811,
+            "avg_loss": -0.016047,
+            "profit_factor": 0.585,
+            "trades_per_year": 28.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 1,
+            "hit_rate_pct": 100.0,
+            "expectancy": 0.035102,
+            "total_return_compounded_pct": 3.51,
+            "avg_win": 0.035102,
+            "avg_loss": 0,
+            "profit_factor": null,
+            "trades_per_year": 1.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 10,
+            "hit_rate_pct": 40.0,
+            "expectancy": -0.006549,
+            "total_return_compounded_pct": -6.6,
+            "avg_win": 0.01556,
+            "avg_loss": -0.021288,
+            "profit_factor": 0.487,
+            "trades_per_year": 10.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "SPY": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 7,
+            "hit_rate_pct": 28.57,
+            "expectancy": -0.001069,
+            "total_return_compounded_pct": -0.77,
+            "avg_win": 0.010639,
+            "avg_loss": -0.005752,
+            "profit_factor": 0.74,
+            "trades_per_year": 7.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 15,
+            "hit_rate_pct": 73.33,
+            "expectancy": 0.006813,
+            "total_return_compounded_pct": 10.64,
+            "avg_win": 0.011414,
+            "avg_loss": -0.005838,
+            "profit_factor": 5.376,
+            "trades_per_year": 15.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 4,
+            "hit_rate_pct": 25.0,
+            "expectancy": -0.002192,
+            "total_return_compounded_pct": -0.88,
+            "avg_win": 0.006891,
+            "avg_loss": -0.005219,
+            "profit_factor": 0.44,
+            "trades_per_year": 4.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 11,
+            "hit_rate_pct": 81.82,
+            "expectancy": 0.010268,
+            "total_return_compounded_pct": 11.84,
+            "avg_win": 0.013773,
+            "avg_loss": -0.005502,
+            "profit_factor": 11.265,
+            "trades_per_year": 11.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        },
+        "QQQ": {
+          "bars": 251,
+          "mom_cross": {
+            "strategy": "mom_cross",
+            "n_trades": 7,
+            "hit_rate_pct": 71.43,
+            "expectancy": -0.000135,
+            "total_return_compounded_pct": -0.18,
+            "avg_win": 0.008328,
+            "avg_loss": -0.021295,
+            "profit_factor": 0.978,
+            "trades_per_year": 7.0
+          },
+          "mean_rev_bb": {
+            "strategy": "mean_rev_bb",
+            "n_trades": 19,
+            "hit_rate_pct": 52.63,
+            "expectancy": 0.001346,
+            "total_return_compounded_pct": 2.35,
+            "avg_win": 0.01344,
+            "avg_loss": -0.012092,
+            "profit_factor": 1.235,
+            "trades_per_year": 19.0
+          },
+          "trend_follow": {
+            "strategy": "trend_follow",
+            "n_trades": 4,
+            "hit_rate_pct": 75.0,
+            "expectancy": -0.004797,
+            "total_return_compounded_pct": -1.97,
+            "avg_win": 0.004914,
+            "avg_loss": -0.033929,
+            "profit_factor": 0.435,
+            "trades_per_year": 4.0
+          },
+          "mean_rev_chop": {
+            "strategy": "mean_rev_chop",
+            "n_trades": 11,
+            "hit_rate_pct": 54.55,
+            "expectancy": -0.000919,
+            "total_return_compounded_pct": -1.11,
+            "avg_win": 0.009986,
+            "avg_loss": -0.014006,
+            "profit_factor": 0.856,
+            "trades_per_year": 11.0
+          },
+          "playbook_router": {
+            "strategy": "playbook_router",
+            "n_trades": 0,
+            "hit_rate_pct": null,
+            "expectancy": null,
+            "total_return_compounded_pct": null,
+            "trades_per_year": null,
+            "profit_factor": null
+          }
+        }
+      }
+    }
+  ],
+  "hypothetical_10k_usd_1_day": {
+    "capital_usd": 10000.0,
+    "horizon": "1_trading_day",
+    "strategy_used": "playbook_router",
+    "hit_rate_pct": 80.0,
+    "expectancy_per_trade": 0.009884,
+    "trades_per_year": 1.0,
+    "prob_trade_on_random_day": 0.004,
+    "if_one_full_capital_trade_fires_expected_pnl_usd": 98.84,
+    "expected_pnl_usd_average_day": 0.39,
+    "assumptions": [
+      "Uses backtest expectancy after 10 bps cost on daily next-bar fills",
+      "One full $10k deployment if a signal fires (no intraday pyramiding)",
+      "Average-day figure multiplies by historical fire rate (trades/year / 252)",
+      "Not a promise of profit; paper simulation only"
+    ]
+  },
+  "ladder_path": "C:\\Users\\siddu\\projects\\trade_bot\\models\\hit_rate_ladder.json",
+  "ladder_ambition_rows": 0,
+  "disclaimer": "Paper simulation \u2014 not live broker fills; not investment advice.",
+  "hypothetical_10k_by_window": {
+    "full_5y": {
+      "strategy_used": "playbook_router",
+      "hit_rate_pct": 80.0,
+      "expectancy_per_trade": 0.009884,
+      "trades_per_year": 1.0,
+      "if_one_full_capital_trade_fires_expected_pnl_usd": 98.84,
+      "expected_pnl_usd_average_day": 0.39,
+      "n_trades": 5
+    },
+    "recent_2y": {
+      "strategy_used": "playbook_router",
+      "hit_rate_pct": 100.0,
+      "expectancy_per_trade": 0.006591,
+      "trades_per_year": 1.0,
+      "if_one_full_capital_trade_fires_expected_pnl_usd": 65.91,
+      "expected_pnl_usd_average_day": 0.26,
+      "n_trades": 2
+    },
+    "recent_1y": {
+      "strategy_used": "playbook_router",
+      "hit_rate_pct": 100.0,
+      "expectancy_per_trade": 2.7e-05,
+      "trades_per_year": 1.0,
+      "if_one_full_capital_trade_fires_expected_pnl_usd": 0.27,
+      "expected_pnl_usd_average_day": 0.0,
+      "n_trades": 1
+    }
+  }
+}

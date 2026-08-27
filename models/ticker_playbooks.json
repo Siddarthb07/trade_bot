@@ -1,0 +1,921 @@
+{
+  "generated_at": "2026-08-27T11:28:24.357863+00:00",
+  "ambition_hit_pct": 85.0,
+  "soft_hit_pct": 50.0,
+  "playbooks": {
+    "RELIANCE.NS": {
+      "ticker": "RELIANCE.NS",
+      "status": "passed",
+      "ambition_pass": false,
+      "strategy_id": "mean_rev_bb",
+      "secondary_strategy_id": null,
+      "oos_hit_rate": 50.0,
+      "oos_expectancy": 0.0011648046231215018,
+      "n_trades": 68,
+      "max_dd": 0.08413348771188141,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 38,
+          "expectancy": -0.0025437122288714123,
+          "max_dd": 0.09669057728292914,
+          "hit_rate_pct": 42.11,
+          "oos_expectancy": -0.002544,
+          "mean_return": -0.002544,
+          "fold_count": 23,
+          "positive_folds": 9
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "passed",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [],
+          "n_trades": 68,
+          "expectancy": 0.0011648046231215018,
+          "max_dd": 0.08413348771188141,
+          "hit_rate_pct": 50.0,
+          "oos_expectancy": 0.001165,
+          "mean_return": 0.001165,
+          "fold_count": 20,
+          "positive_folds": 14
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 6,
+          "expectancy": -0.0009059676866026148,
+          "max_dd": 0.006762141717821302,
+          "hit_rate_pct": 50.0,
+          "oos_expectancy": -0.000906,
+          "mean_return": -0.000906,
+          "fold_count": 6,
+          "positive_folds": 3
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 50,
+          "expectancy": -0.0011286198610024668,
+          "max_dd": 0.1325742068742873,
+          "hit_rate_pct": 44.0,
+          "oos_expectancy": -0.001129,
+          "mean_return": -0.001129,
+          "fold_count": 17,
+          "positive_folds": 6
+        }
+      }
+    },
+    "TCS.NS": {
+      "ticker": "TCS.NS",
+      "status": "rejected",
+      "ambition_pass": false,
+      "strategy_id": null,
+      "secondary_strategy_id": null,
+      "oos_hit_rate": null,
+      "oos_expectancy": null,
+      "n_trades": 0,
+      "max_dd": null,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 36,
+          "expectancy": -0.0018007331187471374,
+          "max_dd": 0.10665272704302682,
+          "hit_rate_pct": 44.44,
+          "oos_expectancy": -0.001801,
+          "mean_return": -0.001801,
+          "fold_count": 23,
+          "positive_folds": 12
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "oos_failed"
+          ],
+          "n_trades": 82,
+          "expectancy": 0.0006834904011883123,
+          "max_dd": 0.12565241524135962,
+          "hit_rate_pct": 45.12,
+          "oos_expectancy": 0.000683,
+          "mean_return": 0.000683,
+          "fold_count": 23,
+          "positive_folds": 10
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "oos_failed"
+          ],
+          "n_trades": 6,
+          "expectancy": 0.00025679619031706213,
+          "max_dd": 0.02130954206441404,
+          "hit_rate_pct": 33.33,
+          "oos_expectancy": 0.000257,
+          "mean_return": 0.000257,
+          "fold_count": 6,
+          "positive_folds": 2
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 29,
+          "expectancy": -0.0017740383868892606,
+          "max_dd": 0.07761416925937283,
+          "hit_rate_pct": 37.93,
+          "oos_expectancy": -0.001774,
+          "mean_return": -0.001774,
+          "fold_count": 15,
+          "positive_folds": 6
+        }
+      }
+    },
+    "INFY.NS": {
+      "ticker": "INFY.NS",
+      "status": "rejected",
+      "ambition_pass": false,
+      "strategy_id": null,
+      "secondary_strategy_id": null,
+      "oos_hit_rate": null,
+      "oos_expectancy": null,
+      "n_trades": 0,
+      "max_dd": null,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 36,
+          "expectancy": -0.003721129917542174,
+          "max_dd": 0.18022097363289602,
+          "hit_rate_pct": 55.56,
+          "oos_expectancy": -0.003721,
+          "mean_return": -0.003721,
+          "fold_count": 22,
+          "positive_folds": 12
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 89,
+          "expectancy": -0.00013704029146387452,
+          "max_dd": 0.12350766020075421,
+          "hit_rate_pct": 51.69,
+          "oos_expectancy": -0.000137,
+          "mean_return": -0.000137,
+          "fold_count": 23,
+          "positive_folds": 10
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 6,
+          "expectancy": -0.0005275827264415992,
+          "max_dd": 0.023536250090110563,
+          "hit_rate_pct": 50.0,
+          "oos_expectancy": -0.000528,
+          "mean_return": -0.000528,
+          "fold_count": 5,
+          "positive_folds": 3
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 31,
+          "expectancy": -0.0033687694796262946,
+          "max_dd": 0.11263426153977785,
+          "hit_rate_pct": 35.48,
+          "oos_expectancy": -0.003369,
+          "mean_return": -0.003369,
+          "fold_count": 13,
+          "positive_folds": 8
+        }
+      }
+    },
+    "HDFCBANK.NS": {
+      "ticker": "HDFCBANK.NS",
+      "status": "rejected",
+      "ambition_pass": false,
+      "strategy_id": null,
+      "secondary_strategy_id": null,
+      "oos_hit_rate": null,
+      "oos_expectancy": null,
+      "n_trades": 0,
+      "max_dd": null,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 36,
+          "expectancy": -0.0011656884748636835,
+          "max_dd": 0.10170365386713266,
+          "hit_rate_pct": 38.89,
+          "oos_expectancy": -0.001166,
+          "mean_return": -0.001166,
+          "fold_count": 23,
+          "positive_folds": 7
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 102,
+          "expectancy": -0.0017800246757257749,
+          "max_dd": 0.22332383822672094,
+          "hit_rate_pct": 36.27,
+          "oos_expectancy": -0.00178,
+          "mean_return": -0.00178,
+          "fold_count": 21,
+          "positive_folds": 8
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 4,
+          "expectancy": -0.010616964256310812,
+          "max_dd": 0.04210270089206458,
+          "hit_rate_pct": 25.0,
+          "oos_expectancy": -0.010617,
+          "mean_return": -0.010617,
+          "fold_count": 4,
+          "positive_folds": 1
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 38,
+          "expectancy": -0.002828380286810346,
+          "max_dd": 0.11602222129628004,
+          "hit_rate_pct": 39.47,
+          "oos_expectancy": -0.002828,
+          "mean_return": -0.002828,
+          "fold_count": 20,
+          "positive_folds": 8
+        }
+      }
+    },
+    "ICICIBANK.NS": {
+      "ticker": "ICICIBANK.NS",
+      "status": "passed",
+      "ambition_pass": false,
+      "strategy_id": "mom_cross",
+      "secondary_strategy_id": "mean_rev_bb",
+      "oos_hit_rate": 54.17,
+      "oos_expectancy": 0.0010859241968606366,
+      "n_trades": 48,
+      "max_dd": 0.07156310641519531,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "passed",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [],
+          "n_trades": 48,
+          "expectancy": 0.0010859241968606366,
+          "max_dd": 0.07156310641519531,
+          "hit_rate_pct": 54.17,
+          "oos_expectancy": 0.001086,
+          "mean_return": 0.001086,
+          "fold_count": 22,
+          "positive_folds": 14
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "passed",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [],
+          "n_trades": 80,
+          "expectancy": 9.913471729551537e-05,
+          "max_dd": 0.17360430210810981,
+          "hit_rate_pct": 50.0,
+          "oos_expectancy": 9.9e-05,
+          "mean_return": 9.9e-05,
+          "fold_count": 20,
+          "positive_folds": 10
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades"
+          ],
+          "n_trades": 15,
+          "expectancy": 0.0010517544061009836,
+          "max_dd": 0.029821227463423815,
+          "hit_rate_pct": 53.33,
+          "oos_expectancy": 0.001052,
+          "mean_return": 0.001052,
+          "fold_count": 14,
+          "positive_folds": 7
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 41,
+          "expectancy": -0.00018942580490895842,
+          "max_dd": 0.1275661976512962,
+          "hit_rate_pct": 48.78,
+          "oos_expectancy": -0.000189,
+          "mean_return": -0.000189,
+          "fold_count": 19,
+          "positive_folds": 8
+        }
+      }
+    },
+    "SBIN.NS": {
+      "ticker": "SBIN.NS",
+      "status": "passed",
+      "ambition_pass": false,
+      "strategy_id": "mean_rev_bb",
+      "secondary_strategy_id": null,
+      "oos_hit_rate": 50.62,
+      "oos_expectancy": 0.0011005221033557582,
+      "n_trades": 81,
+      "max_dd": 0.12383809015198012,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 39,
+          "expectancy": -0.002292446829806979,
+          "max_dd": 0.094384254566407,
+          "hit_rate_pct": 43.59,
+          "oos_expectancy": -0.002292,
+          "mean_return": -0.002292,
+          "fold_count": 20,
+          "positive_folds": 9
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "passed",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [],
+          "n_trades": 81,
+          "expectancy": 0.0011005221033557582,
+          "max_dd": 0.12383809015198012,
+          "hit_rate_pct": 50.62,
+          "oos_expectancy": 0.001101,
+          "mean_return": 0.001101,
+          "fold_count": 23,
+          "positive_folds": 12
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "oos_failed"
+          ],
+          "n_trades": 9,
+          "expectancy": 0.001687146004231107,
+          "max_dd": 0.014645193286712876,
+          "hit_rate_pct": 44.44,
+          "oos_expectancy": 0.001687,
+          "mean_return": 0.001687,
+          "fold_count": 9,
+          "positive_folds": 4
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 36,
+          "expectancy": -0.002081514202948618,
+          "max_dd": 0.11050672710244537,
+          "hit_rate_pct": 44.44,
+          "oos_expectancy": -0.002082,
+          "mean_return": -0.002082,
+          "fold_count": 16,
+          "positive_folds": 8
+        }
+      }
+    },
+    "AAPL": {
+      "ticker": "AAPL",
+      "status": "rejected",
+      "ambition_pass": false,
+      "strategy_id": null,
+      "secondary_strategy_id": null,
+      "oos_hit_rate": null,
+      "oos_expectancy": null,
+      "n_trades": 0,
+      "max_dd": null,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "oos_failed"
+          ],
+          "n_trades": 42,
+          "expectancy": 0.0016899265107966274,
+          "max_dd": 0.13404863662418515,
+          "hit_rate_pct": 50.0,
+          "oos_expectancy": 0.00169,
+          "mean_return": 0.00169,
+          "fold_count": 24,
+          "positive_folds": 11
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 89,
+          "expectancy": -0.0005584356506015085,
+          "max_dd": 0.2682889364068647,
+          "hit_rate_pct": 44.94,
+          "oos_expectancy": -0.000558,
+          "mean_return": -0.000558,
+          "fold_count": 25,
+          "positive_folds": 16
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades"
+          ],
+          "n_trades": 14,
+          "expectancy": 0.006525961640871896,
+          "max_dd": 0.04043872556830866,
+          "hit_rate_pct": 71.43,
+          "oos_expectancy": 0.006526,
+          "mean_return": 0.006526,
+          "fold_count": 11,
+          "positive_folds": 8
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 31,
+          "expectancy": -0.00422289246014083,
+          "max_dd": 0.1568982313659197,
+          "hit_rate_pct": 38.71,
+          "oos_expectancy": -0.004223,
+          "mean_return": -0.004223,
+          "fold_count": 13,
+          "positive_folds": 6
+        }
+      }
+    },
+    "MSFT": {
+      "ticker": "MSFT",
+      "status": "passed",
+      "ambition_pass": false,
+      "strategy_id": "mean_rev_bb",
+      "secondary_strategy_id": null,
+      "oos_hit_rate": 52.05,
+      "oos_expectancy": 0.0008212568977043591,
+      "n_trades": 73,
+      "max_dd": 0.09061935372535378,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 45,
+          "expectancy": -0.0003729603856894532,
+          "max_dd": 0.22645757363298422,
+          "hit_rate_pct": 40.0,
+          "oos_expectancy": -0.000373,
+          "mean_return": -0.000373,
+          "fold_count": 21,
+          "positive_folds": 11
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "passed",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [],
+          "n_trades": 73,
+          "expectancy": 0.0008212568977043591,
+          "max_dd": 0.09061935372535378,
+          "hit_rate_pct": 52.05,
+          "oos_expectancy": 0.000821,
+          "mean_return": 0.000821,
+          "fold_count": 22,
+          "positive_folds": 12
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 14,
+          "expectancy": -0.0017037387905169002,
+          "max_dd": 0.09033325540842674,
+          "hit_rate_pct": 35.71,
+          "oos_expectancy": -0.001704,
+          "mean_return": -0.001704,
+          "fold_count": 11,
+          "positive_folds": 4
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 33,
+          "expectancy": -0.0004245271966265764,
+          "max_dd": 0.09710893114894363,
+          "hit_rate_pct": 57.58,
+          "oos_expectancy": -0.000425,
+          "mean_return": -0.000425,
+          "fold_count": 13,
+          "positive_folds": 7
+        }
+      }
+    },
+    "GOOGL": {
+      "ticker": "GOOGL",
+      "status": "rejected",
+      "ambition_pass": false,
+      "strategy_id": null,
+      "secondary_strategy_id": null,
+      "oos_hit_rate": null,
+      "oos_expectancy": null,
+      "n_trades": 0,
+      "max_dd": null,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 42,
+          "expectancy": -0.0004189642139270221,
+          "max_dd": 0.12407243172736747,
+          "hit_rate_pct": 54.76,
+          "oos_expectancy": -0.000419,
+          "mean_return": -0.000419,
+          "fold_count": 22,
+          "positive_folds": 11
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 100,
+          "expectancy": -0.0009981118778178955,
+          "max_dd": 0.287995175688358,
+          "hit_rate_pct": 46.0,
+          "oos_expectancy": -0.000998,
+          "mean_return": -0.000998,
+          "fold_count": 25,
+          "positive_folds": 12
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 10,
+          "expectancy": -0.0010844318744655079,
+          "max_dd": 0.0455149707518258,
+          "hit_rate_pct": 50.0,
+          "oos_expectancy": -0.001084,
+          "mean_return": -0.001084,
+          "fold_count": 8,
+          "positive_folds": 3
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "passed",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [],
+          "n_trades": 34,
+          "expectancy": 0.001424631037758982,
+          "max_dd": 0.11381989599530724,
+          "hit_rate_pct": 47.06,
+          "oos_expectancy": 0.001425,
+          "mean_return": 0.001425,
+          "fold_count": 20,
+          "positive_folds": 10
+        }
+      }
+    },
+    "SPY": {
+      "ticker": "SPY",
+      "status": "passed",
+      "ambition_pass": false,
+      "strategy_id": "mom_cross",
+      "secondary_strategy_id": "mean_rev_chop",
+      "oos_hit_rate": 52.94,
+      "oos_expectancy": 0.0021158271141698873,
+      "n_trades": 34,
+      "max_dd": 0.025184725226750714,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "passed",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [],
+          "n_trades": 34,
+          "expectancy": 0.0021158271141698873,
+          "max_dd": 0.025184725226750714,
+          "hit_rate_pct": 52.94,
+          "oos_expectancy": 0.002116,
+          "mean_return": 0.002116,
+          "fold_count": 20,
+          "positive_folds": 12
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "passed",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [],
+          "n_trades": 75,
+          "expectancy": 0.00030644810464552924,
+          "max_dd": 0.1549605884096539,
+          "hit_rate_pct": 45.33,
+          "oos_expectancy": 0.000306,
+          "mean_return": 0.000306,
+          "fold_count": 22,
+          "positive_folds": 12
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 8,
+          "expectancy": -0.0012274423481747202,
+          "max_dd": 0.033194363983268575,
+          "hit_rate_pct": 37.5,
+          "oos_expectancy": -0.001227,
+          "mean_return": -0.001227,
+          "fold_count": 8,
+          "positive_folds": 3
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "passed",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [],
+          "n_trades": 47,
+          "expectancy": 0.0007867040510973164,
+          "max_dd": 0.09116956669949006,
+          "hit_rate_pct": 51.06,
+          "oos_expectancy": 0.000787,
+          "mean_return": 0.000787,
+          "fold_count": 20,
+          "positive_folds": 11
+        }
+      }
+    },
+    "QQQ": {
+      "ticker": "QQQ",
+      "status": "rejected",
+      "ambition_pass": false,
+      "strategy_id": null,
+      "secondary_strategy_id": null,
+      "oos_hit_rate": null,
+      "oos_expectancy": null,
+      "n_trades": 0,
+      "max_dd": null,
+      "candidates": {
+        "mom_cross": {
+          "strategy_id": "mom_cross",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 33,
+          "expectancy": -0.004750111986613482,
+          "max_dd": 0.1688390712110372,
+          "hit_rate_pct": 33.33,
+          "oos_expectancy": -0.00475,
+          "mean_return": -0.00475,
+          "fold_count": 18,
+          "positive_folds": 7
+        },
+        "mean_rev_bb": {
+          "strategy_id": "mean_rev_bb",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 70,
+          "expectancy": -0.00017227190012584335,
+          "max_dd": 0.18872629560004878,
+          "hit_rate_pct": 37.14,
+          "oos_expectancy": -0.000172,
+          "mean_return": -0.000172,
+          "fold_count": 21,
+          "positive_folds": 12
+        },
+        "trend_follow": {
+          "strategy_id": "trend_follow",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 8,
+          "expectancy": -0.0027930040956870568,
+          "max_dd": 0.033929043147913666,
+          "hit_rate_pct": 62.5,
+          "oos_expectancy": -0.002793,
+          "mean_return": -0.002793,
+          "fold_count": 6,
+          "positive_folds": 3
+        },
+        "mean_rev_chop": {
+          "strategy_id": "mean_rev_chop",
+          "status": "rejected",
+          "live_enabled_allowed": false,
+          "ambition_pass": false,
+          "reasons": [
+            "too_few_trades",
+            "non_positive_expectancy",
+            "oos_failed"
+          ],
+          "n_trades": 24,
+          "expectancy": -0.0035579287962350984,
+          "max_dd": 0.11060059945668066,
+          "hit_rate_pct": 37.5,
+          "oos_expectancy": -0.003558,
+          "mean_return": -0.003558,
+          "fold_count": 10,
+          "positive_folds": 4
+        }
+      }
+    }
+  },
+  "disclaimer": "OOS walk-forward on daily bars; not live fills; not investment advice."
+}

@@ -1,0 +1,47 @@
+{
+  "mode": "synthetic_walk_forward",
+  "generated_at": "2026-08-27T10:26:03.861815+00:00",
+  "strategies": {
+    "mom_cross": {
+      "strategy_id": "mom_cross",
+      "status": "rejected",
+      "live_enabled_allowed": false,
+      "reasons": [
+        "non_positive_expectancy",
+        "oos_failed"
+      ],
+      "n_trades": 165,
+      "expectancy": -0.0007795858628916825,
+      "max_dd": 0.2339208600937711,
+      "oos_expectancy": -4.4e-05,
+      "mean_return": -0.00078
+    },
+    "mean_rev_bb": {
+      "strategy_id": "mean_rev_bb",
+      "status": "rejected",
+      "live_enabled_allowed": false,
+      "reasons": [
+        "too_few_trades"
+      ],
+      "n_trades": 25,
+      "expectancy": 0.0027150858246853815,
+      "max_dd": 0.05876573433469022,
+      "oos_expectancy": 0.002306,
+      "mean_return": 0.002715
+    },
+    "intraday_orb": {
+      "strategy_id": "intraday_orb",
+      "status": "rejected",
+      "live_enabled_allowed": false,
+      "reasons": [
+        "non_positive_expectancy"
+      ],
+      "n_trades": 238,
+      "expectancy": -0.00035869618424500915,
+      "max_dd": 0.2156792782238834,
+      "oos_expectancy": 0.000688,
+      "mean_return": -0.000359
+    }
+  },
+  "note": "Walk-forward next-bar fills + 10bps costs \u2014 replace with DB when Postgres available"
+}

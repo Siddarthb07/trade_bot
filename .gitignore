@@ -16,6 +16,9 @@ waha-qr.png
 models/*.pkl
 models/*.joblib
 tmp-*.json
+tmp_api_out.txt
+bench_live.json
+.tools/
 
 # Local-only planning / review docs (not for GitHub)
 docs/LLM_COUNCIL_RATING.md
