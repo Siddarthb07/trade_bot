@@ -1,0 +1,1700 @@
+{
+  "generated_at": "2026-08-29T12:50:30.695056+00:00",
+  "sessions": [
+    "2026-08-13",
+    "2026-08-14",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28"
+  ],
+  "capital": 10000.0,
+  "runs": [
+    {
+      "policy": "raw",
+      "target_return_pct": 4.0,
+      "max_positions": 1,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 14247.25,
+      "compound_pct": 42.472,
+      "min_day_pct": -10.243,
+      "max_day_pct": 33.895,
+      "avg_day_pct": 3.645,
+      "days_ge_4": 4,
+      "days_ge_5": 3,
+      "hit_at_4_pct": 33.3,
+      "hit_at_5_pct": 25.0,
+      "max_dd_pct": 11.998,
+      "total_trades": 12,
+      "trades_per_day": 1.0,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 1.903,
+          "capital_end": 10190.27,
+          "n_trades": 1,
+          "realized_pnl": -110.15
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 20.023,
+          "capital_end": 12230.64,
+          "n_trades": 1,
+          "realized_pnl": 1731.47
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 7.129,
+          "capital_end": 13102.62,
+          "n_trades": 1,
+          "realized_pnl": 610.78
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -8.472,
+          "capital_end": 11992.57,
+          "n_trades": 1,
+          "realized_pnl": -1501.64
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.656,
+          "capital_end": 11793.95,
+          "n_trades": 1,
+          "realized_pnl": -523.29
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 3.618,
+          "capital_end": 12220.69,
+          "n_trades": 1,
+          "realized_pnl": 72.13
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 4.082,
+          "capital_end": 12719.53,
+          "n_trades": 1,
+          "realized_pnl": 180.53
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -9.347,
+          "capital_end": 11530.62,
+          "n_trades": 1,
+          "realized_pnl": -1526.49
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 33.895,
+          "capital_end": 15438.91,
+          "n_trades": 1,
+          "realized_pnl": 3594.11
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -10.243,
+          "capital_end": 13857.54,
+          "n_trades": 1,
+          "realized_pnl": -2037.78
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 2.761,
+          "capital_end": 14240.13,
+          "n_trades": 1,
+          "realized_pnl": -33.9
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.05,
+          "capital_end": 14247.25,
+          "n_trades": 1,
+          "realized_pnl": -222.06
+        }
+      ]
+    },
+    {
+      "policy": "raw",
+      "target_return_pct": 4.0,
+      "max_positions": 3,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 9333.28,
+      "compound_pct": -6.667,
+      "min_day_pct": -4.909,
+      "max_day_pct": 11.298,
+      "avg_day_pct": -0.478,
+      "days_ge_4": 1,
+      "days_ge_5": 1,
+      "hit_at_4_pct": 8.3,
+      "hit_at_5_pct": 8.3,
+      "max_dd_pct": 15.25,
+      "total_trades": 32,
+      "trades_per_day": 2.67,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 1.016,
+          "capital_end": 10101.64,
+          "n_trades": 3,
+          "realized_pnl": -194.33
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -3.628,
+          "capital_end": 9735.17,
+          "n_trades": 3,
+          "realized_pnl": -646.56
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 3.643,
+          "capital_end": 10089.84,
+          "n_trades": 3,
+          "realized_pnl": 124.54
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -2.925,
+          "capital_end": 9794.72,
+          "n_trades": 2,
+          "realized_pnl": -496.56
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.337,
+          "capital_end": 9663.74,
+          "n_trades": 3,
+          "realized_pnl": -402.72
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -4.909,
+          "capital_end": 9189.3,
+          "n_trades": 3,
+          "realized_pnl": -763.78
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -2.041,
+          "capital_end": 9001.74,
+          "n_trades": 3,
+          "realized_pnl": -390.09
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -4.894,
+          "capital_end": 8561.18,
+          "n_trades": 3,
+          "realized_pnl": -671.7
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 11.298,
+          "capital_end": 9528.45,
+          "n_trades": 1,
+          "realized_pnl": 889.51
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 2.109,
+          "capital_end": 9729.42,
+          "n_trades": 3,
+          "realized_pnl": 57.33
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -4.098,
+          "capital_end": 9330.71,
+          "n_trades": 2,
+          "realized_pnl": -592.79
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.028,
+          "capital_end": 9333.28,
+          "n_trades": 3,
+          "realized_pnl": -100.21
+        }
+      ]
+    },
+    {
+      "policy": "raw",
+      "target_return_pct": 4.0,
+      "max_positions": 5,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 10189.74,
+      "compound_pct": 1.897,
+      "min_day_pct": -2.997,
+      "max_day_pct": 6.779,
+      "avg_day_pct": 0.203,
+      "days_ge_4": 2,
+      "days_ge_5": 2,
+      "hit_at_4_pct": 16.7,
+      "hit_at_5_pct": 16.7,
+      "max_dd_pct": 9.25,
+      "total_trades": 49,
+      "trades_per_day": 4.08,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -1.909,
+          "capital_end": 9809.12,
+          "n_trades": 5,
+          "realized_pnl": -488.15
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 2.142,
+          "capital_end": 10019.24,
+          "n_trades": 5,
+          "realized_pnl": -71.47
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 5.327,
+          "capital_end": 10552.93,
+          "n_trades": 4,
+          "realized_pnl": 330.97
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.755,
+          "capital_end": 10367.73,
+          "n_trades": 2,
+          "realized_pnl": -311.61
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.243,
+          "capital_end": 10135.16,
+          "n_trades": 5,
+          "realized_pnl": -529.38
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -2.997,
+          "capital_end": 9831.45,
+          "n_trades": 5,
+          "realized_pnl": -607.44
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -1.322,
+          "capital_end": 9701.52,
+          "n_trades": 5,
+          "realized_pnl": -364.16
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -1.286,
+          "capital_end": 9576.8,
+          "n_trades": 5,
+          "realized_pnl": -390.89
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 6.779,
+          "capital_end": 10226.01,
+          "n_trades": 1,
+          "realized_pnl": 597.03
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 2.27,
+          "capital_end": 10458.19,
+          "n_trades": 5,
+          "realized_pnl": 17.38
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -2.459,
+          "capital_end": 10201.04,
+          "n_trades": 2,
+          "realized_pnl": -382.32
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.111,
+          "capital_end": 10189.74,
+          "n_trades": 5,
+          "realized_pnl": -141.54
+        }
+      ]
+    },
+    {
+      "policy": "raw",
+      "target_return_pct": 4.0,
+      "max_positions": 8,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 8985.08,
+      "compound_pct": -10.149,
+      "min_day_pct": -4.551,
+      "max_day_pct": 4.237,
+      "avg_day_pct": -0.855,
+      "days_ge_4": 1,
+      "days_ge_5": 0,
+      "hit_at_4_pct": 8.3,
+      "hit_at_5_pct": 0.0,
+      "max_dd_pct": 13.297,
+      "total_trades": 64,
+      "trades_per_day": 5.33,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -1.193,
+          "capital_end": 9880.7,
+          "n_trades": 5,
+          "realized_pnl": -305.09
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 1.095,
+          "capital_end": 9988.9,
+          "n_trades": 6,
+          "realized_pnl": -106.11
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 3.329,
+          "capital_end": 10321.45,
+          "n_trades": 4,
+          "realized_pnl": 206.24
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.097,
+          "capital_end": 10208.24,
+          "n_trades": 2,
+          "realized_pnl": -190.48
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.17,
+          "capital_end": 9986.74,
+          "n_trades": 6,
+          "realized_pnl": -442.35
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -2.267,
+          "capital_end": 9760.34,
+          "n_trades": 7,
+          "realized_pnl": -488.31
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -2.792,
+          "capital_end": 9487.87,
+          "n_trades": 8,
+          "realized_pnl": -527.35
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -3.72,
+          "capital_end": 9134.96,
+          "n_trades": 7,
+          "realized_pnl": -586.37
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 4.237,
+          "capital_end": 9522.0,
+          "n_trades": 1,
+          "realized_pnl": 355.93
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -4.551,
+          "capital_end": 9088.67,
+          "n_trades": 8,
+          "realized_pnl": -664.66
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -1.537,
+          "capital_end": 8949.0,
+          "n_trades": 2,
+          "realized_pnl": -207.65
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.403,
+          "capital_end": 8985.08,
+          "n_trades": 8,
+          "realized_pnl": -132.18
+        }
+      ]
+    },
+    {
+      "policy": "raw",
+      "target_return_pct": 5.0,
+      "max_positions": 1,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 15218.7,
+      "compound_pct": 52.187,
+      "min_day_pct": -12.803,
+      "max_day_pct": 42.368,
+      "avg_day_pct": 4.557,
+      "days_ge_4": 5,
+      "days_ge_5": 4,
+      "hit_at_4_pct": 41.7,
+      "hit_at_5_pct": 33.3,
+      "max_dd_pct": 15.049,
+      "total_trades": 12,
+      "trades_per_day": 1.0,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 2.378,
+          "capital_end": 10237.84,
+          "n_trades": 1,
+          "realized_pnl": -137.69
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 25.029,
+          "capital_end": 12800.22,
+          "n_trades": 1,
+          "realized_pnl": 2174.44
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 8.912,
+          "capital_end": 13940.96,
+          "n_trades": 1,
+          "realized_pnl": 799.03
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -10.59,
+          "capital_end": 12464.62,
+          "n_trades": 1,
+          "realized_pnl": -1997.14
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.07,
+          "capital_end": 12206.56,
+          "n_trades": 1,
+          "realized_pnl": -679.9
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 4.523,
+          "capital_end": 12758.65,
+          "n_trades": 1,
+          "realized_pnl": 93.3
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 5.103,
+          "capital_end": 13409.67,
+          "n_trades": 1,
+          "realized_pnl": 235.6
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -11.684,
+          "capital_end": 11842.93,
+          "n_trades": 1,
+          "realized_pnl": -2011.59
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 42.368,
+          "capital_end": 16860.5,
+          "n_trades": 1,
+          "realized_pnl": 4614.22
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -12.803,
+          "capital_end": 14701.82,
+          "n_trades": 1,
+          "realized_pnl": -2781.71
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 3.451,
+          "capital_end": 15209.19,
+          "n_trades": 1,
+          "realized_pnl": -44.95
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.063,
+          "capital_end": 15218.7,
+          "n_trades": 1,
+          "realized_pnl": -296.43
+        }
+      ]
+    },
+    {
+      "policy": "raw",
+      "target_return_pct": 5.0,
+      "max_positions": 3,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 9141.43,
+      "compound_pct": -8.586,
+      "min_day_pct": -6.137,
+      "max_day_pct": 14.123,
+      "avg_day_pct": -0.598,
+      "days_ge_4": 2,
+      "days_ge_5": 1,
+      "hit_at_4_pct": 16.7,
+      "hit_at_5_pct": 8.3,
+      "max_dd_pct": 18.802,
+      "total_trades": 32,
+      "trades_per_day": 2.67,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 1.271,
+          "capital_end": 10127.07,
+          "n_trades": 3,
+          "realized_pnl": -242.9
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -4.535,
+          "capital_end": 9667.83,
+          "n_trades": 3,
+          "realized_pnl": -810.26
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 4.554,
+          "capital_end": 10108.1,
+          "n_trades": 3,
+          "realized_pnl": 154.61
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -3.656,
+          "capital_end": 9738.53,
+          "n_trades": 2,
+          "realized_pnl": -621.83
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.672,
+          "capital_end": 9575.73,
+          "n_trades": 3,
+          "realized_pnl": -500.55
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -6.137,
+          "capital_end": 8988.08,
+          "n_trades": 3,
+          "realized_pnl": -946.03
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -2.551,
+          "capital_end": 8758.78,
+          "n_trades": 3,
+          "realized_pnl": -476.91
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -6.118,
+          "capital_end": 8222.94,
+          "n_trades": 3,
+          "realized_pnl": -816.96
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 14.123,
+          "capital_end": 9384.23,
+          "n_trades": 1,
+          "realized_pnl": 1067.95
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 2.637,
+          "capital_end": 9631.67,
+          "n_trades": 3,
+          "realized_pnl": 70.62
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -5.122,
+          "capital_end": 9138.29,
+          "n_trades": 2,
+          "realized_pnl": -733.55
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.034,
+          "capital_end": 9141.43,
+          "n_trades": 3,
+          "realized_pnl": -122.66
+        }
+      ]
+    },
+    {
+      "policy": "raw",
+      "target_return_pct": 5.0,
+      "max_positions": 5,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 10220.41,
+      "compound_pct": 2.204,
+      "min_day_pct": -3.746,
+      "max_day_pct": 8.474,
+      "avg_day_pct": 0.254,
+      "days_ge_4": 2,
+      "days_ge_5": 2,
+      "hit_at_4_pct": 16.7,
+      "hit_at_5_pct": 16.7,
+      "max_dd_pct": 11.455,
+      "total_trades": 49,
+      "trades_per_day": 4.08,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -2.386,
+          "capital_end": 9761.41,
+          "n_trades": 5,
+          "realized_pnl": -610.15
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 2.677,
+          "capital_end": 10022.77,
+          "n_trades": 5,
+          "realized_pnl": -88.91
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 6.658,
+          "capital_end": 10690.12,
+          "n_trades": 4,
+          "realized_pnl": 413.88
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -2.194,
+          "capital_end": 10455.61,
+          "n_trades": 2,
+          "realized_pnl": -394.58
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.804,
+          "capital_end": 10162.43,
+          "n_trades": 5,
+          "realized_pnl": -667.35
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -3.746,
+          "capital_end": 9781.77,
+          "n_trades": 5,
+          "realized_pnl": -761.35
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -1.652,
+          "capital_end": 9620.2,
+          "n_trades": 5,
+          "realized_pnl": -452.86
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -1.607,
+          "capital_end": 9465.61,
+          "n_trades": 5,
+          "realized_pnl": -484.52
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 8.474,
+          "capital_end": 10267.68,
+          "n_trades": 1,
+          "realized_pnl": 737.6
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 2.838,
+          "capital_end": 10559.11,
+          "n_trades": 5,
+          "realized_pnl": 21.83
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -3.073,
+          "capital_end": 10234.58,
+          "n_trades": 2,
+          "realized_pnl": -482.51
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.138,
+          "capital_end": 10220.41,
+          "n_trades": 5,
+          "realized_pnl": -177.51
+        }
+      ]
+    },
+    {
+      "policy": "raw",
+      "target_return_pct": 5.0,
+      "max_positions": 8,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 8735.74,
+      "compound_pct": -12.643,
+      "min_day_pct": -5.688,
+      "max_day_pct": 5.296,
+      "avg_day_pct": -1.069,
+      "days_ge_4": 2,
+      "days_ge_5": 1,
+      "hit_at_4_pct": 16.7,
+      "hit_at_5_pct": 8.3,
+      "max_dd_pct": 16.434,
+      "total_trades": 64,
+      "trades_per_day": 5.33,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -1.491,
+          "capital_end": 9850.88,
+          "n_trades": 5,
+          "realized_pnl": -381.37
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 1.369,
+          "capital_end": 9985.72,
+          "n_trades": 6,
+          "realized_pnl": -132.25
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 4.161,
+          "capital_end": 10401.27,
+          "n_trades": 4,
+          "realized_pnl": 257.7
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.371,
+          "capital_end": 10258.66,
+          "n_trades": 2,
+          "realized_pnl": -239.95
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.712,
+          "capital_end": 9980.42,
+          "n_trades": 6,
+          "realized_pnl": -555.67
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -2.834,
+          "capital_end": 9697.61,
+          "n_trades": 7,
+          "realized_pnl": -610.03
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -3.489,
+          "capital_end": 9359.22,
+          "n_trades": 8,
+          "realized_pnl": -654.91
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -4.65,
+          "capital_end": 8924.06,
+          "n_trades": 7,
+          "realized_pnl": -723.03
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 5.296,
+          "capital_end": 9396.68,
+          "n_trades": 1,
+          "realized_pnl": 434.62
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -5.688,
+          "capital_end": 8862.18,
+          "n_trades": 8,
+          "realized_pnl": -819.84
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -1.921,
+          "capital_end": 8691.94,
+          "n_trades": 2,
+          "realized_pnl": -253.1
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.504,
+          "capital_end": 8735.74,
+          "n_trades": 8,
+          "realized_pnl": -160.47
+        }
+      ]
+    },
+    {
+      "policy": "guard",
+      "target_return_pct": 4.0,
+      "max_positions": 1,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 9656.42,
+      "compound_pct": -3.436,
+      "min_day_pct": -10.235,
+      "max_day_pct": 13.515,
+      "avg_day_pct": -0.096,
+      "days_ge_4": 2,
+      "days_ge_5": 2,
+      "hit_at_4_pct": 16.7,
+      "hit_at_5_pct": 16.7,
+      "max_dd_pct": 22.834,
+      "total_trades": 12,
+      "trades_per_day": 1.0,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 1.284,
+          "capital_end": 10128.43,
+          "n_trades": 1,
+          "realized_pnl": -74.35
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 13.515,
+          "capital_end": 11497.32,
+          "n_trades": 1,
+          "realized_pnl": 1161.65
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 6.797,
+          "capital_end": 12278.81,
+          "n_trades": 1,
+          "realized_pnl": 547.39
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -5.719,
+          "capital_end": 11576.64,
+          "n_trades": 1,
+          "realized_pnl": -949.87
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.238,
+          "capital_end": 11433.3,
+          "n_trades": 1,
+          "realized_pnl": -377.64
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 2.442,
+          "capital_end": 11712.54,
+          "n_trades": 1,
+          "realized_pnl": 47.2
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 3.182,
+          "capital_end": 12085.27,
+          "n_trades": 1,
+          "realized_pnl": 134.89
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -10.235,
+          "capital_end": 10848.38,
+          "n_trades": 1,
+          "realized_pnl": -1479.86
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -6.536,
+          "capital_end": 10139.32,
+          "n_trades": 1,
+          "realized_pnl": -927.77
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -6.552,
+          "capital_end": 9475.02,
+          "n_trades": 1,
+          "realized_pnl": -868.72
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 1.864,
+          "capital_end": 9651.59,
+          "n_trades": 1,
+          "realized_pnl": -15.65
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.05,
+          "capital_end": 9656.42,
+          "n_trades": 1,
+          "realized_pnl": -150.5
+        }
+      ]
+    },
+    {
+      "policy": "guard",
+      "target_return_pct": 4.0,
+      "max_positions": 3,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 8528.53,
+      "compound_pct": -14.715,
+      "min_day_pct": -4.083,
+      "max_day_pct": 3.074,
+      "avg_day_pct": -1.294,
+      "days_ge_4": 0,
+      "days_ge_5": 0,
+      "hit_at_4_pct": 0.0,
+      "hit_at_5_pct": 0.0,
+      "max_dd_pct": 15.553,
+      "total_trades": 32,
+      "trades_per_day": 2.67,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 0.288,
+          "capital_end": 10028.83,
+          "n_trades": 3,
+          "realized_pnl": -157.72
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -3.665,
+          "capital_end": 9661.26,
+          "n_trades": 3,
+          "realized_pnl": -541.8
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 3.074,
+          "capital_end": 9958.29,
+          "n_trades": 3,
+          "realized_pnl": 103.34
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.953,
+          "capital_end": 9763.83,
+          "n_trades": 2,
+          "realized_pnl": -307.29
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.026,
+          "capital_end": 9565.99,
+          "n_trades": 3,
+          "realized_pnl": -390.81
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -3.289,
+          "capital_end": 9251.39,
+          "n_trades": 3,
+          "realized_pnl": -486.78
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -2.434,
+          "capital_end": 9026.18,
+          "n_trades": 3,
+          "realized_pnl": -393.38
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -4.083,
+          "capital_end": 8657.65,
+          "n_trades": 3,
+          "realized_pnl": -471.35
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -2.179,
+          "capital_end": 8469.02,
+          "n_trades": 1,
+          "realized_pnl": -246.8
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 2.341,
+          "capital_end": 8667.25,
+          "n_trades": 3,
+          "realized_pnl": 79.01
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -1.628,
+          "capital_end": 8526.18,
+          "n_trades": 2,
+          "realized_pnl": -257.93
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.028,
+          "capital_end": 8528.53,
+          "n_trades": 3,
+          "realized_pnl": -91.58
+        }
+      ]
+    },
+    {
+      "policy": "guard",
+      "target_return_pct": 4.0,
+      "max_positions": 5,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 9168.24,
+      "compound_pct": -8.318,
+      "min_day_pct": -3.486,
+      "max_day_pct": 3.965,
+      "avg_day_pct": -0.702,
+      "days_ge_4": 0,
+      "days_ge_5": 0,
+      "hit_at_4_pct": 0.0,
+      "hit_at_5_pct": 0.0,
+      "max_dd_pct": 12.006,
+      "total_trades": 49,
+      "trades_per_day": 4.08,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.951,
+          "capital_end": 9904.88,
+          "n_trades": 5,
+          "realized_pnl": -268.91
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 0.133,
+          "capital_end": 9918.1,
+          "n_trades": 5,
+          "realized_pnl": -187.47
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 3.965,
+          "capital_end": 10311.32,
+          "n_trades": 4,
+          "realized_pnl": 233.43
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.177,
+          "capital_end": 10189.98,
+          "n_trades": 2,
+          "realized_pnl": -196.76
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.963,
+          "capital_end": 9989.98,
+          "n_trades": 5,
+          "realized_pnl": -383.37
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -2.156,
+          "capital_end": 9774.56,
+          "n_trades": 5,
+          "realized_pnl": -408.95
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -3.486,
+          "capital_end": 9433.77,
+          "n_trades": 5,
+          "realized_pnl": -506.49
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -2.546,
+          "capital_end": 9193.57,
+          "n_trades": 5,
+          "realized_pnl": -383.29
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -1.307,
+          "capital_end": 9073.39,
+          "n_trades": 1,
+          "realized_pnl": -157.24
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 2.155,
+          "capital_end": 9268.93,
+          "n_trades": 5,
+          "realized_pnl": 45.31
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.977,
+          "capital_end": 9178.41,
+          "n_trades": 2,
+          "realized_pnl": -165.49
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.111,
+          "capital_end": 9168.24,
+          "n_trades": 5,
+          "realized_pnl": -127.35
+        }
+      ]
+    },
+    {
+      "policy": "guard",
+      "target_return_pct": 4.0,
+      "max_positions": 8,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 8921.26,
+      "compound_pct": -10.787,
+      "min_day_pct": -3.218,
+      "max_day_pct": 2.478,
+      "avg_day_pct": -0.937,
+      "days_ge_4": 0,
+      "days_ge_5": 0,
+      "hit_at_4_pct": 0.0,
+      "hit_at_5_pct": 0.0,
+      "max_dd_pct": 12.397,
+      "total_trades": 64,
+      "trades_per_day": 5.33,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.545,
+          "capital_end": 9945.52,
+          "n_trades": 5,
+          "realized_pnl": -169.66
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -0.081,
+          "capital_end": 9937.46,
+          "n_trades": 6,
+          "realized_pnl": -159.18
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 2.478,
+          "capital_end": 10183.7,
+          "n_trades": 4,
+          "realized_pnl": 146.15
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.737,
+          "capital_end": 10108.61,
+          "n_trades": 2,
+          "realized_pnl": -123.48
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.007,
+          "capital_end": 9905.68,
+          "n_trades": 6,
+          "realized_pnl": -329.62
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -1.617,
+          "capital_end": 9745.52,
+          "n_trades": 7,
+          "realized_pnl": -326.98
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -3.218,
+          "capital_end": 9431.94,
+          "n_trades": 8,
+          "realized_pnl": -468.94
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -2.643,
+          "capital_end": 9182.69,
+          "n_trades": 7,
+          "realized_pnl": -377.47
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -0.817,
+          "capital_end": 9107.67,
+          "n_trades": 1,
+          "realized_pnl": -98.17
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -1.232,
+          "capital_end": 8995.48,
+          "n_trades": 8,
+          "realized_pnl": -260.5
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.61,
+          "capital_end": 8940.57,
+          "n_trades": 2,
+          "realized_pnl": -100.39
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.216,
+          "capital_end": 8921.26,
+          "n_trades": 8,
+          "realized_pnl": -152.86
+        }
+      ]
+    },
+    {
+      "policy": "guard",
+      "target_return_pct": 5.0,
+      "max_positions": 1,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 9657.62,
+      "compound_pct": -3.424,
+      "min_day_pct": -10.235,
+      "max_day_pct": 13.515,
+      "avg_day_pct": -0.095,
+      "days_ge_4": 2,
+      "days_ge_5": 2,
+      "hit_at_4_pct": 16.7,
+      "hit_at_5_pct": 16.7,
+      "max_dd_pct": 22.834,
+      "total_trades": 12,
+      "trades_per_day": 1.0,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 1.284,
+          "capital_end": 10128.43,
+          "n_trades": 1,
+          "realized_pnl": -74.35
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 13.515,
+          "capital_end": 11497.32,
+          "n_trades": 1,
+          "realized_pnl": 1161.65
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 6.797,
+          "capital_end": 12278.81,
+          "n_trades": 1,
+          "realized_pnl": 547.39
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -5.719,
+          "capital_end": 11576.64,
+          "n_trades": 1,
+          "realized_pnl": -949.87
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.238,
+          "capital_end": 11433.3,
+          "n_trades": 1,
+          "realized_pnl": -377.64
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 2.442,
+          "capital_end": 11712.54,
+          "n_trades": 1,
+          "realized_pnl": 47.2
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 3.182,
+          "capital_end": 12085.27,
+          "n_trades": 1,
+          "realized_pnl": 134.89
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -10.235,
+          "capital_end": 10848.38,
+          "n_trades": 1,
+          "realized_pnl": -1479.86
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -6.536,
+          "capital_end": 10139.32,
+          "n_trades": 1,
+          "realized_pnl": -927.77
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -6.552,
+          "capital_end": 9475.02,
+          "n_trades": 1,
+          "realized_pnl": -868.72
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 1.864,
+          "capital_end": 9651.59,
+          "n_trades": 1,
+          "realized_pnl": -15.65
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.062,
+          "capital_end": 9657.62,
+          "n_trades": 1,
+          "realized_pnl": -188.11
+        }
+      ]
+    },
+    {
+      "policy": "guard",
+      "target_return_pct": 5.0,
+      "max_positions": 3,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 8535.39,
+      "compound_pct": -14.646,
+      "min_day_pct": -4.083,
+      "max_day_pct": 3.069,
+      "avg_day_pct": -1.285,
+      "days_ge_4": 0,
+      "days_ge_5": 0,
+      "hit_at_4_pct": 0.0,
+      "hit_at_5_pct": 0.0,
+      "max_dd_pct": 15.92,
+      "total_trades": 32,
+      "trades_per_day": 2.67,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 0.288,
+          "capital_end": 10028.83,
+          "n_trades": 3,
+          "realized_pnl": -157.72
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -3.665,
+          "capital_end": 9661.26,
+          "n_trades": 3,
+          "realized_pnl": -541.8
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 3.069,
+          "capital_end": 9957.74,
+          "n_trades": 3,
+          "realized_pnl": 100.32
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.953,
+          "capital_end": 9763.29,
+          "n_trades": 2,
+          "realized_pnl": -307.28
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.026,
+          "capital_end": 9565.46,
+          "n_trades": 3,
+          "realized_pnl": -390.8
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -3.289,
+          "capital_end": 9250.88,
+          "n_trades": 3,
+          "realized_pnl": -486.76
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -2.853,
+          "capital_end": 8986.96,
+          "n_trades": 3,
+          "realized_pnl": -442.91
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -4.083,
+          "capital_end": 8620.03,
+          "n_trades": 3,
+          "realized_pnl": -469.3
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -2.179,
+          "capital_end": 8432.22,
+          "n_trades": 1,
+          "realized_pnl": -245.74
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 2.863,
+          "capital_end": 8673.63,
+          "n_trades": 3,
+          "realized_pnl": 107.31
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -1.628,
+          "capital_end": 8532.45,
+          "n_trades": 2,
+          "realized_pnl": -258.11
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.034,
+          "capital_end": 8535.39,
+          "n_trades": 3,
+          "realized_pnl": -114.55
+        }
+      ]
+    },
+    {
+      "policy": "guard",
+      "target_return_pct": 5.0,
+      "max_positions": 5,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 9171.15,
+      "compound_pct": -8.289,
+      "min_day_pct": -3.487,
+      "max_day_pct": 3.961,
+      "avg_day_pct": -0.699,
+      "days_ge_4": 0,
+      "days_ge_5": 0,
+      "hit_at_4_pct": 0.0,
+      "hit_at_5_pct": 0.0,
+      "max_dd_pct": 12.006,
+      "total_trades": 49,
+      "trades_per_day": 4.08,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.951,
+          "capital_end": 9904.88,
+          "n_trades": 5,
+          "realized_pnl": -268.91
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 0.133,
+          "capital_end": 9918.1,
+          "n_trades": 5,
+          "realized_pnl": -187.47
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 3.961,
+          "capital_end": 10310.99,
+          "n_trades": 4,
+          "realized_pnl": 231.56
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.177,
+          "capital_end": 10189.65,
+          "n_trades": 2,
+          "realized_pnl": -196.75
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.963,
+          "capital_end": 9989.65,
+          "n_trades": 5,
+          "realized_pnl": -383.37
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -2.156,
+          "capital_end": 9774.24,
+          "n_trades": 5,
+          "realized_pnl": -408.94
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -3.487,
+          "capital_end": 9433.46,
+          "n_trades": 5,
+          "realized_pnl": -506.47
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -2.546,
+          "capital_end": 9193.27,
+          "n_trades": 5,
+          "realized_pnl": -383.27
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -1.307,
+          "capital_end": 9073.09,
+          "n_trades": 1,
+          "realized_pnl": -157.24
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 2.219,
+          "capital_end": 9274.43,
+          "n_trades": 5,
+          "realized_pnl": 44.71
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.977,
+          "capital_end": 9183.86,
+          "n_trades": 2,
+          "realized_pnl": -165.61
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.138,
+          "capital_end": 9171.15,
+          "n_trades": 5,
+          "realized_pnl": -159.31
+        }
+      ]
+    },
+    {
+      "policy": "guard",
+      "target_return_pct": 5.0,
+      "max_positions": 8,
+      "n_days": 12,
+      "capital_start": 10000.0,
+      "capital_end": 8917.39,
+      "compound_pct": -10.826,
+      "min_day_pct": -3.218,
+      "max_day_pct": 2.476,
+      "avg_day_pct": -0.941,
+      "days_ge_4": 0,
+      "days_ge_5": 0,
+      "hit_at_4_pct": 0.0,
+      "hit_at_5_pct": 0.0,
+      "max_dd_pct": 12.433,
+      "total_trades": 64,
+      "trades_per_day": 5.33,
+      "daily": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.545,
+          "capital_end": 9945.52,
+          "n_trades": 5,
+          "realized_pnl": -169.66
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -0.081,
+          "capital_end": 9937.46,
+          "n_trades": 6,
+          "realized_pnl": -159.18
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 2.476,
+          "capital_end": 10183.49,
+          "n_trades": 4,
+          "realized_pnl": 144.99
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -0.737,
+          "capital_end": 10108.4,
+          "n_trades": 2,
+          "realized_pnl": -123.48
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -2.008,
+          "capital_end": 9905.47,
+          "n_trades": 6,
+          "realized_pnl": -329.63
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -1.617,
+          "capital_end": 9745.32,
+          "n_trades": 7,
+          "realized_pnl": -326.96
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": -3.218,
+          "capital_end": 9431.75,
+          "n_trades": 8,
+          "realized_pnl": -468.94
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -2.643,
+          "capital_end": 9182.5,
+          "n_trades": 7,
+          "realized_pnl": -377.49
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -0.817,
+          "capital_end": 9107.48,
+          "n_trades": 1,
+          "realized_pnl": -98.17
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -1.256,
+          "capital_end": 8993.07,
+          "n_trades": 8,
+          "realized_pnl": -266.66
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": -0.61,
+          "capital_end": 8938.18,
+          "n_trades": 2,
+          "realized_pnl": -100.36
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -0.233,
+          "capital_end": 8917.39,
+          "n_trades": 8,
+          "realized_pnl": -168.05
+        }
+      ]
+    }
+  ]
+}

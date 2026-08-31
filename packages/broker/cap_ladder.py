@@ -43,13 +43,35 @@ def try_step_up_caps(db: Session, market: str, *, clean_weeks: int = 2) -> dict:
 
   m = market.upper()
   row = ensure_risk_state(db, m)
+  # Enforce ≥7 day cooldown between step-ups (council / security)
+  if row.updated_at is not None:
+    age = datetime.now(timezone.utc) - row.updated_at.replace(tzinfo=timezone.utc)
+    if age < timedelta(days=7) and int(row.ladder_stage or 0) > 0:
+      return {
+        "status": "blocked",
+        "reason": "cooldown_7d",
+        "ladder_stage": row.ladder_stage,
+        "hours_remaining": round((timedelta(days=7) - age).total_seconds() / 3600, 1),
+      }
   metrics = rolling_paper_metrics(db, market=m, days=max(14, clean_weeks * 7))
-  if metrics["n_trades"] < 20:
+  if metrics.get("n_trades", 0) < 20:
     return {"status": "blocked", "reason": "too_few_trades", "metrics": metrics, "ladder_stage": row.ladder_stage}
-  if not metrics["pass_positive_expectancy"]:
+  if not metrics.get("pass_positive_expectancy"):
     return {"status": "blocked", "reason": "expectancy_non_positive", "metrics": metrics, "ladder_stage": row.ladder_stage}
   if (metrics.get("max_dd") or 0) > abs(row.max_daily_loss) * 5:
     return {"status": "blocked", "reason": "drawdown_too_high", "metrics": metrics, "ladder_stage": row.ladder_stage}
+  # Enforce ≥7 day cooldown between step-ups (council security item)
+  last = row.updated_at
+  if last is not None:
+    if last.tzinfo is None:
+      last = last.replace(tzinfo=timezone.utc)
+    if datetime.now(timezone.utc) - last < timedelta(days=7) and int(row.ladder_stage or 0) > 0:
+      return {
+        "status": "blocked",
+        "reason": "cooldown_7d",
+        "ladder_stage": row.ladder_stage,
+        "metrics": metrics,
+      }
   if int(row.ladder_stage or 0) >= len(LADDER_MULT) - 1:
     return {"status": "maxed", "ladder_stage": row.ladder_stage, "metrics": metrics}
   row.ladder_stage = int(row.ladder_stage or 0) + 1

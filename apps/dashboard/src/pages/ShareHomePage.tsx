@@ -38,7 +38,7 @@ export default function ShareHomePage() {
   return (
     <div className="share-landing">
       <header className="share-landing-header">
-        <h1>Trade Bot</h1>
+        <h1>GodFather</h1>
         <p className="muted">Top picks ranked by smart-money backing, then est. return</p>
       </header>
 

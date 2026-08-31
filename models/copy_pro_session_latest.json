@@ -1,0 +1,85 @@
+{
+  "calendar_today": "2026-08-29",
+  "session_asof": "2026-08-28",
+  "session_note": "Calendar is 2026-08-29 (Saturday); NSE closed. Using last session 2026-08-28.",
+  "capital_start": 10000.0,
+  "capital_end": 9903.1,
+  "pnl_inr": -96.9,
+  "return_pct": -0.969,
+  "n_trades": 1,
+  "skipped": [
+    {
+      "ticker": "MVELECTRO.NS",
+      "reason": "not_selected_or_below_conf",
+      "confidence": 0.92,
+      "side": "buy",
+      "price": 676.55
+    }
+  ],
+  "params": {
+    "filter_mode": "copy_bulk_pro",
+    "max_leverage": 5.0,
+    "conf_floor": 0.55,
+    "max_daily_loss_pct": 4.0,
+    "max_trade_risk_pct": 3.0,
+    "intraday_stop_with_session_end": true,
+    "exit_at_session_end": true,
+    "max_chase_attempts": 1,
+    "use_hl_exits": false,
+    "max_positions": 1,
+    "bulk_lookback_sessions": 1,
+    "bulk_min_win_rate": 0.55,
+    "bulk_min_n_trades": 1,
+    "bulk_min_deal_value": 0.0,
+    "capital_use_frac": 0.6
+  },
+  "bulk_coverage": {
+    "ok": true,
+    "total_buys": 17536,
+    "window_buys": 6204,
+    "window_min": "2026-07-01T18:30:00+00:00",
+    "window_max": "2026-08-27T18:30:00+00:00",
+    "data_gap": false
+  },
+  "trades": [
+    {
+      "ticker": "BBTC.NS",
+      "pnl": -145.37,
+      "pnl_pct": -0.897,
+      "lev": 2.7,
+      "entry_px": 1571.1852,
+      "exit_px": 1562.4184,
+      "entry_notional": 16208.03,
+      "exit_notional": 16117.6,
+      "slot_capital": 6000.0,
+      "qty": 10.3158,
+      "exit": "session_close",
+      "fees": 54.9415,
+      "entry_ts": null,
+      "exit_ts": null
+    }
+  ],
+  "raw_keys": [
+    "asof",
+    "capital_end",
+    "capital_start",
+    "capital_use_frac",
+    "cost_bps_rt",
+    "currency",
+    "demo_badge",
+    "disclaimer",
+    "edge_metrics_valid",
+    "filter_mode",
+    "ledger",
+    "market",
+    "max_leverage",
+    "mode",
+    "n_trades",
+    "pnl_statement",
+    "realized_pnl",
+    "return_pct",
+    "skipped",
+    "trades",
+    "used_demo_fallback"
+  ]
+}

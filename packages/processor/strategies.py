@@ -109,8 +109,14 @@ def session_or_breakout(
       entry_px = px
       reason = "breakdown_below_or"
       break
-  # Vol-momentum rank: wide range + strong breakout confidence
-  score = or_width_pct * 100.0 + (conf - 0.5) if side == "buy" else 0.0
+  # Vol-momentum rank: wide range + breakout/breakdown confidence (both sides)
+  if side in ("buy", "sell"):
+    if side == "sell":
+      stretch = (hi - entry_px) / max(hi - lo, 1e-9) if entry_px else 0.0
+      conf = min(0.92, 0.62 + stretch * 0.25)
+    score = or_width_pct * 100.0 + (conf - 0.5)
+  else:
+    score = 0.0
   return {
     "side": side,
     "or_width_pct": round(or_width_pct, 5),

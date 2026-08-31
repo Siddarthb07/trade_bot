@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-08-30",
+  "claim": "Research trace only — not live fills or investment advice",
+  "contaminated_2025": {
+    "artifact": "models/copy_pro_year_2025_oneshot_10k.json",
+    "total_return_pct": 511.372,
+    "invalid_because": "pit_wr_leak_no_matured_outcomes_but_scored"
+  },
+  "clean_pit_2025": {
+    "artifact": "models/copy_pro_year_2025_oneshot_10k_clean_pit.json",
+    "total_return_pct": -67.392,
+    "green_months": 1,
+    "months_total": 12
+  },
+  "fresh_oos": {
+    "artifact": "models/copy_pro_fresh_oos_compare.json",
+    "years_all_negative": true
+  },
+  "transferable": [
+    "soft_trail_arm_025_trail_01",
+    "capital_use_selective_slots",
+    "session_guards",
+    "swarm_sleeve_25pct",
+    "hard_veto_cost_metalabel_rulesclerk",
+    "dtw_similarity"
+  ],
+  "do_not_port": [
+    "leaky_3mo_wr_as_day_ranker",
+    "steady_peeked_primary_ticker",
+    "hard_decay_veto",
+    "vpin_hawkes_kyle_as_required"
+  ],
+  "no_ruin": {
+    "min_frac_of_peak": 0.4,
+    "min_frac_of_start": 0.5,
+    "max_sleeve_frac": 0.5,
+    "default_sleeve_frac": 0.25,
+    "max_daily_loss_pct": 4.0,
+    "max_trade_risk_pct": 3.0
+  }
+}

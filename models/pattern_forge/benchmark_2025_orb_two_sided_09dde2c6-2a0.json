@@ -1,0 +1,49 @@
+{
+  "run_id": "09dde2c6-2a0",
+  "iteration_id": "475b03d5-2",
+  "strategy": "orb_two_sided",
+  "benchmark": "2025",
+  "claim": "paper/session-sim; clean PIT; modeled ~30bps RT; not live fills",
+  "capital_start": 10000.0,
+  "capital_end": 9866.31,
+  "total_return_pct": -1.337,
+  "green_months": 0,
+  "months_total": 3,
+  "n_trades": 47,
+  "months": [
+    {
+      "month": "october",
+      "capital_start": 10000.0,
+      "capital_end": 9969.22,
+      "month_return_pct": -0.308,
+      "n_trades": 12,
+      "wins": 1
+    },
+    {
+      "month": "november",
+      "capital_start": 9969.22,
+      "capital_end": 9922.93,
+      "month_return_pct": -0.464,
+      "n_trades": 16,
+      "wins": 1
+    },
+    {
+      "month": "december",
+      "capital_start": 9922.93,
+      "capital_end": 9866.31,
+      "month_return_pct": -0.571,
+      "n_trades": 19,
+      "wins": 1
+    }
+  ],
+  "knobs": {
+    "sleeve_frac": 0.25,
+    "tau": 0.5
+  },
+  "no_ruin": true,
+  "goal": {
+    "green_months_min": 8,
+    "mean_month_positive": true
+  },
+  "goal_met": false
+}

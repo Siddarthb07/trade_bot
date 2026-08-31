@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-08-30",
+  "mode": "synthetic",
+  "families": {
+    "pattern_candle": {
+      "mode": "synthetic",
+      "capital_start": 10000.0,
+      "capital_end": 10240.81,
+      "total_return_pct": 2.408,
+      "n_trades": 5,
+      "wins": 5,
+      "green_days": 5,
+      "days": 5,
+      "floor_hits": 0,
+      "claim": "synthetic plumbing only \u2014 not an edge claim"
+    },
+    "pattern_analog": {
+      "mode": "synthetic",
+      "capital_start": 10000.0,
+      "capital_end": 10231.62,
+      "total_return_pct": 2.316,
+      "n_trades": 5,
+      "wins": 5,
+      "green_days": 5,
+      "days": 5,
+      "floor_hits": 0,
+      "claim": "synthetic plumbing only \u2014 not an edge claim"
+    },
+    "orb_two_sided": {
+      "mode": "synthetic",
+      "capital_start": 10000.0,
+      "capital_end": 10344.96,
+      "total_return_pct": 3.45,
+      "n_trades": 5,
+      "wins": 5,
+      "green_days": 5,
+      "days": 5,
+      "floor_hits": 0,
+      "claim": "synthetic plumbing only \u2014 not an edge claim"
+    }
+  },
+  "fo_universe_n": 50
+}

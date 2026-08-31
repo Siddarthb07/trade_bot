@@ -16,6 +16,9 @@
 | Goal met (10% every day) | **NO** |
 | Goal met (8% IN compound) | **NO** — 0/16 full sweep + 0/4 OR-width; see [oracle-realistic ceiling](#g-oracle-realistic-session-close--costs) |
 | Oracle ceiling (session-close) | **8% every day impossible** even with perfect ticker pick — min day +5.83% best at 8% target sizing; Aug-18 best move 0.11% |
+| Goal met (4% every day, oracle) | **NO** — oracle hit@4=0/12; see §I |
+| Goal met (5% every day, oracle) | **NO** — oracle hit@5=0/12; see §I |
+| Break-even month (bake-off §J) | **PASS** — July copy-pro +5.39%; scaled use60 July **+6.39%**; Aug use60 **+13.42%** after bulk backfill (§K) |
 | Live eligibility | **None** — sim research only |
 
 ---
@@ -814,11 +817,298 @@ Generated: 2026-08-28T18:03:23.306965+05:30
 
 ---
 
+---
+
+## I. Push experiment — 4%/5% daily + multi-trade hybrid
+
+> Generated: 2026-08-29 18:20 IST  
+> Script: `scripts/run_push_4_5_experiment.py`  
+> Window: **2026-08-13 -> 2026-08-28** (12 sessions) · Capital INR 10,000  
+> Status: **VALIDATED / research** — not live-eligible. Goal = maximize hit@4 / hit@5 + compound; not every-day floor.
+
+### I1. Oracle ceiling at 4% / 5% / 8% (perfect ticker, session-close, costs, 75x)
+
+| Target | Min/day% | Avg/day% | Max/day% | Compound% | Hit@4 | Hit@5 | Hit@8 | ALL>=4 | ALL>=5 |
+|--------|----------|----------|----------|-----------|-------|-------|-------|--------|--------|
+| 4% | -1.90 | 2.44 | 3.69 | 33.4 | 0/12 | 0/12 | 0/12 | False | False |
+| 5% | -2.38 | 3.05 | 4.62 | 43.1 | 5/12 | 0/12 | 0/12 | False | False |
+| 8% | -3.80 | 4.88 | 7.39 | 76.2 | 9/12 | 8/12 | 0/12 | False | False |
+
+**Per-day oracle (target 4% sizing)** — move = best ORB→session-close %:
+
+| Day | Ticker | Move% | Ret% | >=4? | >=5? |
+|-----|--------|-------|------|------|------|
+| 2026-08-13 | TCS.NS | 1.107 | +2.92 | N | N |
+| 2026-08-14 | ADANIENT.NS | 2.144 | +3.44 | N | N |
+| 2026-08-17 | TATASTEEL.NS | 1.712 | +3.30 | N | N |
+| 2026-08-18 | BAJFINANCE.NS | 0.110 | -1.90 | N | N |
+| 2026-08-19 | JSWSTEEL.NS | 1.492 | +3.19 | N | N |
+| 2026-08-20 | MARUTI.NS | 0.502 | +1.61 | N | N |
+| 2026-08-21 | VEDL.NS | 1.160 | +2.96 | N | N |
+| 2026-08-24 | JSWSTEEL.NS | 1.733 | +3.31 | N | N |
+| 2026-08-25 | ADANIENT.NS | 3.947 | +3.69 | N | N |
+| 2026-08-26 | VEDL.NS | 2.066 | +3.42 | N | N |
+| 2026-08-27 | ADANIENT.NS | 0.416 | +1.12 | N | N |
+| 2026-08-28 | HDFCBANK.NS | 0.671 | +2.21 | N | N |
+
+**Oracle-unreachable at 4% (this window):** 2026-08-13, 2026-08-14, 2026-08-17, 2026-08-18, 2026-08-19, 2026-08-20, 2026-08-21, 2026-08-24, 2026-08-25, 2026-08-26, 2026-08-27, 2026-08-28
+
+### I2. Multi-trade OR-width push grid
+
+Policies: `raw` = `in_tr10_orwidth_chase5_75x`; `guard` = guarded product. `max_positions` raised (day_sim no longer forces 1 in target_return). `max_chase_attempts = 5` when positions=1 (classic chase); `= 1` when positions>1 (parallel equal-slot). Target return sizing 4% or 5%.
+
+| Policy | Target% | Positions | Compound% | Hit@4 | Hit@5 | Min/day% | Max/day% | Trades/day | MaxDD% |
+|--------|---------|-----------|-----------|-------|-------|----------|----------|------------|--------|
+| raw | 5 | 1 | +52.19 | 5/12 | 4/12 | -12.80 | +42.37 | 1.00 | 15.0 |
+| raw | 4 | 1 | +42.47 | 4/12 | 3/12 | -10.24 | +33.90 | 1.00 | 12.0 |
+| raw | 5 | 5 | +2.20 | 2/12 | 2/12 | -3.75 | +8.47 | 4.08 | 11.5 |
+| raw | 4 | 5 | +1.90 | 2/12 | 2/12 | -3.00 | +6.78 | 4.08 | 9.2 |
+| guard | 5 | 1 | -3.42 | 2/12 | 2/12 | -10.23 | +13.52 | 1.00 | 22.8 |
+| guard | 4 | 1 | -3.44 | 2/12 | 2/12 | -10.23 | +13.52 | 1.00 | 22.8 |
+| raw | 5 | 3 | -8.59 | 2/12 | 1/12 | -6.14 | +14.12 | 2.67 | 18.8 |
+| raw | 5 | 8 | -12.64 | 2/12 | 1/12 | -5.69 | +5.30 | 5.33 | 16.4 |
+| raw | 4 | 3 | -6.67 | 1/12 | 1/12 | -4.91 | +11.30 | 2.67 | 15.2 |
+| raw | 4 | 8 | -10.15 | 1/12 | 0/12 | -4.55 | +4.24 | 5.33 | 13.3 |
+| guard | 5 | 5 | -8.29 | 0/12 | 0/12 | -3.49 | +3.96 | 4.08 | 12.0 |
+| guard | 4 | 5 | -8.32 | 0/12 | 0/12 | -3.49 | +3.96 | 4.08 | 12.0 |
+| guard | 4 | 8 | -10.79 | 0/12 | 0/12 | -3.22 | +2.48 | 5.33 | 12.4 |
+| guard | 5 | 8 | -10.83 | 0/12 | 0/12 | -3.22 | +2.48 | 5.33 | 12.4 |
+| guard | 5 | 3 | -14.65 | 0/12 | 0/12 | -4.08 | +3.07 | 2.67 | 15.9 |
+| guard | 4 | 3 | -14.71 | 0/12 | 0/12 | -4.08 | +3.07 | 2.67 | 15.6 |
+
+### I3. Verdict
+
+- **Best by hit@4 then compound:** `raw` target=5.0% positions=1 → hit@4=5/12 (41.7%), compound=+52.19%, min/day=-12.80%, trades/day=1.0.
+- **Oracle at 4% target sizing:** hit@4=0/12, ALL>=4=False, compound=33.4%, min/day=-1.90%.
+- **Takeaway:** Raising trade count cannot beat the oracle move ceiling on dead sessions. Promote to product only if a guard config beats prior `primary_score` without worse tails; otherwise keep as research ceiling map.
+- Reports: `models/oracle_4_5_ceiling.json`, `models/push_4_5_experiment.json`.
+
+
+
+## J. Break-even bake-off — ORB vs copy-pro
+
+> Generated: 2026-08-29 19:39 IST
+> Script: `scripts/run_break_even_bakeoff.py`
+> Capital INR 10,000 · capital_use=50% · Status: research / paper
+
+### J1. Method rating (pre-bake-off)
+
+| Rank | Method | Grade | Why |
+|------|--------|-------|-----|
+| 1 | Oracle session-close | Ceiling only | Move limit; not tradable |
+| 2 | Raw OR-width 75x | Lottery A / keepable F | Huge compound / July wipeouts |
+| 3 | Push raw tgt=5% 1-pos | Research B+ | +52% window; bad tails |
+| 4 | Guarded ORB + sit-out | Product C+ | Aug ~−7% before bake-off |
+| 5 | Guarded ORB pre-fix | D | Forced daily bleed |
+| 6 | Hybrid product Aug MTD | D | −23.6% |
+| 7 | adaptive_edge / TA stubs | Incomplete | Not month-compound wired |
+| 8 | Filter / lev sweeps | F for 8–10% goal | No every-day pass |
+
+### J2. Bake-off results
+
+Coverage: `{"ok": true, "total_buys": 13144, "window_buys": 1812, "window_min": "2026-07-01T18:30:00+00:00", "window_max": "2026-07-20T18:30:00+00:00", "data_gap": false}`
+
+| Lane | Window | Compound | PnL INR | Trades | Sit-outs | Avg trade-day PnL | MaxDD | Pass≥0 |
+|------|--------|----------|---------|--------|----------|-------------------|-------|--------|
+| C | august | -7.22% | -722 | 24 | 8 | -60.18 | 8.8% | False |
+| A | august | +0.00% | +0 | 0 | 20 | None | 0.0% | False |
+| B | august | +0.00% | +0 | 0 | 20 | None | 0.0% | False |
+| A | july_bulk_window | +0.00% | +0 | 0 | 13 | None | 0.0% | False |
+| B | july_bulk_window | +5.39% | +539 | 12 | 1 | 44.91 | 4.6% | True |
+
+**Promoted:** `copy_bulk_pro`
+**Reports:** `models/break_even_bakeoff.json`
+
+### J3. Verdict
+
+PASS — Lane B (july_bulk_window) compound +5.39% with avg trade-day PnL 44.91. Promoted=copy_bulk_pro.
+
+
+
+
+## K. Copy-pro push — double down on what works
+
+> Generated: 2026-08-29 19:58 IST  
+> Script: `scripts/run_copy_pro_push.py`  
+> Baseline: bake-off Lane B July +5.39%. Hardening = min investor n≥2, deal ≥₹2.5cr, SL cooldown.
+
+| Config | Window | Compound | PnL | Trades | Avg trade-day | MaxDD | Pass≥0 |
+|--------|--------|----------|-----|--------|---------------|-------|--------|
+| baseline_bakeoff | july | +5.39% | +539 | 12 | 44.91 | 4.6% | True |
+| quality_v1 | july | -6.59% | -659 | 13 | -50.68 | 7.8% | False |
+| quality_size60 | july | -7.90% | -790 | 13 | -60.76 | 9.3% | False |
+| quality_2slot | july | +4.64% | +464 | 25 | 35.68 | 3.8% | True |
+| quality_wr60 | july | -7.25% | -724 | 13 | -55.73 | 8.5% | False |
+| baseline_bakeoff | august | +0.00% | +0 | 0 | None | 0.0% | False |
+| quality_v1 | august | +0.00% | +0 | 0 | None | 0.0% | False |
+| quality_size60 | august | +0.00% | +0 | 0 | None | 0.0% | False |
+| quality_2slot | august | +0.00% | +0 | 0 | None | 0.0% | False |
+| quality_wr60 | august | +0.00% | +0 | 0 | None | 0.0% | False |
+
+**Best:** `baseline_bakeoff@july`  
+**Report:** `models/copy_pro_push.json`
+
+
+
+### K2. Scale baseline (no over-filter) — July
+
+Tight WR/n/value filters **hurt**. Scaling only size/slots/cooldown:
+
+| Config | Compound | PnL | Trades | AvgTD | MaxDD |
+|--------|----------|-----|--------|-------|-------|
+| use60 | +6.39% | +639 | 12 | 53.29 | 5.6% |
+| baseline | +5.39% | +539 | 12 | 44.91 | 4.6% |
+| use60_cd1 | +4.57% | +457 | 11 | 41.51 | 7.2% |
+| scale_best | +4.11% | +411 | 17 | 37.35 | 3.0% |
+| lookback2 | +4.01% | +401 | 13 | 30.83 | 7.7% |
+| cooldown1 | +3.87% | +387 | 11 | 35.19 | 6.0% |
+| slots2_cd1 | +3.36% | +336 | 17 | 30.58 | 2.6% |
+| slots2 | -2.49% | -249 | 19 | -20.71 | 3.9% |
+
+**Best scale config:** `use60` (+6.39%). Report: `models/copy_pro_scale.json`.
+
+### K3. August with backfilled bulk + use60
+
+NSE historical backfill added Aug coverage (through 2026-08-27). Promoted `copy_bulk_pro` at **capital_use=60%**:
+
+| Window | Compound | PnL INR | Trades | End equity |
+|--------|----------|---------|--------|------------|
+| Aug 1–28 | **+13.42%** | **+1,342** | 20 | ₹11,342 |
+
+Report: `models/copy_pro_august_use60.json`. Registry defaults updated to `capital_use_frac=0.6`.
+
+## L. Returns push toward 10%/month (hit-rate)
+
+> Generated: 2026-08-29  
+> **Full method write-up:** [`COPY_PRO_10PCT_MONTHLY_METHOD.md`](COPY_PRO_10PCT_MONTHLY_METHOD.md)  
+> Scripts: `scripts/run_copy_pro_return_gap.py`, `scripts/run_copy_pro_returns_push.py`  
+> Goal: ≥2 of 4 calendar months compound ≥10% on ₹10k; monthly DD ≤25%; mean > ablation (~−6.2%).
+
+### L1. Return-gap audit (ablation baseline)
+
+| Month | Compound | WR | Expectancy ₹ | Margin util | Winner giveback (MFE−realized) |
+|-------|----------|-----|--------------|-------------|-------------------------------|
+| May | −5.9% | 31% | −74 | 60% | (sparse 5m cache) |
+| June | −14.6% | 29% | −117 | 60% | (sparse 5m cache) |
+| July | −3.6% | 30% | −65 | 60% | ~3.5% avg |
+| August | −0.7% | 40% | −47 | 60% | ~3.9% avg |
+
+Pooled: idle cash ~40%, avg winner giveback ~3.9% → primary lever **soft trail**, then sizing / selective 2nd slot.  
+Report: `models/copy_pro_return_gap.json`.
+
+### L2. Push grid (locked: lookback=1, wr_pseudo_n=0, ticker+entity CD=1)
+
+Wave1 = capital_use × soft trail (sit=0). Wave2 = sitout=1 on top-3 (hurt runners). Wave3 = selective 2nd slot (top WR≥0.65 + score gap≥0.5).
+
+| Config | Hit≥10% | Mean | MaxDD | Gate |
+|--------|---------|------|-------|------|
+| use60 trail off | 0/4 | −6.2% | 32.6% | N |
+| use60 trail arm2.5%/1% | 1/4 | +6.9% | 25.3% | N |
+| use75 trail arm2.5%/1% | 2/4 | +7.9% | 30.8% | N (DD) |
+| use85 trail arm2.5%/1% | 2/4 | +8.5% | 34.4% | N (DD) |
+| sitout=1 variants | 0/4 | ~0–1% | ≤25% | N (kills Jul/Aug) |
+| **use85 + trail2.5 + sel2** | **3/4** | **+11.2%** | **14.8%** | **Y** |
+| use75 + trail2.5 + sel2 | 3/4 | +10.1% | 13.1% | Y |
+| use60 + trail2.5 + sel2 | 2/4 | +8.3% | 10.6% | Y |
+
+Winner months (use85 sel2): May −3.4%, June +14.9%, July +12.9%, August +20.5%.
+
+**Promoted product defaults:** `capital_use_frac=0.85`, `soft_trail_arm_pct=0.025`, `soft_trail_pct=0.01`, `max_positions=2` with `bulk_second_min_wr=0.65` / `bulk_second_min_score_gap=0.5`, sitout=0.  
+Report: `models/copy_pro_returns_push.json`.
+
+**Honesty:** paper/sim only; May still red; 10%/month is a **hit-rate** (3/4 here), not a guarantee every month. Do not revive pre-lookback Aug +13.4% / July bake-off as current truth without this config.
+
+## M. Pattern Forge + recognition-swarm (2026-08-30)
+
+> Clean-PIT reboot after copy-pro leak. Trace: [`docs/METHOD_BREAK_TRACE.md`](METHOD_BREAK_TRACE.md).
+
+| Item | Status |
+|------|--------|
+| Recognition swarm port | `packages/processor/hybrid/recognition/` from `godfather/recognition-swarm` |
+| No-ruin floor | `packages/processor/no_ruin.py` — ≤40% peak or ≤50% start → cash |
+| F&O shorts only | `models/universes/nse_fo_underliers.json` + `fo_universe.py` |
+| Two-sided path math | `packages/processor/two_sided.py` |
+| Families | `pattern_candle`, `pattern_analog`, `orb_two_sided`, **`hybrid_stock_market`** |
+| Hybrid chooser | `packages/processor/pattern_forge/hybrid_chooser.py` — picks family from market regime + stock OR/candle/analog features |
+| Unit tests | `tests/test_recognition_stack.py` + `tests/test_pattern_forge_harness.py` + `tests/test_hybrid_stock_chooser.py` |
+| Synthetic bake-off | `scripts/run_pattern_forge_bakeoff.py` → `models/method_family_bakeoff.json` |
+
+**Rule:** no real-network backtest until unit tests green. Contaminated +511% is stretch label only.
+
+### M1. Hybrid stock+market chooser (2026-08-30)
+
+| Field | Value |
+|-------|-------|
+| **Method** | Per-session pick among candle / ORB / analog / cash from regime + stock features |
+| **Config** | `family=hybrid_stock_market`, long_only=True, sleeve≈25%, no-ruin on |
+| **Market regime** | RELIANCE.NS daily proxy (`market_regime_proxy.py`); soft regime if 20–49 bars |
+| **Oct–Dec 2025 (v1, regime=unknown)** | −1.49%, 0/3 green, 53 trades / 1 win-month tally |
+| **Oct–Dec 2025 (v2, regime fixed)** | −1.41%, 0/3 green (Oct −0.48 / Nov −0.32 / Dec −0.61), report `benchmark_2025_hybrid_stock_market_c69e25f0-c99.json` |
+| **Best knob so far** | `hybrid_sitout` (min_score=0.28, conf≥0.62): **−0.89%**, 0/3 green, fewer trades (41) — still FAIL |
+| **Status** | VALIDATED / **FAILED** monthly greens — session 1h ORB→close structurally < ~30bps costs (oracle best-of-12 ≈23bps) |
+| **Code** | `hybrid_chooser.py` → `primary_signal` → decision ledger `hybrid_choice` |
+
+### M2. Daily FO swing (clean PIT) — 2026-08-30
+
+| Field | Value |
+|-------|-------|
+| **Method** | Next-day long: cross-sectional max 1d return in band, r5≥−3%, skip risk_off |
+| **Horizon** | Close[T] → close[T+1] on FO underliers (full list ~49) |
+| **Costs** | `IN_FO_COST` ~12bps RT (F&O-modeled; **not** cash equity 30bps) |
+| **Promoted** | sleeve=30%, lev=8×, band 0.5–6%, daily loss clamp 8% |
+| **2025 full year (push8)** | **+41.96%**, **8/12 green**, goal_met=True — `benchmark_2025_daily_swing_9bbe50e5-4fe.json` |
+| **Prior conservative** | sleeve=20% lev=2× → only +7.17% (too weak vs ambition) |
+| **Red months** | Feb ≈−25% (main DD), Jul/Aug mild, Dec ≈−4.5% |
+| **vs contaminated +511%** | That number used live WR with `pit_n=0` — **not a clean target**. Clean push is ~40%/yr class, not 500%. |
+| **Status** | VALIDATED / **PASS** gate (≥8/12 + positive year); ambition = keep lifting annual without WR leak |
+| **Code** | `daily_swing.py` + `scripts/run_pattern_forge_daily_swing_2025.py` |
+
+### M3. Pattern Forge v2.1 research (2026-08-30)
+
+| Field | Value |
+|-------|-------|
+| **Locked hero** | `v2` — `models/pattern_forge/v2_latest.json` (+103% 2025, profit_guard, long-only) |
+| **Challenger lane** | `v2_1` — FO shorts + hard swarm vetoes + overnight feeds |
+| **Hard veto agents** | Regime / CrossMarketOpen / CrossSectionSimilarity / BreadthRegime → cash |
+| **Feeds** | `overnight_feeds.py` (SPY / EWJ / ^NSEI PIT; Lab `feed_status`) |
+| **Charts** | `GET /exec/pattern-forge/chart` + Pattern Lab DetailPriceChart markers + v2 vs v2_1 equity |
+| **Bakeoff** | `scripts/run_v2_1_bakeoff.py` → `v2_1_bakeoff.json`; OOS via `run_pattern_forge_daily_swing_oos.py` |
+| **Promote rule** | Clean 2025 ≥ v2 return, loss≤profits, ≥8 green; OOS claim; **never** silent overwrite of `v2_latest.json` |
+| **Bakeoff result** | **Do not promote.** Full v2_1 2025 **+86.3%** / 10/12 / worst −10.3% — below locked v2 **+103.2%**. Artefact: `v2_1_bakeoff.json` |
+| **Ablation 2025** | frozen_v2 +103.2%; shorts_only +99.9% (worst −17.9%); hard_swarm +100.6%; full v2_1 +86.3% |
+| **OOS** | 2023: v2 +130.8% / v2_1 +135.4% (7/12 green); 2024: v2 +59.7% (worst −28.9%) / v2_1 +2.7% (3/12) |
+| **Status** | RESEARCH / **not eligible** to replace locked v2 |
+
+### M4. Scrutiny + missing years + v3 attempt (2026-08-30)
+
+| Check | Result |
+|-------|--------|
+| **Lane of multi-year** | **11×** locked v2 (not product ≤3 / stretch ≤5) |
+| **ADANIENT 2023-05-19** | **REAL NSE move** — entry ~₹1956 (LiveMint), exit ~₹2326 (~+18%, Hindu BL / BusinessToday); verify JSON `adani_2023_05_19_verify.json`. Concentration = event risk, not Yahoo artifact. |
+| **Why 2019/2021 missing initially** | **Never run** (user list was 2018,2020,2022–2025) — **not** cherry-pick after failure. Later filled: **2019 +37.7%** / **2021 −18.5%**. |
+| **Full 8-year standalone** | 6/8 green; red = **2021 (−18.5%)**, **2022 (−15.7%)**. Scorecard: `v2_multi_year.json` (lead with year table; compound = footnote). |
+| **v3 confirmed OOS?** | **No.** Pass1 (TS-mom+breadth+vol) → flat/~0%. Pass2 (top_k diversify only) → **destroys** v2 edge (OOS mostly red). Honest: **v2’s return IS single-name concentration**; diversifying removes the headline without a replacement edge. Artefacts: `v3_bakeoff.json`, `v3_bakeoff_pass2.json`, `v3_latest.json` (`confirmed_oos=false`). **`v2_latest.json` untouched.** |
+
 ## Changelog
 
 | Date | Change |
 |------|--------|
+| 2026-08-30 | **ADANIENT verify + 2019/2021 fill + v3 OOS fail:** real fill; missing years were unrun not cherry-picked; v3 cannot clear confirmed OOS without killing edge; see §M4. |
+| 2026-08-30 | **v2.1 bakeoff:** full lane +86.3% vs locked v2 +103.2% — **no promote**; OOS logged; see §M3 / `v2_1_bakeoff.json`. |
+| 2026-08-30 | **v2.1 research lane:** shorts + hard swarm veto + overnight feeds + Lab charts + bakeoff/OOS gate; see §M3. |
+| 2026-08-30 | **Daily FO swing push:** full FO uni + lev8 → **+42% / 8/12** clean 2025 (IN_FO costs); see §M2. Prior +7% was under-levered. |
+| 2026-08-30 | **Daily FO swing:** clean-PIT next-day momentum band; **+7.17% / 8/12 green** on 2025 under IN_FO ~12bps; see §M2. |
+| 2026-08-30 | **Hybrid stock+market chooser:** `hybrid_stock_market` family; see §M1. |
+| 2026-08-30 | **Pattern Forge:** recognition-swarm port, no-ruin, F&O shorts, two-sided path, candle/analog/ORB2s; see §M. |
+| 2026-08-29 | **Returns push 10%/mo:** soft trail + selective 2nd slot; promoted use85/trail2.5/sel2 (3/4 months ≥10%, mean +11.2%, DD 14.8%); see §L. |
+| 2026-08-29 | **Ablation:** lookback+ticker+entity cooldown, WR shrink off → July **+8.4%**, last week **+8.1%**; product `bulk_wr_pseudo_n=0`. |
+| 2026-08-29 | **Rules ledger:** self-learning anti-repeat rules (`hybrid_rules_ledger.json`); briefing read before every hybrid session; learn from daily P&L. |
+| 2026-08-29 | **Copy-pro failure fixes:** prior-session lookback, WR shrink, SL ticker/entity cooldown, sitout-after-SL. Last week −8.3%→−0.08%; see `copy_pro_last_week_fixed.json`. |
+| 2026-08-29 | **Copy-pro scale:** use60 July +6.39%; Aug after bulk backfill **+13.42%**; see §K2/K3. |
+| 2026-08-29 | **Copy-pro push:** quality filters + SL cooldown grid; best=baseline_bakeoff@july; see §K; `copy_pro_push.json`. |
+| 2026-08-29 | **Break-even bake-off:** lanes A/B/C; promoted=copy_bulk_pro; see §J; `break_even_bakeoff.json`. |
 | 2026-08-28 | Initial log populated: 14 filter + 14 leverage + 9 target_return methods |
 | 2026-08-28 | Ran `run_target_10_search.py`; goal_met=false, best min-day tr10_us_50x (-6.87%) |
 | 2026-08-28 | Follow-up: `--grid filter` restored; intraday yfinance retry; IN compound + chase sections; 8% pass floor documented |
 | 2026-08-29 | **Product guardrails:** SL during session-end, risk-capped leverage, daily loss halt. Product `in_tr10_orwidth_chase5_75x_guard`. Paper-month runner `scripts/run_paper_month_orwidth.py`. |
+| 2026-08-29 | **Push 4%/5% + multi-trade:** oracle ceiling + OR-width position grid; logged §I; JSON `oracle_4_5_ceiling.json` / `push_4_5_experiment.json`. |

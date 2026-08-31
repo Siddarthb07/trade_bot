@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>GodFather · Pattern Lab</title>
+<style>
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, sans-serif;
+  --bg: #0a0e17;
+  --surface: #111827;
+  --border: #1f2937;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #3b82f6;
+  --green: #4ade80;
+  --amber: #fbbf24;
+  --red: #f87171;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.5; }
+a { color: #93c5fd; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-wrap: wrap;
+}
+.header-brand strong { font-size: 1rem; }
+.subtitle { display: block; font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+.header-nav { display: flex; align-items: center; gap: 0.25rem; flex-wrap: wrap; }
+.header-nav a {
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.header-nav a:hover { color: var(--text); background: #1f2937; text-decoration: none; }
+.header-nav a.active { color: #fff; background: #1e3a5f; }
+
+.nav-more { position: relative; }
+.nav-more > span { padding: 0.45rem 0.75rem; color: var(--muted); cursor: default; font-size: 0.9rem; }
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 140px;
+  z-index: 10;
+  padding: 0.35rem;
+}
+.nav-more:hover .nav-dropdown { display: flex; flex-direction: column; }
+.nav-dropdown a { padding: 0.4rem 0.65rem; border-radius: 4px; color: var(--muted); font-size: 0.85rem; }
+.nav-dropdown a:hover { background: #1f2937; color: var(--text); text-decoration: none; }
+
+.main { flex: 1; padding: 1rem 1.25rem 2rem; max-width: 1100px; width: 100%; margin: 0 auto; }
+.footer { padding: 0.65rem 1.25rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; text-align: center; }
+
+.page-intro { margin-bottom: 1rem; }
+.page-intro h2 { margin: 0 0 0.35rem; font-size: 1.25rem; }
+.muted { color: var(--muted); font-size: 0.9rem; }
+
+.pattern-lab {
+  --pl-glass: rgba(255, 255, 255, 0.05);
+  --pl-glass-border: rgba(255, 255, 255, 0.1);
+  --pl-text: #f2f3f5;
+  --pl-muted: rgba(242, 243, 245, 0.52);
+  --pl-up: #30d158;
+  --pl-down: #ff453a;
+  --pl-accent: #64d2ff;
+  --pl-surface: rgba(0, 0, 0, 0.28);
+  color: var(--pl-text);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-bottom: 2.5rem;
+}
+
+.pl-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+  padding: 0.25rem 0 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.pl-hero-copy { min-width: 0; }
+.pl-eyebrow {
+  margin: 0 0 0.3rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pl-muted);
+}
+.pl-hero h1 {
+  margin: 0;
+  font-size: clamp(1.55rem, 2.8vw, 2.05rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 650;
+}
+.pl-sub {
+  margin: 0.4rem 0 0;
+  color: var(--pl-muted);
+  max-width: 40rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.pl-badge {
+  display: inline-block;
+  padding: 0.08rem 0.45rem;
+  border-radius: 6px;
+  background: rgba(48, 209, 88, 0.16);
+  color: var(--pl-up);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+.pl-hero-actions { flex-shrink: 0; }
+.pl-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  background: rgba(100, 210, 255, 0.18);
+  color: var(--pl-accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 100ms ease-out, background 140ms ease, opacity 140ms ease;
+}
+.pl-btn:hover { background: rgba(100, 210, 255, 0.28); }
+.pl-btn:active { transform: scale(0.97); }
+.pl-btn:disabled { opacity: 0.5; cursor: default; }
+.pl-btn-ghost {
+  background: transparent;
+  color: var(--pl-muted);
+  border: 1px solid var(--pl-glass-border);
+}
+.pl-btn-ghost:hover { color: var(--pl-text); background: rgba(255, 255, 255, 0.04); }
+.pl-error {
+  color: var(--pl-down);
+  margin: 0 0 0.85rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(255, 69, 58, 0.1);
+  border: 1px solid rgba(255, 69, 58, 0.25);
+}
+
+.pl-tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0.2rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  width: fit-content;
+  max-width: 100%;
+}
+.pl-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--pl-muted);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 140ms ease, color 140ms ease;
+}
+.pl-tab:hover { color: var(--pl-text); }
+.pl-tab.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--pl-text);
+}
+
+.pl-glass {
+  background: var(--pl-glass);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid var(--pl-glass-border);
+  border-radius: 14px;
+}
+.pl-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1rem;
+}
+.pl-metric { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.pl-metric-label {
+  font-size: 0.68rem;
+  color: var(--pl-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.pl-metric strong {
+  font-size: 1.28rem;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+.pl-soft { color: var(--pl-muted); font-size: 0.8rem; font-weight: 500; }
+.pl-metric .pl-soft { margin-top: 0.1rem; }
+
+.pl-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.pl-grid-wide { grid-template-columns: 0.95fr 1.05fr; }
+.pl-panel {
+  padding: 1rem 1.1rem 1.15rem;
+  margin-bottom: 1rem;
+}
+.pl-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+  margin-bottom: 0.7rem;
+}
+.pl-panel-head h2,
+.pl-panel h2 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+.pl-panel h3 {
+  margin: 0 0 0.55rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--pl-muted);
+}
+.pl-equity-block {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.pl-brief { margin: 0 0 0.65rem; line-height: 1.4; }
+
+.pl-month-strip { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.pl-month {
+  min-width: 4.4rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 10px;
+  background: var(--pl-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+}
+.pl-month.up { box-shadow: inset 0 0 0 1px rgba(48, 209, 88, 0.18); }
+.pl-month.down { box-shadow: inset 0 0 0 1px rgba(255, 69, 58, 0.18); }
+.pl-month span { font-size: 0.68rem; color: var(--pl-muted); }
+.pl-month strong { font-size: 0.84rem; font-variant-numeric: tabular-nums; }
+.pl-month em { font-style: normal; font-size: 0.62rem; color: var(--pl-muted); }
+
+.pl-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-height: 300px;
+  overflow: auto;
+}
+.pl-list li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.45rem;
+  align-items: center;
+  padding: 0.45rem 0.55rem;
+  border-radius: 10px;
+  background: var(--pl-surface);
+  font-size: 0.82rem;
+}
+.pl-list li.keep { outline: 1px solid rgba(48, 209, 88, 0.3); }
+.pl-list-title { font-weight: 600; }
+.pl-iter-btn {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.45rem;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+.pl-iter-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0.65rem 0;
+}
+.pl-iter-grid .pl-metric-label { display: block; margin-bottom: 0.15rem; }
+.pl-row-between { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.pl-chip {
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  padding: 0.12rem 0.38rem;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--pl-muted);
+  text-transform: uppercase;
+}
+
+.pl-tape {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 440px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+.pl-tape-row {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 4.4rem 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.12rem 0.5rem;
+  padding: 0.48rem 0.55rem;
+  border-radius: 10px;
+  border: 0;
+  background: var(--pl-surface);
+  color: inherit;
+  cursor: pointer;
+  transition: transform 100ms ease-out, background 140ms ease;
+}
+.pl-tape-row:hover { background: rgba(255, 255, 255, 0.06); }
+.pl-tape-row:active { transform: scale(0.985); }
+.pl-tape-row.active {
+  background: rgba(100, 210, 255, 0.12);
+  outline: 1px solid rgba(100, 210, 255, 0.28);
+}
+.pl-choice {
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  padding: 0.32rem 0.35rem;
+  border-radius: 7px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+}
+.pl-choice.fire { background: rgba(48, 209, 88, 0.18); color: var(--pl-up); }
+.pl-choice.skip { color: var(--pl-muted); }
+.pl-choice.no_ruin { background: rgba(255, 69, 58, 0.18); color: var(--pl-down); }
+.pl-tape-main { display: flex; gap: 0.45rem; align-items: baseline; }
+.pl-tape-main em { font-style: normal; color: var(--pl-muted); font-size: 0.78rem; }
+.pl-tape-meta { grid-column: 2; color: var(--pl-muted); font-size: 0.72rem; }
+
+.pl-inspector { min-height: 26rem; }
+.pl-inspector-head { margin-bottom: 0.7rem; }
+.pl-inspector-head p { margin: 0 0 0.25rem; }
+.pl-scoreboard { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.5rem 0 0.4rem; }
+.pl-score {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.18rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--pl-glass-border);
+}
+.pl-score.take { background: rgba(48, 209, 88, 0.14); color: var(--pl-up); }
+.pl-score.skip { background: rgba(255, 69, 58, 0.14); color: var(--pl-down); }
+.pl-score.annotate { color: var(--pl-muted); }
+.pl-filter-row { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.pl-filter {
+  border: 1px solid var(--pl-glass-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--pl-muted);
+  border-radius: 8px;
+  padding: 0.22rem 0.65rem;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+.pl-filter.active {
+  background: rgba(100, 210, 255, 0.16);
+  color: var(--pl-text);
+  border-color: rgba(100, 210, 255, 0.4);
+}
+.pl-price-chart {
+  margin: 0.65rem 0 0.85rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: 10px;
+  background: var(--pl-surface);
+}
+.pl-agent-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.5rem;
+  max-height: 48vh;
+  overflow: auto;
+}
+.pl-agent-card {
+  border: 1px solid var(--pl-glass-border);
+  border-radius: 12px;
+  padding: 0.6rem 0.7rem;
+  background: var(--pl-surface);
+  transition: border-color 140ms ease;
+}
+.pl-agent-card:hover { border-color: rgba(100, 210, 255, 0.4); }
+.pl-agent-card.stub { opacity: 0.82; border-style: dashed; }
+.pl-agent-card header {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.28rem;
+  flex-wrap: wrap;
+}
+.pl-agent-card h3 {
+  margin: 0;
+  font-size: 0.84rem;
+  flex: 1;
+  letter-spacing: -0.01em;
+  min-width: 4rem;
+  color: var(--pl-text);
+}
+.pl-vote-pill {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.1rem 0.38rem;
+  border-radius: 5px;
+}
+.pl-vote-pill.take { background: rgba(48, 209, 88, 0.18); color: var(--pl-up); }
+.pl-vote-pill.skip { background: rgba(255, 69, 58, 0.18); color: var(--pl-down); }
+.pl-vote-pill.annotate { background: rgba(255, 255, 255, 0.07); color: var(--pl-muted); }
+.pl-stub-tag {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.06rem 0.25rem;
+  border-radius: 4px;
+  background: rgba(255, 214, 10, 0.12);
+  color: #ffd60a;
+}
+.pl-reason { margin: 0 0 0.3rem; font-size: 0.78rem; line-height: 1.35; }
+.pl-payload-details summary {
+  cursor: pointer;
+  font-size: 0.7rem;
+  color: var(--pl-accent);
+  margin-bottom: 0.15rem;
+}
+.pl-payload {
+  margin: 0;
+  padding: 0.4rem 0.5rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.66rem;
+  overflow: auto;
+  max-height: 120px;
+  color: var(--pl-muted);
+  white-space: pre-wrap;
+}
+.pl-iter-detail .pl-payload { max-height: 160px; font-size: 0.72rem; }
+
+.pl-matrix-wrap { overflow-x: auto; margin-top: 0.35rem; }
+.pl-matrix { display: grid; gap: 3px; min-width: max-content; align-items: center; }
+.pl-matrix-corner { height: 1rem; }
+.pl-matrix-day,
+.pl-matrix-cell {
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--pl-muted);
+  border-radius: 5px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.2rem 0;
+  cursor: pointer;
+  transition: transform 90ms ease-out, border-color 120ms ease;
+}
+.pl-matrix-day:active,
+.pl-matrix-cell:active { transform: scale(0.94); }
+.pl-matrix-day.active,
+.pl-matrix-cell.active { border-color: var(--pl-accent); }
+.pl-matrix-agent {
+  font-size: 0.68rem;
+  color: var(--pl-text);
+  padding-right: 0.3rem;
+  white-space: nowrap;
+}
+.pl-matrix-agent.stub { color: var(--pl-muted); }
+.pl-matrix-cell.take { background: rgba(48, 209, 88, 0.2); color: var(--pl-up); }
+.pl-matrix-cell.skip { background: rgba(255, 69, 58, 0.2); color: var(--pl-down); }
+.pl-matrix-cell.annotate { background: rgba(255, 255, 255, 0.045); }
+.pl-matrix-cell.stub { opacity: 0.5; }
+
+.pl-table-wrap { overflow: auto; max-height: 380px; }
+.pl-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+.pl-table th,
+.pl-table td {
+  text-align: left;
+  padding: 0.42rem 0.48rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.pl-table th {
+  color: var(--pl-muted);
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  background: #12151a;
+  z-index: 1;
+}
+.pl-row-click { cursor: pointer; }
+.pl-row-click:hover td { background: rgba(100, 210, 255, 0.06); }
+
+.pl-foot {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: var(--pl-muted);
+  line-height: 1.4;
+}
+
+.pattern-lab .up { color: var(--pl-up); }
+.pattern-lab .down { color: var(--pl-down); }
+.pattern-lab .muted { color: var(--pl-muted); }
+
+@media (max-width: 900px) {
+  .pl-metrics,
+  .pl-grid,
+  .pl-grid-wide { grid-template-columns: 1fr 1fr; }
+  .pl-iter-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .pl-metrics,
+  .pl-grid,
+  .pl-grid-wide,
+  .pl-iter-grid { grid-template-columns: 1fr; }
+  .pl-hero { flex-direction: column; align-items: flex-start; }
+  .pl-tabs { width: 100%; }
+  .pl-tab { flex: 1; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pl-btn,
+  .pl-tape-row,
+  .pl-tab { transition: none; }
+  .pl-btn:active,
+  .pl-tape-row:active { transform: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .pl-glass {
+    background: #14181f;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+.main { max-width: 1180px; }
+.pl-shot {
+  /* LinkedIn 16:9 crop frame */
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  position: relative;
+}
+.pl-shot .pattern-lab { max-width: none; padding-bottom: 0; }
+.pl-dense-meta {
+  font-size: 0.62rem;
+  color: var(--pl-muted);
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  margin: 0.35rem 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pl-agent-cards { max-height: 210px; }
+.pl-tape { max-height: 210px; }
+.pl-grid-shot {
+  display: grid;
+  grid-template-columns: 0.95fr 1.25fr;
+  gap: 0.85rem;
+}
+.pl-panel { margin-bottom: 0.75rem; }
+.pl-metrics { margin-bottom: 0.75rem; padding: 0.85rem 1rem; }
+header.header { padding: 0.55rem 1rem; }
+.main { padding: 0.65rem 1rem 0.5rem; }
+footer.footer { display: none; }
+.pl-mini-claim {
+  font-size: 0.58rem;
+  color: rgba(242,243,245,0.38);
+  margin-top: 0.45rem;
+}
+</style>
+</head>
+<body>
+<div class="app pl-shot" id="shot">
+  <header class="header">
+    <div class="header-brand">
+      <strong>GodFather</strong>
+      <span class="subtitle">Not investment advice</span>
+    </div>
+    <nav class="header-nav">
+      <a href="#">Demand picks</a>
+      <a href="#">Bulk deals</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Live</a>
+      <a href="#">GodFather</a>
+      <a href="#" class="active">Pattern Lab</a>
+      <a href="#">Investors</a>
+    </nav>
+  </header>
+  <main class="main">
+    <div class="pattern-lab">
+      <header class="pl-hero">
+        <div class="pl-hero-copy">
+          <p class="pl-eyebrow">Pattern Lab</p>
+          <h1>Forge desk</h1>
+          <p class="pl-sub">
+            Locked hero <span class="pl-badge">v2</span>
+            · clean-PIT daily swing · paper/sim only
+          </p>
+        </div>
+        <div class="pl-hero-actions">
+          <button type="button" class="pl-btn">Refresh</button>
+        </div>
+      </header>
+
+      <nav class="pl-tabs" aria-label="Pattern Lab sections">
+        <button type="button" class="pl-tab active">Overview</button>
+        <button type="button" class="pl-tab">Swarm</button>
+        <button type="button" class="pl-tab">Ledger</button>
+      </nav>
+
+      <section class="pl-glass pl-metrics" aria-label="Hero metrics">
+        <div class="pl-metric">
+          <span class="pl-metric-label">End capital</span>
+          <strong class="up">₹20,325</strong>
+          <span class="pl-soft">from ₹10,000</span>
+        </div>
+        <div class="pl-metric">
+          <span class="pl-metric-label">Year return</span>
+          <strong class="up">+103.25%</strong>
+          <span class="pl-soft">₹10,325 pnl</span>
+        </div>
+        <div class="pl-metric">
+          <span class="pl-metric-label">Worst month</span>
+          <strong class="up">-5.73%</strong>
+          <span class="pl-soft">₹-997</span>
+        </div>
+        <div class="pl-metric">
+          <span class="pl-metric-label">Loss ≤ profits</span>
+          <strong class="up">Yes</strong>
+          <span class="pl-soft">10/12 green · 218 trades</span>
+        </div>
+      </section>
+
+      <div class="pl-grid-shot">
+        <section class="pl-glass pl-panel">
+          <div class="pl-panel-head">
+            <h2>2025 equity path</h2>
+            <p class="pl-soft">run 2b906e47-2e8 · lev 11.0×</p>
+          </div>
+          <svg viewBox="0 0 520 118" width="100%" height="118" preserveAspectRatio="none" aria-hidden="true"><polyline fill="rgba(48,209,88,0.12)" stroke="none" points="6,112 6.0,108.4 48.3,106.7 90.7,112.0 133.0,110.2 175.3,104.7 217.7,90.9 260.0,78.0 302.3,72.3 344.7,68.7 387.0,41.6 429.3,29.0 471.7,6.0 514.0,15.0 514,112"/><polyline fill="none" stroke="#30d158" stroke-width="2" points="6.0,108.4 48.3,106.7 90.7,112.0 133.0,110.2 175.3,104.7 217.7,90.9 260.0,78.0 302.3,72.3 344.7,68.7 387.0,41.6 429.3,29.0 471.7,6.0 514.0,15.0"/></svg>
+          <div class="pl-month-strip" style="margin-top:0.55rem"><div class="pl-month up"><span>Jan</span><strong class="up">+1.83%</strong><em>15 tr · ₹10,183</em></div><div class="pl-month down"><span>Feb</span><strong class="down">-5.73%</strong><em>13 tr · ₹9,600</em></div><div class="pl-month up"><span>Mar</span><strong class="up">+2.08%</strong><em>17 tr · ₹9,800</em></div><div class="pl-month up"><span>Apr</span><strong class="up">+6.20%</strong><em>19 tr · ₹10,408</em></div><div class="pl-month up"><span>May</span><strong class="up">+14.62%</strong><em>19 tr · ₹11,930</em></div><div class="pl-month up"><span>Jun</span><strong class="up">+11.98%</strong><em>20 tr · ₹13,359</em></div><div class="pl-month up"><span>Jul</span><strong class="up">+4.73%</strong><em>21 tr · ₹13,990</em></div><div class="pl-month up"><span>Aug</span><strong class="up">+2.86%</strong><em>12 tr · ₹14,391</em></div><div class="pl-month up"><span>Sep</span><strong class="up">+20.83%</strong><em>21 tr · ₹17,389</em></div><div class="pl-month up"><span>Oct</span><strong class="up">+7.99%</strong><em>21 tr · ₹18,779</em></div><div class="pl-month up"><span>Nov</span><strong class="up">+13.54%</strong><em>19 tr · ₹21,322</em></div><div class="pl-month down"><span>Dec</span><strong class="down">-4.68%</strong><em>21 tr · ₹20,325</em></div></div>
+          <p class="pl-mini-claim">paper/daily close-to-close; clean PIT 2025; daily_swing + soft mistake ledger + profit_guard; modeled IN_FO ~12bps RT; not live fills; not OOS-validated</p>
+        </section>
+
+        <section class="pl-glass pl-panel pl-inspector">
+          <div class="pl-panel-head pl-inspector-head">
+            <div>
+              <h2>Swarm · ADANIENT</h2>
+              <p class="muted" style="font-size:0.78rem">2025-10-15 · pattern_candle · choice fire</p>
+            </div>
+            <div class="pl-scoreboard">
+              <span class="pl-score take">take 7</span>
+              <span class="pl-score skip">skip 2</span>
+              <span class="pl-score annotate">· 12</span>
+              <span class="pl-score">τ 0.5 · 0.77</span>
+            </div>
+          </div>
+          <div class="pl-grid" style="grid-template-columns: 0.85fr 1.15fr; margin-bottom:0;">
+            <ul class="pl-tape"><button type="button" class="pl-tape-row active"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ADANIENT</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-10-15 · score 0.77</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ADANIPORTS</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-10-14 · score 0.57</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>BAJAJFINSV</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-10-13 · score 0.90</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>BAJAJ-AUTO</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-10-10 · score 0.87</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>APOLLOHOSP</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-10-09 · score 0.52</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ASIANPAINT</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-10-07 · score 0.73</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ASIANPAINT</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-10-06 · score 0.71</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>BAJAJFINSV</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-10-03 · score 0.89</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ADANIENT</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-10-01 · score 0.90</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ADANIENT</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-12-30 · score 0.88</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ADANIENT</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-12-30 · score 0.88</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ADANIENT</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-12-22 · score 0.57</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ADANIENT</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-12-22 · score 0.57</div></button><button type="button" class="pl-tape-row"><span class="pl-choice fire">fire</span><div class="pl-tape-main"><strong>ADANIENT</strong><em>pattern_candle</em></div><div class="pl-tape-meta">2025-12-15 · score 0.52</div></button></ul>
+            <div class="pl-agent-cards"><article class="pl-agent-card"><header><h3>RulesClerk</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">ledger_empty</p></article><article class="pl-agent-card"><header><h3>Geometry</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">ok</p></article><article class="pl-agent-card"><header><h3>Regime</h3><span class="pl-vote-pill take">take</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">label=unknown</p></article><article class="pl-agent-card"><header><h3>Similarity</h3><span class="pl-vote-pill skip">skip</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">no_analog_d=11.18</p></article><article class="pl-agent-card"><header><h3>LineGeometry</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">neutral_geometry</p></article><article class="pl-agent-card"><header><h3>MetaLabel</h3><span class="pl-vote-pill take">take</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">p_take=0.608</p></article><article class="pl-agent-card"><header><h3>Cost</h3><span class="pl-vote-pill take">take</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">or_gt_friction</p></article><article class="pl-agent-card"><header><h3>Decay</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">ledger_warming</p></article><article class="pl-agent-card"><header><h3>Changepoint</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">no_break</p></article><article class="pl-agent-card"><header><h3>Hurst</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">short_series</p></article><article class="pl-agent-card"><header><h3>JumpRisk</h3><span class="pl-vote-pill take">take</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">no_jump</p></article><article class="pl-agent-card"><header><h3>GHLZ</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">flat_open</p></article><article class="pl-agent-card"><header><h3>ORBQuality</h3><span class="pl-vote-pill take">take</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">or_sweet_spot</p></article><article class="pl-agent-card"><header><h3>Momentum</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">short_path</p></article><article class="pl-agent-card"><header><h3>SessionClock</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">early_session</p></article><article class="pl-agent-card"><header><h3>Breadth</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">no_universe_ret</p></article><article class="pl-agent-card"><header><h3>VolRegime</h3><span class="pl-vote-pill skip">skip</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">dead_tape</p></article><article class="pl-agent-card"><header><h3>OutcomeLearner</h3><span class="pl-vote-pill annotate">annotate</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">learned_edge_flat</p></article><article class="pl-agent-card stub"><header><h3>VPIN</h3><span class="pl-vote-pill annotate">annotate</span><span class="pl-stub-tag">stub</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">proxy_balanced</p></article><article class="pl-agent-card stub"><header><h3>Hawkes</h3><span class="pl-vote-pill take">take</span><span class="pl-stub-tag">stub</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">proxy_mild_excitation_up</p></article><article class="pl-agent-card stub"><header><h3>Kyle</h3><span class="pl-vote-pill take">take</span><span class="pl-stub-tag">stub</span></header><p class="muted" style="margin:0;font-size:0.72rem;line-height:1.35">proxy_cheap_impact</p></article></div>
+          </div>
+          <p class="pl-dense-meta">
+            agents=21 · tradeable=True · collapsed=2 ·
+            primary=bull_engulf_session · knobs profit_guard=True sleeve=0.24
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

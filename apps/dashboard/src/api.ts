@@ -32,7 +32,7 @@ export async function apiFetch<T>(path: string, options: RequestInit = {}): Prom
   }
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 90_000);
+  const timeout = setTimeout(() => controller.abort(), 180_000);
   let response: Response;
   try {
     response = await fetch(`${API_BASE}${path}`, {

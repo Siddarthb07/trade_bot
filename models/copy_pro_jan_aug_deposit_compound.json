@@ -1,0 +1,231 @@
+{
+  "generated_at": "2026-08-29",
+  "rule": {
+    "start_capital": 10000.0,
+    "monthly_top_up": 10000.0,
+    "profit_reinvest_frac": 0.5,
+    "profit_bonus": "0.5 * max(0, month_pnl) added with the 10k at each month end",
+    "final_includes_august_deposit": true
+  },
+  "strategy": "copy_bulk_pro product (use85 + soft_trail 2.5%/1% + selective 2nd slot)",
+  "params": {
+    "filter_mode": "copy_bulk_pro",
+    "max_leverage": 5.0,
+    "conf_floor": 0.55,
+    "max_daily_loss_pct": 4.0,
+    "max_trade_risk_pct": 3.0,
+    "intraday_stop_with_session_end": true,
+    "exit_at_session_end": true,
+    "max_chase_attempts": 1,
+    "use_hl_exits": false,
+    "max_positions": 2,
+    "bulk_lookback_sessions": 1,
+    "bulk_min_win_rate": 0.55,
+    "bulk_min_n_trades": 1,
+    "bulk_min_deal_value": 0.0,
+    "capital_use_frac": 0.85,
+    "soft_trail_arm_pct": 0.025,
+    "soft_trail_pct": 0.01,
+    "bulk_second_min_wr": 0.65,
+    "bulk_second_min_score_gap": 0.5,
+    "bulk_wr_prior": 0.55,
+    "bulk_wr_pseudo_n": 0.0,
+    "sl_cooldown_days": 1,
+    "entity_cooldown_days": 1,
+    "sitout_after_sl_days": 0
+  },
+  "bulk_coverage": {
+    "ok": true,
+    "total_buys": 17536,
+    "window_buys": 17536,
+    "window_min": "2026-01-21T18:30:00+00:00",
+    "window_max": "2026-08-27T18:30:00+00:00",
+    "data_gap": false
+  },
+  "months": [
+    {
+      "month": "january",
+      "window": {
+        "start": "2026-01-01",
+        "end": "2026-01-31",
+        "n_sessions": 22
+      },
+      "capital_start": 10000.0,
+      "capital_end_trading": 10155.54,
+      "month_pnl": 155.54,
+      "month_return_pct": 1.555,
+      "max_dd_pct": 6.45,
+      "n_trades": 9,
+      "wins": 5,
+      "losses": 4,
+      "n_flat_days": 16,
+      "n_sitout_days": 0,
+      "deposit_top_up": 10000.0,
+      "deposit_profit_bonus_50pct": 77.77,
+      "deposit_total": 10077.77,
+      "capital_after_deposit": 20233.31
+    },
+    {
+      "month": "february",
+      "window": {
+        "start": "2026-02-01",
+        "end": "2026-02-28",
+        "n_sessions": 20
+      },
+      "capital_start": 20233.31,
+      "capital_end_trading": 27776.15,
+      "month_pnl": 7542.84,
+      "month_return_pct": 37.279,
+      "max_dd_pct": 15.97,
+      "n_trades": 30,
+      "wins": 12,
+      "losses": 18,
+      "n_flat_days": 3,
+      "n_sitout_days": 0,
+      "deposit_top_up": 10000.0,
+      "deposit_profit_bonus_50pct": 3771.42,
+      "deposit_total": 13771.42,
+      "capital_after_deposit": 41547.57
+    },
+    {
+      "month": "march",
+      "window": {
+        "start": "2026-03-01",
+        "end": "2026-03-31",
+        "n_sessions": 22
+      },
+      "capital_start": 41547.57,
+      "capital_end_trading": 39598.95,
+      "month_pnl": -1948.62,
+      "month_return_pct": -4.69,
+      "max_dd_pct": 22.16,
+      "n_trades": 20,
+      "wins": 5,
+      "losses": 15,
+      "n_flat_days": 7,
+      "n_sitout_days": 0,
+      "deposit_top_up": 10000.0,
+      "deposit_profit_bonus_50pct": 0.0,
+      "deposit_total": 10000.0,
+      "capital_after_deposit": 49598.95
+    },
+    {
+      "month": "april",
+      "window": {
+        "start": "2026-04-01",
+        "end": "2026-04-30",
+        "n_sessions": 22
+      },
+      "capital_start": 49598.95,
+      "capital_end_trading": 60100.26,
+      "month_pnl": 10501.31,
+      "month_return_pct": 21.172,
+      "max_dd_pct": 15.21,
+      "n_trades": 29,
+      "wins": 12,
+      "losses": 17,
+      "n_flat_days": 2,
+      "n_sitout_days": 0,
+      "deposit_top_up": 10000.0,
+      "deposit_profit_bonus_50pct": 5250.65,
+      "deposit_total": 15250.65,
+      "capital_after_deposit": 75350.91
+    },
+    {
+      "month": "may",
+      "window": {
+        "start": "2026-05-01",
+        "end": "2026-05-31",
+        "n_sessions": 21
+      },
+      "capital_start": 75350.91,
+      "capital_end_trading": 72782.73,
+      "month_pnl": -2568.18,
+      "month_return_pct": -3.408,
+      "max_dd_pct": 14.79,
+      "n_trades": 20,
+      "wins": 6,
+      "losses": 14,
+      "n_flat_days": 6,
+      "n_sitout_days": 0,
+      "deposit_top_up": 10000.0,
+      "deposit_profit_bonus_50pct": 0.0,
+      "deposit_total": 10000.0,
+      "capital_after_deposit": 82782.73
+    },
+    {
+      "month": "june",
+      "window": {
+        "start": "2026-06-01",
+        "end": "2026-06-30",
+        "n_sessions": 22
+      },
+      "capital_start": 82782.73,
+      "capital_end_trading": 95095.85,
+      "month_pnl": 12313.12,
+      "month_return_pct": 14.874,
+      "max_dd_pct": 8.58,
+      "n_trades": 32,
+      "wins": 13,
+      "losses": 19,
+      "n_flat_days": 1,
+      "n_sitout_days": 0,
+      "deposit_top_up": 10000.0,
+      "deposit_profit_bonus_50pct": 6156.56,
+      "deposit_total": 16156.56,
+      "capital_after_deposit": 111252.41
+    },
+    {
+      "month": "july",
+      "window": {
+        "start": "2026-07-01",
+        "end": "2026-07-31",
+        "n_sessions": 23
+      },
+      "capital_start": 111252.41,
+      "capital_end_trading": 128310.15,
+      "month_pnl": 17057.74,
+      "month_return_pct": 15.332,
+      "max_dd_pct": 5.84,
+      "n_trades": 37,
+      "wins": 14,
+      "losses": 23,
+      "n_flat_days": 0,
+      "n_sitout_days": 0,
+      "deposit_top_up": 10000.0,
+      "deposit_profit_bonus_50pct": 8528.87,
+      "deposit_total": 18528.87,
+      "capital_after_deposit": 146839.02
+    },
+    {
+      "month": "august",
+      "window": {
+        "start": "2026-08-03",
+        "end": "2026-08-28",
+        "n_sessions": 20
+      },
+      "capital_start": 146839.02,
+      "capital_end_trading": 176896.75,
+      "month_pnl": 30057.73,
+      "month_return_pct": 20.47,
+      "max_dd_pct": 11.0,
+      "n_trades": 30,
+      "wins": 12,
+      "losses": 18,
+      "n_flat_days": 0,
+      "n_sitout_days": 0,
+      "deposit_top_up": 10000.0,
+      "deposit_profit_bonus_50pct": 15028.86,
+      "deposit_total": 25028.86,
+      "capital_after_deposit": 201925.61
+    }
+  ],
+  "summary": {
+    "final_book_after_august_deposit": 201925.61,
+    "external_cash_in": 90000.0,
+    "sum_month_trading_pnl": 73111.48,
+    "sum_profit_bonuses_reinvested": 38814.13,
+    "gain_vs_external_cash": 111925.61,
+    "gain_vs_external_pct": 124.362
+  }
+}

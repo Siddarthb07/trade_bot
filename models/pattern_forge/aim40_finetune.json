@@ -1,0 +1,49 @@
+{
+  "cands": [
+    {
+      "lev": 8,
+      "sleeve": 0.27,
+      "ret": 42.578,
+      "green": 8,
+      "worst": -20.555,
+      "run_id": "5066dfb3-e4b",
+      "in_band": true
+    },
+    {
+      "lev": 8,
+      "sleeve": 0.28,
+      "ret": 43.593,
+      "green": 8,
+      "worst": -21.707,
+      "run_id": "715e9ba5-0ce",
+      "in_band": true
+    },
+    {
+      "lev": 9,
+      "sleeve": 0.22,
+      "ret": 37.299,
+      "green": 8,
+      "worst": -18.954,
+      "run_id": "6f250b8c-67a",
+      "in_band": false
+    },
+    {
+      "lev": 9,
+      "sleeve": 0.25,
+      "ret": 43.818,
+      "green": 8,
+      "worst": -21.796,
+      "run_id": "34b233ce-70d",
+      "in_band": true
+    }
+  ],
+  "pick": {
+    "lev": 8,
+    "sleeve": 0.27,
+    "ret": 42.578,
+    "green": 8,
+    "worst": -20.555,
+    "run_id": "5066dfb3-e4b",
+    "in_band": true
+  }
+}

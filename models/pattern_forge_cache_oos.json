@@ -1,0 +1,1053 @@
+{
+  "generated_at": "2026-08-30",
+  "mode": "cache_only",
+  "families": {
+    "pattern_candle": {
+      "family": "pattern_candle",
+      "window": {
+        "start": "2026-07-01",
+        "end": "2026-08-28"
+      },
+      "capital_start": 10000.0,
+      "capital_end": 10024.38,
+      "total_return_pct": 0.244,
+      "n_trades": 17,
+      "wins": 9,
+      "skips": 26,
+      "floor_hits": 0,
+      "days": [
+        {
+          "asof": "2026-07-01",
+          "skip": "no_cache_bars"
+        },
+        {
+          "asof": "2026-07-02",
+          "skip": "no_cache_bars"
+        },
+        {
+          "asof": "2026-07-03",
+          "skip": "no_cache_bars"
+        },
+        {
+          "asof": "2026-07-06",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-07",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-08",
+          "ticker": "ADANIENT.NS",
+          "pnl": 13.21,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-09",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-10",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-13",
+          "ticker": "ADANIENT.NS",
+          "pnl": 5.93,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-14",
+          "ticker": "ADANIENT.NS",
+          "pnl": 5.84,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-15",
+          "ticker": "ADANIENT.NS",
+          "pnl": 7.24,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-16",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-17",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-20",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-21",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-22",
+          "ticker": "ADANIENT.NS",
+          "pnl": -13.08,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-23",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-24",
+          "ticker": "ADANIENT.NS",
+          "pnl": -8.55,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-27",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-28",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-29",
+          "ticker": "ADANIENT.NS",
+          "pnl": -17.14,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-30",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-31",
+          "ticker": "ADANIENT.NS",
+          "pnl": 6.07,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-03",
+          "ticker": "ADANIENT.NS",
+          "pnl": -0.41,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-04",
+          "ticker": "ADANIENT.NS",
+          "pnl": 6.09,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-05",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-06",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-07",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-10",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-11",
+          "ticker": "ADANIENT.NS",
+          "pnl": -6.72,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-12",
+          "ticker": "ADANIENT.NS",
+          "pnl": -5.74,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-13",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-14",
+          "ticker": "ADANIENT.NS",
+          "pnl": 19.87,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-17",
+          "ticker": "ADANIENT.NS",
+          "pnl": -8.63,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-18",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-19",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-20",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-21",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-24",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-25",
+          "ticker": "ADANIENT.NS",
+          "pnl": 32.84,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-26",
+          "ticker": "ADANIENT.NS",
+          "pnl": -13.49,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-08-27",
+          "ticker": "ADANIENT.NS",
+          "pnl": 1.05,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-28",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        }
+      ],
+      "claim": "cache-only paper path; modeled ~30bps RT; not live fills"
+    },
+    "pattern_analog": {
+      "family": "pattern_analog",
+      "window": {
+        "start": "2026-07-01",
+        "end": "2026-08-28"
+      },
+      "capital_start": 10000.0,
+      "capital_end": 10000.0,
+      "total_return_pct": 0.0,
+      "n_trades": 0,
+      "wins": 0,
+      "skips": 43,
+      "floor_hits": 0,
+      "days": [
+        {
+          "asof": "2026-07-01",
+          "skip": "no_cache_bars"
+        },
+        {
+          "asof": "2026-07-02",
+          "skip": "no_cache_bars"
+        },
+        {
+          "asof": "2026-07-03",
+          "skip": "no_cache_bars"
+        },
+        {
+          "asof": "2026-07-06",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-07",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-08",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-09",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-10",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-13",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-14",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-15",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-16",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-17",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-20",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-21",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-22",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-23",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-24",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-27",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-28",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-29",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-30",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-07-31",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-03",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-04",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-05",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-06",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-07",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-10",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-11",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-12",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-13",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-14",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-17",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-18",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-19",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-20",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-21",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-24",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-25",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-26",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-27",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        },
+        {
+          "asof": "2026-08-28",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "flat_primary",
+          "exit": null
+        }
+      ],
+      "claim": "cache-only paper path; modeled ~30bps RT; not live fills"
+    },
+    "orb_two_sided": {
+      "family": "orb_two_sided",
+      "window": {
+        "start": "2026-07-01",
+        "end": "2026-08-28"
+      },
+      "capital_start": 10000.0,
+      "capital_end": 9812.62,
+      "total_return_pct": -1.874,
+      "n_trades": 39,
+      "wins": 10,
+      "skips": 4,
+      "floor_hits": 0,
+      "days": [
+        {
+          "asof": "2026-07-01",
+          "skip": "no_cache_bars"
+        },
+        {
+          "asof": "2026-07-02",
+          "skip": "no_cache_bars"
+        },
+        {
+          "asof": "2026-07-03",
+          "skip": "no_cache_bars"
+        },
+        {
+          "asof": "2026-07-06",
+          "ticker": "ADANIENT.NS",
+          "pnl": -10.96,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-07",
+          "ticker": "ADANIENT.NS",
+          "pnl": 21.27,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-08",
+          "ticker": "ADANIENT.NS",
+          "pnl": -13.2,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-09",
+          "ticker": "ADANIENT.NS",
+          "pnl": -14.55,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-10",
+          "ticker": "ADANIENT.NS",
+          "pnl": 6.44,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-13",
+          "ticker": "ADANIENT.NS",
+          "pnl": 3.86,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-14",
+          "ticker": "ADANIENT.NS",
+          "pnl": -17.94,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-15",
+          "ticker": "ADANIENT.NS",
+          "pnl": -13.17,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-16",
+          "ticker": "ADANIENT.NS",
+          "pnl": -6.53,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-17",
+          "ticker": "ADANIENT.NS",
+          "pnl": -4.37,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-20",
+          "ticker": "ADANIENT.NS",
+          "pnl": -13.18,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-21",
+          "ticker": "ADANIENT.NS",
+          "pnl": -8.27,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-22",
+          "ticker": "ADANIENT.NS",
+          "pnl": -13.95,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-23",
+          "ticker": "ADANIENT.NS",
+          "pnl": -15.23,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-24",
+          "ticker": "ADANIENT.NS",
+          "pnl": -4.85,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-27",
+          "ticker": "ADANIENT.NS",
+          "pnl": -3.8,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-28",
+          "ticker": "ADANIENT.NS",
+          "pnl": -3.77,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-29",
+          "ticker": "ADANIENT.NS",
+          "pnl": -20.54,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-07-30",
+          "ticker": "ADANIENT.NS",
+          "pnl": -4.31,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-07-31",
+          "ticker": "ADANIENT.NS",
+          "pnl": 6.74,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-03",
+          "ticker": "ADANIENT.NS",
+          "pnl": -2.97,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-04",
+          "ticker": "ADANIENT.NS",
+          "pnl": -13.42,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-08-05",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.92,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-06",
+          "ticker": "ADANIENT.NS",
+          "pnl": -12.98,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-08-07",
+          "ticker": "ADANIENT.NS",
+          "pnl": -3.09,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-10",
+          "ticker": "ADANIENT.NS",
+          "pnl": -8.01,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-11",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.66,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-12",
+          "ticker": "ADANIENT.NS",
+          "pnl": -8.92,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-13",
+          "ticker": "ADANIENT.NS",
+          "pnl": -1.78,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-14",
+          "ticker": "ADANIENT.NS",
+          "pnl": 18.33,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-17",
+          "ticker": "ADANIENT.NS",
+          "pnl": 4.25,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-18",
+          "ticker": "ADANIENT.NS",
+          "pnl": -10.04,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-19",
+          "ticker": "ADANIENT.NS",
+          "pnl": -13.62,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-08-20",
+          "ticker": "ADANIENT.NS",
+          "pnl": -6.75,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-21",
+          "ticker": "ADANIENT.NS",
+          "pnl": -7.38,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-24",
+          "ticker": "ADANIENT.NS",
+          "pnl": -13.67,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-08-25",
+          "ticker": "ADANIENT.NS",
+          "pnl": 36.16,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-26",
+          "ticker": "ADANIENT.NS",
+          "pnl": -15.92,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "stop_loss"
+        },
+        {
+          "asof": "2026-08-27",
+          "ticker": "ADANIENT.NS",
+          "pnl": 1.16,
+          "n_trades": 1,
+          "skip": null,
+          "exit": "session_close"
+        },
+        {
+          "asof": "2026-08-28",
+          "ticker": "ADANIENT.NS",
+          "pnl": 0.0,
+          "n_trades": 0,
+          "skip": "no_path",
+          "exit": null
+        }
+      ],
+      "claim": "cache-only paper path; modeled ~30bps RT; not live fills"
+    }
+  }
+}

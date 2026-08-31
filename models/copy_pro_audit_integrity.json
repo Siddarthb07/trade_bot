@@ -1,0 +1,676 @@
+{
+  "generated_at": "2026-08-30",
+  "verdicts": {
+    "publish_time": {
+      "verdict": "FAIL",
+      "detail": "disclosed_at = deal DATE at 00:00 IST \u2192 UTC, not NSE publish/scrape clock. Late posts indistinguishable."
+    },
+    "investor_wr_lookahead": {
+      "verdict": "FAIL",
+      "detail": "investor_stats is full-sample live table (3mo forward returns). rank_pro_buys joins current WR \u2014 not PIT as-of trade date."
+    },
+    "same_day_window": {
+      "verdict": "FAIL_INTENT",
+      "detail": "prior_session_window uses asof 00:00 UTC vs IST-midnight stamps \u2192 same IST day deals can enter; true prior IST day can drop."
+    },
+    "yahoo_auto_adjust": {
+      "verdict": "FAIL",
+      "detail": "intraday_bars + day_sim use auto_adjust=True \u2014 splits/bonuses can distort OHLC path PnL."
+    },
+    "knob_selection": {
+      "verdict": "TUNED_ON_2026",
+      "detail": "Product knobs from May\u2013Aug 2026 ablation/returns-push (docs 2026-08-29). 2025 is evaluate-after-tune, not selection window \u2014 but WR leakage still contaminates 2025."
+    },
+    "capital_rule_2025": {
+      "verdict": "ONESHOT_10K_COMPOUND",
+      "detail": "run_copy_pro_year_2025_oneshot.py: one-shot \u20b910k, no monthly deposits. \u20b910k+50% profit deposit is ONLY run_copy_pro_jan_aug_deposit.py (2026)."
+    }
+  },
+  "concentration_2025": {
+    "n_trades": 256,
+    "sum_trade_pnl": 51137.15,
+    "win_rate": 0.418,
+    "avg_win": 988.98,
+    "avg_loss": -367.0,
+    "payoff_ratio": 2.695,
+    "top5_share_pct": 58.0,
+    "top10_share_pct": 80.7,
+    "top20_share_pct": 117.3,
+    "top5pct_share_pct": 88.8,
+    "pnl_without_top10": 9881.85,
+    "pnl_without_top20": -8830.84,
+    "unique_tickers": 130,
+    "unique_entities": 23,
+    "top_tickers": [
+      [
+        "QUADFUTURE.NS",
+        22
+      ],
+      [
+        "MOBIKWIK.NS",
+        21
+      ],
+      [
+        "KESORAMIND.NS",
+        9
+      ],
+      [
+        "AGSTRA.NS",
+        7
+      ],
+      [
+        "ATALREAL.NS",
+        7
+      ],
+      [
+        "APOLLO.NS",
+        5
+      ],
+      [
+        "SBC.NS",
+        5
+      ],
+      [
+        "EIEL.NS",
+        4
+      ]
+    ],
+    "top_entities": [
+      [
+        "AAKRAYA RESEARCH LLP",
+        102
+      ],
+      [
+        "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        42
+      ],
+      [
+        "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        28
+      ],
+      [
+        "DEVI TRADERS LLP",
+        25
+      ],
+      [
+        "ACME CAPITAL MARKET LIMITED",
+        16
+      ],
+      [
+        "SARAVANA SECURITIES DSATHYAMOORTHI",
+        6
+      ]
+    ],
+    "herfindahl_ticker": 0.0227,
+    "herfindahl_entity": 0.2135,
+    "effective_n_tickers": 44.0,
+    "effective_n_entities": 4.7,
+    "monthly_return_pct": [
+      {
+        "month": "january",
+        "ret_pct": -8.715,
+        "pnl": -871.51,
+        "n": 27
+      },
+      {
+        "month": "february",
+        "ret_pct": -7.64,
+        "pnl": -697.39,
+        "n": 19
+      },
+      {
+        "month": "march",
+        "ret_pct": 1.831,
+        "pnl": 154.38,
+        "n": 20
+      },
+      {
+        "month": "april",
+        "ret_pct": 34.472,
+        "pnl": 2959.6,
+        "n": 16
+      },
+      {
+        "month": "may",
+        "ret_pct": 37.751,
+        "pnl": 4358.43,
+        "n": 25
+      },
+      {
+        "month": "june",
+        "ret_pct": 4.442,
+        "pnl": 706.5,
+        "n": 20
+      },
+      {
+        "month": "july",
+        "ret_pct": 10.897,
+        "pnl": 1810.04,
+        "n": 25
+      },
+      {
+        "month": "august",
+        "ret_pct": -1.846,
+        "pnl": -340.04,
+        "n": 14
+      },
+      {
+        "month": "september",
+        "ret_pct": 15.429,
+        "pnl": 2789.56,
+        "n": 18
+      },
+      {
+        "month": "october",
+        "ret_pct": 10.924,
+        "pnl": 2279.77,
+        "n": 16
+      },
+      {
+        "month": "november",
+        "ret_pct": 46.702,
+        "pnl": 10811.22,
+        "n": 25
+      },
+      {
+        "month": "december",
+        "ret_pct": 125.365,
+        "pnl": 42574.53,
+        "n": 31
+      }
+    ],
+    "monthly_sharpe_approx": 2.19,
+    "monthly_sortino_approx": 22.97,
+    "dec_share_of_book_pnl_pct": 64.0
+  },
+  "sizing_2025": {
+    "oneshot_compound_book_pnl": 66535.09,
+    "note_capital_rule": "2025 oneshot = \u20b910k once, P&L compounds in-book. NOT monthly \u20b910k+50% profit deposits.",
+    "flat_monthly_10k_proxy_pnl": 26961.2,
+    "flat_vs_compound_ratio": 0.405,
+    "fixed_5k_notional_proxy_pnl": 8585.8,
+    "fixed_5k_mean_pnl": 33.54,
+    "cost_double_proxy_sum_trade_pnl": 35837.2,
+    "cost_double_vs_raw_trade_sum": 0.701
+  },
+  "bootstrap_2025": {
+    "n_boot": 400,
+    "final_p5": 15538.83,
+    "final_p25": 24616.96,
+    "final_p50": 36182.49,
+    "final_p75": 54122.32,
+    "final_p95": 88044.37,
+    "pct_below_start": 0.8,
+    "caveat": "Bootstrap resamples observed trade returns; does not fix leakage in ranking."
+  },
+  "walk_forward_split_2025": {
+    "note": "NOT true walk-forward (knobs were tuned on 2026, not H1-2025). Split shows 2025 path concentration.",
+    "h1_end_if_10k": 16609.83,
+    "h2_end_if_10k": 46077.7,
+    "h1_mean_month_ret_pct": 10.36,
+    "h2_mean_month_ret_pct": 34.58
+  },
+  "top_winners_spotcheck_queue": [
+    {
+      "asof": "2025-12-31",
+      "ticker": "KSR.NS",
+      "pnl": 13322.87,
+      "pnl_pct": 19.111,
+      "exit_reason": "session_close",
+      "entity": "PRASOON PANKAJ",
+      "entry": 15.1075,
+      "exit": 18.051,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-12-23",
+      "ticker": "QUADFUTURE.NS",
+      "pnl": 4978.53,
+      "pnl_pct": 8.072,
+      "exit_reason": "soft_trail",
+      "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+      "entry": 317.1085,
+      "exit": 343.828,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-12-22",
+      "ticker": "IDEAFORGE.NS",
+      "pnl": 4915.67,
+      "pnl_pct": 12.604,
+      "exit_reason": "session_close",
+      "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+      "entry": 438.3191,
+      "exit": 495.1523,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-12-16",
+      "ticker": "EPACK.NS",
+      "pnl": 3752.36,
+      "pnl_pct": 10.658,
+      "exit_reason": "soft_trail",
+      "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+      "entry": 266.5832,
+      "exit": 295.952,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-12-02",
+      "ticker": "PROSTARM.NS",
+      "pnl": 2673.33,
+      "pnl_pct": 6.947,
+      "exit_reason": "soft_trail",
+      "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+      "entry": 180.3401,
+      "exit": 193.5032,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-12-16",
+      "ticker": "NDTV.NS",
+      "pnl": 2636.2,
+      "pnl_pct": 7.488,
+      "exit_reason": "soft_trail",
+      "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+      "entry": 86.093,
+      "exit": 92.8436,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-12-23",
+      "ticker": "KOPRAN.NS",
+      "pnl": 2546.23,
+      "pnl_pct": 5.916,
+      "exit_reason": "soft_trail",
+      "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+      "entry": 138.6193,
+      "exit": 147.3063,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-12-15",
+      "ticker": "REFEX.NS",
+      "pnl": 2195.86,
+      "pnl_pct": 6.722,
+      "exit_reason": "session_close",
+      "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+      "entry": 278.6393,
+      "exit": 298.3508,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-12-02",
+      "ticker": "WEBELSOLAR.NS",
+      "pnl": 2136.48,
+      "pnl_pct": 7.956,
+      "exit_reason": "soft_trail",
+      "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+      "entry": 100.6603,
+      "exit": 109.0255,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-11-03",
+      "ticker": "FCL.NS",
+      "pnl": 2097.77,
+      "pnl_pct": 11.312,
+      "exit_reason": "soft_trail",
+      "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+      "entry": 28.4442,
+      "exit": 31.7641,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-09-02",
+      "ticker": "MOBIKWIK.NS",
+      "pnl": 2092.93,
+      "pnl_pct": 10.083,
+      "exit_reason": "session_close",
+      "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+      "entry": 257.8288,
+      "exit": 284.7476,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-12-31",
+      "ticker": "ORIENTTECH.NS",
+      "pnl": 2047.47,
+      "pnl_pct": 2.937,
+      "exit_reason": "soft_trail",
+      "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+      "entry": 438.8193,
+      "exit": 453.2233,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-11-21",
+      "ticker": "ASTEC.NS",
+      "pnl": 1999.66,
+      "pnl_pct": 5.473,
+      "exit_reason": "session_close",
+      "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+      "entry": 782.9913,
+      "exit": 828.5855,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-11-11",
+      "ticker": "ATULAUTO.NS",
+      "pnl": 1993.15,
+      "pnl_pct": 9.138,
+      "exit_reason": "soft_trail",
+      "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+      "entry": 442.221,
+      "exit": 484.2078,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    },
+    {
+      "asof": "2025-06-30",
+      "ticker": "RAYMOND.NS",
+      "pnl": 1928.76,
+      "pnl_pct": 11.485,
+      "exit_reason": "soft_trail",
+      "entity": "AAKRAYA RESEARCH LLP",
+      "entry": 630.9153,
+      "exit": 705.647,
+      "spot_check": "MANUAL \u2014 verify NSE bulk page for prior session + unadjusted chart"
+    }
+  ],
+  "robustness": {
+    "entry_shift_sl_perturbation": "NOT_RUN \u2014 needs re-sim grid (\u00b110\u201320% trail/stop, entry bar \u00b1N).",
+    "walk_forward_true": "NOT_RUN \u2014 would require retuning knobs on H1 only then freeze for H2; knobs already from 2026."
+  },
+  "oos_2018_fresh": {
+    "source": "NSE historicalOR fresh pull \u2014 not Postgres signals DB",
+    "claim": "Daily open\u2192close proxy; auto_adjust=False; PIT entity WR from CSV only; frozen-ish filters (min WR 0.55 after n>=3)",
+    "n_deal_rows": 8025,
+    "n_buy_deals": 8025,
+    "n_trades": 346,
+    "wins": 129,
+    "losses": 217,
+    "capital_start": 10000.0,
+    "capital_end": 7242.47,
+    "total_pnl": -2757.53,
+    "total_return_pct": -27.575,
+    "max_dd_pct": 54.27,
+    "monthly_pnl": {
+      "2018-01": -2429.51,
+      "2018-02": 1563.66,
+      "2018-03": -1587.54,
+      "2018-04": -204.15,
+      "2018-05": 4412.46,
+      "2018-06": -2271.99,
+      "2018-07": -874.9,
+      "2018-08": -1038.29,
+      "2018-09": -1196.22,
+      "2018-10": 331.58,
+      "2018-11": 518.23,
+      "2018-12": 19.12
+    },
+    "top_trades": [
+      {
+        "asof": "2018-05-17",
+        "ticker": "RCOM.NS",
+        "entity": "SHAASTRA SECURITIES TRADING PRIVATE LIMITED",
+        "deal_value": 419793841.29999995,
+        "pit_wr": 0.5875,
+        "score": 5.066,
+        "open": 10.399999618530273,
+        "close": 16.399999618530273,
+        "ret_net": 0.57392,
+        "pnl": 2690.01,
+        "slot": 4687.06
+      },
+      {
+        "asof": "2018-05-04",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "SHAASTRA SECURITIES TRADING PRIVATE LIMITED",
+        "deal_value": 2219306697.84,
+        "pit_wr": 0.5962,
+        "score": 5.5718,
+        "open": 12.75,
+        "close": 17.46500015258789,
+        "ret_net": 0.3668,
+        "pnl": 1342.77,
+        "slot": 3660.74
+      },
+      {
+        "asof": "2018-05-04",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "GKN SECURITIES",
+        "deal_value": 590306063.55,
+        "pit_wr": 0.625,
+        "score": 5.4819,
+        "open": 12.75,
+        "close": 17.46500015258789,
+        "ret_net": 0.3668,
+        "pnl": 1342.77,
+        "slot": 3660.74
+      },
+      {
+        "asof": "2018-05-07",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "GKN SECURITIES",
+        "deal_value": 1080162659.5900002,
+        "pit_wr": 0.6786,
+        "score": 6.1299,
+        "open": 19.209999084472656,
+        "close": 24.024999618530273,
+        "ret_net": 0.24765,
+        "pnl": 1189.24,
+        "slot": 4802.1
+      },
+      {
+        "asof": "2018-05-07",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "SHAASTRA SECURITIES TRADING PRIVATE LIMITED",
+        "deal_value": 1516634788.6799998,
+        "pit_wr": 0.625,
+        "score": 5.7381,
+        "open": 19.209999084472656,
+        "close": 24.024999618530273,
+        "ret_net": 0.24765,
+        "pnl": 1189.24,
+        "slot": 4802.1
+      },
+      {
+        "asof": "2018-05-22",
+        "ticker": "STAR.NS",
+        "entity": "N.K. SECURITIES",
+        "deal_value": 369872993.1,
+        "pit_wr": 0.575,
+        "score": 4.9266,
+        "open": 345.20001220703125,
+        "close": 392.04998779296875,
+        "ret_net": 0.13272,
+        "pnl": 658.27,
+        "slot": 4959.92
+      },
+      {
+        "asof": "2018-05-03",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "SHAASTRA SECURITIES TRADING PRIVATE LIMITED",
+        "deal_value": 1015430691.8900001,
+        "pit_wr": 0.5625,
+        "score": 5.0662,
+        "open": 10.0649995803833,
+        "close": 12.145000457763672,
+        "ret_net": 0.20366,
+        "pnl": 635.52,
+        "slot": 3120.55
+      },
+      {
+        "asof": "2018-05-03",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "GKN SECURITIES",
+        "deal_value": 920606374.9499999,
+        "pit_wr": 0.55,
+        "score": 4.9302,
+        "open": 10.0649995803833,
+        "close": 12.145000457763672,
+        "ret_net": 0.20366,
+        "pnl": 635.52,
+        "slot": 3120.55
+      },
+      {
+        "asof": "2018-02-05",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "N.K. SECURITIES",
+        "deal_value": 3282782857.12,
+        "pit_wr": 0.6786,
+        "score": 6.4575,
+        "open": 36.0,
+        "close": 42.369998931884766,
+        "ret_net": 0.17394,
+        "pnl": 544.42,
+        "slot": 3129.84
+      },
+      {
+        "asof": "2018-02-05",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "WAY2WEALTH SECURITIES P LTD",
+        "deal_value": 3783290958.3,
+        "pit_wr": 0.55,
+        "score": 5.2678,
+        "open": 36.0,
+        "close": 42.369998931884766,
+        "ret_net": 0.17394,
+        "pnl": 544.42,
+        "slot": 3129.84
+      }
+    ],
+    "bottom_trades": [
+      {
+        "asof": "2018-05-08",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "GKN SECURITIES",
+        "deal_value": 1297092016.04,
+        "pit_wr": 0.7188,
+        "score": 6.5499,
+        "open": 25.885000228881836,
+        "close": 20.229999542236328,
+        "ret_net": -0.22147,
+        "pnl": -1287.37,
+        "slot": 5812.95
+      },
+      {
+        "asof": "2018-05-08",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "SHAASTRA SECURITIES TRADING PRIVATE LIMITED",
+        "deal_value": 2457410545.7799997,
+        "pit_wr": 0.65,
+        "score": 6.1038,
+        "open": 25.885000228881836,
+        "close": 20.229999542236328,
+        "ret_net": -0.22147,
+        "pnl": -1287.37,
+        "slot": 5812.95
+      },
+      {
+        "asof": "2018-05-18",
+        "ticker": "RCOM.NS",
+        "entity": "SHAASTRA SECURITIES TRADING PRIVATE LIMITED",
+        "deal_value": 1137769055.0,
+        "pit_wr": 0.5795,
+        "score": 5.2484,
+        "open": 18.0,
+        "close": 15.300000190734863,
+        "ret_net": -0.153,
+        "pnl": -881.75,
+        "slot": 5763.09
+      },
+      {
+        "asof": "2018-05-21",
+        "ticker": "RCOM.NS",
+        "entity": "SHAASTRA SECURITIES TRADING PRIVATE LIMITED",
+        "deal_value": 2619584421.42,
+        "pit_wr": 0.5543,
+        "score": 5.221,
+        "open": 14.899999618530273,
+        "close": 13.350000381469727,
+        "ret_net": -0.10703,
+        "pnl": -575.08,
+        "slot": 5373.25
+      },
+      {
+        "asof": "2018-06-26",
+        "ticker": "SUMEETINDS.NS",
+        "entity": "RIKHIL MANUBHAI JARIWALA",
+        "deal_value": 52359208.4,
+        "pit_wr": 0.625,
+        "score": 4.8244,
+        "open": 50.20399856567383,
+        "close": 44.65999984741211,
+        "ret_net": -0.11343,
+        "pnl": -508.17,
+        "slot": 4480.04
+      },
+      {
+        "asof": "2018-03-15",
+        "ticker": "TPLPLASTEH.NS",
+        "entity": "ACHINTYA COMMODITIES PRIVATE LIMITED",
+        "deal_value": 93938706.03,
+        "pit_wr": 0.55,
+        "score": 4.3851,
+        "open": 50.4900016784668,
+        "close": 43.58000183105469,
+        "ret_net": -0.13986,
+        "pnl": -506.11,
+        "slot": 3618.73
+      },
+      {
+        "asof": "2018-05-31",
+        "ticker": "CRISIL.NS",
+        "entity": "MCGRAW-HILL ASIAN HOLDINGS (SINGAPORE) PTE LIMITED",
+        "deal_value": 1170224392.2,
+        "pit_wr": 0.55,
+        "score": 4.9875,
+        "open": 1872.0,
+        "close": 1715.050048828125,
+        "ret_net": -0.08684,
+        "pnl": -451.88,
+        "slot": 5203.56
+      },
+      {
+        "asof": "2018-05-14",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "GKN SECURITIES",
+        "deal_value": 1126589890.0,
+        "pit_wr": 0.675,
+        "score": 6.1099,
+        "open": 19.5,
+        "close": 17.770000457763672,
+        "ret_net": -0.09172,
+        "pnl": -441.28,
+        "slot": 4811.23
+      },
+      {
+        "asof": "2018-05-14",
+        "ticker": "PCJEWELLER.NS",
+        "entity": "SHAASTRA SECURITIES TRADING PRIVATE LIMITED",
+        "deal_value": 976305688.1,
+        "pit_wr": 0.5972,
+        "score": 5.3688,
+        "open": 19.5,
+        "close": 17.770000457763672,
+        "ret_net": -0.09172,
+        "pnl": -441.28,
+        "slot": 4811.23
+      },
+      {
+        "asof": "2018-06-11",
+        "ticker": "SUMEETINDS.NS",
+        "entity": "MYSTIQUE MEDIA PRIVATE LIMITED .",
+        "deal_value": 46302500.0,
+        "pit_wr": 0.55,
+        "score": 4.2161,
+        "open": 62.986000061035156,
+        "close": 57.44200134277344,
+        "ret_net": -0.09102,
+        "pnl": -440.44,
+        "slot": 4838.98
+      }
+    ]
+  }
+}

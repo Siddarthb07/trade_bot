@@ -1,0 +1,30 @@
+{
+  "2025": {
+    "capital_end": 4328.71,
+    "total_return_pct": -56.713,
+    "n_trades": 416,
+    "wins": 152,
+    "losses": 264
+  },
+  "2026": {
+    "capital_end": 6473.47,
+    "total_return_pct": -35.265,
+    "n_trades": 306,
+    "wins": 125,
+    "losses": 181
+  },
+  "2018": {
+    "capital_end": 7242.47,
+    "total_return_pct": -27.575,
+    "n_trades": 346,
+    "wins": 129,
+    "losses": 217
+  },
+  "2023": {
+    "capital_end": 2537.24,
+    "total_return_pct": -74.628,
+    "n_trades": 405,
+    "wins": 151,
+    "losses": 254
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "run_id": "c69e25f0-c99",
+  "iteration_id": null,
+  "strategy": "hybrid_stock_market",
+  "benchmark": "2025",
+  "claim": "paper/session-sim; clean PIT; modeled ~30bps RT; not live fills",
+  "capital_start": 10000.0,
+  "capital_end": 9858.84,
+  "total_return_pct": -1.412,
+  "green_months": 0,
+  "months_total": 3,
+  "n_trades": 52,
+  "months": [
+    {
+      "month": "october",
+      "capital_start": 10000.0,
+      "capital_end": 9951.69,
+      "month_return_pct": -0.483,
+      "n_trades": 17,
+      "wins": 0
+    },
+    {
+      "month": "november",
+      "capital_start": 9951.69,
+      "capital_end": 9919.76,
+      "month_return_pct": -0.321,
+      "n_trades": 16,
+      "wins": 1
+    },
+    {
+      "month": "december",
+      "capital_start": 9919.76,
+      "capital_end": 9858.84,
+      "month_return_pct": -0.614,
+      "n_trades": 19,
+      "wins": 0
+    }
+  ],
+  "knobs": {},
+  "no_ruin": true,
+  "goal": {
+    "green_months_min": 8,
+    "mean_month_positive": true
+  },
+  "goal_met": false
+}

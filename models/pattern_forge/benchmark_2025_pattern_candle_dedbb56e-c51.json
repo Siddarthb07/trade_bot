@@ -1,0 +1,50 @@
+{
+  "run_id": "dedbb56e-c51",
+  "iteration_id": "42bc79da-7",
+  "strategy": "pattern_candle",
+  "benchmark": "2025",
+  "claim": "paper/session-sim; clean PIT; modeled ~30bps RT; not live fills",
+  "capital_start": 10000.0,
+  "capital_end": 9933.41,
+  "total_return_pct": -0.666,
+  "green_months": 0,
+  "months_total": 3,
+  "n_trades": 34,
+  "months": [
+    {
+      "month": "october",
+      "capital_start": 10000.0,
+      "capital_end": 9981.56,
+      "month_return_pct": -0.184,
+      "n_trades": 9,
+      "wins": 1
+    },
+    {
+      "month": "november",
+      "capital_start": 9981.56,
+      "capital_end": 9965.62,
+      "month_return_pct": -0.16,
+      "n_trades": 10,
+      "wins": 2
+    },
+    {
+      "month": "december",
+      "capital_start": 9965.62,
+      "capital_end": 9933.41,
+      "month_return_pct": -0.323,
+      "n_trades": 15,
+      "wins": 1
+    }
+  ],
+  "knobs": {
+    "sleeve_frac": 0.25,
+    "tau": 0.4,
+    "max_daily_loss_pct": 3.0
+  },
+  "no_ruin": true,
+  "goal": {
+    "green_months_min": 8,
+    "mean_month_positive": true
+  },
+  "goal_met": false
+}

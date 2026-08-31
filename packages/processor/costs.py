@@ -27,11 +27,16 @@ class CostModel:
 
 # Conservative retail-ish defaults (not broker quotes)
 IN_COST = CostModel(market="IN", side_friction_bps=5.0, round_trip_fee_bps=20.0)  # ~30 bps RT
+# NSE F&O (index/stock futures) — lower RT than cash equity; still includes slippage
+IN_FO_COST = CostModel(market="IN_FO", side_friction_bps=3.0, round_trip_fee_bps=6.0)  # ~12 bps RT
 US_COST = CostModel(market="US", side_friction_bps=3.0, round_trip_fee_bps=4.0)  # ~10 bps RT
 
 
 def cost_model_for(market: str) -> CostModel:
-  return IN_COST if market.upper() == "IN" else US_COST
+  m = market.upper()
+  if m in ("IN_FO", "FO", "FUTURES"):
+    return IN_FO_COST
+  return IN_COST if m == "IN" else US_COST
 
 
 def cost_fraction(market: str) -> float:

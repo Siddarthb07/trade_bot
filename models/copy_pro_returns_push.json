@@ -1,0 +1,1625 @@
+{
+  "generated_at": "2026-08-30",
+  "goal": {
+    "months_ge_10_min": 2,
+    "max_month_dd_pct": 25.0,
+    "mean_gt_baseline": -6.2
+  },
+  "bulk_coverage": {
+    "ok": true,
+    "total_buys": 17536,
+    "window_buys": 11261,
+    "window_min": "2026-05-03T18:30:00+00:00",
+    "window_max": "2026-08-27T18:30:00+00:00",
+    "data_gap": false
+  },
+  "primary_n": 18,
+  "second_slot_n": 4,
+  "results": [
+    {
+      "id": "use60_trailoff_sit0_slot1",
+      "params": {
+        "use": 0.6,
+        "trail": null,
+        "sit": 0,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": -5.911,
+          "pnl_inr": -591.09,
+          "capital_end": 9408.91,
+          "max_dd_pct": 22.0,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 5,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -14.584,
+          "pnl_inr": -1458.35,
+          "capital_end": 8541.65,
+          "max_dd_pct": 32.56,
+          "n_trades": 21,
+          "wins": 6,
+          "losses": 15,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": -3.604,
+          "pnl_inr": -360.35,
+          "capital_end": 9639.65,
+          "max_dd_pct": 18.71,
+          "n_trades": 23,
+          "wins": 7,
+          "losses": 16,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": -0.7,
+          "pnl_inr": -69.95,
+          "capital_end": 9930.05,
+          "max_dd_pct": 18.85,
+          "n_trades": 20,
+          "wins": 8,
+          "losses": 12,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": -6.2,
+      "max_month_dd_pct": 32.56,
+      "best_month_pct": -0.7,
+      "gate_pass": false
+    },
+    {
+      "id": "use60_trailoff_sit1_slot1",
+      "params": {
+        "use": 0.6,
+        "trail": null,
+        "sit": 1,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 1.791,
+          "pnl_inr": 179.06,
+          "capital_end": 10179.06,
+          "max_dd_pct": 14.59,
+          "n_trades": 11,
+          "wins": 3,
+          "losses": 8,
+          "n_flat_days": 4,
+          "n_sitout_days": 6,
+          "month": "may"
+        },
+        {
+          "compound_pct": -0.869,
+          "pnl_inr": -86.91,
+          "capital_end": 9913.09,
+          "max_dd_pct": 18.48,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 6,
+          "month": "june"
+        },
+        {
+          "compound_pct": -7.284,
+          "pnl_inr": -728.4,
+          "capital_end": 9271.6,
+          "max_dd_pct": 17.38,
+          "n_trades": 13,
+          "wins": 3,
+          "losses": 10,
+          "n_flat_days": 0,
+          "n_sitout_days": 10,
+          "month": "july"
+        },
+        {
+          "compound_pct": -5.076,
+          "pnl_inr": -507.65,
+          "capital_end": 9492.35,
+          "max_dd_pct": 16.69,
+          "n_trades": 13,
+          "wins": 4,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 7,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": -2.859,
+      "max_month_dd_pct": 18.48,
+      "best_month_pct": 1.791,
+      "gate_pass": false
+    },
+    {
+      "id": "use60_trailarm15_tr10_sit0_slot1",
+      "params": {
+        "use": 0.6,
+        "trail": [
+          0.015,
+          0.01
+        ],
+        "sit": 0,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 1.886,
+          "pnl_inr": 188.64,
+          "capital_end": 10188.64,
+          "max_dd_pct": 16.28,
+          "n_trades": 16,
+          "wins": 6,
+          "losses": 10,
+          "n_flat_days": 5,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -4.524,
+          "pnl_inr": -452.35,
+          "capital_end": 9547.65,
+          "max_dd_pct": 25.3,
+          "n_trades": 21,
+          "wins": 7,
+          "losses": 14,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 1.67,
+          "pnl_inr": 167.03,
+          "capital_end": 10167.03,
+          "max_dd_pct": 14.76,
+          "n_trades": 23,
+          "wins": 8,
+          "losses": 15,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 12.197,
+          "pnl_inr": 1219.74,
+          "capital_end": 11219.74,
+          "max_dd_pct": 15.74,
+          "n_trades": 20,
+          "wins": 7,
+          "losses": 13,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 1,
+      "mean_compound_pct": 2.807,
+      "max_month_dd_pct": 25.3,
+      "best_month_pct": 12.197,
+      "gate_pass": false
+    },
+    {
+      "id": "use60_trailarm15_tr10_sit1_slot1",
+      "params": {
+        "use": 0.6,
+        "trail": [
+          0.015,
+          0.01
+        ],
+        "sit": 1,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 2.699,
+          "pnl_inr": 269.9,
+          "capital_end": 10269.9,
+          "max_dd_pct": 14.59,
+          "n_trades": 11,
+          "wins": 3,
+          "losses": 8,
+          "n_flat_days": 4,
+          "n_sitout_days": 6,
+          "month": "may"
+        },
+        {
+          "compound_pct": 0.043,
+          "pnl_inr": 4.29,
+          "capital_end": 10004.29,
+          "max_dd_pct": 18.48,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 6,
+          "month": "june"
+        },
+        {
+          "compound_pct": 0.795,
+          "pnl_inr": 79.48,
+          "capital_end": 10079.48,
+          "max_dd_pct": 7.18,
+          "n_trades": 15,
+          "wins": 6,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 8,
+          "month": "july"
+        },
+        {
+          "compound_pct": 1.069,
+          "pnl_inr": 106.93,
+          "capital_end": 10106.93,
+          "max_dd_pct": 16.19,
+          "n_trades": 13,
+          "wins": 4,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 7,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": 1.151,
+      "max_month_dd_pct": 18.48,
+      "best_month_pct": 2.699,
+      "gate_pass": false
+    },
+    {
+      "id": "use60_trailarm25_tr10_sit0_slot1",
+      "params": {
+        "use": 0.6,
+        "trail": [
+          0.025,
+          0.01
+        ],
+        "sit": 0,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 1.886,
+          "pnl_inr": 188.64,
+          "capital_end": 10188.64,
+          "max_dd_pct": 16.28,
+          "n_trades": 16,
+          "wins": 6,
+          "losses": 10,
+          "n_flat_days": 5,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -4.524,
+          "pnl_inr": -452.35,
+          "capital_end": 9547.65,
+          "max_dd_pct": 25.3,
+          "n_trades": 21,
+          "wins": 7,
+          "losses": 14,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 9.19,
+          "pnl_inr": 918.97,
+          "capital_end": 10918.97,
+          "max_dd_pct": 14.76,
+          "n_trades": 23,
+          "wins": 8,
+          "losses": 15,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 20.964,
+          "pnl_inr": 2096.36,
+          "capital_end": 12096.36,
+          "max_dd_pct": 15.74,
+          "n_trades": 20,
+          "wins": 9,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 1,
+      "mean_compound_pct": 6.879,
+      "max_month_dd_pct": 25.3,
+      "best_month_pct": 20.964,
+      "gate_pass": false
+    },
+    {
+      "id": "use60_trailarm25_tr10_sit1_slot1",
+      "params": {
+        "use": 0.6,
+        "trail": [
+          0.025,
+          0.01
+        ],
+        "sit": 1,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 2.699,
+          "pnl_inr": 269.9,
+          "capital_end": 10269.9,
+          "max_dd_pct": 14.59,
+          "n_trades": 11,
+          "wins": 3,
+          "losses": 8,
+          "n_flat_days": 4,
+          "n_sitout_days": 6,
+          "month": "may"
+        },
+        {
+          "compound_pct": 0.043,
+          "pnl_inr": 4.29,
+          "capital_end": 10004.29,
+          "max_dd_pct": 18.48,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 6,
+          "month": "june"
+        },
+        {
+          "compound_pct": -0.57,
+          "pnl_inr": -56.97,
+          "capital_end": 9943.03,
+          "max_dd_pct": 7.18,
+          "n_trades": 14,
+          "wins": 5,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 9,
+          "month": "july"
+        },
+        {
+          "compound_pct": 1.069,
+          "pnl_inr": 106.93,
+          "capital_end": 10106.93,
+          "max_dd_pct": 16.19,
+          "n_trades": 13,
+          "wins": 4,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 7,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": 0.81,
+      "max_month_dd_pct": 18.48,
+      "best_month_pct": 2.699,
+      "gate_pass": false
+    },
+    {
+      "id": "use75_trailoff_sit0_slot1",
+      "params": {
+        "use": 0.75,
+        "trail": null,
+        "sit": 0,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": -8.045,
+          "pnl_inr": -804.48,
+          "capital_end": 9195.52,
+          "max_dd_pct": 26.82,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 5,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -18.543,
+          "pnl_inr": -1854.28,
+          "capital_end": 8145.72,
+          "max_dd_pct": 39.17,
+          "n_trades": 21,
+          "wins": 6,
+          "losses": 15,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": -4.997,
+          "pnl_inr": -499.67,
+          "capital_end": 9500.33,
+          "max_dd_pct": 22.93,
+          "n_trades": 23,
+          "wins": 7,
+          "losses": 16,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": -1.551,
+          "pnl_inr": -155.12,
+          "capital_end": 9844.88,
+          "max_dd_pct": 23.21,
+          "n_trades": 20,
+          "wins": 8,
+          "losses": 12,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": -8.284,
+      "max_month_dd_pct": 39.17,
+      "best_month_pct": -1.551,
+      "gate_pass": false
+    },
+    {
+      "id": "use75_trailoff_sit1_slot1",
+      "params": {
+        "use": 0.75,
+        "trail": null,
+        "sit": 1,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 1.533,
+          "pnl_inr": 153.32,
+          "capital_end": 10153.32,
+          "max_dd_pct": 17.96,
+          "n_trades": 11,
+          "wins": 3,
+          "losses": 8,
+          "n_flat_days": 4,
+          "n_sitout_days": 6,
+          "month": "may"
+        },
+        {
+          "compound_pct": -1.594,
+          "pnl_inr": -159.38,
+          "capital_end": 9840.62,
+          "max_dd_pct": 22.71,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 6,
+          "month": "june"
+        },
+        {
+          "compound_pct": -9.332,
+          "pnl_inr": -933.22,
+          "capital_end": 9066.78,
+          "max_dd_pct": 21.35,
+          "n_trades": 13,
+          "wins": 3,
+          "losses": 10,
+          "n_flat_days": 0,
+          "n_sitout_days": 10,
+          "month": "july"
+        },
+        {
+          "compound_pct": -6.868,
+          "pnl_inr": -686.77,
+          "capital_end": 9313.23,
+          "max_dd_pct": 20.63,
+          "n_trades": 13,
+          "wins": 4,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 7,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": -4.065,
+      "max_month_dd_pct": 22.71,
+      "best_month_pct": 1.533,
+      "gate_pass": false
+    },
+    {
+      "id": "use75_trailarm15_tr10_sit0_slot1",
+      "params": {
+        "use": 0.75,
+        "trail": [
+          0.015,
+          0.01
+        ],
+        "sit": 0,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 1.561,
+          "pnl_inr": 156.14,
+          "capital_end": 10156.14,
+          "max_dd_pct": 20.06,
+          "n_trades": 16,
+          "wins": 6,
+          "losses": 10,
+          "n_flat_days": 5,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -6.343,
+          "pnl_inr": -634.29,
+          "capital_end": 9365.71,
+          "max_dd_pct": 30.84,
+          "n_trades": 21,
+          "wins": 7,
+          "losses": 14,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 1.491,
+          "pnl_inr": 149.11,
+          "capital_end": 10149.11,
+          "max_dd_pct": 18.19,
+          "n_trades": 23,
+          "wins": 8,
+          "losses": 15,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 14.406,
+          "pnl_inr": 1440.58,
+          "capital_end": 11440.58,
+          "max_dd_pct": 19.5,
+          "n_trades": 20,
+          "wins": 7,
+          "losses": 13,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 1,
+      "mean_compound_pct": 2.779,
+      "max_month_dd_pct": 30.84,
+      "best_month_pct": 14.406,
+      "gate_pass": false
+    },
+    {
+      "id": "use75_trailarm15_tr10_sit1_slot1",
+      "params": {
+        "use": 0.75,
+        "trail": [
+          0.015,
+          0.01
+        ],
+        "sit": 1,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 2.656,
+          "pnl_inr": 265.58,
+          "capital_end": 10265.58,
+          "max_dd_pct": 17.96,
+          "n_trades": 11,
+          "wins": 3,
+          "losses": 8,
+          "n_flat_days": 4,
+          "n_sitout_days": 6,
+          "month": "may"
+        },
+        {
+          "compound_pct": -0.482,
+          "pnl_inr": -48.18,
+          "capital_end": 9951.82,
+          "max_dd_pct": 22.71,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 6,
+          "month": "june"
+        },
+        {
+          "compound_pct": 0.712,
+          "pnl_inr": 71.19,
+          "capital_end": 10071.19,
+          "max_dd_pct": 8.92,
+          "n_trades": 15,
+          "wins": 6,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 8,
+          "month": "july"
+        },
+        {
+          "compound_pct": 0.587,
+          "pnl_inr": 58.68,
+          "capital_end": 10058.68,
+          "max_dd_pct": 20.03,
+          "n_trades": 13,
+          "wins": 4,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 7,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": 0.868,
+      "max_month_dd_pct": 22.71,
+      "best_month_pct": 2.656,
+      "gate_pass": false
+    },
+    {
+      "id": "use75_trailarm25_tr10_sit0_slot1",
+      "params": {
+        "use": 0.75,
+        "trail": [
+          0.025,
+          0.01
+        ],
+        "sit": 0,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 1.561,
+          "pnl_inr": 156.14,
+          "capital_end": 10156.14,
+          "max_dd_pct": 20.06,
+          "n_trades": 16,
+          "wins": 6,
+          "losses": 10,
+          "n_flat_days": 5,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -6.343,
+          "pnl_inr": -634.29,
+          "capital_end": 9365.71,
+          "max_dd_pct": 30.84,
+          "n_trades": 21,
+          "wins": 7,
+          "losses": 14,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 10.906,
+          "pnl_inr": 1090.64,
+          "capital_end": 11090.64,
+          "max_dd_pct": 18.19,
+          "n_trades": 23,
+          "wins": 8,
+          "losses": 15,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 25.63,
+          "pnl_inr": 2562.95,
+          "capital_end": 12562.95,
+          "max_dd_pct": 19.5,
+          "n_trades": 20,
+          "wins": 9,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 2,
+      "mean_compound_pct": 7.938,
+      "max_month_dd_pct": 30.84,
+      "best_month_pct": 25.63,
+      "gate_pass": false
+    },
+    {
+      "id": "use75_trailarm25_tr10_sit1_slot1",
+      "params": {
+        "use": 0.75,
+        "trail": [
+          0.025,
+          0.01
+        ],
+        "sit": 1,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 2.656,
+          "pnl_inr": 265.58,
+          "capital_end": 10265.58,
+          "max_dd_pct": 17.96,
+          "n_trades": 11,
+          "wins": 3,
+          "losses": 8,
+          "n_flat_days": 4,
+          "n_sitout_days": 6,
+          "month": "may"
+        },
+        {
+          "compound_pct": -0.482,
+          "pnl_inr": -48.18,
+          "capital_end": 9951.82,
+          "max_dd_pct": 22.71,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 6,
+          "month": "june"
+        },
+        {
+          "compound_pct": -0.984,
+          "pnl_inr": -98.4,
+          "capital_end": 9901.6,
+          "max_dd_pct": 8.92,
+          "n_trades": 14,
+          "wins": 5,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 9,
+          "month": "july"
+        },
+        {
+          "compound_pct": 0.587,
+          "pnl_inr": 58.68,
+          "capital_end": 10058.68,
+          "max_dd_pct": 20.03,
+          "n_trades": 13,
+          "wins": 4,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 7,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": 0.444,
+      "max_month_dd_pct": 22.71,
+      "best_month_pct": 2.656,
+      "gate_pass": false
+    },
+    {
+      "id": "use85_trailoff_sit0_slot1",
+      "params": {
+        "use": 0.85,
+        "trail": null,
+        "sit": 0,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": -9.58,
+          "pnl_inr": -957.96,
+          "capital_end": 9042.04,
+          "max_dd_pct": 29.89,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 5,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -21.222,
+          "pnl_inr": -2122.22,
+          "capital_end": 7877.78,
+          "max_dd_pct": 43.28,
+          "n_trades": 21,
+          "wins": 6,
+          "losses": 15,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": -6.023,
+          "pnl_inr": -602.28,
+          "capital_end": 9397.72,
+          "max_dd_pct": 25.64,
+          "n_trades": 23,
+          "wins": 7,
+          "losses": 16,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": -2.266,
+          "pnl_inr": -226.58,
+          "capital_end": 9773.42,
+          "max_dd_pct": 26.04,
+          "n_trades": 20,
+          "wins": 8,
+          "losses": 12,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": -9.773,
+      "max_month_dd_pct": 43.28,
+      "best_month_pct": -2.266,
+      "gate_pass": false
+    },
+    {
+      "id": "use85_trailoff_sit1_slot1",
+      "params": {
+        "use": 0.85,
+        "trail": null,
+        "sit": 1,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 1.224,
+          "pnl_inr": 122.39,
+          "capital_end": 10122.39,
+          "max_dd_pct": 20.16,
+          "n_trades": 11,
+          "wins": 3,
+          "losses": 8,
+          "n_flat_days": 4,
+          "n_sitout_days": 6,
+          "month": "may"
+        },
+        {
+          "compound_pct": -2.182,
+          "pnl_inr": -218.17,
+          "capital_end": 9781.83,
+          "max_dd_pct": 25.44,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 6,
+          "month": "june"
+        },
+        {
+          "compound_pct": -10.738,
+          "pnl_inr": -1073.81,
+          "capital_end": 8926.19,
+          "max_dd_pct": 23.9,
+          "n_trades": 13,
+          "wins": 3,
+          "losses": 10,
+          "n_flat_days": 0,
+          "n_sitout_days": 10,
+          "month": "july"
+        },
+        {
+          "compound_pct": -8.168,
+          "pnl_inr": -816.81,
+          "capital_end": 9183.19,
+          "max_dd_pct": 23.21,
+          "n_trades": 13,
+          "wins": 4,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 7,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": -4.966,
+      "max_month_dd_pct": 25.44,
+      "best_month_pct": 1.224,
+      "gate_pass": false
+    },
+    {
+      "id": "use85_trailarm15_tr10_sit0_slot1",
+      "params": {
+        "use": 0.85,
+        "trail": [
+          0.015,
+          0.01
+        ],
+        "sit": 0,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 1.187,
+          "pnl_inr": 118.66,
+          "capital_end": 10118.66,
+          "max_dd_pct": 22.51,
+          "n_trades": 16,
+          "wins": 6,
+          "losses": 10,
+          "n_flat_days": 5,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -7.693,
+          "pnl_inr": -769.33,
+          "capital_end": 9230.67,
+          "max_dd_pct": 34.37,
+          "n_trades": 21,
+          "wins": 7,
+          "losses": 14,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 1.244,
+          "pnl_inr": 124.36,
+          "capital_end": 10124.36,
+          "max_dd_pct": 20.42,
+          "n_trades": 23,
+          "wins": 8,
+          "losses": 15,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 15.67,
+          "pnl_inr": 1567.01,
+          "capital_end": 11567.01,
+          "max_dd_pct": 21.96,
+          "n_trades": 20,
+          "wins": 7,
+          "losses": 13,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 1,
+      "mean_compound_pct": 2.602,
+      "max_month_dd_pct": 34.37,
+      "best_month_pct": 15.67,
+      "gate_pass": false
+    },
+    {
+      "id": "use85_trailarm15_tr10_sit1_slot1",
+      "params": {
+        "use": 0.85,
+        "trail": [
+          0.015,
+          0.01
+        ],
+        "sit": 1,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 2.485,
+          "pnl_inr": 248.49,
+          "capital_end": 10248.49,
+          "max_dd_pct": 20.16,
+          "n_trades": 11,
+          "wins": 3,
+          "losses": 8,
+          "n_flat_days": 4,
+          "n_sitout_days": 6,
+          "month": "may"
+        },
+        {
+          "compound_pct": -0.944,
+          "pnl_inr": -94.37,
+          "capital_end": 9905.63,
+          "max_dd_pct": 25.44,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 6,
+          "month": "june"
+        },
+        {
+          "compound_pct": 0.596,
+          "pnl_inr": 59.6,
+          "capital_end": 10059.6,
+          "max_dd_pct": 10.07,
+          "n_trades": 15,
+          "wins": 6,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 8,
+          "month": "july"
+        },
+        {
+          "compound_pct": 0.104,
+          "pnl_inr": 10.38,
+          "capital_end": 10010.38,
+          "max_dd_pct": 22.54,
+          "n_trades": 13,
+          "wins": 4,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 7,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": 0.56,
+      "max_month_dd_pct": 25.44,
+      "best_month_pct": 2.485,
+      "gate_pass": false
+    },
+    {
+      "id": "use85_trailarm25_tr10_sit0_slot1",
+      "params": {
+        "use": 0.85,
+        "trail": [
+          0.025,
+          0.01
+        ],
+        "sit": 0,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 1.187,
+          "pnl_inr": 118.66,
+          "capital_end": 10118.66,
+          "max_dd_pct": 22.51,
+          "n_trades": 16,
+          "wins": 6,
+          "losses": 10,
+          "n_flat_days": 5,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -7.693,
+          "pnl_inr": -769.33,
+          "capital_end": 9230.67,
+          "max_dd_pct": 34.37,
+          "n_trades": 21,
+          "wins": 7,
+          "losses": 14,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 11.913,
+          "pnl_inr": 1191.31,
+          "capital_end": 11191.31,
+          "max_dd_pct": 20.42,
+          "n_trades": 23,
+          "wins": 8,
+          "losses": 15,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 28.569,
+          "pnl_inr": 2856.89,
+          "capital_end": 12856.89,
+          "max_dd_pct": 21.96,
+          "n_trades": 20,
+          "wins": 9,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 2,
+      "mean_compound_pct": 8.494,
+      "max_month_dd_pct": 34.37,
+      "best_month_pct": 28.569,
+      "gate_pass": false
+    },
+    {
+      "id": "use85_trailarm25_tr10_sit1_slot1",
+      "params": {
+        "use": 0.85,
+        "trail": [
+          0.025,
+          0.01
+        ],
+        "sit": 1,
+        "max_positions": 1,
+        "bulk_second_min_wr": null,
+        "bulk_second_min_score_gap": null
+      },
+      "months": [
+        {
+          "compound_pct": 2.485,
+          "pnl_inr": 248.49,
+          "capital_end": 10248.49,
+          "max_dd_pct": 20.16,
+          "n_trades": 11,
+          "wins": 3,
+          "losses": 8,
+          "n_flat_days": 4,
+          "n_sitout_days": 6,
+          "month": "may"
+        },
+        {
+          "compound_pct": -0.944,
+          "pnl_inr": -94.37,
+          "capital_end": 9905.63,
+          "max_dd_pct": 25.44,
+          "n_trades": 16,
+          "wins": 5,
+          "losses": 11,
+          "n_flat_days": 0,
+          "n_sitout_days": 6,
+          "month": "june"
+        },
+        {
+          "compound_pct": -1.317,
+          "pnl_inr": -131.73,
+          "capital_end": 9868.27,
+          "max_dd_pct": 10.07,
+          "n_trades": 14,
+          "wins": 5,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 9,
+          "month": "july"
+        },
+        {
+          "compound_pct": 0.104,
+          "pnl_inr": 10.38,
+          "capital_end": 10010.38,
+          "max_dd_pct": 22.54,
+          "n_trades": 13,
+          "wins": 4,
+          "losses": 9,
+          "n_flat_days": 0,
+          "n_sitout_days": 7,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 0,
+      "mean_compound_pct": 0.082,
+      "max_month_dd_pct": 25.44,
+      "best_month_pct": 2.485,
+      "gate_pass": false
+    },
+    {
+      "id": "use75_trailoff_sit0_slotsel2",
+      "params": {
+        "use": 0.75,
+        "trail": null,
+        "sit": 0,
+        "max_positions": 2,
+        "bulk_second_min_wr": 0.65,
+        "bulk_second_min_score_gap": 0.5
+      },
+      "months": [
+        {
+          "compound_pct": -7.183,
+          "pnl_inr": -718.29,
+          "capital_end": 9281.71,
+          "max_dd_pct": 16.38,
+          "n_trades": 20,
+          "wins": 5,
+          "losses": 15,
+          "n_flat_days": 6,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": 0.523,
+          "pnl_inr": 52.29,
+          "capital_end": 10052.29,
+          "max_dd_pct": 17.39,
+          "n_trades": 31,
+          "wins": 11,
+          "losses": 20,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 18.224,
+          "pnl_inr": 1822.38,
+          "capital_end": 11822.38,
+          "max_dd_pct": 10.06,
+          "n_trades": 39,
+          "wins": 13,
+          "losses": 26,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 10.205,
+          "pnl_inr": 1020.52,
+          "capital_end": 11020.52,
+          "max_dd_pct": 9.75,
+          "n_trades": 30,
+          "wins": 11,
+          "losses": 19,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 2,
+      "mean_compound_pct": 5.442,
+      "max_month_dd_pct": 17.39,
+      "best_month_pct": 18.224,
+      "gate_pass": true
+    },
+    {
+      "id": "use75_trailarm15_tr10_sit0_slotsel2",
+      "params": {
+        "use": 0.75,
+        "trail": [
+          0.015,
+          0.01
+        ],
+        "sit": 0,
+        "max_positions": 2,
+        "bulk_second_min_wr": 0.65,
+        "bulk_second_min_score_gap": 0.5
+      },
+      "months": [
+        {
+          "compound_pct": -3.554,
+          "pnl_inr": -355.42,
+          "capital_end": 9644.58,
+          "max_dd_pct": 13.14,
+          "n_trades": 20,
+          "wins": 5,
+          "losses": 15,
+          "n_flat_days": 6,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": 14.569,
+          "pnl_inr": 1456.9,
+          "capital_end": 11456.9,
+          "max_dd_pct": 7.58,
+          "n_trades": 32,
+          "wins": 13,
+          "losses": 19,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 5.905,
+          "pnl_inr": 590.47,
+          "capital_end": 10590.47,
+          "max_dd_pct": 8.29,
+          "n_trades": 38,
+          "wins": 14,
+          "losses": 24,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 17.783,
+          "pnl_inr": 1778.27,
+          "capital_end": 11778.27,
+          "max_dd_pct": 9.75,
+          "n_trades": 29,
+          "wins": 12,
+          "losses": 17,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 2,
+      "mean_compound_pct": 8.676,
+      "max_month_dd_pct": 13.14,
+      "best_month_pct": 17.783,
+      "gate_pass": true
+    },
+    {
+      "id": "use85_trailoff_sit0_slotsel2",
+      "params": {
+        "use": 0.85,
+        "trail": null,
+        "sit": 0,
+        "max_positions": 2,
+        "bulk_second_min_wr": 0.65,
+        "bulk_second_min_score_gap": 0.5
+      },
+      "months": [
+        {
+          "compound_pct": -7.871,
+          "pnl_inr": -787.07,
+          "capital_end": 9212.93,
+          "max_dd_pct": 18.21,
+          "n_trades": 20,
+          "wins": 5,
+          "losses": 15,
+          "n_flat_days": 6,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": -0.906,
+          "pnl_inr": -90.62,
+          "capital_end": 9909.38,
+          "max_dd_pct": 19.68,
+          "n_trades": 31,
+          "wins": 11,
+          "losses": 20,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 20.601,
+          "pnl_inr": 2060.07,
+          "capital_end": 12060.07,
+          "max_dd_pct": 11.04,
+          "n_trades": 39,
+          "wins": 13,
+          "losses": 26,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 11.728,
+          "pnl_inr": 1172.77,
+          "capital_end": 11172.77,
+          "max_dd_pct": 11.0,
+          "n_trades": 30,
+          "wins": 11,
+          "losses": 19,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 2,
+      "mean_compound_pct": 5.888,
+      "max_month_dd_pct": 19.68,
+      "best_month_pct": 20.601,
+      "gate_pass": true
+    },
+    {
+      "id": "use85_trailarm15_tr10_sit0_slotsel2",
+      "params": {
+        "use": 0.85,
+        "trail": [
+          0.015,
+          0.01
+        ],
+        "sit": 0,
+        "max_positions": 2,
+        "bulk_second_min_wr": 0.65,
+        "bulk_second_min_score_gap": 0.5
+      },
+      "months": [
+        {
+          "compound_pct": -3.979,
+          "pnl_inr": -397.88,
+          "capital_end": 9602.12,
+          "max_dd_pct": 14.79,
+          "n_trades": 20,
+          "wins": 5,
+          "losses": 15,
+          "n_flat_days": 6,
+          "n_sitout_days": 0,
+          "month": "may"
+        },
+        {
+          "compound_pct": 14.874,
+          "pnl_inr": 1487.4,
+          "capital_end": 11487.4,
+          "max_dd_pct": 8.58,
+          "n_trades": 32,
+          "wins": 13,
+          "losses": 19,
+          "n_flat_days": 1,
+          "n_sitout_days": 0,
+          "month": "june"
+        },
+        {
+          "compound_pct": 7.157,
+          "pnl_inr": 715.66,
+          "capital_end": 10715.66,
+          "max_dd_pct": 9.23,
+          "n_trades": 38,
+          "wins": 14,
+          "losses": 24,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "july"
+        },
+        {
+          "compound_pct": 20.16,
+          "pnl_inr": 2015.98,
+          "capital_end": 12015.98,
+          "max_dd_pct": 11.0,
+          "n_trades": 29,
+          "wins": 12,
+          "losses": 17,
+          "n_flat_days": 0,
+          "n_sitout_days": 0,
+          "month": "august"
+        }
+      ],
+      "months_hit_10": 2,
+      "mean_compound_pct": 9.553,
+      "max_month_dd_pct": 14.79,
+      "best_month_pct": 20.16,
+      "gate_pass": true
+    }
+  ],
+  "ranked_ids": [
+    "use85_trailarm15_tr10_sit0_slotsel2",
+    "use75_trailarm15_tr10_sit0_slotsel2",
+    "use85_trailoff_sit0_slotsel2",
+    "use75_trailoff_sit0_slotsel2",
+    "use85_trailarm25_tr10_sit0_slot1",
+    "use75_trailarm25_tr10_sit0_slot1",
+    "use60_trailarm25_tr10_sit0_slot1",
+    "use60_trailarm15_tr10_sit0_slot1",
+    "use75_trailarm15_tr10_sit0_slot1",
+    "use85_trailarm15_tr10_sit0_slot1",
+    "use60_trailarm15_tr10_sit1_slot1",
+    "use75_trailarm15_tr10_sit1_slot1",
+    "use60_trailarm25_tr10_sit1_slot1",
+    "use85_trailarm15_tr10_sit1_slot1",
+    "use75_trailarm25_tr10_sit1_slot1",
+    "use85_trailarm25_tr10_sit1_slot1",
+    "use60_trailoff_sit1_slot1",
+    "use75_trailoff_sit1_slot1",
+    "use85_trailoff_sit1_slot1",
+    "use60_trailoff_sit0_slot1",
+    "use75_trailoff_sit0_slot1",
+    "use85_trailoff_sit0_slot1"
+  ],
+  "best": {
+    "id": "use85_trailarm15_tr10_sit0_slotsel2",
+    "params": {
+      "use": 0.85,
+      "trail": [
+        0.015,
+        0.01
+      ],
+      "sit": 0,
+      "max_positions": 2,
+      "bulk_second_min_wr": 0.65,
+      "bulk_second_min_score_gap": 0.5
+    },
+    "months": [
+      {
+        "compound_pct": -3.979,
+        "pnl_inr": -397.88,
+        "capital_end": 9602.12,
+        "max_dd_pct": 14.79,
+        "n_trades": 20,
+        "wins": 5,
+        "losses": 15,
+        "n_flat_days": 6,
+        "n_sitout_days": 0,
+        "month": "may"
+      },
+      {
+        "compound_pct": 14.874,
+        "pnl_inr": 1487.4,
+        "capital_end": 11487.4,
+        "max_dd_pct": 8.58,
+        "n_trades": 32,
+        "wins": 13,
+        "losses": 19,
+        "n_flat_days": 1,
+        "n_sitout_days": 0,
+        "month": "june"
+      },
+      {
+        "compound_pct": 7.157,
+        "pnl_inr": 715.66,
+        "capital_end": 10715.66,
+        "max_dd_pct": 9.23,
+        "n_trades": 38,
+        "wins": 14,
+        "losses": 24,
+        "n_flat_days": 0,
+        "n_sitout_days": 0,
+        "month": "july"
+      },
+      {
+        "compound_pct": 20.16,
+        "pnl_inr": 2015.98,
+        "capital_end": 12015.98,
+        "max_dd_pct": 11.0,
+        "n_trades": 29,
+        "wins": 12,
+        "losses": 17,
+        "n_flat_days": 0,
+        "n_sitout_days": 0,
+        "month": "august"
+      }
+    ],
+    "months_hit_10": 2,
+    "mean_compound_pct": 9.553,
+    "max_month_dd_pct": 14.79,
+    "best_month_pct": 20.16,
+    "gate_pass": true
+  },
+  "promoted": {
+    "id": "use85_trailarm15_tr10_sit0_slotsel2",
+    "capital_use_frac": 0.85,
+    "soft_trail_arm_pct": 0.015,
+    "soft_trail_pct": 0.01,
+    "sitout_after_sl_days": 0,
+    "max_positions": 2,
+    "bulk_second_min_wr": 0.65,
+    "bulk_second_min_score_gap": 0.5
+  },
+  "ceiling": {
+    "best_id": "use85_trailarm15_tr10_sit0_slotsel2",
+    "best_mean_compound_pct": 9.553,
+    "best_months_hit_10": 2,
+    "best_month_pct": 20.16,
+    "best_max_dd_pct": 14.79,
+    "gate_cleared": true
+  }
+}

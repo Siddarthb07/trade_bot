@@ -1,0 +1,13 @@
+{
+  "status": "looping",
+  "best_label": "daily_fo_h1",
+  "best_green_months": 8,
+  "best_return_pct": 7.171,
+  "latest_label": "candle_long_sleeve35",
+  "latest_green_months": 0,
+  "latest_return_pct": -1.613,
+  "goal_met": false,
+  "iteration": 63,
+  "benchmark": "2025",
+  "updated_at": "2026-08-31T13:22:17.184917+00:00"
+}

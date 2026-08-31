@@ -94,8 +94,23 @@ class PaperBroker:
       fee=round(fee, 4),
     )
 
-  def cancel_order(self, broker_order_id: str) -> None:
-    return None
+  def charge_fee(self, amount: float) -> None:
+    """Apply external modeled fees (CostModel) to cash / borrow.
+
+    Paper fills already include a tiny broker fee; India day-sim also models ~30bps RT
+    via CostModel. Those must hit the book or capital_end diverges from sum(trade.pnl).
+    """
+    fee = float(amount or 0)
+    if fee <= 0:
+      return
+    if self.cash >= fee - 1e-9:
+      self.cash -= fee
+      return
+    # Levered path often leaves cash≈0 after buy — add unpaid fee to borrow.
+    unpaid = fee - self.cash
+    self.cash = 0.0
+    self.borrowed += unpaid
+
 
   def list_positions(self) -> list[BrokerPosition]:
     return list(self.positions.values())

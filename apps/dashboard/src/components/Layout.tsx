@@ -5,6 +5,8 @@ const MAIN = [
   { to: "/bulk", label: "Bulk deals" },
   { to: "/portfolio", label: "Portfolio" },
   { to: "/exec", label: "Live" },
+  { to: "/godfather", label: "GodFather" },
+  { to: "/pattern-lab", label: "Pattern Lab" },
   { to: "/investors", label: "Investors" },
   { to: "/themes", label: "Themes" },
 ];
@@ -22,7 +24,7 @@ export default function Layout() {
     <div className="app">
       <header className="header">
         <div className="header-brand">
-          <strong>Trade Bot</strong>
+          <strong>GodFather</strong>
           <span className="subtitle">Not investment advice</span>
         </div>
         <nav className="header-nav">

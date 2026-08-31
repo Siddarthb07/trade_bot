@@ -16,6 +16,8 @@ import PortfolioPage from "./pages/PortfolioPage";
 import InvestorsPage from "./pages/InvestorsPage";
 import ThemesPage from "./pages/ThemesPage";
 import ExecPage from "./pages/ExecPage";
+import GodFatherPage from "./pages/GodFatherPage";
+import PatternLabPage from "./pages/PatternLabPage";
 
 function RequireAuth({ children }: { children: JSX.Element }) {
   if (!isAuthed()) return <Navigate to="/login" replace />;
@@ -37,6 +39,9 @@ export default function App() {
         <Route path="/bulk" element={<HomePage defaultTab="bulk" />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/exec" element={<ExecPage />} />
+        <Route path="/godfather" element={<GodFatherPage />} />
+        <Route path="/pattern-lab" element={<PatternLabPage />} />
+        <Route path="/hybrid" element={<Navigate to="/godfather" replace />} />
         <Route path="/investors" element={<InvestorsPage />} />
         <Route path="/themes" element={<ThemesPage />} />
         <Route path="/signals/:id" element={<SignalPage />} />

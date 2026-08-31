@@ -1,0 +1,386 @@
+{
+  "ts": "2026-08-30T15:18:26.883790+00:00",
+  "locked_v2_return_2025": 103.249,
+  "adani_verify": {
+    "trade_id": "v2_2023_05_19_ADANIENT",
+    "ledger": {
+      "asof": "2023-05-19",
+      "exit_asof": "2023-05-22",
+      "ticker": "ADANIENT.NS",
+      "entry_price": 1956.05,
+      "exit_price": 2326.1,
+      "pnl_pct": 18.918,
+      "pnl_inr": 5280.99,
+      "year_pnl_2023": 13074.92,
+      "share_of_year_pnl_pct": 40.4,
+      "leverage": 11.0
+    },
+    "independent_checks": [
+      {
+        "source": "LiveMint live blog 19 May 2023",
+        "url": "https://www.livemint.com/market/live-blog/adani-ent-share-price-live-blog-for-19-may-2023-11684465269370.html",
+        "note": "Adani Ent closed at \u00e2\u201a\u00b91956.9 on 19 May 2023 (matches entry ~1956.05)"
+      },
+      {
+        "source": "The Hindu BusinessLine 22 May 2023",
+        "url": "https://www.thehindubusinessline.com/markets/adani-group-surpasses-10-lakh-crore-market-cap-after-clearing-hindenburg-allegations/article66880989.ece",
+        "note": "Adani Enterprises gained ~18% to close at \u00e2\u201a\u00b92,326 on 22 May 2023 (matches exit)"
+      },
+      {
+        "source": "BusinessToday 22 May 2023",
+        "url": "https://www.businesstoday.in/markets/company-stock/story/adani-stocks-adani-enterprises-zooms-19-today-groups-six-other-shares-settle-at-upper-price-bands-382296-2023-05-22",
+        "note": "Reports ~18.8% gain / close ~\u00e2\u201a\u00b92325.55 BSE; NSE settle cited ~\u00e2\u201a\u00b92338 \u00e2\u20ac\u201d real upper-band event day, not a Yahoo split/adjust artifact"
+      },
+      {
+        "source": "local yfinance auto_adjust=False via day_sim._fetch_history",
+        "note": "Close 2023-05-19=1956.05; 2023-05-22=2326.10; raw_ret=+18.918%"
+      }
+    ],
+    "verdict": "REAL_NSE_MOVE",
+    "implication": "Concentration is genuine name/event risk (SEBI/Hindenburg-related bounce), not data corruption. Still disqualifies treating +130.7% as a smooth edge without single-name caps.",
+    "v2_data_untouched": true
+  },
+  "variants": [
+    {
+      "variant": "v3_stretch5",
+      "knobs": {
+        "leverage": 5.0,
+        "sleeve_frac": 0.3,
+        "top_k": 3,
+        "vol_scale_rank": true,
+        "skip_extended_r5": 0.08,
+        "require_market_ts_mom": true,
+        "ticker_cooldown_days": 3
+      },
+      "oos_ok": false,
+      "mean_gate_return_pct": 0.351,
+      "years": {
+        "2023": {
+          "total_return_pct": -0.768,
+          "green_months": 3,
+          "worst_month_pct": -2.311,
+          "gate_ok": false,
+          "gate_fail": [
+            "return<=0",
+            "green=3<8",
+            "loss_lte_profits=False"
+          ],
+          "concentration": {
+            "max_share_pct": null,
+            "trade": null
+          }
+        },
+        "2024": {
+          "total_return_pct": -3.376,
+          "green_months": 3,
+          "worst_month_pct": -6.107,
+          "gate_ok": false,
+          "gate_fail": [
+            "return<=0",
+            "green=3<8",
+            "loss_lte_profits=False"
+          ],
+          "concentration": {
+            "max_share_pct": null,
+            "trade": null
+          }
+        },
+        "2025": {
+          "total_return_pct": 5.196,
+          "green_months": 4,
+          "worst_month_pct": -2.571,
+          "gate_ok": false,
+          "gate_fail": [
+            "green=4<8",
+            "max_trade_share=36.58>25.0"
+          ],
+          "concentration": {
+            "max_share_pct": 36.58,
+            "trade": {
+              "asof": "2025-10-21",
+              "ticker": "INFY.NS",
+              "pnl": 190.06,
+              "pnl_pct": 3.81
+            }
+          }
+        }
+      }
+    },
+    {
+      "variant": "v3_risk8",
+      "knobs": {
+        "leverage": 8.0,
+        "sleeve_frac": 0.26,
+        "top_k": 3,
+        "vol_scale_rank": true,
+        "skip_extended_r5": 0.08,
+        "require_market_ts_mom": true,
+        "ticker_cooldown_days": 3
+      },
+      "oos_ok": false,
+      "mean_gate_return_pct": -0.557,
+      "years": {
+        "2023": {
+          "total_return_pct": 0.364,
+          "green_months": 3,
+          "worst_month_pct": -2.809,
+          "gate_ok": false,
+          "gate_fail": [
+            "green=3<8",
+            "loss_lte_profits=False",
+            "max_trade_share=869.66>25.0"
+          ],
+          "concentration": {
+            "max_share_pct": 869.66,
+            "trade": {
+              "asof": "2023-07-26",
+              "ticker": "CIPLA.NS",
+              "pnl": 316.21,
+              "pnl_pct": 9.635
+            }
+          }
+        },
+        "2024": {
+          "total_return_pct": -6.764,
+          "green_months": 2,
+          "worst_month_pct": -5.827,
+          "gate_ok": false,
+          "gate_fail": [
+            "return<=0",
+            "green=2<8",
+            "loss_lte_profits=False"
+          ],
+          "concentration": {
+            "max_share_pct": null,
+            "trade": null
+          }
+        },
+        "2025": {
+          "total_return_pct": 4.729,
+          "green_months": 5,
+          "worst_month_pct": -3.296,
+          "gate_ok": false,
+          "gate_fail": [
+            "green=5<8",
+            "max_trade_share=54.89>25.0"
+          ],
+          "concentration": {
+            "max_share_pct": 54.89,
+            "trade": {
+              "asof": "2025-10-21",
+              "ticker": "INFY.NS",
+              "pnl": 259.55,
+              "pnl_pct": 3.81
+            }
+          }
+        }
+      }
+    },
+    {
+      "variant": "v3_insane11_div",
+      "knobs": {
+        "leverage": 11.0,
+        "sleeve_frac": 0.24,
+        "top_k": 3,
+        "vol_scale_rank": true,
+        "skip_extended_r5": 0.07,
+        "require_market_ts_mom": true,
+        "ticker_cooldown_days": 2
+      },
+      "oos_ok": false,
+      "mean_gate_return_pct": -0.908,
+      "years": {
+        "2023": {
+          "total_return_pct": -0.163,
+          "green_months": 3,
+          "worst_month_pct": -3.594,
+          "gate_ok": false,
+          "gate_fail": [
+            "return<=0",
+            "green=3<8",
+            "loss_lte_profits=False"
+          ],
+          "concentration": {
+            "max_share_pct": null,
+            "trade": null
+          }
+        },
+        "2024": {
+          "total_return_pct": -3.699,
+          "green_months": 3,
+          "worst_month_pct": -5.47,
+          "gate_ok": false,
+          "gate_fail": [
+            "return<=0",
+            "green=3<8",
+            "loss_lte_profits=False"
+          ],
+          "concentration": {
+            "max_share_pct": null,
+            "trade": null
+          }
+        },
+        "2025": {
+          "total_return_pct": 1.139,
+          "green_months": 5,
+          "worst_month_pct": -6.174,
+          "gate_ok": false,
+          "gate_fail": [
+            "green=5<8",
+            "loss_lte_profits=False",
+            "max_trade_share=247.17>25.0"
+          ],
+          "concentration": {
+            "max_share_pct": 247.17,
+            "trade": {
+              "asof": "2025-05-02",
+              "ticker": "ADANIPORTS.NS",
+              "pnl": 281.62,
+              "pnl_pct": 6.65
+            }
+          }
+        }
+      }
+    },
+    {
+      "variant": "v3_push10",
+      "knobs": {
+        "leverage": 10.0,
+        "sleeve_frac": 0.24,
+        "top_k": 3,
+        "vol_scale_rank": true,
+        "skip_extended_r5": 0.1,
+        "require_market_ts_mom": true,
+        "ticker_cooldown_days": 2
+      },
+      "oos_ok": false,
+      "mean_gate_return_pct": -1.908,
+      "years": {
+        "2023": {
+          "total_return_pct": 0.086,
+          "green_months": 3,
+          "worst_month_pct": -2.72,
+          "gate_ok": false,
+          "gate_fail": [
+            "green=3<8",
+            "loss_lte_profits=False",
+            "max_trade_share=4187.63>25.0"
+          ],
+          "concentration": {
+            "max_share_pct": 4187.63,
+            "trade": {
+              "asof": "2023-07-26",
+              "ticker": "CIPLA.NS",
+              "pnl": 362.23,
+              "pnl_pct": 9.635
+            }
+          }
+        },
+        "2024": {
+          "total_return_pct": -6.845,
+          "green_months": 3,
+          "worst_month_pct": -8.0,
+          "gate_ok": false,
+          "gate_fail": [
+            "return<=0",
+            "green=3<8",
+            "loss_lte_profits=False"
+          ],
+          "concentration": {
+            "max_share_pct": null,
+            "trade": null
+          }
+        },
+        "2025": {
+          "total_return_pct": 1.036,
+          "green_months": 5,
+          "worst_month_pct": -3.802,
+          "gate_ok": false,
+          "gate_fail": [
+            "green=5<8",
+            "loss_lte_profits=False",
+            "max_trade_share=237.1>25.0"
+          ],
+          "concentration": {
+            "max_share_pct": 237.1,
+            "trade": {
+              "asof": "2025-05-02",
+              "ticker": "ADANIPORTS.NS",
+              "pnl": 245.56,
+              "pnl_pct": 6.65
+            }
+          }
+        }
+      }
+    }
+  ],
+  "best": {
+    "variant": "v3_stretch5",
+    "knobs": {
+      "leverage": 5.0,
+      "sleeve_frac": 0.3,
+      "top_k": 3,
+      "vol_scale_rank": true,
+      "skip_extended_r5": 0.08,
+      "require_market_ts_mom": true,
+      "ticker_cooldown_days": 3
+    },
+    "oos_ok": false,
+    "mean_gate_return_pct": 0.351,
+    "years": {
+      "2023": {
+        "total_return_pct": -0.768,
+        "green_months": 3,
+        "worst_month_pct": -2.311,
+        "gate_ok": false,
+        "gate_fail": [
+          "return<=0",
+          "green=3<8",
+          "loss_lte_profits=False"
+        ],
+        "concentration": {
+          "max_share_pct": null,
+          "trade": null
+        }
+      },
+      "2024": {
+        "total_return_pct": -3.376,
+        "green_months": 3,
+        "worst_month_pct": -6.107,
+        "gate_ok": false,
+        "gate_fail": [
+          "return<=0",
+          "green=3<8",
+          "loss_lte_profits=False"
+        ],
+        "concentration": {
+          "max_share_pct": null,
+          "trade": null
+        }
+      },
+      "2025": {
+        "total_return_pct": 5.196,
+        "green_months": 4,
+        "worst_month_pct": -2.571,
+        "gate_ok": false,
+        "gate_fail": [
+          "green=4<8",
+          "max_trade_share=36.58>25.0"
+        ],
+        "concentration": {
+          "max_share_pct": 36.58,
+          "trade": {
+            "asof": "2025-10-21",
+            "ticker": "INFY.NS",
+            "pnl": 190.06,
+            "pnl_pct": 3.81
+          }
+        }
+      }
+    }
+  },
+  "confirmed_oos": false,
+  "full_multi": null,
+  "promote_to_v2": false,
+  "claim_rule": "confirmed only if 2023+2024+2025 all gate_ok; v2_latest never overwritten"
+}

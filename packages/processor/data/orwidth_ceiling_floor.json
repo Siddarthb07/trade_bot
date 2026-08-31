@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "source": "models/orwidth_guard_validation.json",
+    "north_star": "most_profits",
+    "note": "Ceiling = raw OR-width heroes (aspiration/research). Floor = guarded product lane."
+  },
+  "windows": [
+    {
+      "id": "july_chop",
+      "label": "July chop (bad market)",
+      "start": "2026-07-06",
+      "end": "2026-07-24",
+      "n_days": 15,
+      "ceiling": {
+        "in_tr10_orwidth_chase5_75x": {
+          "compound_pct": -71.731,
+          "worst_day_pct": -32.501,
+          "best_day_pct": 19.901,
+          "lane": "research"
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "compound_pct": -62.009,
+          "worst_day_pct": -26.001,
+          "best_day_pct": 15.921,
+          "lane": "research"
+        }
+      },
+      "floor": {
+        "in_tr10_orwidth_chase5_75x_guard": {
+          "compound_pct": -33.321,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 3.121,
+          "lane": "product"
+        },
+        "in_tr8_orwidth_chase5_75x_guard": {
+          "compound_pct": -31.037,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 3.121,
+          "lane": "product"
+        }
+      }
+    },
+    {
+      "id": "aug_chop",
+      "label": "August chop",
+      "start": "2026-08-03",
+      "end": "2026-08-21",
+      "n_days": 15,
+      "ceiling": {
+        "in_tr10_orwidth_chase5_75x": {
+          "compound_pct": -6.457,
+          "worst_day_pct": -34.582,
+          "best_day_pct": 50.057,
+          "lane": "research"
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "compound_pct": -1.295,
+          "worst_day_pct": -27.666,
+          "best_day_pct": 40.045,
+          "lane": "research"
+        }
+      },
+      "floor": {
+        "in_tr10_orwidth_chase5_75x_guard": {
+          "compound_pct": -30.882,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 3.238,
+          "lane": "product"
+        }
+      }
+    },
+    {
+      "id": "benchmark_15d",
+      "label": "Aug benchmark (aspiration highs)",
+      "start": "2026-08-10",
+      "end": "2026-08-28",
+      "n_days": 15,
+      "ceiling": {
+        "in_tr10_orwidth_chase5_75x": {
+          "compound_pct": 45.064,
+          "worst_day_pct": -25.606,
+          "best_day_pct": 84.735,
+          "lane": "research"
+        },
+        "in_tr8_orwidth_chase5_75x": {
+          "compound_pct": 43.53,
+          "worst_day_pct": -20.485,
+          "best_day_pct": 67.786,
+          "lane": "research"
+        }
+      },
+      "floor": {
+        "in_tr10_orwidth_chase5_75x_guard": {
+          "compound_pct": -32.303,
+          "worst_day_pct": -6.397,
+          "best_day_pct": 2.597,
+          "lane": "product"
+        }
+      }
+    }
+  ]
+}

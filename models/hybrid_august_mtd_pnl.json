@@ -1,0 +1,539 @@
+{
+  "capital": 10000.0,
+  "runs": [
+    {
+      "lane": "product",
+      "start": "2026-08-01",
+      "end": "2026-08-29",
+      "capital_start": 10000.0,
+      "capital_end": 7643.73,
+      "pnl_inr": -2356.27,
+      "compound_pct": -23.5627,
+      "worst_day_pct": -10.235,
+      "best_day_pct": 12.993,
+      "max_dd_pct": 35.4862,
+      "n_days": 20,
+      "strategy_counts": {
+        "orwidth_orb": 20
+      },
+      "daily": [
+        {
+          "asof": "2026-08-03",
+          "return_pct": 4.316,
+          "pnl_inr": 0.0,
+          "capital_end": 10431.64,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-04",
+          "return_pct": -0.802,
+          "pnl_inr": 0.0,
+          "capital_end": 10347.96,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-05",
+          "return_pct": -6.506,
+          "pnl_inr": 0.0,
+          "capital_end": 9674.72,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-06",
+          "return_pct": -8.403,
+          "pnl_inr": 0.0,
+          "capital_end": 8861.71,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-07",
+          "return_pct": -6.518,
+          "pnl_inr": 0.0,
+          "capital_end": 8284.13,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-10",
+          "return_pct": 4.928,
+          "pnl_inr": 0.0,
+          "capital_end": 8692.35,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-11",
+          "return_pct": -1.13,
+          "pnl_inr": 0.0,
+          "capital_end": 8594.13,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-12",
+          "return_pct": -0.945,
+          "pnl_inr": 0.0,
+          "capital_end": 8512.91,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.134,
+          "pnl_inr": 0.0,
+          "capital_end": 8501.47,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -4.706,
+          "pnl_inr": 0.0,
+          "capital_end": 8101.36,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 6.797,
+          "pnl_inr": 0.0,
+          "capital_end": 8652.02,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -5.719,
+          "pnl_inr": 0.0,
+          "capital_end": 8157.25,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.238,
+          "pnl_inr": 0.0,
+          "capital_end": 8056.25,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -3.503,
+          "pnl_inr": 0.0,
+          "capital_end": 7774.05,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 3.182,
+          "pnl_inr": 0.0,
+          "capital_end": 8021.45,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -10.235,
+          "pnl_inr": 0.0,
+          "capital_end": 7200.48,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -6.536,
+          "pnl_inr": 0.0,
+          "capital_end": 6729.85,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 12.993,
+          "pnl_inr": 0.0,
+          "capital_end": 7604.23,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 1.864,
+          "pnl_inr": 0.0,
+          "capital_end": 7745.94,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -1.32,
+          "pnl_inr": 0.0,
+          "capital_end": 7643.73,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        }
+      ]
+    },
+    {
+      "lane": "stretch",
+      "start": "2026-08-01",
+      "end": "2026-08-29",
+      "capital_start": 10000.0,
+      "capital_end": 5635.4,
+      "pnl_inr": -4364.6,
+      "compound_pct": -43.646,
+      "worst_day_pct": -13.646,
+      "best_day_pct": 17.323,
+      "max_dd_pct": 52.2922,
+      "n_days": 20,
+      "strategy_counts": {
+        "orwidth_orb": 20
+      },
+      "daily": [
+        {
+          "asof": "2026-08-03",
+          "return_pct": -9.269,
+          "pnl_inr": 0.0,
+          "capital_end": 9073.14,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-04",
+          "return_pct": -1.07,
+          "pnl_inr": 0.0,
+          "capital_end": 8976.1,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-05",
+          "return_pct": -8.722,
+          "pnl_inr": 0.0,
+          "capital_end": 8193.22,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-06",
+          "return_pct": -11.205,
+          "pnl_inr": 0.0,
+          "capital_end": 7275.2,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-07",
+          "return_pct": -6.982,
+          "pnl_inr": 0.0,
+          "capital_end": 6767.23,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-10",
+          "return_pct": 0.066,
+          "pnl_inr": 0.0,
+          "capital_end": 6771.68,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-11",
+          "return_pct": -8.646,
+          "pnl_inr": 0.0,
+          "capital_end": 6186.2,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-12",
+          "return_pct": -1.26,
+          "pnl_inr": 0.0,
+          "capital_end": 6108.25,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-13",
+          "return_pct": -0.179,
+          "pnl_inr": 0.0,
+          "capital_end": 6097.31,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": -2.176,
+          "pnl_inr": 0.0,
+          "capital_end": 5964.61,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 9.063,
+          "pnl_inr": 0.0,
+          "capital_end": 6505.18,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -7.625,
+          "pnl_inr": 0.0,
+          "capital_end": 6009.17,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -1.651,
+          "pnl_inr": 0.0,
+          "capital_end": 5909.97,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": -1.763,
+          "pnl_inr": 0.0,
+          "capital_end": 5805.77,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 4.243,
+          "pnl_inr": 0.0,
+          "capital_end": 6052.12,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -13.646,
+          "pnl_inr": 0.0,
+          "capital_end": 5226.24,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": -8.715,
+          "pnl_inr": 0.0,
+          "capital_end": 4770.78,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 17.323,
+          "pnl_inr": 0.0,
+          "capital_end": 5597.24,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 2.485,
+          "pnl_inr": 0.0,
+          "capital_end": 5736.32,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": -1.759,
+          "pnl_inr": 0.0,
+          "capital_end": 5635.4,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        }
+      ]
+    },
+    {
+      "lane": "research",
+      "start": "2026-08-01",
+      "end": "2026-08-29",
+      "capital_start": 10000.0,
+      "capital_end": 10544.8,
+      "pnl_inr": 544.8,
+      "compound_pct": 5.448,
+      "worst_day_pct": -34.582,
+      "best_day_pct": 84.735,
+      "max_dd_pct": 44.3761,
+      "n_days": 20,
+      "strategy_counts": {
+        "orwidth_orb": 20
+      },
+      "daily": [
+        {
+          "asof": "2026-08-03",
+          "return_pct": -1.157,
+          "pnl_inr": 0.0,
+          "capital_end": 9884.32,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-04",
+          "return_pct": -1.784,
+          "pnl_inr": 0.0,
+          "capital_end": 9707.95,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-05",
+          "return_pct": -34.582,
+          "pnl_inr": 0.0,
+          "capital_end": 6350.71,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-06",
+          "return_pct": 1.309,
+          "pnl_inr": 0.0,
+          "capital_end": 6433.82,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-07",
+          "return_pct": 12.982,
+          "pnl_inr": 0.0,
+          "capital_end": 7269.05,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-10",
+          "return_pct": -14.88,
+          "pnl_inr": 0.0,
+          "capital_end": 6187.45,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-11",
+          "return_pct": -0.855,
+          "pnl_inr": 0.0,
+          "capital_end": 6134.53,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-12",
+          "return_pct": -9.327,
+          "pnl_inr": 0.0,
+          "capital_end": 5562.39,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-13",
+          "return_pct": 4.757,
+          "pnl_inr": 0.0,
+          "capital_end": 5826.98,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 50.057,
+          "pnl_inr": 0.0,
+          "capital_end": 8743.78,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 17.823,
+          "pnl_inr": 0.0,
+          "capital_end": 10302.16,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -21.18,
+          "pnl_inr": 0.0,
+          "capital_end": 8120.17,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": -4.141,
+          "pnl_inr": 0.0,
+          "capital_end": 7783.95,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 9.046,
+          "pnl_inr": 0.0,
+          "capital_end": 8488.07,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 10.205,
+          "pnl_inr": 0.0,
+          "capital_end": 9354.26,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": -23.367,
+          "pnl_inr": 0.0,
+          "capital_end": 7168.42,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 84.735,
+          "pnl_inr": 0.0,
+          "capital_end": 13242.6,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": -25.606,
+          "pnl_inr": 0.0,
+          "capital_end": 9851.66,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 6.902,
+          "pnl_inr": 0.0,
+          "capital_end": 10531.63,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 0.125,
+          "pnl_inr": 0.0,
+          "capital_end": 10544.8,
+          "strategy_id": "orwidth_orb",
+          "n_trades": 1
+        }
+      ]
+    }
+  ]
+}

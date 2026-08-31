@@ -1,0 +1,12 @@
+{
+  "strategies": {
+    "orwidth_orb": {
+      "n": 43,
+      "expectancy": -0.166186,
+      "hit_rate": 0.3256,
+      "sum_pnl_pct": -7.146
+    }
+  },
+  "updated_at": "2026-08-29T12:30:26.383184+00:00",
+  "version": 1
+}

@@ -1,0 +1,382 @@
+{
+  "generated_at": "2026-08-29",
+  "baseline": "ablation_winner_prior_session_cd_wr0",
+  "months": [
+    {
+      "month": "may",
+      "compound_pct": -5.911,
+      "pnl_inr": -591.09,
+      "max_dd_pct": 22.0,
+      "expectancy": {
+        "n": 16,
+        "wins": 5,
+        "losses": 11,
+        "win_rate": 0.312,
+        "avg_win_inr": 458.79,
+        "avg_loss_inr": -315.92,
+        "expectancy_inr": -73.82,
+        "sum_win": 2293.93,
+        "sum_loss": -3475.12,
+        "exits": {
+          "session_close": 6,
+          "stop_loss": 10
+        },
+        "avg_margin_util_pct": 60.0,
+        "avg_idle_cash_pct": 40.0
+      },
+      "mfe": {
+        "n_ok": 0,
+        "avg_winner_mfe_pct": null,
+        "avg_winner_giveback_pct": null,
+        "median_giveback_pct": null,
+        "samples_head": []
+      }
+    },
+    {
+      "month": "june",
+      "compound_pct": -14.584,
+      "pnl_inr": -1458.35,
+      "max_dd_pct": 32.56,
+      "expectancy": {
+        "n": 21,
+        "wins": 6,
+        "losses": 15,
+        "win_rate": 0.286,
+        "avg_win_inr": 518.19,
+        "avg_loss_inr": -371.1,
+        "expectancy_inr": -117.02,
+        "sum_win": 3109.17,
+        "sum_loss": -5566.53,
+        "exits": {
+          "session_close": 11,
+          "stop_loss": 10
+        },
+        "avg_margin_util_pct": 60.0,
+        "avg_idle_cash_pct": 40.0
+      },
+      "mfe": {
+        "n_ok": 0,
+        "avg_winner_mfe_pct": null,
+        "avg_winner_giveback_pct": null,
+        "median_giveback_pct": null,
+        "samples_head": []
+      }
+    },
+    {
+      "month": "july",
+      "compound_pct": -3.604,
+      "pnl_inr": -360.35,
+      "max_dd_pct": 18.71,
+      "expectancy": {
+        "n": 23,
+        "wins": 7,
+        "losses": 16,
+        "win_rate": 0.304,
+        "avg_win_inr": 466.48,
+        "avg_loss_inr": -297.51,
+        "expectancy_inr": -64.99,
+        "sum_win": 3265.37,
+        "sum_loss": -4760.1,
+        "exits": {
+          "stop_loss": 14,
+          "session_close": 9
+        },
+        "avg_margin_util_pct": 60.0,
+        "avg_idle_cash_pct": 40.0
+      },
+      "mfe": {
+        "n_ok": 20,
+        "avg_winner_mfe_pct": 7.083,
+        "avg_winner_giveback_pct": 3.897,
+        "median_giveback_pct": 4.151,
+        "samples_head": [
+          {
+            "asof": "2026-07-06",
+            "ticker": "DIGITIDE.NS",
+            "pnl": 980.72,
+            "exit": "session_close",
+            "entry_i": 5,
+            "entry_px": 112.28,
+            "peak_px": 122.66,
+            "trough_px": 111.56,
+            "mfe_pct": 9.245,
+            "mae_pct": -0.641,
+            "realized_pct": 5.973,
+            "giveback_pct": 3.272,
+            "n_bars": 75
+          },
+          {
+            "asof": "2026-07-07",
+            "ticker": "MANCREDIT.NS",
+            "pnl": -337.8,
+            "exit": "stop_loss",
+            "entry_i": 5,
+            "entry_px": 244.51,
+            "peak_px": 262.5,
+            "trough_px": 220.0,
+            "mfe_pct": 7.358,
+            "mae_pct": -10.024,
+            "realized_pct": -1.867,
+            "giveback_pct": null,
+            "n_bars": 67
+          },
+          {
+            "asof": "2026-07-08",
+            "ticker": "ITDC.NS",
+            "pnl": -276.66,
+            "exit": "stop_loss",
+            "entry_i": 5,
+            "entry_px": 715.15,
+            "peak_px": 787.15,
+            "trough_px": 688.3,
+            "mfe_pct": 10.068,
+            "mae_pct": -3.754,
+            "realized_pct": -1.569,
+            "giveback_pct": null,
+            "n_bars": 75
+          },
+          {
+            "asof": "2026-07-09",
+            "ticker": "INA.NS",
+            "pnl": 935.69,
+            "exit": "session_close",
+            "entry_i": 5,
+            "entry_px": 111.69,
+            "peak_px": 125.0,
+            "trough_px": 110.59,
+            "mfe_pct": 11.917,
+            "mae_pct": -0.985,
+            "realized_pct": 7.766,
+            "giveback_pct": 4.151,
+            "n_bars": 75
+          },
+          {
+            "asof": "2026-07-10",
+            "ticker": "PANSARI.NS",
+            "pnl": 53.85,
+            "exit": "session_close",
+            "entry_i": 5,
+            "entry_px": 357.4,
+            "peak_px": 388.9,
+            "trough_px": 354.2,
+            "mfe_pct": 8.814,
+            "mae_pct": -0.895,
+            "realized_pct": 0.286,
+            "giveback_pct": 8.528,
+            "n_bars": 69
+          },
+          {
+            "asof": "2026-07-13",
+            "ticker": "FINOPB.NS",
+            "pnl": -286.93,
+            "exit": "stop_loss",
+            "entry_i": 5,
+            "entry_px": 148.39,
+            "peak_px": 162.48,
+            "trough_px": 144.44,
+            "mfe_pct": 9.495,
+            "mae_pct": -2.662,
+            "realized_pct": -1.508,
+            "giveback_pct": null,
+            "n_bars": 75
+          },
+          {
+            "asof": "2026-07-14",
+            "ticker": "LANDMARK.NS",
+            "pnl": -213.3,
+            "exit": "stop_loss",
+            "entry_i": 5,
+            "entry_px": 424.1,
+            "peak_px": 507.45,
+            "trough_px": 416.5,
+            "mfe_pct": 19.653,
+            "mae_pct": -1.792,
+            "realized_pct": -1.639,
+            "giveback_pct": null,
+            "n_bars": 70
+          },
+          {
+            "asof": "2026-07-15",
+            "ticker": "FINOPB.NS",
+            "pnl": -430.9,
+            "exit": "stop_loss",
+            "entry_i": 5,
+            "entry_px": 178.92,
+            "peak_px": 180.89,
+            "trough_px": 168.3,
+            "mfe_pct": 1.101,
+            "mae_pct": -5.936,
+            "realized_pct": -2.346,
+            "giveback_pct": null,
+            "n_bars": 75
+          }
+        ]
+      }
+    },
+    {
+      "month": "august",
+      "compound_pct": -0.7,
+      "pnl_inr": -69.95,
+      "max_dd_pct": 18.85,
+      "expectancy": {
+        "n": 20,
+        "wins": 8,
+        "losses": 12,
+        "win_rate": 0.4,
+        "avg_win_inr": 339.94,
+        "avg_loss_inr": -305.6,
+        "expectancy_inr": -47.39,
+        "sum_win": 2719.49,
+        "sum_loss": -3667.2,
+        "exits": {
+          "session_close": 10,
+          "stop_loss": 10
+        },
+        "avg_margin_util_pct": 60.0,
+        "avg_idle_cash_pct": 40.0
+      },
+      "mfe": {
+        "n_ok": 20,
+        "avg_winner_mfe_pct": 6.414,
+        "avg_winner_giveback_pct": 3.897,
+        "median_giveback_pct": 3.387,
+        "samples_head": [
+          {
+            "asof": "2026-08-03",
+            "ticker": "ATALREAL.NS",
+            "pnl": -22.93,
+            "exit": "session_close",
+            "entry_i": 6,
+            "entry_px": 33.46,
+            "peak_px": 33.9,
+            "trough_px": 33.27,
+            "mfe_pct": 1.315,
+            "mae_pct": -0.568,
+            "realized_pct": -0.141,
+            "giveback_pct": null,
+            "n_bars": 73
+          },
+          {
+            "asof": "2026-08-04",
+            "ticker": "SUDEEPPHRM.NS",
+            "pnl": -235.69,
+            "exit": "stop_loss",
+            "entry_i": 10,
+            "entry_px": 883.8,
+            "peak_px": 890.0,
+            "trough_px": 869.7,
+            "mfe_pct": 0.702,
+            "mae_pct": -1.595,
+            "realized_pct": -1.45,
+            "giveback_pct": null,
+            "n_bars": 75
+          },
+          {
+            "asof": "2026-08-05",
+            "ticker": "TEMBO.NS",
+            "pnl": 267.45,
+            "exit": "session_close",
+            "entry_i": 5,
+            "entry_px": 63.6,
+            "peak_px": 68.85,
+            "trough_px": 62.7,
+            "mfe_pct": 8.255,
+            "mae_pct": -1.415,
+            "realized_pct": 1.677,
+            "giveback_pct": 6.578,
+            "n_bars": 75
+          },
+          {
+            "asof": "2026-08-06",
+            "ticker": "ATALREAL.NS",
+            "pnl": -100.77,
+            "exit": "session_close",
+            "entry_i": 8,
+            "entry_px": 34.72,
+            "peak_px": 34.88,
+            "trough_px": 34.3,
+            "mfe_pct": 0.461,
+            "mae_pct": -1.21,
+            "realized_pct": -0.612,
+            "giveback_pct": null,
+            "n_bars": 75
+          },
+          {
+            "asof": "2026-08-07",
+            "ticker": "MVELECTRO.NS",
+            "pnl": -372.08,
+            "exit": "stop_loss",
+            "entry_i": 38,
+            "entry_px": 661.55,
+            "peak_px": 664.95,
+            "trough_px": 593.05,
+            "mfe_pct": 0.514,
+            "mae_pct": -10.354,
+            "realized_pct": -2.272,
+            "giveback_pct": null,
+            "n_bars": 75
+          },
+          {
+            "asof": "2026-08-10",
+            "ticker": "WEL.NS",
+            "pnl": -259.87,
+            "exit": "stop_loss",
+            "entry_i": 5,
+            "entry_px": 129.66,
+            "peak_px": 138.0,
+            "trough_px": 126.0,
+            "mfe_pct": 6.432,
+            "mae_pct": -2.823,
+            "realized_pct": -1.64,
+            "giveback_pct": null,
+            "n_bars": 75
+          },
+          {
+            "asof": "2026-08-11",
+            "ticker": "ATALREAL.NS",
+            "pnl": 105.99,
+            "exit": "session_close",
+            "entry_i": 4,
+            "entry_px": 34.65,
+            "peak_px": 35.24,
+            "trough_px": 34.37,
+            "mfe_pct": 1.703,
+            "mae_pct": -0.808,
+            "realized_pct": 0.684,
+            "giveback_pct": 1.019,
+            "n_bars": 73
+          },
+          {
+            "asof": "2026-08-12",
+            "ticker": "SBC.NS",
+            "pnl": -1172.2,
+            "exit": "stop_loss",
+            "entry_i": 5,
+            "entry_px": 41.31,
+            "peak_px": 41.6,
+            "trough_px": 33.63,
+            "mfe_pct": 0.702,
+            "mae_pct": -18.591,
+            "realized_pct": -7.441,
+            "giveback_pct": null,
+            "n_bars": 75
+          }
+        ]
+      }
+    }
+  ],
+  "pooled": {
+    "mean_compound_pct": -6.2,
+    "months_ge_10": 0,
+    "mfe_ok": 40,
+    "mfe_fail": 40,
+    "avg_winner_mfe_pct": 6.701,
+    "avg_winner_giveback_pct": 3.897
+  },
+  "recommendation": {
+    "idle_cash_large": true,
+    "giveback_material": true,
+    "selection_weak": true,
+    "primary_lever": "trail"
+  }
+}

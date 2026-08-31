@@ -1,0 +1,241 @@
+{
+  "baseline_compound_pct": -8.293,
+  "fixed_compound_pct": -0.08,
+  "delta_pp": 8.213,
+  "capital_end": 9991.98,
+  "pnl_inr": -8.02,
+  "daily": [
+    {
+      "asof": "2026-08-24",
+      "pnl_inr": 380.44,
+      "return_pct": 3.804,
+      "capital_end": 10380.44,
+      "n_trades": 1,
+      "exclude_tickers": [],
+      "exclude_entities": [],
+      "top_picks": [
+        {
+          "ticker": "ATALREAL.NS",
+          "score": 17.5684,
+          "win_rate": 1.0,
+          "win_rate_eff": 0.75,
+          "value": 49650000.0,
+          "entity_normalized": "CHAUBARA EATS PRIVATE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 4,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "QUADFUTURE.NS",
+          "score": 15.9771,
+          "win_rate": 1.0,
+          "win_rate_eff": 0.6786,
+          "value": 241833942.20000002,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "GCSL.NS",
+          "score": 14.7678,
+          "win_rate": 0.5555555555555556,
+          "win_rate_eff": 0.5536,
+          "value": 85638840.89,
+          "entity_normalized": "MANSUKH SECURITIES FINANCE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 9,
+          "source": "nse_bulk"
+        }
+      ],
+      "trades": [
+        {
+          "ticker": "ATALREAL.NS",
+          "pnl": 331.22,
+          "exit": "session_close",
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "sl_pct": 1.0
+        }
+      ]
+    },
+    {
+      "asof": "2026-08-25",
+      "pnl_inr": -117.47,
+      "return_pct": -1.132,
+      "capital_end": 10262.97,
+      "n_trades": 1,
+      "exclude_tickers": [],
+      "exclude_entities": [],
+      "top_picks": [
+        {
+          "ticker": "FMGOETZE.NS",
+          "score": 16.0868,
+          "win_rate": 0.6666666666666666,
+          "win_rate_eff": 0.6136,
+          "value": 156905622.39,
+          "entity_normalized": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+          "disclosed_at": "2026-08-24T18:30:00+00:00",
+          "n_trades": 6,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "SHANKESH.NS",
+          "score": 15.2982,
+          "win_rate": 1.0,
+          "win_rate_eff": 0.6786,
+          "value": 106484309.76,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-24T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        }
+      ],
+      "trades": [
+        {
+          "ticker": "FMGOETZE.NS",
+          "pnl": -141.53,
+          "exit": "stop_loss",
+          "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+          "sl_pct": 1.0
+        }
+      ]
+    },
+    {
+      "asof": "2026-08-26",
+      "pnl_inr": 0.0,
+      "return_pct": 0.0,
+      "capital_end": 10262.97,
+      "n_trades": 0,
+      "sitout_after_sl": true,
+      "trades": []
+    },
+    {
+      "asof": "2026-08-27",
+      "pnl_inr": -42.15,
+      "return_pct": -0.411,
+      "capital_end": 10220.82,
+      "n_trades": 1,
+      "exclude_tickers": [],
+      "exclude_entities": [],
+      "top_picks": [
+        {
+          "ticker": "ATALREAL.NS",
+          "score": 17.4572,
+          "win_rate": 1.0,
+          "win_rate_eff": 0.75,
+          "value": 44381046.86,
+          "entity_normalized": "CHAUBARA EATS PRIVATE LIMITED",
+          "disclosed_at": "2026-08-26T18:30:00+00:00",
+          "n_trades": 4,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "MARSONS.NS",
+          "score": 17.0618,
+          "win_rate": 1.0,
+          "win_rate_eff": 0.7188,
+          "value": 117882026.01,
+          "entity_normalized": "ACME CAPITAL MARKET LIMITED",
+          "disclosed_at": "2026-08-26T18:30:00+00:00",
+          "n_trades": 3,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "BBTC.NS",
+          "score": 16.8855,
+          "win_rate": 1.0,
+          "win_rate_eff": 0.6786,
+          "value": 724724793.1,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-26T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        }
+      ],
+      "trades": [
+        {
+          "ticker": "ATALREAL.NS",
+          "pnl": -91.98,
+          "exit": "session_close",
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "sl_pct": 1.0
+        }
+      ]
+    },
+    {
+      "asof": "2026-08-28",
+      "pnl_inr": -228.84,
+      "return_pct": -2.239,
+      "capital_end": 9991.98,
+      "n_trades": 1,
+      "exclude_tickers": [],
+      "exclude_entities": [],
+      "top_picks": [
+        {
+          "ticker": "ATALREAL.NS",
+          "score": 16.9093,
+          "win_rate": 1.0,
+          "win_rate_eff": 0.7188,
+          "value": 99841129.92,
+          "entity_normalized": "ACME CAPITAL MARKET LIMITED",
+          "disclosed_at": "2026-08-27T18:30:00+00:00",
+          "n_trades": 3,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "AASTHA.NS",
+          "score": 16.6948,
+          "win_rate": 1.0,
+          "win_rate_eff": 0.75,
+          "value": 20570000.0,
+          "entity_normalized": "CHAUBARA EATS PRIVATE LIMITED",
+          "disclosed_at": "2026-08-27T18:30:00+00:00",
+          "n_trades": 4,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "MVELECTRO.NS",
+          "score": 16.3251,
+          "win_rate": 1.0,
+          "win_rate_eff": 0.6786,
+          "value": 368225935.74,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-27T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        }
+      ],
+      "trades": [
+        {
+          "ticker": "ATALREAL.NS",
+          "pnl": -278.2,
+          "exit": "stop_loss",
+          "entity": "ACME CAPITAL MARKET LIMITED",
+          "sl_pct": 1.0
+        }
+      ]
+    }
+  ],
+  "params": {
+    "filter_mode": "copy_bulk_pro",
+    "max_leverage": 5.0,
+    "conf_floor": 0.55,
+    "max_daily_loss_pct": 4.0,
+    "max_trade_risk_pct": 3.0,
+    "intraday_stop_with_session_end": true,
+    "exit_at_session_end": true,
+    "max_chase_attempts": 1,
+    "use_hl_exits": false,
+    "max_positions": 1,
+    "bulk_lookback_sessions": 1,
+    "bulk_min_win_rate": 0.55,
+    "bulk_min_n_trades": 1,
+    "bulk_min_deal_value": 0.0,
+    "capital_use_frac": 0.6,
+    "bulk_wr_prior": 0.55,
+    "bulk_wr_pseudo_n": 5.0,
+    "sl_cooldown_days": 1,
+    "entity_cooldown_days": 1,
+    "sitout_after_sl_days": 1
+  }
+}

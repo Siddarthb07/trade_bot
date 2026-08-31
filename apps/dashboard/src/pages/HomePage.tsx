@@ -204,7 +204,7 @@ export default function HomePage({ defaultTab = "demand" }: { defaultTab?: Tab }
       )}
 
       <div className="page-intro">
-        <h2>Trade Bot</h2>
+        <h2>GodFather</h2>
         <p className="muted">
           {pickView === "hold"
             ? "Hold plan — when to review and sell. No profit targets here."

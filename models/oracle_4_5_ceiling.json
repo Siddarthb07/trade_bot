@@ -1,0 +1,460 @@
+{
+  "sessions": [
+    "2026-08-13",
+    "2026-08-14",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28"
+  ],
+  "targets": {
+    "4.0": {
+      "min_daily_return_pct": -1.902,
+      "max_daily_return_pct": 3.695,
+      "avg_daily_return_pct": 2.439,
+      "days_ge_4": 0,
+      "days_ge_5": 0,
+      "days_ge_8": 0,
+      "hit_at_4_pct": 0.0,
+      "hit_at_5_pct": 0.0,
+      "all_ge_4": false,
+      "all_ge_5": false,
+      "compound_pct": 33.36,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 2.916,
+          "capital_end": 10291.6,
+          "ticker": "TCS.NS",
+          "move_pct": 1.107,
+          "lev": 3.61,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 3.44,
+          "capital_end": 10645.68,
+          "ticker": "ADANIENT.NS",
+          "move_pct": 2.144,
+          "lev": 1.87,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 3.299,
+          "capital_end": 10996.87,
+          "ticker": "TATASTEEL.NS",
+          "move_pct": 1.712,
+          "lev": 2.34,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -1.902,
+          "capital_end": 10787.69,
+          "ticker": "BAJFINANCE.NS",
+          "move_pct": 0.11,
+          "lev": 10.0,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.195,
+          "capital_end": 11132.39,
+          "ticker": "JSWSTEEL.NS",
+          "move_pct": 1.492,
+          "lev": 2.68,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 1.61,
+          "capital_end": 11311.66,
+          "ticker": "MARUTI.NS",
+          "move_pct": 0.502,
+          "lev": 7.96,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 2.965,
+          "capital_end": 11647.09,
+          "ticker": "VEDL.NS",
+          "move_pct": 1.16,
+          "lev": 3.45,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 3.308,
+          "capital_end": 12032.36,
+          "ticker": "JSWSTEEL.NS",
+          "move_pct": 1.733,
+          "lev": 2.31,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 3.695,
+          "capital_end": 12476.92,
+          "ticker": "ADANIENT.NS",
+          "move_pct": 3.947,
+          "lev": 1.01,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 3.419,
+          "capital_end": 12903.57,
+          "ticker": "VEDL.NS",
+          "move_pct": 2.066,
+          "lev": 1.94,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 1.118,
+          "capital_end": 13047.84,
+          "ticker": "ADANIENT.NS",
+          "move_pct": 0.416,
+          "lev": 9.61,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 2.211,
+          "capital_end": 13336.38,
+          "ticker": "HDFCBANK.NS",
+          "move_pct": 0.671,
+          "lev": 5.96,
+          "target_pct": 4.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        }
+      ]
+    },
+    "5.0": {
+      "min_daily_return_pct": -2.378,
+      "max_daily_return_pct": 4.621,
+      "avg_daily_return_pct": 3.05,
+      "days_ge_4": 5,
+      "days_ge_5": 0,
+      "days_ge_8": 0,
+      "hit_at_4_pct": 41.7,
+      "hit_at_5_pct": 0.0,
+      "all_ge_4": false,
+      "all_ge_5": false,
+      "compound_pct": 43.11,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 3.645,
+          "capital_end": 10364.46,
+          "ticker": "TCS.NS",
+          "move_pct": 1.107,
+          "lev": 4.52,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 4.3,
+          "capital_end": 10810.1,
+          "ticker": "ADANIENT.NS",
+          "move_pct": 2.144,
+          "lev": 2.33,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 4.123,
+          "capital_end": 11255.83,
+          "ticker": "TATASTEEL.NS",
+          "move_pct": 1.712,
+          "lev": 2.92,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -2.378,
+          "capital_end": 10988.2,
+          "ticker": "BAJFINANCE.NS",
+          "move_pct": 0.11,
+          "lev": 12.5,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 3.995,
+          "capital_end": 11427.18,
+          "ticker": "JSWSTEEL.NS",
+          "move_pct": 1.492,
+          "lev": 3.35,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 2.013,
+          "capital_end": 11657.23,
+          "ticker": "MARUTI.NS",
+          "move_pct": 0.502,
+          "lev": 9.96,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 3.707,
+          "capital_end": 12089.35,
+          "ticker": "VEDL.NS",
+          "move_pct": 1.16,
+          "lev": 4.31,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 4.134,
+          "capital_end": 12589.18,
+          "ticker": "JSWSTEEL.NS",
+          "move_pct": 1.733,
+          "lev": 2.89,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 4.621,
+          "capital_end": 13170.95,
+          "ticker": "ADANIENT.NS",
+          "move_pct": 3.947,
+          "lev": 1.27,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 4.274,
+          "capital_end": 13733.92,
+          "ticker": "VEDL.NS",
+          "move_pct": 2.066,
+          "lev": 2.42,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 1.397,
+          "capital_end": 13925.85,
+          "ticker": "ADANIENT.NS",
+          "move_pct": 0.416,
+          "lev": 12.01,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 2.764,
+          "capital_end": 14310.76,
+          "ticker": "HDFCBANK.NS",
+          "move_pct": 0.671,
+          "lev": 7.45,
+          "target_pct": 5.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        }
+      ]
+    },
+    "8.0": {
+      "min_daily_return_pct": -3.804,
+      "max_daily_return_pct": 7.393,
+      "avg_daily_return_pct": 4.88,
+      "days_ge_4": 9,
+      "days_ge_5": 8,
+      "days_ge_8": 0,
+      "hit_at_4_pct": 75.0,
+      "hit_at_5_pct": 66.7,
+      "all_ge_4": false,
+      "all_ge_5": false,
+      "compound_pct": 76.21,
+      "days": [
+        {
+          "asof": "2026-08-13",
+          "return_pct": 5.832,
+          "capital_end": 10583.19,
+          "ticker": "TCS.NS",
+          "move_pct": 1.107,
+          "lev": 7.23,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-14",
+          "return_pct": 6.881,
+          "capital_end": 11311.42,
+          "ticker": "ADANIENT.NS",
+          "move_pct": 2.144,
+          "lev": 3.73,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-17",
+          "return_pct": 6.598,
+          "capital_end": 12057.73,
+          "ticker": "TATASTEEL.NS",
+          "move_pct": 1.712,
+          "lev": 4.67,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-18",
+          "return_pct": -3.804,
+          "capital_end": 11599.02,
+          "ticker": "BAJFINANCE.NS",
+          "move_pct": 0.11,
+          "lev": 20.0,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-19",
+          "return_pct": 6.392,
+          "capital_end": 12340.41,
+          "ticker": "JSWSTEEL.NS",
+          "move_pct": 1.492,
+          "lev": 5.36,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-20",
+          "return_pct": 3.221,
+          "capital_end": 12737.87,
+          "ticker": "MARUTI.NS",
+          "move_pct": 0.502,
+          "lev": 15.93,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-21",
+          "return_pct": 5.932,
+          "capital_end": 13493.42,
+          "ticker": "VEDL.NS",
+          "move_pct": 1.16,
+          "lev": 6.89,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-24",
+          "return_pct": 6.614,
+          "capital_end": 14385.91,
+          "ticker": "JSWSTEEL.NS",
+          "move_pct": 1.733,
+          "lev": 4.62,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-25",
+          "return_pct": 7.393,
+          "capital_end": 15449.48,
+          "ticker": "ADANIENT.NS",
+          "move_pct": 3.947,
+          "lev": 2.03,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-26",
+          "return_pct": 6.839,
+          "capital_end": 16506.06,
+          "ticker": "VEDL.NS",
+          "move_pct": 2.066,
+          "lev": 3.87,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-27",
+          "return_pct": 2.236,
+          "capital_end": 16875.13,
+          "ticker": "ADANIENT.NS",
+          "move_pct": 0.416,
+          "lev": 19.21,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        },
+        {
+          "asof": "2026-08-28",
+          "return_pct": 4.422,
+          "capital_end": 17621.43,
+          "ticker": "HDFCBANK.NS",
+          "move_pct": 0.671,
+          "lev": 11.93,
+          "target_pct": 8.0,
+          "unreachable_at_4": false,
+          "unreachable_at_5": false
+        }
+      ]
+    }
+  },
+  "generated_at": "2026-08-29T12:37:09.487610+00:00"
+}

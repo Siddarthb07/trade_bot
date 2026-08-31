@@ -1,0 +1,1389 @@
+{
+  "generated_at": "2026-08-29",
+  "bulk_coverage": {
+    "ok": true,
+    "total_buys": 17536,
+    "window_buys": 11261,
+    "window_min": "2026-05-03T18:30:00+00:00",
+    "window_max": "2026-08-27T18:30:00+00:00",
+    "data_gap": false
+  },
+  "params": {
+    "filter_mode": "copy_bulk_pro",
+    "max_leverage": 5.0,
+    "conf_floor": 0.55,
+    "max_daily_loss_pct": 4.0,
+    "max_trade_risk_pct": 3.0,
+    "intraday_stop_with_session_end": true,
+    "exit_at_session_end": true,
+    "max_chase_attempts": 1,
+    "use_hl_exits": false,
+    "max_positions": 1,
+    "bulk_lookback_sessions": 1,
+    "bulk_min_win_rate": 0.55,
+    "bulk_min_n_trades": 1,
+    "bulk_min_deal_value": 0.0,
+    "capital_use_frac": 0.6,
+    "bulk_wr_prior": 0.55,
+    "bulk_wr_pseudo_n": 0.0,
+    "sl_cooldown_days": 1,
+    "entity_cooldown_days": 1
+  },
+  "months": [
+    {
+      "month": "may",
+      "window": {
+        "start": "2026-05-01",
+        "end": "2026-05-31",
+        "n_sessions": 21
+      },
+      "capital_start": 10000.0,
+      "capital_end": 9408.91,
+      "pnl_inr": -591.09,
+      "compound_pct": -5.911,
+      "max_dd_pct": 22.0,
+      "n_trades": 16,
+      "n_flat_days": 5,
+      "wins": 5,
+      "losses": 11,
+      "avg_margin_inr": 5507.9,
+      "avg_invested_notional_inr": 12312.94,
+      "total_invested_notional_inr": 197006.98,
+      "total_fees_inr": 668.81,
+      "sum_win_pnl": 2293.93,
+      "sum_loss_pnl": -3475.12,
+      "trades": [
+        {
+          "asof": "2026-05-05",
+          "ticker": "GCSL.NS",
+          "pnl": 74.14,
+          "pnl_pct": 1.23,
+          "exit": "session_close",
+          "lev": 1.004,
+          "margin_inr": 6000.0,
+          "invested_notional_inr": 6027.03,
+          "returned_notional_inr": 6121.82,
+          "fees": 20.6485,
+          "entity": "MANSUKH SECURITIES FINANCE LIMITED",
+          "book_before": 10000.0
+        },
+        {
+          "asof": "2026-05-06",
+          "ticker": "SGFIN.NS",
+          "pnl": -270.0,
+          "pnl_pct": -1.651,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6055.42,
+          "invested_notional_inr": 16357.78,
+          "returned_notional_inr": 16143.02,
+          "fees": 55.2392,
+          "entity": "S GUPTA HOLDING PRIVATE LIMITED",
+          "book_before": 10092.36
+        },
+        {
+          "asof": "2026-05-07",
+          "ticker": "RAYMONDREL.NS",
+          "pnl": -366.28,
+          "pnl_pct": -2.289,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5922.66,
+          "invested_notional_inr": 15999.17,
+          "returned_notional_inr": 15686.74,
+          "fees": 53.854,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 9871.1
+        },
+        {
+          "asof": "2026-05-08",
+          "ticker": "GCSL.NS",
+          "pnl": -150.64,
+          "pnl_pct": -2.617,
+          "exit": "stop_loss",
+          "lev": 1.004,
+          "margin_inr": 5731.4,
+          "invested_notional_inr": 5757.18,
+          "returned_notional_inr": 5625.89,
+          "fees": 19.3469,
+          "entity": "MANSUKH SECURITIES FINANCE LIMITED",
+          "book_before": 9552.33
+        },
+        {
+          "asof": "2026-05-11",
+          "ticker": "QUICKHEAL.NS",
+          "pnl": -477.72,
+          "pnl_pct": -3.129,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5651.26,
+          "invested_notional_inr": 15266.02,
+          "returned_notional_inr": 14839.47,
+          "fees": 51.1679,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 9418.76
+        },
+        {
+          "asof": "2026-05-12",
+          "ticker": "SASKEN.NS",
+          "pnl": 144.44,
+          "pnl_pct": 1.421,
+          "exit": "session_close",
+          "lev": 1.884,
+          "margin_inr": 5391.72,
+          "invested_notional_inr": 10163.05,
+          "returned_notional_inr": 10342.34,
+          "fees": 34.8516,
+          "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+          "book_before": 8986.2
+        },
+        {
+          "asof": "2026-05-13",
+          "ticker": "JINDRILL.NS",
+          "pnl": -340.29,
+          "pnl_pct": -2.292,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5496.83,
+          "invested_notional_inr": 14848.86,
+          "returned_notional_inr": 14558.55,
+          "fees": 49.9815,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 9161.39
+        },
+        {
+          "asof": "2026-05-15",
+          "ticker": "SAREGAMA.NS",
+          "pnl": -465.0,
+          "pnl_pct": -3.236,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5319.11,
+          "invested_notional_inr": 14368.78,
+          "returned_notional_inr": 13951.91,
+          "fees": 48.1345,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 8865.19
+        },
+        {
+          "asof": "2026-05-18",
+          "ticker": "ARIHANTSUP.NS",
+          "pnl": -379.16,
+          "pnl_pct": -3.971,
+          "exit": "stop_loss",
+          "lev": 1.884,
+          "margin_inr": 5065.6,
+          "invested_notional_inr": 9548.36,
+          "returned_notional_inr": 9201.07,
+          "fees": 31.8669,
+          "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+          "book_before": 8442.66
+        },
+        {
+          "asof": "2026-05-19",
+          "ticker": "JINDRILL.NS",
+          "pnl": -258.76,
+          "pnl_pct": -1.973,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 4854.97,
+          "invested_notional_inr": 13115.0,
+          "returned_notional_inr": 12900.46,
+          "fees": 44.2164,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 8091.62
+        },
+        {
+          "asof": "2026-05-20",
+          "ticker": "GCSL.NS",
+          "pnl": 81.87,
+          "pnl_pct": 1.726,
+          "exit": "session_close",
+          "lev": 1.004,
+          "margin_inr": 4723.13,
+          "invested_notional_inr": 4744.39,
+          "returned_notional_inr": 4842.55,
+          "fees": 16.2943,
+          "entity": "MANSUKH SECURITIES FINANCE LIMITED",
+          "book_before": 7871.88
+        },
+        {
+          "asof": "2026-05-21",
+          "ticker": "GOCOLORS.NS",
+          "pnl": 1678.98,
+          "pnl_pct": 13.0,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 4780.87,
+          "invested_notional_inr": 12914.81,
+          "returned_notional_inr": 14640.62,
+          "fees": 46.8346,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 7968.12
+        },
+        {
+          "asof": "2026-05-22",
+          "ticker": "JSWCEMENT.NS",
+          "pnl": -354.96,
+          "pnl_pct": -2.26,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5813.05,
+          "invested_notional_inr": 15703.08,
+          "returned_notional_inr": 15400.99,
+          "fees": 52.8651,
+          "entity": "BAJAJ FINSERV MUTUAL FUND",
+          "book_before": 9688.41
+        },
+        {
+          "asof": "2026-05-26",
+          "ticker": "QUADFUTURE.NS",
+          "pnl": 314.5,
+          "pnl_pct": 2.965,
+          "exit": "session_close",
+          "lev": 1.884,
+          "margin_inr": 5628.06,
+          "invested_notional_inr": 10608.57,
+          "returned_notional_inr": 10959.73,
+          "fees": 36.6581,
+          "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+          "book_before": 9380.1
+        },
+        {
+          "asof": "2026-05-27",
+          "ticker": "MANCREDIT.NS",
+          "pnl": -14.13,
+          "pnl_pct": -0.09,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5836.17,
+          "invested_notional_inr": 15765.53,
+          "returned_notional_inr": 15805.06,
+          "fees": 53.6582,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 9726.95
+        },
+        {
+          "asof": "2026-05-29",
+          "ticker": "GLOBAL.NS",
+          "pnl": -398.18,
+          "pnl_pct": -2.517,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5856.1,
+          "invested_notional_inr": 15819.37,
+          "returned_notional_inr": 15474.38,
+          "fees": 53.1876,
+          "entity": "PRASOON PANKAJ",
+          "book_before": 9760.16
+        }
+      ],
+      "daily": [
+        {
+          "asof": "2026-05-01",
+          "pnl": 0.0,
+          "end": 10000.0,
+          "n": 0
+        },
+        {
+          "asof": "2026-05-04",
+          "pnl": 0.0,
+          "end": 10000.0,
+          "n": 0
+        },
+        {
+          "asof": "2026-05-05",
+          "pnl": 92.36,
+          "end": 10092.36,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-06",
+          "pnl": -221.26,
+          "end": 9871.1,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-07",
+          "pnl": -318.77,
+          "end": 9552.33,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-08",
+          "pnl": -133.57,
+          "end": 9418.76,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-11",
+          "pnl": -432.56,
+          "end": 8986.2,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-12",
+          "pnl": 175.19,
+          "end": 9161.39,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-13",
+          "pnl": -296.2,
+          "end": 8865.19,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-14",
+          "pnl": 0.0,
+          "end": 8865.19,
+          "n": 0
+        },
+        {
+          "asof": "2026-05-15",
+          "pnl": -422.53,
+          "end": 8442.66,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-18",
+          "pnl": -351.04,
+          "end": 8091.62,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-19",
+          "pnl": -219.74,
+          "end": 7871.88,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-20",
+          "pnl": 96.24,
+          "end": 7968.12,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-21",
+          "pnl": 1720.29,
+          "end": 9688.41,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-22",
+          "pnl": -308.31,
+          "end": 9380.1,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-25",
+          "pnl": 0.0,
+          "end": 9380.1,
+          "n": 0
+        },
+        {
+          "asof": "2026-05-26",
+          "pnl": 346.85,
+          "end": 9726.95,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-27",
+          "pnl": 33.21,
+          "end": 9760.16,
+          "n": 1
+        },
+        {
+          "asof": "2026-05-28",
+          "pnl": 0.0,
+          "end": 9760.16,
+          "n": 0
+        },
+        {
+          "asof": "2026-05-29",
+          "pnl": -351.25,
+          "end": 9408.91,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "month": "june",
+      "window": {
+        "start": "2026-06-01",
+        "end": "2026-06-30",
+        "n_sessions": 22
+      },
+      "capital_start": 10000.0,
+      "capital_end": 8541.65,
+      "pnl_inr": -1458.35,
+      "compound_pct": -14.584,
+      "max_dd_pct": 32.56,
+      "n_trades": 21,
+      "n_flat_days": 1,
+      "wins": 6,
+      "losses": 15,
+      "avg_margin_inr": 6153.07,
+      "avg_invested_notional_inr": 15891.61,
+      "total_invested_notional_inr": 333723.85,
+      "total_fees_inr": 1132.16,
+      "sum_win_pnl": 3109.17,
+      "sum_loss_pnl": -5566.53,
+      "trades": [
+        {
+          "asof": "2026-06-01",
+          "ticker": "QUADFUTURE.NS",
+          "pnl": 736.33,
+          "pnl_pct": 6.511,
+          "exit": "session_close",
+          "lev": 1.884,
+          "margin_inr": 6000.0,
+          "invested_notional_inr": 11309.66,
+          "returned_notional_inr": 12085.75,
+          "fees": 39.7636,
+          "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+          "book_before": 10000.0
+        },
+        {
+          "asof": "2026-06-02",
+          "ticker": "MANCREDIT.NS",
+          "pnl": -268.83,
+          "pnl_pct": -1.54,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6462.84,
+          "invested_notional_inr": 17458.39,
+          "returned_notional_inr": 17248.55,
+          "fees": 58.9887,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 10771.4
+        },
+        {
+          "asof": "2026-06-03",
+          "ticker": "GSLSU.NS",
+          "pnl": 385.37,
+          "pnl_pct": 2.253,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 6332.77,
+          "invested_notional_inr": 17107.03,
+          "returned_notional_inr": 17551.31,
+          "fees": 58.9064,
+          "entity": "PINE OAK GLOBAL FUND",
+          "book_before": 10554.62
+        },
+        {
+          "asof": "2026-06-04",
+          "ticker": "ATALREAL.NS",
+          "pnl": 206.06,
+          "pnl_pct": 1.157,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 6595.18,
+          "invested_notional_inr": 17815.9,
+          "returned_notional_inr": 18082.97,
+          "fees": 61.0147,
+          "entity": "ACME CAPITAL MARKET LIMITED",
+          "book_before": 10991.97
+        },
+        {
+          "asof": "2026-06-05",
+          "ticker": "RAMCOSYS.NS",
+          "pnl": 1356.07,
+          "pnl_pct": 7.436,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 6751.11,
+          "invested_notional_inr": 18237.12,
+          "returned_notional_inr": 19657.6,
+          "fees": 64.4073,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 11251.85
+        },
+        {
+          "asof": "2026-06-08",
+          "ticker": "EXICOM.NS",
+          "pnl": -351.99,
+          "pnl_pct": -1.715,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 7598.85,
+          "invested_notional_inr": 20527.16,
+          "returned_notional_inr": 20244.47,
+          "fees": 69.2963,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 12664.75
+        },
+        {
+          "asof": "2026-06-09",
+          "ticker": "GRMOVER.NS",
+          "pnl": -1293.11,
+          "pnl_pct": -6.448,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 7424.35,
+          "invested_notional_inr": 20055.78,
+          "returned_notional_inr": 18828.76,
+          "fees": 66.0888,
+          "entity": "ACME CAPITAL MARKET LIMITED",
+          "book_before": 12373.92
+        },
+        {
+          "asof": "2026-06-10",
+          "ticker": "JNKINDIA.NS",
+          "pnl": -324.17,
+          "pnl_pct": -1.796,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6683.48,
+          "invested_notional_inr": 18054.4,
+          "returned_notional_inr": 17791.15,
+          "fees": 60.9239,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 11139.13
+        },
+        {
+          "asof": "2026-06-11",
+          "ticker": "ATALREAL.NS",
+          "pnl": -776.74,
+          "pnl_pct": -4.409,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6521.23,
+          "invested_notional_inr": 17616.13,
+          "returned_notional_inr": 16898.05,
+          "fees": 58.6608,
+          "entity": "ACME CAPITAL MARKET LIMITED",
+          "book_before": 10868.71
+        },
+        {
+          "asof": "2026-06-12",
+          "ticker": "AQYLON.NS",
+          "pnl": 52.69,
+          "pnl_pct": 0.32,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 6086.26,
+          "invested_notional_inr": 16441.1,
+          "returned_notional_inr": 16549.86,
+          "fees": 56.0723,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 10143.76
+        },
+        {
+          "asof": "2026-06-15",
+          "ticker": "GCSL.NS",
+          "pnl": -16.43,
+          "pnl_pct": -0.266,
+          "exit": "session_close",
+          "lev": 1.004,
+          "margin_inr": 6147.55,
+          "invested_notional_inr": 6175.23,
+          "returned_notional_inr": 6179.8,
+          "fees": 20.9989,
+          "entity": "MANSUKH SECURITIES FINANCE LIMITED",
+          "book_before": 10245.91
+        },
+        {
+          "asof": "2026-06-16",
+          "ticker": "MOTISONS.NS",
+          "pnl": -574.05,
+          "pnl_pct": -3.456,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6148.81,
+          "invested_notional_inr": 16610.1,
+          "returned_notional_inr": 16091.63,
+          "fees": 55.5804,
+          "entity": "PINE OAK GLOBAL FUND",
+          "book_before": 10248.01
+        },
+        {
+          "asof": "2026-06-17",
+          "ticker": "TARSONS.NS",
+          "pnl": -14.41,
+          "pnl_pct": -0.091,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5833.84,
+          "invested_notional_inr": 15759.24,
+          "returned_notional_inr": 15798.47,
+          "fees": 53.6363,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 9723.07
+        },
+        {
+          "asof": "2026-06-18",
+          "ticker": "ATALREAL.NS",
+          "pnl": -536.17,
+          "pnl_pct": -3.391,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5853.59,
+          "invested_notional_inr": 15812.57,
+          "returned_notional_inr": 15329.33,
+          "fees": 52.9294,
+          "entity": "ACME CAPITAL MARKET LIMITED",
+          "book_before": 9755.98
+        },
+        {
+          "asof": "2026-06-19",
+          "ticker": "AQYLON.NS",
+          "pnl": -216.69,
+          "pnl_pct": -1.443,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5559.9,
+          "invested_notional_inr": 15019.25,
+          "returned_notional_inr": 14853.33,
+          "fees": 50.7721,
+          "entity": "PINE OAK GLOBAL FUND",
+          "book_before": 9266.5
+        },
+        {
+          "asof": "2026-06-22",
+          "ticker": "NOCIL.NS",
+          "pnl": -20.0,
+          "pnl_pct": -0.136,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5456.76,
+          "invested_notional_inr": 14740.62,
+          "returned_notional_inr": 14770.78,
+          "fees": 50.1583,
+          "entity": "VICTUS ENTERPRISE LLP",
+          "book_before": 9094.6
+        },
+        {
+          "asof": "2026-06-23",
+          "ticker": "EMSLIMITED.NS",
+          "pnl": 372.65,
+          "pnl_pct": 2.521,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5471.32,
+          "invested_notional_inr": 14779.93,
+          "returned_notional_inr": 15203.54,
+          "fees": 50.9608,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 9118.86
+        },
+        {
+          "asof": "2026-06-24",
+          "ticker": "ATALREAL.NS",
+          "pnl": -93.4,
+          "pnl_pct": -0.604,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5721.88,
+          "invested_notional_inr": 15456.83,
+          "returned_notional_inr": 15415.9,
+          "fees": 52.4721,
+          "entity": "ACME CAPITAL MARKET LIMITED",
+          "book_before": 9536.47
+        },
+        {
+          "asof": "2026-06-25",
+          "ticker": "RAMCOSYS.NS",
+          "pnl": -421.68,
+          "pnl_pct": -2.742,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5693.62,
+          "invested_notional_inr": 15380.44,
+          "returned_notional_inr": 15010.41,
+          "fees": 51.653,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 9489.37
+        },
+        {
+          "asof": "2026-06-29",
+          "ticker": "BLISSGVS.NS",
+          "pnl": -152.0,
+          "pnl_pct": -1.029,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5467.96,
+          "invested_notional_inr": 14770.89,
+          "returned_notional_inr": 14668.93,
+          "fees": 50.0366,
+          "entity": "ARIAN INVESTMENT LTD",
+          "book_before": 9113.27
+        },
+        {
+          "asof": "2026-06-30",
+          "ticker": "SAKSOFT.NS",
+          "pnl": -506.86,
+          "pnl_pct": -3.473,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5403.25,
+          "invested_notional_inr": 14596.08,
+          "returned_notional_inr": 14138.06,
+          "fees": 48.8371,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 9005.42
+        }
+      ],
+      "daily": [
+        {
+          "asof": "2026-06-01",
+          "pnl": 771.4,
+          "end": 10771.4,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-02",
+          "pnl": -216.78,
+          "end": 10554.62,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-03",
+          "pnl": 437.35,
+          "end": 10991.97,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-04",
+          "pnl": 259.88,
+          "end": 11251.85,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-05",
+          "pnl": 1412.9,
+          "end": 12664.75,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-08",
+          "pnl": -290.83,
+          "end": 12373.92,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-09",
+          "pnl": -1234.79,
+          "end": 11139.13,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-10",
+          "pnl": -270.42,
+          "end": 10868.71,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-11",
+          "pnl": -724.95,
+          "end": 10143.76,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-12",
+          "pnl": 102.15,
+          "end": 10245.91,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-15",
+          "pnl": 2.1,
+          "end": 10248.01,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-16",
+          "pnl": -524.94,
+          "end": 9723.07,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-17",
+          "pnl": 32.91,
+          "end": 9755.98,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-18",
+          "pnl": -489.48,
+          "end": 9266.5,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-19",
+          "pnl": -171.9,
+          "end": 9094.6,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-22",
+          "pnl": 24.26,
+          "end": 9118.86,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-23",
+          "pnl": 417.61,
+          "end": 9536.47,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-24",
+          "pnl": -47.1,
+          "end": 9489.37,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-25",
+          "pnl": -376.1,
+          "end": 9113.27,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-26",
+          "pnl": 0.0,
+          "end": 9113.27,
+          "n": 0
+        },
+        {
+          "asof": "2026-06-29",
+          "pnl": -107.85,
+          "end": 9005.42,
+          "n": 1
+        },
+        {
+          "asof": "2026-06-30",
+          "pnl": -463.77,
+          "end": 8541.65,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "month": "july",
+      "window": {
+        "start": "2026-07-01",
+        "end": "2026-07-31",
+        "n_sessions": 23
+      },
+      "capital_start": 10000.0,
+      "capital_end": 9639.65,
+      "pnl_inr": -360.35,
+      "compound_pct": -3.604,
+      "max_dd_pct": 18.71,
+      "n_trades": 23,
+      "n_flat_days": 0,
+      "wins": 7,
+      "losses": 16,
+      "avg_margin_inr": 6264.21,
+      "avg_invested_notional_inr": 16449.88,
+      "total_invested_notional_inr": 378347.29,
+      "total_fees_inr": 1285.74,
+      "sum_win_pnl": 3265.37,
+      "sum_loss_pnl": -4760.1,
+      "trades": [
+        {
+          "asof": "2026-07-01",
+          "ticker": "SAKSOFT.NS",
+          "pnl": -396.82,
+          "pnl_pct": -2.448,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6000.0,
+          "invested_notional_inr": 16208.1,
+          "returned_notional_inr": 15865.79,
+          "fees": 54.5135,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 10000.0
+        },
+        {
+          "asof": "2026-07-02",
+          "ticker": "MANCREDIT.NS",
+          "pnl": -99.75,
+          "pnl_pct": -0.638,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5790.76,
+          "invested_notional_inr": 15642.88,
+          "returned_notional_inr": 15596.22,
+          "fees": 53.0947,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 9651.27
+        },
+        {
+          "asof": "2026-07-03",
+          "ticker": "IKIO.NS",
+          "pnl": 483.75,
+          "pnl_pct": 3.11,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5759.02,
+          "invested_notional_inr": 15557.11,
+          "returned_notional_inr": 16094.66,
+          "fees": 53.7963,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 9598.36
+        },
+        {
+          "asof": "2026-07-06",
+          "ticker": "DIGITIDE.NS",
+          "pnl": 980.72,
+          "pnl_pct": 5.973,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 6077.75,
+          "invested_notional_inr": 16418.12,
+          "returned_notional_inr": 17456.41,
+          "fees": 57.5744,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 10129.58
+        },
+        {
+          "asof": "2026-07-07",
+          "ticker": "MANCREDIT.NS",
+          "pnl": -337.8,
+          "pnl_pct": -1.867,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6696.65,
+          "invested_notional_inr": 18090.0,
+          "returned_notional_inr": 17813.22,
+          "fees": 61.0219,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 11161.08
+        },
+        {
+          "asof": "2026-07-08",
+          "ticker": "ITDC.NS",
+          "pnl": -276.66,
+          "pnl_pct": -1.569,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6526.28,
+          "invested_notional_inr": 17629.75,
+          "returned_notional_inr": 17412.65,
+          "fees": 59.5588,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 10877.13
+        },
+        {
+          "asof": "2026-07-09",
+          "ticker": "INA.NS",
+          "pnl": 935.69,
+          "pnl_pct": 7.766,
+          "exit": "session_close",
+          "lev": 1.884,
+          "margin_inr": 6391.81,
+          "invested_notional_inr": 12048.19,
+          "returned_notional_inr": 13026.5,
+          "fees": 42.6179,
+          "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+          "book_before": 10653.02
+        },
+        {
+          "asof": "2026-07-10",
+          "ticker": "PANSARI.NS",
+          "pnl": 53.85,
+          "pnl_pct": 0.286,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 6975.79,
+          "invested_notional_inr": 18844.04,
+          "returned_notional_inr": 18962.15,
+          "fees": 64.2564,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 11626.31
+        },
+        {
+          "asof": "2026-07-13",
+          "ticker": "FINOPB.NS",
+          "pnl": -286.93,
+          "pnl_pct": -1.508,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 7042.12,
+          "invested_notional_inr": 19023.22,
+          "returned_notional_inr": 18800.58,
+          "fees": 64.2861,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 11736.86
+        },
+        {
+          "asof": "2026-07-14",
+          "ticker": "LANDMARK.NS",
+          "pnl": -213.3,
+          "pnl_pct": -1.639,
+          "exit": "stop_loss",
+          "lev": 1.884,
+          "margin_inr": 6903.99,
+          "invested_notional_inr": 13013.61,
+          "returned_notional_inr": 12844.26,
+          "fees": 43.9487,
+          "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+          "book_before": 11506.65
+        },
+        {
+          "asof": "2026-07-15",
+          "ticker": "FINOPB.NS",
+          "pnl": -430.9,
+          "pnl_pct": -2.346,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6799.28,
+          "invested_notional_inr": 18367.23,
+          "returned_notional_inr": 17998.14,
+          "fees": 61.8073,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 11332.13
+        },
+        {
+          "asof": "2026-07-16",
+          "ticker": "ATALREAL.NS",
+          "pnl": 144.34,
+          "pnl_pct": 0.813,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 6573.46,
+          "invested_notional_inr": 17757.2,
+          "returned_notional_inr": 17962.25,
+          "fees": 60.7097,
+          "entity": "ACME CAPITAL MARKET LIMITED",
+          "book_before": 10955.77
+        },
+        {
+          "asof": "2026-07-17",
+          "ticker": "FINOPB.NS",
+          "pnl": -363.72,
+          "pnl_pct": -2.012,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6692.19,
+          "invested_notional_inr": 18077.96,
+          "returned_notional_inr": 17775.18,
+          "fees": 60.9367,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 11153.65
+        },
+        {
+          "asof": "2026-07-20",
+          "ticker": "AASTHA.NS",
+          "pnl": -696.36,
+          "pnl_pct": -3.962,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6506.22,
+          "invested_notional_inr": 17575.57,
+          "returned_notional_inr": 16937.87,
+          "fees": 58.6597,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 10843.7
+        },
+        {
+          "asof": "2026-07-21",
+          "ticker": "BLISSGVS.NS",
+          "pnl": -243.78,
+          "pnl_pct": -1.475,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6119.45,
+          "invested_notional_inr": 16530.81,
+          "returned_notional_inr": 16342.9,
+          "fees": 55.8729,
+          "entity": "ARIAN INVESTMENT LTD",
+          "book_before": 10199.09
+        },
+        {
+          "asof": "2026-07-22",
+          "ticker": "BLUESTONE.NS",
+          "pnl": -313.57,
+          "pnl_pct": -1.934,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6002.76,
+          "invested_notional_inr": 16215.57,
+          "returned_notional_inr": 15956.68,
+          "fees": 54.6806,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 10004.6
+        },
+        {
+          "asof": "2026-07-23",
+          "ticker": "AASTHA.NS",
+          "pnl": 224.51,
+          "pnl_pct": 1.422,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5843.56,
+          "invested_notional_inr": 15785.5,
+          "returned_notional_inr": 16064.14,
+          "fees": 54.1325,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 9739.27
+        },
+        {
+          "asof": "2026-07-24",
+          "ticker": "SURYODAY.NS",
+          "pnl": -254.48,
+          "pnl_pct": -1.568,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6006.92,
+          "invested_notional_inr": 16226.79,
+          "returned_notional_inr": 16027.13,
+          "fees": 54.8195,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 10011.53
+        },
+        {
+          "asof": "2026-07-27",
+          "ticker": "AASTHA.NS",
+          "pnl": -105.42,
+          "pnl_pct": -0.663,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5883.25,
+          "invested_notional_inr": 15892.72,
+          "returned_notional_inr": 15841.24,
+          "fees": 53.9357,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 9805.42
+        },
+        {
+          "asof": "2026-07-28",
+          "ticker": "CMLL.NS",
+          "pnl": -253.54,
+          "pnl_pct": -1.605,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5848.56,
+          "invested_notional_inr": 15799.0,
+          "returned_notional_inr": 15598.82,
+          "fees": 53.3645,
+          "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "book_before": 9747.6
+        },
+        {
+          "asof": "2026-07-29",
+          "ticker": "ATALREAL.NS",
+          "pnl": 442.51,
+          "pnl_pct": 2.861,
+          "exit": "session_close",
+          "lev": 2.7,
+          "margin_inr": 5724.68,
+          "invested_notional_inr": 15464.35,
+          "returned_notional_inr": 15960.27,
+          "fees": 53.4104,
+          "entity": "CHAUBARA EATS PRIVATE LIMITED",
+          "book_before": 9541.13
+        },
+        {
+          "asof": "2026-07-30",
+          "ticker": "ATALREAL.NS",
+          "pnl": -255.99,
+          "pnl_pct": -1.575,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 6018.45,
+          "invested_notional_inr": 16257.96,
+          "returned_notional_inr": 16056.89,
+          "fees": 54.9231,
+          "entity": "ACME CAPITAL MARKET LIMITED",
+          "book_before": 10030.75
+        },
+        {
+          "asof": "2026-07-31",
+          "ticker": "AQYLON.NS",
+          "pnl": -231.08,
+          "pnl_pct": -1.451,
+          "exit": "stop_loss",
+          "lev": 2.7,
+          "margin_inr": 5893.95,
+          "invested_notional_inr": 15921.61,
+          "returned_notional_inr": 15744.35,
+          "fees": 53.8202,
+          "entity": "SERA INVESTMENTS FINANCE INDIA LIMITED",
+          "book_before": 9823.25
+        }
+      ],
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "pnl": -348.73,
+          "end": 9651.27,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-02",
+          "pnl": -52.91,
+          "end": 9598.36,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-03",
+          "pnl": 531.22,
+          "end": 10129.58,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-06",
+          "pnl": 1031.5,
+          "end": 11161.08,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-07",
+          "pnl": -283.95,
+          "end": 10877.13,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-08",
+          "pnl": -224.11,
+          "end": 10653.02,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-09",
+          "pnl": 973.29,
+          "end": 11626.31,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-10",
+          "pnl": 110.55,
+          "end": 11736.86,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-13",
+          "pnl": -230.21,
+          "end": 11506.65,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-14",
+          "pnl": -174.52,
+          "end": 11332.13,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-15",
+          "pnl": -376.36,
+          "end": 10955.77,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-16",
+          "pnl": 197.88,
+          "end": 11153.65,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-17",
+          "pnl": -309.95,
+          "end": 10843.7,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-20",
+          "pnl": -644.61,
+          "end": 10199.09,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-21",
+          "pnl": -194.49,
+          "end": 10004.6,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-22",
+          "pnl": -265.33,
+          "end": 9739.27,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-23",
+          "pnl": 272.26,
+          "end": 10011.53,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-24",
+          "pnl": -206.11,
+          "end": 9805.42,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-27",
+          "pnl": -57.82,
+          "end": 9747.6,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-28",
+          "pnl": -206.47,
+          "end": 9541.13,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-29",
+          "pnl": 489.62,
+          "end": 10030.75,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-30",
+          "pnl": -207.5,
+          "end": 9823.25,
+          "n": 1
+        },
+        {
+          "asof": "2026-07-31",
+          "pnl": -183.6,
+          "end": 9639.65,
+          "n": 1
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "month": "may",
+      "compound_pct": -5.911,
+      "pnl_inr": -591.09,
+      "n_trades": 16,
+      "wins": 5,
+      "losses": 11,
+      "avg_margin_inr": 5507.9,
+      "avg_invested_notional_inr": 12312.94,
+      "max_dd_pct": 22.0,
+      "n_flat_days": 5
+    },
+    {
+      "month": "june",
+      "compound_pct": -14.584,
+      "pnl_inr": -1458.35,
+      "n_trades": 21,
+      "wins": 6,
+      "losses": 15,
+      "avg_margin_inr": 6153.07,
+      "avg_invested_notional_inr": 15891.61,
+      "max_dd_pct": 32.56,
+      "n_flat_days": 1
+    },
+    {
+      "month": "july",
+      "compound_pct": -3.604,
+      "pnl_inr": -360.35,
+      "n_trades": 23,
+      "wins": 7,
+      "losses": 16,
+      "avg_margin_inr": 6264.21,
+      "avg_invested_notional_inr": 16449.88,
+      "max_dd_pct": 18.71,
+      "n_flat_days": 0
+    }
+  ]
+}

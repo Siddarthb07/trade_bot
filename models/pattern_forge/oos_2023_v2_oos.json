@@ -1,0 +1,153 @@
+{
+  "run_id": "8f09a2bf-8c9",
+  "iteration_id": null,
+  "strategy": "daily_swing",
+  "lane": "v2_oos",
+  "benchmark": "2023",
+  "claim": "paper/daily close-to-close; clean PIT; modeled IN_FO ~12bps RT (not cash 30bps); not live fills",
+  "capital_start": 10000.0,
+  "capital_end": 23074.92,
+  "year_pnl": 13074.92,
+  "total_return_pct": 130.749,
+  "green_months": 8,
+  "months_total": 12,
+  "worst_month_pct": -17.443,
+  "best_month_pct": 51.379,
+  "worst_month_pnl": -3531.96,
+  "loss_lte_profits": true,
+  "n_trades": 124,
+  "months": [
+    {
+      "month": "january",
+      "capital_start": 10000.0,
+      "capital_end": 10147.29,
+      "month_return_pct": 1.473,
+      "n_trades": 10,
+      "wins": 6
+    },
+    {
+      "month": "february",
+      "capital_start": 10147.29,
+      "capital_end": 10147.29,
+      "month_return_pct": 0.0,
+      "n_trades": 0,
+      "wins": 0
+    },
+    {
+      "month": "march",
+      "capital_start": 10147.29,
+      "capital_end": 10147.29,
+      "month_return_pct": 0.0,
+      "n_trades": 0,
+      "wins": 0
+    },
+    {
+      "month": "april",
+      "capital_start": 10147.29,
+      "capital_end": 10518.17,
+      "month_return_pct": 3.655,
+      "n_trades": 13,
+      "wins": 6
+    },
+    {
+      "month": "may",
+      "capital_start": 10518.17,
+      "capital_end": 15922.29,
+      "month_return_pct": 51.379,
+      "n_trades": 14,
+      "wins": 8
+    },
+    {
+      "month": "june",
+      "capital_start": 15922.29,
+      "capital_end": 15451.5,
+      "month_return_pct": -2.957,
+      "n_trades": 5,
+      "wins": 2
+    },
+    {
+      "month": "july",
+      "capital_start": 15451.5,
+      "capital_end": 18229.59,
+      "month_return_pct": 17.979,
+      "n_trades": 21,
+      "wins": 12
+    },
+    {
+      "month": "august",
+      "capital_start": 18229.59,
+      "capital_end": 19589.32,
+      "month_return_pct": 7.459,
+      "n_trades": 21,
+      "wins": 11
+    },
+    {
+      "month": "september",
+      "capital_start": 19589.32,
+      "capital_end": 20248.23,
+      "month_return_pct": 3.364,
+      "n_trades": 17,
+      "wins": 9
+    },
+    {
+      "month": "october",
+      "capital_start": 20248.23,
+      "capital_end": 16716.27,
+      "month_return_pct": -17.443,
+      "n_trades": 14,
+      "wins": 4
+    },
+    {
+      "month": "november",
+      "capital_start": 16716.27,
+      "capital_end": 21344.3,
+      "month_return_pct": 27.686,
+      "n_trades": 7,
+      "wins": 5
+    },
+    {
+      "month": "december",
+      "capital_start": 21344.3,
+      "capital_end": 23074.92,
+      "month_return_pct": 8.108,
+      "n_trades": 2,
+      "wins": 2
+    }
+  ],
+  "knobs": {
+    "lane": "v2_oos",
+    "year": 2023,
+    "leverage": 11.0,
+    "sleeve_frac": 0.24,
+    "learn_mistakes": true,
+    "profit_guard": true,
+    "profit_guard_floor_pct": 2.0,
+    "reset_mistakes": true,
+    "long_only": true,
+    "swarm_hard_veto": false,
+    "overnight_feeds": false,
+    "allow_overnight_network": false,
+    "min_score": 0.005,
+    "r1_lo": 0.005,
+    "r1_hi": 0.06,
+    "top_k": 1,
+    "use_breadth_veto": false,
+    "breadth_scale": false,
+    "promote_summary": false,
+    "write_lab_summary": false,
+    "allow_overwrite_v2": false,
+    "universe_n": 0,
+    "max_daily_loss_pct": 8.0
+  },
+  "no_ruin": true,
+  "profit_guard": true,
+  "swarm_hard_veto": false,
+  "long_only": true,
+  "goal": {
+    "green_months_min": 8,
+    "mean_month_positive": true,
+    "worst_month_gt": -12.0,
+    "loss_lte_profits": true
+  },
+  "goal_met": true
+}

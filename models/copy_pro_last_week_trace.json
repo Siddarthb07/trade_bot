@@ -1,0 +1,638 @@
+{
+  "generated_for_calendar": "2026-08-29",
+  "sessions": [
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28"
+  ],
+  "params": {
+    "filter_mode": "copy_bulk_pro",
+    "max_leverage": 5.0,
+    "conf_floor": 0.55,
+    "max_daily_loss_pct": 4.0,
+    "max_trade_risk_pct": 3.0,
+    "intraday_stop_with_session_end": true,
+    "exit_at_session_end": true,
+    "max_chase_attempts": 1,
+    "use_hl_exits": false,
+    "max_positions": 1,
+    "bulk_lookback_sessions": 1,
+    "bulk_min_win_rate": 0.55,
+    "bulk_min_n_trades": 1,
+    "bulk_min_deal_value": 0.0,
+    "capital_use_frac": 0.6
+  },
+  "capital_start": 10000.0,
+  "synthesis": {
+    "week_compound_pct": -8.293,
+    "pnl_inr": -829.28,
+    "capital_end": 9170.72,
+    "n_sessions": 5,
+    "win_days": 1,
+    "loss_days": 4,
+    "exit_counts": {
+      "stop_loss": 3,
+      "session_close": 2
+    },
+    "loss_exit_split": {
+      "stop_loss": 3,
+      "session_close": 1
+    },
+    "total_fees_inr": 259.78,
+    "loss_bucket_hits": {
+      "stop_loss_hit": 3,
+      "sl_band_": 3,
+      "fee_drag_0.34pct_of_notional": 4,
+      "bulk_pick_attached": 4,
+      "held_to_close_red": 1
+    },
+    "break_points": [
+      {
+        "asof": "2026-08-24",
+        "pnl_inr": -342.9,
+        "ticker": "QUADFUTURE.NS",
+        "primary": "Price hit stop (~1.00% adverse). Lev 2.7x turned -2.08% price move into -2.412% on notional / \u20b9-391.0."
+      },
+      {
+        "asof": "2026-08-25",
+        "pnl_inr": -323.07,
+        "ticker": "QUADFUTURE.NS",
+        "primary": "Price hit stop (~1.00% adverse). Lev 2.7x turned -2.02% price move into -2.361% on notional / \u20b9-369.54."
+      },
+      {
+        "asof": "2026-08-26",
+        "pnl_inr": -187.89,
+        "ticker": "FMGOETZE.NS",
+        "primary": "Price hit stop (~1.00% adverse). Lev 2.7x turned -1.20% price move into -1.54% on notional / \u20b9-232.99."
+      },
+      {
+        "asof": "2026-08-28",
+        "pnl_inr": -89.74,
+        "ticker": "BBTC.NS",
+        "primary": "Held to close: underlying -0.56%. Fees \u20b951 (0.34% notional). No SL \u2014 slow bleed / wrong-direction day."
+      }
+    ],
+    "verdict": "Primary break: stop-outs. Bulk pick direction wrong early; risk band + leverage locks ~1\u20132.5% notional hits before any recovery. Not fee-driven."
+  },
+  "daily": [
+    {
+      "asof": "2026-08-24",
+      "capital_start": 10000.0,
+      "capital_end": 9657.1,
+      "pnl_inr": -342.9,
+      "return_pct": -3.429,
+      "n_trades": 1,
+      "top_bulk_picks": [
+        {
+          "ticker": "QUADFUTURE.NS",
+          "score": 23.5452,
+          "win_rate": 1.0,
+          "value": 241833942.20000002,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "ATALREAL.NS",
+          "score": 23.4245,
+          "win_rate": 1.0,
+          "value": 49650000.0,
+          "entity_normalized": "CHAUBARA EATS PRIVATE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 4,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "MOBILISE.NS",
+          "score": 17.5495,
+          "win_rate": 1.0,
+          "value": 4939680.0,
+          "entity_normalized": "BHANSALI VALUE CREATIONS PVT LTD",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 1,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "GCSL.NS",
+          "score": 14.8207,
+          "win_rate": 0.5555555555555556,
+          "value": 85638840.89,
+          "entity_normalized": "MANSUKH SECURITIES FINANCE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 9,
+          "source": "nse_bulk"
+        }
+      ],
+      "n_raw_deals": 11,
+      "data_gap": false,
+      "trades": [
+        {
+          "ticker": "QUADFUTURE.NS",
+          "pnl": -391.0,
+          "pnl_pct": -2.412,
+          "entry_price": 409.7047,
+          "exit_price": 401.1993,
+          "entry_notional": 16208.08,
+          "slot_capital": 6000.0,
+          "leverage": 2.7,
+          "fees": 54.5233,
+          "exit_reason": "stop_loss",
+          "sl_pct": 1.0,
+          "tp_pct": 2.0,
+          "signal_reason": "copy_bulk_pro|wr=0.920|copy_bulk_pro|regime=risk_off",
+          "bulk_meta": {
+            "ticker": "QUADFUTURE.NS",
+            "score": 23.5452,
+            "win_rate": 1.0,
+            "value": 241833942.20000002,
+            "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+            "disclosed_at": "2026-08-23T18:30:00+00:00",
+            "n_trades": 2,
+            "source": "nse_bulk"
+          },
+          "cause": {
+            "primary": "Price hit stop (~1.00% adverse). Lev 2.7x turned -2.08% price move into -2.412% on notional / \u20b9-391.0.",
+            "buckets": [
+              "stop_loss_hit",
+              "sl_band_~1.00%_of_price\u2192amplified_by_2.7x_lev",
+              "fee_drag_0.34pct_of_notional",
+              "bulk_pick_wr=1.0 n=2 deal\u20b9=241833942.20000002 entity=ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED"
+            ],
+            "underlying_move_pct": -2.076,
+            "gross_pnl_before_fees": -336.48,
+            "fees": 54.52,
+            "fee_drag_pct_notional": 0.336,
+            "exit_reason": "stop_loss",
+            "sl_pct": 1.0,
+            "leverage": 2.7
+          }
+        }
+      ],
+      "skipped_sample": [
+        {
+          "ticker": "ATALREAL.NS",
+          "reason": "not_selected_or_below_conf",
+          "confidence": 0.92,
+          "side": "buy",
+          "price": 32.93
+        }
+      ]
+    },
+    {
+      "asof": "2026-08-25",
+      "capital_start": 9657.1,
+      "capital_end": 9334.03,
+      "pnl_inr": -323.07,
+      "return_pct": -3.345,
+      "n_trades": 1,
+      "top_bulk_picks": [
+        {
+          "ticker": "QUADFUTURE.NS",
+          "score": 23.5452,
+          "win_rate": 1.0,
+          "value": 241833942.20000002,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "ATALREAL.NS",
+          "score": 23.4245,
+          "win_rate": 1.0,
+          "value": 49650000.0,
+          "entity_normalized": "CHAUBARA EATS PRIVATE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 4,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "SHANKESH.NS",
+          "score": 22.5448,
+          "win_rate": 1.0,
+          "value": 106484309.76,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-24T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "MOBILISE.NS",
+          "score": 17.5495,
+          "win_rate": 1.0,
+          "value": 4939680.0,
+          "entity_normalized": "BHANSALI VALUE CREATIONS PVT LTD",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 1,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "FMGOETZE.NS",
+          "score": 17.477,
+          "win_rate": 0.6666666666666666,
+          "value": 156905622.39,
+          "entity_normalized": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+          "disclosed_at": "2026-08-24T18:30:00+00:00",
+          "n_trades": 6,
+          "source": "nse_bulk"
+        }
+      ],
+      "n_raw_deals": 15,
+      "data_gap": false,
+      "trades": [
+        {
+          "ticker": "QUADFUTURE.NS",
+          "pnl": -369.54,
+          "pnl_pct": -2.361,
+          "entry_price": 431.0654,
+          "exit_price": 422.3387,
+          "entry_notional": 15652.33,
+          "slot_capital": 5794.26,
+          "leverage": 2.7,
+          "fees": 52.6675,
+          "exit_reason": "stop_loss",
+          "sl_pct": 1.0,
+          "tp_pct": 2.0,
+          "signal_reason": "copy_bulk_pro|wr=0.920|copy_bulk_pro|regime=risk_off",
+          "bulk_meta": {
+            "ticker": "QUADFUTURE.NS",
+            "score": 23.5452,
+            "win_rate": 1.0,
+            "value": 241833942.20000002,
+            "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+            "disclosed_at": "2026-08-23T18:30:00+00:00",
+            "n_trades": 2,
+            "source": "nse_bulk"
+          },
+          "cause": {
+            "primary": "Price hit stop (~1.00% adverse). Lev 2.7x turned -2.02% price move into -2.361% on notional / \u20b9-369.54.",
+            "buckets": [
+              "stop_loss_hit",
+              "sl_band_~1.00%_of_price\u2192amplified_by_2.7x_lev",
+              "fee_drag_0.34pct_of_notional",
+              "bulk_pick_wr=1.0 n=2 deal\u20b9=241833942.20000002 entity=ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED"
+            ],
+            "underlying_move_pct": -2.024,
+            "gross_pnl_before_fees": -316.87,
+            "fees": 52.67,
+            "fee_drag_pct_notional": 0.336,
+            "exit_reason": "stop_loss",
+            "sl_pct": 1.0,
+            "leverage": 2.7
+          }
+        }
+      ],
+      "skipped_sample": [
+        {
+          "ticker": "ATALREAL.NS",
+          "reason": "not_selected_or_below_conf",
+          "confidence": 0.92,
+          "side": "buy",
+          "price": 33.73
+        }
+      ]
+    },
+    {
+      "asof": "2026-08-26",
+      "capital_start": 9334.03,
+      "capital_end": 9146.14,
+      "pnl_inr": -187.89,
+      "return_pct": -2.013,
+      "n_trades": 1,
+      "top_bulk_picks": [
+        {
+          "ticker": "FMGOETZE.NS",
+          "score": 23.8642,
+          "win_rate": 1.0,
+          "value": 314113524.47999996,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-25T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "QUADFUTURE.NS",
+          "score": 23.5452,
+          "win_rate": 1.0,
+          "value": 241833942.20000002,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "ATALREAL.NS",
+          "score": 23.4245,
+          "win_rate": 1.0,
+          "value": 49650000.0,
+          "entity_normalized": "CHAUBARA EATS PRIVATE LIMITED",
+          "disclosed_at": "2026-08-23T18:30:00+00:00",
+          "n_trades": 4,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "PWL.NS",
+          "score": 23.2234,
+          "win_rate": 1.0,
+          "value": 720827341.92,
+          "entity_normalized": "GOLDMAN SACHS FUNDS GOLDMAN SACHS INDIA EQUITY PORTFOLIO",
+          "disclosed_at": "2026-08-25T18:30:00+00:00",
+          "n_trades": 1,
+          "source": "nse_block"
+        },
+        {
+          "ticker": "GAJA.NS",
+          "score": 23.0877,
+          "win_rate": 1.0,
+          "value": 166197322.4,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-25T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        }
+      ],
+      "n_raw_deals": 26,
+      "data_gap": false,
+      "trades": [
+        {
+          "ticker": "FMGOETZE.NS",
+          "pnl": -232.99,
+          "pnl_pct": -1.54,
+          "entry_price": 571.2855,
+          "exit_price": 564.4177,
+          "entry_notional": 15128.67,
+          "slot_capital": 5600.42,
+          "leverage": 2.7,
+          "fees": 51.117,
+          "exit_reason": "stop_loss",
+          "sl_pct": 1.0,
+          "tp_pct": 2.0,
+          "signal_reason": "copy_bulk_pro|wr=0.920|copy_bulk_pro|regime=trend",
+          "bulk_meta": {
+            "ticker": "FMGOETZE.NS",
+            "score": 23.8642,
+            "win_rate": 1.0,
+            "value": 314113524.47999996,
+            "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+            "disclosed_at": "2026-08-25T18:30:00+00:00",
+            "n_trades": 2,
+            "source": "nse_bulk"
+          },
+          "cause": {
+            "primary": "Price hit stop (~1.00% adverse). Lev 2.7x turned -1.20% price move into -1.54% on notional / \u20b9-232.99.",
+            "buckets": [
+              "stop_loss_hit",
+              "sl_band_~1.00%_of_price\u2192amplified_by_2.7x_lev",
+              "fee_drag_0.34pct_of_notional",
+              "bulk_pick_wr=1.0 n=2 deal\u20b9=314113524.47999996 entity=ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED"
+            ],
+            "underlying_move_pct": -1.202,
+            "gross_pnl_before_fees": -181.87,
+            "fees": 51.12,
+            "fee_drag_pct_notional": 0.338,
+            "exit_reason": "stop_loss",
+            "sl_pct": 1.0,
+            "leverage": 2.7
+          }
+        }
+      ],
+      "skipped_sample": [
+        {
+          "ticker": "QUADFUTURE.NS",
+          "reason": "not_selected_or_below_conf",
+          "confidence": 0.92,
+          "side": "buy",
+          "price": 415.1
+        }
+      ]
+    },
+    {
+      "asof": "2026-08-27",
+      "capital_start": 9146.14,
+      "capital_end": 9260.46,
+      "pnl_inr": 114.32,
+      "return_pct": 1.25,
+      "n_trades": 1,
+      "top_bulk_picks": [
+        {
+          "ticker": "BBTC.NS",
+          "score": 24.8839,
+          "win_rate": 1.0,
+          "value": 724724793.1,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-26T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "FMGOETZE.NS",
+          "score": 23.8642,
+          "win_rate": 1.0,
+          "value": 314113524.47999996,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-25T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "MARSONS.NS",
+          "score": 23.7381,
+          "win_rate": 1.0,
+          "value": 117882026.01,
+          "entity_normalized": "ACME CAPITAL MARKET LIMITED",
+          "disclosed_at": "2026-08-26T18:30:00+00:00",
+          "n_trades": 3,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "ATALREAL.NS",
+          "score": 23.2762,
+          "win_rate": 1.0,
+          "value": 44381046.86,
+          "entity_normalized": "CHAUBARA EATS PRIVATE LIMITED",
+          "disclosed_at": "2026-08-26T18:30:00+00:00",
+          "n_trades": 4,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "PWL.NS",
+          "score": 23.2234,
+          "win_rate": 1.0,
+          "value": 720827341.92,
+          "entity_normalized": "GOLDMAN SACHS FUNDS GOLDMAN SACHS INDIA EQUITY PORTFOLIO",
+          "disclosed_at": "2026-08-25T18:30:00+00:00",
+          "n_trades": 1,
+          "source": "nse_block"
+        }
+      ],
+      "n_raw_deals": 29,
+      "data_gap": false,
+      "trades": [
+        {
+          "ticker": "BBTC.NS",
+          "pnl": 69.67,
+          "pnl_pct": 0.47,
+          "entry_price": 1579.3893,
+          "exit_price": 1592.2035,
+          "entry_notional": 14824.15,
+          "slot_capital": 5487.68,
+          "leverage": 2.7,
+          "fees": 50.5954,
+          "exit_reason": "session_close",
+          "sl_pct": 1.0,
+          "tp_pct": 2.0,
+          "signal_reason": "copy_bulk_pro|wr=0.920|copy_bulk_pro|regime=trend",
+          "bulk_meta": {
+            "ticker": "BBTC.NS",
+            "score": 24.8839,
+            "win_rate": 1.0,
+            "value": 724724793.1,
+            "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+            "disclosed_at": "2026-08-26T18:30:00+00:00",
+            "n_trades": 2,
+            "source": "nse_bulk"
+          },
+          "cause": {
+            "primary": "Underlying +0.81% but net \u20b969.67 after fees \u20b951 \u2014 fee/rounding drag.",
+            "buckets": [
+              "held_to_close_green_but_fees_or_slip",
+              "bulk_pick_wr=1.0 n=2 deal\u20b9=724724793.1 entity=ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED"
+            ],
+            "underlying_move_pct": 0.811,
+            "gross_pnl_before_fees": 120.27,
+            "fees": 50.6,
+            "fee_drag_pct_notional": 0.341,
+            "exit_reason": "session_close",
+            "sl_pct": 1.0,
+            "leverage": 2.7
+          }
+        }
+      ],
+      "skipped_sample": [
+        {
+          "ticker": "FMGOETZE.NS",
+          "reason": "not_selected_or_below_conf",
+          "confidence": 0.92,
+          "side": "buy",
+          "price": 542.65
+        }
+      ]
+    },
+    {
+      "asof": "2026-08-28",
+      "capital_start": 9260.46,
+      "capital_end": 9170.72,
+      "pnl_inr": -89.74,
+      "return_pct": -0.969,
+      "n_trades": 1,
+      "top_bulk_picks": [
+        {
+          "ticker": "BBTC.NS",
+          "score": 24.8839,
+          "win_rate": 1.0,
+          "value": 724724793.1,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-26T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "MVELECTRO.NS",
+          "score": 24.0581,
+          "win_rate": 1.0,
+          "value": 368225935.74,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-27T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "FMGOETZE.NS",
+          "score": 23.8642,
+          "win_rate": 1.0,
+          "value": 314113524.47999996,
+          "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+          "disclosed_at": "2026-08-25T18:30:00+00:00",
+          "n_trades": 2,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "MARSONS.NS",
+          "score": 23.7381,
+          "win_rate": 1.0,
+          "value": 117882026.01,
+          "entity_normalized": "ACME CAPITAL MARKET LIMITED",
+          "disclosed_at": "2026-08-26T18:30:00+00:00",
+          "n_trades": 3,
+          "source": "nse_bulk"
+        },
+        {
+          "ticker": "ATALREAL.NS",
+          "score": 23.5259,
+          "win_rate": 1.0,
+          "value": 99841129.92,
+          "entity_normalized": "ACME CAPITAL MARKET LIMITED",
+          "disclosed_at": "2026-08-27T18:30:00+00:00",
+          "n_trades": 3,
+          "source": "nse_bulk"
+        }
+      ],
+      "n_raw_deals": 35,
+      "data_gap": false,
+      "trades": [
+        {
+          "ticker": "BBTC.NS",
+          "pnl": -134.63,
+          "pnl_pct": -0.897,
+          "entry_price": 1571.1852,
+          "exit_price": 1562.4184,
+          "entry_notional": 15009.38,
+          "slot_capital": 5556.28,
+          "leverage": 2.7,
+          "fees": 50.8784,
+          "exit_reason": "session_close",
+          "sl_pct": 1.0,
+          "tp_pct": 2.0,
+          "signal_reason": "copy_bulk_pro|wr=0.920|copy_bulk_pro|regime=trend",
+          "bulk_meta": {
+            "ticker": "BBTC.NS",
+            "score": 24.8839,
+            "win_rate": 1.0,
+            "value": 724724793.1,
+            "entity_normalized": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+            "disclosed_at": "2026-08-26T18:30:00+00:00",
+            "n_trades": 2,
+            "source": "nse_bulk"
+          },
+          "cause": {
+            "primary": "Held to close: underlying -0.56%. Fees \u20b951 (0.34% notional). No SL \u2014 slow bleed / wrong-direction day.",
+            "buckets": [
+              "held_to_close_red",
+              "fee_drag_0.34pct_of_notional",
+              "bulk_pick_wr=1.0 n=2 deal\u20b9=724724793.1 entity=ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED"
+            ],
+            "underlying_move_pct": -0.558,
+            "gross_pnl_before_fees": -83.75,
+            "fees": 50.88,
+            "fee_drag_pct_notional": 0.339,
+            "exit_reason": "session_close",
+            "sl_pct": 1.0,
+            "leverage": 2.7
+          }
+        }
+      ],
+      "skipped_sample": [
+        {
+          "ticker": "MVELECTRO.NS",
+          "reason": "not_selected_or_below_conf",
+          "confidence": 0.92,
+          "side": "buy",
+          "price": 676.55
+        }
+      ]
+    }
+  ]
+}

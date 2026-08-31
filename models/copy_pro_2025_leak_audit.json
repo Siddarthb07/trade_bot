@@ -1,0 +1,2766 @@
+{
+  "generated_at": "2026-08-30",
+  "n_trades": 256,
+  "claim": "Leak audit on rebuilt 2025 ledger; reconstructs PIT WR vs live investor_stats",
+  "1_wr_leak": {
+    "n_leaked_trades": 163,
+    "pnl_leaked": 49304.93,
+    "n_thin_high_conf": 93,
+    "leaked_examples": [
+      {
+        "asof": "2025-12-31",
+        "ticker": "KSR.NS",
+        "entity": "PRASOON PANKAJ",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 3,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 13322.87,
+        "leverage": 2.7,
+        "entry_notional": 69714.39
+      },
+      {
+        "asof": "2025-12-23",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 4978.53,
+        "leverage": 2.7,
+        "entry_notional": 61678.62
+      },
+      {
+        "asof": "2025-12-22",
+        "ticker": "IDEAFORGE.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 4915.67,
+        "leverage": 1.884,
+        "entry_notional": 39000.23
+      },
+      {
+        "asof": "2025-12-16",
+        "ticker": "EPACK.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 3752.36,
+        "leverage": 1.884,
+        "entry_notional": 35206.63
+      },
+      {
+        "asof": "2025-12-02",
+        "ticker": "PROSTARM.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 2673.33,
+        "leverage": 2.7,
+        "entry_notional": 38483.35
+      },
+      {
+        "asof": "2025-12-16",
+        "ticker": "NDTV.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 2636.2,
+        "leverage": 1.884,
+        "entry_notional": 35206.63
+      },
+      {
+        "asof": "2025-12-23",
+        "ticker": "KOPRAN.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 2546.23,
+        "leverage": 1.884,
+        "entry_notional": 43037.98
+      },
+      {
+        "asof": "2025-12-03",
+        "ticker": "SPARC.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": -2528.38,
+        "leverage": 2.7,
+        "entry_notional": 44239.02
+      },
+      {
+        "asof": "2025-12-15",
+        "ticker": "REFEX.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 2195.86,
+        "leverage": 1.884,
+        "entry_notional": 32665.58
+      },
+      {
+        "asof": "2025-12-02",
+        "ticker": "WEBELSOLAR.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 2136.48,
+        "leverage": 1.884,
+        "entry_notional": 26852.83
+      },
+      {
+        "asof": "2025-11-03",
+        "ticker": "FCL.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 2097.77,
+        "leverage": 1.884,
+        "entry_notional": 18544.94
+      },
+      {
+        "asof": "2025-09-02",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 2092.93,
+        "leverage": 2.7,
+        "entry_notional": 20757.18
+      },
+      {
+        "asof": "2025-12-31",
+        "ticker": "ORIENTTECH.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 2047.47,
+        "leverage": 2.7,
+        "entry_notional": 69714.61
+      },
+      {
+        "asof": "2025-11-21",
+        "ticker": "ASTEC.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1999.66,
+        "leverage": 2.7,
+        "entry_notional": 36535.24
+      },
+      {
+        "asof": "2025-11-11",
+        "ticker": "ATULAUTO.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1993.15,
+        "leverage": 1.884,
+        "entry_notional": 21810.61
+      },
+      {
+        "asof": "2025-12-17",
+        "ticker": "EPACK.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": -1988.9,
+        "leverage": 2.7,
+        "entry_notional": 58043.78
+      },
+      {
+        "asof": "2025-10-30",
+        "ticker": "XCHANGING.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1852.77,
+        "leverage": 1.884,
+        "entry_notional": 17474.22
+      },
+      {
+        "asof": "2025-11-03",
+        "ticker": "EPACKPEB.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1800.35,
+        "leverage": 1.884,
+        "entry_notional": 18544.93
+      },
+      {
+        "asof": "2025-10-09",
+        "ticker": "SHANKARA.NS",
+        "entity": "SARAVANA SECURITIES DSATHYAMOORTHI",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 1,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1744.26,
+        "leverage": 2.7,
+        "entry_notional": 23698.31
+      },
+      {
+        "asof": "2025-12-26",
+        "ticker": "PANACEABIO.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": -1615.63,
+        "leverage": 2.7,
+        "entry_notional": 72027.43
+      },
+      {
+        "asof": "2025-11-19",
+        "ticker": "BORANA.NS",
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "used_conf": 0.6667,
+        "live_wr": 0.6666666666666666,
+        "live_n": 6,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1541.58,
+        "leverage": 1.884,
+        "entry_notional": 23104.21
+      },
+      {
+        "asof": "2025-07-24",
+        "ticker": "INDOBORAX.NS",
+        "entity": "VICTUS ENTERPRISE LLP",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 1,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1537.67,
+        "leverage": 2.7,
+        "entry_notional": 17853.94
+      },
+      {
+        "asof": "2025-03-18",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1393.66,
+        "leverage": 2.7,
+        "entry_notional": 10822.05
+      },
+      {
+        "asof": "2025-03-05",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1370.67,
+        "leverage": 2.7,
+        "entry_notional": 9663.97
+      },
+      {
+        "asof": "2025-09-18",
+        "ticker": "DENTA.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "used_conf": 0.92,
+        "live_wr": 1.0,
+        "live_n": 2,
+        "pit_n": 0,
+        "pit_wr_raw": null,
+        "pit_wr_eff_pseudo5": null,
+        "reasons": [
+          "no_pit_matured_outcomes_but_scored"
+        ],
+        "pnl": 1367.93,
+        "leverage": 2.002,
+        "entry_notional": 15056.37
+      }
+    ],
+    "thin_high_conf_examples": [
+      {
+        "asof": "2025-03-19",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "pit_n": 2,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -433.64
+      },
+      {
+        "asof": "2025-03-21",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "pit_n": 2,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -299.9
+      },
+      {
+        "asof": "2025-03-24",
+        "ticker": "LAL.NS",
+        "entity": "CHAUBARA EATS PRIVATE LIMITED",
+        "pit_n": 1,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -55.69
+      },
+      {
+        "asof": "2025-03-25",
+        "ticker": "VINEETLAB.NS",
+        "entity": "CHAUBARA EATS PRIVATE LIMITED",
+        "pit_n": 1,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -378.65
+      },
+      {
+        "asof": "2025-03-27",
+        "ticker": "CGCL.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "pit_n": 2,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -1485.85
+      },
+      {
+        "asof": "2025-03-28",
+        "ticker": "RADIANTCMS.NS",
+        "entity": "DEVI TRADERS LLP",
+        "pit_n": 1,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -252.21
+      },
+      {
+        "asof": "2025-04-02",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "pit_n": 2,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -44.2
+      },
+      {
+        "asof": "2025-04-02",
+        "ticker": "KESORAMIND.NS",
+        "entity": "DEVI TRADERS LLP",
+        "pit_n": 1,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": 918.78
+      },
+      {
+        "asof": "2025-04-03",
+        "ticker": "TEJASNET.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "pit_n": 2,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -372.2
+      },
+      {
+        "asof": "2025-04-03",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "pit_n": 2,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": 27.43
+      },
+      {
+        "asof": "2025-04-04",
+        "ticker": "RADHIKAJWE.NS",
+        "entity": "DEVI TRADERS LLP",
+        "pit_n": 1,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -165.97
+      },
+      {
+        "asof": "2025-04-04",
+        "ticker": "KESORAMIND.NS",
+        "entity": "DEVI TRADERS LLP",
+        "pit_n": 1,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -39.27
+      },
+      {
+        "asof": "2025-04-08",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "pit_n": 2,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -347.94
+      },
+      {
+        "asof": "2025-04-11",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "pit_n": 2,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -122.55
+      },
+      {
+        "asof": "2025-04-16",
+        "ticker": "VINEETLAB.NS",
+        "entity": "CHAUBARA EATS PRIVATE LIMITED",
+        "pit_n": 1,
+        "pit_wr": 1.0,
+        "used_conf": 0.92,
+        "pnl": -180.68
+      }
+    ],
+    "late_bloom_entities": [
+      {
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "first": "2025-09-24",
+        "last": "2025-12-23",
+        "n": 28,
+        "pnl": 26463.8
+      },
+      {
+        "entity": "ACME CAPITAL MARKET LIMITED",
+        "first": "2025-07-04",
+        "last": "2025-12-30",
+        "n": 16,
+        "pnl": -553.64
+      },
+      {
+        "entity": "MANSUKH SECURITIES FINANCE LIMITED",
+        "first": "2025-11-26",
+        "last": "2025-12-24",
+        "n": 4,
+        "pnl": 3407.26
+      }
+    ]
+  },
+  "2_same_day_window": {
+    "n_flagged": 255,
+    "n_monday_flagged": 46,
+    "n_same_ist_day": 255,
+    "pnl_flagged": 51309.06,
+    "examples": [
+      {
+        "asof": "2025-01-01",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2024-12-31T18:30:00+00:00",
+        "deal_ist_date": "2025-01-01",
+        "same_ist_day": true,
+        "weekday": "Wednesday",
+        "pnl": 115.87
+      },
+      {
+        "asof": "2025-01-01",
+        "ticker": "TANLA.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2024-12-31T18:30:00+00:00",
+        "deal_ist_date": "2025-01-01",
+        "same_ist_day": true,
+        "weekday": "Wednesday",
+        "pnl": 585.13
+      },
+      {
+        "asof": "2025-01-02",
+        "ticker": "TANLA.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-01T18:30:00+00:00",
+        "deal_ist_date": "2025-01-02",
+        "same_ist_day": true,
+        "weekday": "Thursday",
+        "pnl": -208.48
+      },
+      {
+        "asof": "2025-01-06",
+        "ticker": "ITI.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-05T18:30:00+00:00",
+        "deal_ist_date": "2025-01-06",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": 476.45
+      },
+      {
+        "asof": "2025-01-06",
+        "ticker": "TRANSRAILL.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-05T18:30:00+00:00",
+        "deal_ist_date": "2025-01-06",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -198.88
+      },
+      {
+        "asof": "2025-01-07",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2025-01-06T18:30:00+00:00",
+        "deal_ist_date": "2025-01-07",
+        "same_ist_day": true,
+        "weekday": "Tuesday",
+        "pnl": 703.57
+      },
+      {
+        "asof": "2025-01-07",
+        "ticker": "INDOFARM.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2025-01-06T18:30:00+00:00",
+        "deal_ist_date": "2025-01-07",
+        "same_ist_day": true,
+        "weekday": "Tuesday",
+        "pnl": -211.23
+      },
+      {
+        "asof": "2025-01-08",
+        "ticker": "ITI.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-07T18:30:00+00:00",
+        "deal_ist_date": "2025-01-08",
+        "same_ist_day": true,
+        "weekday": "Wednesday",
+        "pnl": -453.85
+      },
+      {
+        "asof": "2025-01-08",
+        "ticker": "AEGISLOG.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-07T18:30:00+00:00",
+        "deal_ist_date": "2025-01-08",
+        "same_ist_day": true,
+        "weekday": "Wednesday",
+        "pnl": -104.16
+      },
+      {
+        "asof": "2025-01-10",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-09T18:30:00+00:00",
+        "deal_ist_date": "2025-01-10",
+        "same_ist_day": true,
+        "weekday": "Friday",
+        "pnl": -285.79
+      },
+      {
+        "asof": "2025-01-10",
+        "ticker": "MAZDA.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-09T18:30:00+00:00",
+        "deal_ist_date": "2025-01-10",
+        "same_ist_day": true,
+        "weekday": "Friday",
+        "pnl": 306.04
+      },
+      {
+        "asof": "2025-01-14",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-13T18:30:00+00:00",
+        "deal_ist_date": "2025-01-14",
+        "same_ist_day": true,
+        "weekday": "Tuesday",
+        "pnl": 24.51
+      },
+      {
+        "asof": "2025-01-14",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-13T18:30:00+00:00",
+        "deal_ist_date": "2025-01-14",
+        "same_ist_day": true,
+        "weekday": "Tuesday",
+        "pnl": -56.01
+      },
+      {
+        "asof": "2025-01-15",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-14T18:30:00+00:00",
+        "deal_ist_date": "2025-01-15",
+        "same_ist_day": true,
+        "weekday": "Wednesday",
+        "pnl": -677.82
+      },
+      {
+        "asof": "2025-01-17",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-16T18:30:00+00:00",
+        "deal_ist_date": "2025-01-17",
+        "same_ist_day": true,
+        "weekday": "Friday",
+        "pnl": -838.67
+      },
+      {
+        "asof": "2025-01-20",
+        "ticker": "LAXMIDENTL.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2025-01-19T18:30:00+00:00",
+        "deal_ist_date": "2025-01-20",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -321.69
+      },
+      {
+        "asof": "2025-01-21",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-20T18:30:00+00:00",
+        "deal_ist_date": "2025-01-21",
+        "same_ist_day": true,
+        "weekday": "Tuesday",
+        "pnl": -209.24
+      },
+      {
+        "asof": "2025-01-21",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-20T18:30:00+00:00",
+        "deal_ist_date": "2025-01-21",
+        "same_ist_day": true,
+        "weekday": "Tuesday",
+        "pnl": -278.17
+      },
+      {
+        "asof": "2025-01-23",
+        "ticker": "LAXMIDENTL.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2025-01-22T18:30:00+00:00",
+        "deal_ist_date": "2025-01-23",
+        "same_ist_day": true,
+        "weekday": "Thursday",
+        "pnl": -297.49
+      },
+      {
+        "asof": "2025-01-24",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-23T18:30:00+00:00",
+        "deal_ist_date": "2025-01-24",
+        "same_ist_day": true,
+        "weekday": "Friday",
+        "pnl": -286.8
+      }
+    ],
+    "monday_examples": [
+      {
+        "asof": "2025-01-06",
+        "ticker": "ITI.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-05T18:30:00+00:00",
+        "deal_ist_date": "2025-01-06",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": 476.45
+      },
+      {
+        "asof": "2025-01-06",
+        "ticker": "TRANSRAILL.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-05T18:30:00+00:00",
+        "deal_ist_date": "2025-01-06",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -198.88
+      },
+      {
+        "asof": "2025-01-20",
+        "ticker": "LAXMIDENTL.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2025-01-19T18:30:00+00:00",
+        "deal_ist_date": "2025-01-20",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -321.69
+      },
+      {
+        "asof": "2025-01-27",
+        "ticker": "DAMCAPITAL.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2025-01-26T18:30:00+00:00",
+        "deal_ist_date": "2025-01-27",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -164.36
+      },
+      {
+        "asof": "2025-02-17",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-02-16T18:30:00+00:00",
+        "deal_ist_date": "2025-02-17",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": 156.08
+      },
+      {
+        "asof": "2025-02-17",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-02-16T18:30:00+00:00",
+        "deal_ist_date": "2025-02-17",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": 499.25
+      },
+      {
+        "asof": "2025-03-17",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-03-16T18:30:00+00:00",
+        "deal_ist_date": "2025-03-17",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -90.99
+      },
+      {
+        "asof": "2025-03-17",
+        "ticker": "MOKSH.NS",
+        "entity": "PINE OAK GLOBAL FUND",
+        "disclosed_at_utc": "2025-03-16T18:30:00+00:00",
+        "deal_ist_date": "2025-03-17",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -189.54
+      },
+      {
+        "asof": "2025-03-24",
+        "ticker": "LAL.NS",
+        "entity": "CHAUBARA EATS PRIVATE LIMITED",
+        "disclosed_at_utc": "2025-03-23T18:30:00+00:00",
+        "deal_ist_date": "2025-03-24",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -55.69
+      },
+      {
+        "asof": "2025-03-24",
+        "ticker": "WANBURY.NS",
+        "entity": "RESONANCE OPPORTUNITIES FUND",
+        "disclosed_at_utc": "2025-03-23T18:30:00+00:00",
+        "deal_ist_date": "2025-03-24",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -284.28
+      }
+    ],
+    "same_ist_examples": [
+      {
+        "asof": "2025-01-01",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2024-12-31T18:30:00+00:00",
+        "deal_ist_date": "2025-01-01",
+        "same_ist_day": true,
+        "weekday": "Wednesday",
+        "pnl": 115.87
+      },
+      {
+        "asof": "2025-01-01",
+        "ticker": "TANLA.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2024-12-31T18:30:00+00:00",
+        "deal_ist_date": "2025-01-01",
+        "same_ist_day": true,
+        "weekday": "Wednesday",
+        "pnl": 585.13
+      },
+      {
+        "asof": "2025-01-02",
+        "ticker": "TANLA.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-01T18:30:00+00:00",
+        "deal_ist_date": "2025-01-02",
+        "same_ist_day": true,
+        "weekday": "Thursday",
+        "pnl": -208.48
+      },
+      {
+        "asof": "2025-01-06",
+        "ticker": "ITI.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-05T18:30:00+00:00",
+        "deal_ist_date": "2025-01-06",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": 476.45
+      },
+      {
+        "asof": "2025-01-06",
+        "ticker": "TRANSRAILL.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-05T18:30:00+00:00",
+        "deal_ist_date": "2025-01-06",
+        "same_ist_day": true,
+        "weekday": "Monday",
+        "pnl": -198.88
+      },
+      {
+        "asof": "2025-01-07",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2025-01-06T18:30:00+00:00",
+        "deal_ist_date": "2025-01-07",
+        "same_ist_day": true,
+        "weekday": "Tuesday",
+        "pnl": 703.57
+      },
+      {
+        "asof": "2025-01-07",
+        "ticker": "INDOFARM.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "disclosed_at_utc": "2025-01-06T18:30:00+00:00",
+        "deal_ist_date": "2025-01-07",
+        "same_ist_day": true,
+        "weekday": "Tuesday",
+        "pnl": -211.23
+      },
+      {
+        "asof": "2025-01-08",
+        "ticker": "ITI.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-07T18:30:00+00:00",
+        "deal_ist_date": "2025-01-08",
+        "same_ist_day": true,
+        "weekday": "Wednesday",
+        "pnl": -453.85
+      },
+      {
+        "asof": "2025-01-08",
+        "ticker": "AEGISLOG.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-07T18:30:00+00:00",
+        "deal_ist_date": "2025-01-08",
+        "same_ist_day": true,
+        "weekday": "Wednesday",
+        "pnl": -104.16
+      },
+      {
+        "asof": "2025-01-10",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "disclosed_at_utc": "2025-01-09T18:30:00+00:00",
+        "deal_ist_date": "2025-01-10",
+        "same_ist_day": true,
+        "weekday": "Friday",
+        "pnl": -285.79
+      }
+    ],
+    "note": "Compares old UTC-midnight window vs fixed IST prior-session window on contaminated ledger"
+  },
+  "3_corp_actions": {
+    "n_tickers_checked": 130,
+    "n_with_corp_action_2025": 56,
+    "hits": [
+      {
+        "ticker": "AEGISLOG.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-06-25",
+            2.0
+          ],
+          [
+            "2025-07-18",
+            6.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-01-08",
+            "pnl": -104.16,
+            "entry": 984.9422,
+            "exit": 967.3161
+          }
+        ]
+      },
+      {
+        "ticker": "AEROFLEX.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-29",
+            0.3
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-06-19",
+            "pnl": -78.24,
+            "entry": 193.2866,
+            "exit": 193.1034
+          },
+          {
+            "asof": "2025-06-20",
+            "pnl": -258.35,
+            "entry": 212.046,
+            "exit": 209.7151
+          }
+        ]
+      },
+      {
+        "ticker": "APEX.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-19",
+            2.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-12-17",
+            "pnl": 261.02,
+            "entry": 289.5947,
+            "exit": 294.1029
+          }
+        ]
+      },
+      {
+        "ticker": "APOLLO.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-08",
+            0.25
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-05-09",
+            "pnl": 697.21,
+            "entry": 123.962,
+            "exit": 131.0444
+          },
+          {
+            "asof": "2025-05-27",
+            "pnl": -27.85,
+            "entry": 155.4777,
+            "exit": 155.7321
+          },
+          {
+            "asof": "2025-05-28",
+            "pnl": 1711.76,
+            "entry": 159.9699,
+            "exit": 177.911
+          },
+          {
+            "asof": "2025-05-29",
+            "pnl": 731.57,
+            "entry": 180.8404,
+            "exit": 188.9055
+          },
+          {
+            "asof": "2025-06-02",
+            "pnl": 138.32,
+            "entry": 195.0075,
+            "exit": 197.1514
+          }
+        ]
+      },
+      {
+        "ticker": "ARIHANTCAP.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-19",
+            0.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-10-23",
+            "pnl": 694.6,
+            "entry": 105.963,
+            "exit": 110.4847
+          },
+          {
+            "asof": "2025-10-27",
+            "pnl": -345.87,
+            "entry": 108.3541,
+            "exit": 106.6167
+          }
+        ]
+      },
+      {
+        "ticker": "BESTAGRO.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-23",
+            0.2
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-11-26",
+            "pnl": 637.89,
+            "entry": 346.0729,
+            "exit": 361.819
+          },
+          {
+            "asof": "2025-12-01",
+            "pnl": -521.59,
+            "entry": 405.2025,
+            "exit": 398.8005
+          }
+        ]
+      },
+      {
+        "ticker": "BLISSGVS.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-24",
+            0.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-10-20",
+            "pnl": 379.29,
+            "entry": 152.8664,
+            "exit": 155.7221
+          },
+          {
+            "asof": "2025-12-04",
+            "pnl": 1251.87,
+            "entry": 157.4887,
+            "exit": 164.8475
+          }
+        ]
+      },
+      {
+        "ticker": "BOMDYEING.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-08-06",
+            1.2
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-07-23",
+            "pnl": 177.04,
+            "entry": 185.5927,
+            "exit": 188.0959
+          }
+        ]
+      },
+      {
+        "ticker": "CGCL.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-11",
+            0.2
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-03-27",
+            "pnl": -1485.85,
+            "entry": 212.3261,
+            "exit": 186.6167
+          }
+        ]
+      },
+      {
+        "ticker": "COCHINSHIP.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-02-12",
+            3.5
+          ],
+          [
+            "2025-09-12",
+            2.25
+          ],
+          [
+            "2025-11-18",
+            4.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-05-16",
+            "pnl": 61.22,
+            "entry": 2027.8134,
+            "exit": 2043.9775
+          },
+          {
+            "asof": "2025-05-19",
+            "pnl": -217.48,
+            "entry": 2025.9125,
+            "exit": 1999.9995
+          }
+        ]
+      },
+      {
+        "ticker": "DAMCAPITAL.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-06-13",
+            1.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-01-27",
+            "pnl": -164.36,
+            "entry": 294.2971,
+            "exit": 290.3048
+          }
+        ]
+      },
+      {
+        "ticker": "DATAPATTNS.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-08-01",
+            7.9
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-03-13",
+            "pnl": -281.58,
+            "entry": 1695.9475,
+            "exit": 1659.7198
+          },
+          {
+            "asof": "2025-04-29",
+            "pnl": 920.7,
+            "entry": 2346.1725,
+            "exit": 2565.8165
+          }
+        ]
+      },
+      {
+        "ticker": "DENTA.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-08-14",
+            2.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-09-18",
+            "pnl": 1367.93,
+            "entry": 422.161,
+            "exit": 462.0189
+          }
+        ]
+      },
+      {
+        "ticker": "DIAMONDYD.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-31",
+            0.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-03-07",
+            "pnl": 61.67,
+            "entry": 1082.2408,
+            "exit": 1091.8538
+          },
+          {
+            "asof": "2025-09-10",
+            "pnl": -454.65,
+            "entry": 1032.566,
+            "exit": 1014.5425
+          }
+        ]
+      },
+      {
+        "ticker": "DIFFNKG.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-10",
+            1.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-03-04",
+            "pnl": -42.56,
+            "entry": 265.7628,
+            "exit": 265.4972
+          }
+        ]
+      },
+      {
+        "ticker": "DSSL.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-08-22",
+            0.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-12-12",
+            "pnl": 110.97,
+            "entry": 972.6361,
+            "exit": 978.3106
+          }
+        ]
+      },
+      {
+        "ticker": "FCL.NS",
+        "splits_2025": [
+          [
+            "2025-10-31",
+            2.0
+          ]
+        ],
+        "dividends_2025": [
+          [
+            "2025-02-18",
+            0.04
+          ],
+          [
+            "2025-09-12",
+            0.04
+          ],
+          [
+            "2025-10-03",
+            0.08
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-11-03",
+            "pnl": 2097.77,
+            "entry": 28.4442,
+            "exit": 31.7641
+          }
+        ]
+      },
+      {
+        "ticker": "GARUDA.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-02-17",
+            0.025
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-07-18",
+            "pnl": -202.38,
+            "entry": 177.5387,
+            "exit": 175.1124
+          }
+        ]
+      },
+      {
+        "ticker": "GEOJITFSL.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-11",
+            1.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-12-15",
+            "pnl": 775.35,
+            "entry": 74.127,
+            "exit": 76.1419
+          }
+        ]
+      },
+      {
+        "ticker": "GRSE.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-02-07",
+            8.95
+          ],
+          [
+            "2025-09-12",
+            4.9
+          ],
+          [
+            "2025-11-11",
+            5.75
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-05-14",
+            "pnl": -216.51,
+            "entry": 2236.8178,
+            "exit": 2209.8945
+          },
+          {
+            "asof": "2025-05-16",
+            "pnl": -123.39,
+            "entry": 2499.249,
+            "exit": 2484.757
+          },
+          {
+            "asof": "2025-05-19",
+            "pnl": -108.15,
+            "entry": 2500.2495,
+            "exit": 2484.4571
+          },
+          {
+            "asof": "2025-05-22",
+            "pnl": 651.29,
+            "entry": 2605.7021,
+            "exit": 2745.1268
+          }
+        ]
+      },
+      {
+        "ticker": "HBSL.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-25",
+            1.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-10-30",
+            "pnl": -623.03,
+            "entry": 101.5107,
+            "exit": 98.2309
+          }
+        ]
+      },
+      {
+        "ticker": "HUHTAMAKI.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-04-24",
+            2.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-10-16",
+            "pnl": -306.51,
+            "entry": 265.1325,
+            "exit": 261.3992
+          }
+        ]
+      },
+      {
+        "ticker": "IEX.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-01-31",
+            1.5
+          ],
+          [
+            "2025-05-16",
+            1.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-07-25",
+            "pnl": 127.14,
+            "entry": 142.101,
+            "exit": 143.4782
+          }
+        ]
+      },
+      {
+        "ticker": "INDOBORAX.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-18",
+            1.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-07-24",
+            "pnl": 1537.67,
+            "entry": 267.5237,
+            "exit": 291.5142
+          }
+        ]
+      },
+      {
+        "ticker": "ISGEC.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-08",
+            5.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-02-20",
+            "pnl": -1275.6,
+            "entry": 991.4455,
+            "exit": 885.557
+          }
+        ]
+      },
+      {
+        "ticker": "JGCHEM.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-08-05",
+            1.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-07-07",
+            "pnl": -559.46,
+            "entry": 527.0634,
+            "exit": 513.743
+          }
+        ]
+      },
+      {
+        "ticker": "JWL.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-05-30",
+            1.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-02-03",
+            "pnl": -171.91,
+            "entry": 353.1765,
+            "exit": 348.5756
+          }
+        ]
+      },
+      {
+        "ticker": "KALAMANDIR.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-08-22",
+            1.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-10-28",
+            "pnl": -818.56,
+            "entry": 213.2065,
+            "exit": 206.9965
+          }
+        ]
+      },
+      {
+        "ticker": "KOPRAN.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-04",
+            3.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-12-23",
+            "pnl": 2546.23,
+            "entry": 138.6193,
+            "exit": 147.3063
+          }
+        ]
+      },
+      {
+        "ticker": "KOTAKBANK.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-18",
+            0.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-09-10",
+            "pnl": -193.87,
+            "entry": 1980.99,
+            "exit": 1970.1144
+          }
+        ]
+      },
+      {
+        "ticker": "MAHLIFE.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-18",
+            2.8
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-03-19",
+            "pnl": -125.32,
+            "entry": 343.7218,
+            "exit": 336.2818
+          }
+        ]
+      },
+      {
+        "ticker": "MAMATA.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-12",
+            0.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-05-29",
+            "pnl": -405.35,
+            "entry": 461.2305,
+            "exit": 452.2738
+          },
+          {
+            "asof": "2025-07-16",
+            "pnl": 770.66,
+            "entry": 463.2815,
+            "exit": 485.1073
+          },
+          {
+            "asof": "2025-07-17",
+            "pnl": -252.32,
+            "entry": 502.7512,
+            "exit": 497.751
+          }
+        ]
+      },
+      {
+        "ticker": "MAZDA.NS",
+        "splits_2025": [
+          [
+            "2025-01-28",
+            5.0
+          ]
+        ],
+        "dividends_2025": [
+          [
+            "2025-09-04",
+            3.6
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-01-10",
+            "pnl": 306.04,
+            "entry": 1866.983,
+            "exit": 1951.074
+          }
+        ]
+      },
+      {
+        "ticker": "MCLOUD.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-12",
+            0.03
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-11-25",
+            "pnl": -673.31,
+            "entry": 47.4337,
+            "exit": 46.4468
+          }
+        ]
+      },
+      {
+        "ticker": "PARAS.NS",
+        "splits_2025": [
+          [
+            "2025-07-04",
+            2.0
+          ]
+        ],
+        "dividends_2025": [
+          [
+            "2025-08-08",
+            0.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-04-29",
+            "pnl": 1044.51,
+            "entry": 1240.62,
+            "exit": 1371.8138
+          },
+          {
+            "asof": "2025-05-02",
+            "pnl": -125.62,
+            "entry": 1355.6775,
+            "exit": 1344.2276
+          },
+          {
+            "asof": "2025-05-09",
+            "pnl": 157.57,
+            "entry": 1449.7245,
+            "exit": 1472.2635
+          },
+          {
+            "asof": "2025-05-14",
+            "pnl": -396.57,
+            "entry": 1517.6584,
+            "exit": 1472.7632
+          }
+        ]
+      },
+      {
+        "ticker": "PRECAM.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-23",
+            1.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-09-09",
+            "pnl": -328.36,
+            "entry": 246.6333,
+            "exit": 243.808
+          }
+        ]
+      },
+      {
+        "ticker": "RADIANTCMS.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-02",
+            2.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-03-28",
+            "pnl": -252.21,
+            "entry": 52.6763,
+            "exit": 51.2044
+          }
+        ]
+      },
+      {
+        "ticker": "RAJOOENG.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-19",
+            0.15
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-07-28",
+            "pnl": -81.13,
+            "entry": 108.8044,
+            "exit": 108.6956
+          }
+        ]
+      },
+      {
+        "ticker": "REFEX.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-08-19",
+            0.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-11-28",
+            "pnl": -829.59,
+            "entry": 359.8298,
+            "exit": 350.4747
+          },
+          {
+            "asof": "2025-12-15",
+            "pnl": 2195.86,
+            "entry": 278.6393,
+            "exit": 298.3508
+          }
+        ]
+      },
+      {
+        "ticker": "RICOAUTO.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-08",
+            0.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-08-14",
+            "pnl": 955.74,
+            "entry": 86.053,
+            "exit": 90.7746
+          },
+          {
+            "asof": "2025-08-18",
+            "pnl": 173.07,
+            "entry": 97.8589,
+            "exit": 99.0504
+          }
+        ]
+      },
+      {
+        "ticker": "ROHLTD.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-08-29",
+            2.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-08-22",
+            "pnl": -203.32,
+            "entry": 485.7428,
+            "exit": 482.4587
+          },
+          {
+            "asof": "2025-08-25",
+            "pnl": 358.39,
+            "entry": 491.4456,
+            "exit": 501.9989
+          }
+        ]
+      },
+      {
+        "ticker": "ROTO.NS",
+        "splits_2025": [
+          [
+            "2025-07-11",
+            3.0
+          ]
+        ],
+        "dividends_2025": [
+          [
+            "2025-07-11",
+            0.26666
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-12-18",
+            "pnl": -984.09,
+            "entry": 76.3882,
+            "exit": 74.7326
+          }
+        ]
+      },
+      {
+        "ticker": "SBC.NS",
+        "splits_2025": [
+          [
+            "2025-03-10",
+            1.5
+          ]
+        ],
+        "dividends_2025": [],
+        "trades": [
+          {
+            "asof": "2025-10-06",
+            "pnl": -370.38,
+            "entry": 22.3712,
+            "exit": 22.1089
+          },
+          {
+            "asof": "2025-10-14",
+            "pnl": 12.64,
+            "entry": 22.3712,
+            "exit": 22.4588
+          },
+          {
+            "asof": "2025-11-20",
+            "pnl": -167.12,
+            "entry": 26.3232,
+            "exit": 26.2868
+          },
+          {
+            "asof": "2025-12-26",
+            "pnl": -216.25,
+            "entry": 28.3242,
+            "exit": 28.2759
+          },
+          {
+            "asof": "2025-12-30",
+            "pnl": -35.48,
+            "entry": 28.2341,
+            "exit": 28.3158
+          }
+        ]
+      },
+      {
+        "ticker": "SHANKARA.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-06-17",
+            3.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-10-09",
+            "pnl": 1744.26,
+            "entry": 137.5187,
+            "exit": 148.1259
+          }
+        ]
+      },
+      {
+        "ticker": "SIGACHI.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-16",
+            0.1
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-07-04",
+            "pnl": 705.82,
+            "entry": 43.0215,
+            "exit": 44.7976
+          },
+          {
+            "asof": "2025-09-12",
+            "pnl": -291.85,
+            "entry": 42.7214,
+            "exit": 42.2788
+          }
+        ]
+      },
+      {
+        "ticker": "SIRCA.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-04",
+            1.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-11-10",
+            "pnl": 390.01,
+            "entry": 516.4081,
+            "exit": 524.7375
+          }
+        ]
+      },
+      {
+        "ticker": "SMCGLOBAL.NS",
+        "splits_2025": [
+          [
+            "2025-11-14",
+            2.0
+          ]
+        ],
+        "dividends_2025": [
+          [
+            "2025-02-05",
+            0.6
+          ],
+          [
+            "2025-06-13",
+            0.6
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-12-12",
+            "pnl": 613.36,
+            "entry": 80.9304,
+            "exit": 84.1279
+          }
+        ]
+      },
+      {
+        "ticker": "SONATSOFTW.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-23",
+            4.4
+          ],
+          [
+            "2025-08-08",
+            1.25
+          ],
+          [
+            "2025-11-21",
+            1.25
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-04-30",
+            "pnl": 572.2,
+            "entry": 397.2985,
+            "exit": 416.7915
+          },
+          {
+            "asof": "2025-05-02",
+            "pnl": -223.8,
+            "entry": 463.4316,
+            "exit": 457.1713
+          },
+          {
+            "asof": "2025-05-07",
+            "pnl": 16.47,
+            "entry": 395.9479,
+            "exit": 397.801
+          }
+        ]
+      },
+      {
+        "ticker": "TANLA.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-01-27",
+            6.0
+          ],
+          [
+            "2025-04-30",
+            6.0
+          ],
+          [
+            "2025-10-27",
+            6.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-01-01",
+            "pnl": 585.13,
+            "entry": 714.6071,
+            "exit": 753.5231
+          },
+          {
+            "asof": "2025-01-02",
+            "pnl": -208.48,
+            "entry": 780.6901,
+            "exit": 770.1647
+          }
+        ]
+      },
+      {
+        "ticker": "TEJASNET.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-06-19",
+            2.5
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-04-03",
+            "pnl": -372.2,
+            "entry": 900.0498,
+            "exit": 872.4136
+          }
+        ]
+      },
+      {
+        "ticker": "TRANSRAILL.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-04",
+            0.8
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-01-06",
+            "pnl": -198.88,
+            "entry": 676.5381,
+            "exit": 667.7659
+          }
+        ]
+      },
+      {
+        "ticker": "VENKEYS.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-08-14",
+            10.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-12-10",
+            "pnl": 405.03,
+            "entry": 1527.7635,
+            "exit": 1552.6233
+          }
+        ]
+      },
+      {
+        "ticker": "VIMTALABS.NS",
+        "splits_2025": [
+          [
+            "2025-06-13",
+            2.0
+          ]
+        ],
+        "dividends_2025": [
+          [
+            "2025-05-30",
+            1.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-07-25",
+            "pnl": 1209.73,
+            "entry": 536.9183,
+            "exit": 570.8644
+          },
+          {
+            "asof": "2025-07-28",
+            "pnl": -347.56,
+            "entry": 649.3245,
+            "exit": 641.2292
+          },
+          {
+            "asof": "2025-08-01",
+            "pnl": -549.32,
+            "entry": 712.1059,
+            "exit": 696.0018
+          },
+          {
+            "asof": "2025-08-07",
+            "pnl": -546.53,
+            "entry": 660.38,
+            "exit": 644.6775
+          }
+        ]
+      },
+      {
+        "ticker": "VINCOFE.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-09-22",
+            0.1
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-11-07",
+            "pnl": 683.2,
+            "entry": 167.3236,
+            "exit": 171.7341
+          },
+          {
+            "asof": "2025-12-05",
+            "pnl": 1498.46,
+            "entry": 163.1916,
+            "exit": 169.2753
+          }
+        ]
+      },
+      {
+        "ticker": "WEBELSOLAR.NS",
+        "splits_2025": [
+          [
+            "2025-11-14",
+            10.0
+          ]
+        ],
+        "dividends_2025": [],
+        "trades": [
+          {
+            "asof": "2025-12-02",
+            "pnl": 2136.48,
+            "entry": 100.6603,
+            "exit": 109.0255
+          }
+        ]
+      },
+      {
+        "ticker": "XCHANGING.NS",
+        "splits_2025": [],
+        "dividends_2025": [
+          [
+            "2025-07-11",
+            2.0
+          ]
+        ],
+        "trades": [
+          {
+            "asof": "2025-10-30",
+            "pnl": 1852.77,
+            "entry": 86.3832,
+            "exit": 95.8521
+          }
+        ]
+      }
+    ]
+  },
+  "4_sizing": {
+    "n_high_conf_or_near_cap": 222,
+    "pnl_high_conf": 22187.41,
+    "examples": [
+      {
+        "asof": "2025-12-31",
+        "ticker": "KSR.NS",
+        "entity": "PRASOON PANKAJ",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 13322.87,
+        "notional": 69714.39,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-12-23",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 4978.53,
+        "notional": 61678.62,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-12-02",
+        "ticker": "PROSTARM.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 2673.33,
+        "notional": 38483.35,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-12-03",
+        "ticker": "SPARC.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": -2528.38,
+        "notional": 44239.02,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-09-02",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 2092.93,
+        "notional": 20757.18,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-12-31",
+        "ticker": "ORIENTTECH.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 2047.47,
+        "notional": 69714.61,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-12-29",
+        "ticker": "CUBEXTUB.NS",
+        "entity": "MATALIA STOCK BROKING PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": -2031.73,
+        "notional": 70315.75,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-11-21",
+        "ticker": "ASTEC.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 1999.66,
+        "notional": 36535.24,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-12-17",
+        "ticker": "EPACK.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": -1988.9,
+        "notional": 58043.78,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-06-30",
+        "ticker": "RAYMOND.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 1928.76,
+        "notional": 16793.89,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-10-09",
+        "ticker": "SHANKARA.NS",
+        "entity": "SARAVANA SECURITIES DSATHYAMOORTHI",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 1744.26,
+        "notional": 23698.31,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-05-28",
+        "ticker": "APOLLO.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 1711.76,
+        "notional": 15767.4,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-12-26",
+        "ticker": "PANACEABIO.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": -1615.63,
+        "notional": 72027.43,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-07-24",
+        "ticker": "INDOBORAX.NS",
+        "entity": "VICTUS ENTERPRISE LLP",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 1537.67,
+        "notional": 17853.94,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-12-05",
+        "ticker": "VINCOFE.NS",
+        "entity": "CHAUBARA EATS PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 1498.46,
+        "notional": 44310.96,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-03-27",
+        "ticker": "CGCL.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": -1485.85,
+        "notional": 11955.91,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-05-23",
+        "ticker": "RPOWER.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 1411.17,
+        "notional": 14056.9,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-03-18",
+        "ticker": "MOBIKWIK.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 1393.66,
+        "notional": 10822.05,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-03-05",
+        "ticker": "QUADFUTURE.NS",
+        "entity": "AAKRAYA RESEARCH LLP",
+        "conf": 0.92,
+        "leverage": 2.7,
+        "intended_lev": 5.0,
+        "pnl": 1370.67,
+        "notional": 9663.97,
+        "got_cap_bet": true
+      },
+      {
+        "asof": "2025-09-18",
+        "ticker": "DENTA.NS",
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "conf": 0.92,
+        "leverage": 2.002,
+        "intended_lev": 5.0,
+        "pnl": 1367.93,
+        "notional": 15056.37,
+        "got_cap_bet": true
+      }
+    ],
+    "n_multi_fill_days": 78,
+    "second_slot_examples": [
+      {
+        "asof": "2025-01-01",
+        "first": "MOBIKWIK.NS",
+        "second": "TANLA.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": 585.13,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-01-06",
+        "first": "ITI.NS",
+        "second": "TRANSRAILL.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": -198.88,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-01-07",
+        "first": "MOBIKWIK.NS",
+        "second": "INDOFARM.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": -211.23,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-01-08",
+        "first": "ITI.NS",
+        "second": "AEGISLOG.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": -104.16,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-01-10",
+        "first": "MOBIKWIK.NS",
+        "second": "MAZDA.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": 306.04,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-01-14",
+        "first": "MOBIKWIK.NS",
+        "second": "QUADFUTURE.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": -56.01,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-01-21",
+        "first": "MOBIKWIK.NS",
+        "second": "QUADFUTURE.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": -278.17,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-01-29",
+        "first": "MOBIKWIK.NS",
+        "second": "QUADFUTURE.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": 344.69,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-01-30",
+        "first": "MOBIKWIK.NS",
+        "second": "ORIENTTECH.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": -35.25,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-02-11",
+        "first": "QUADFUTURE.NS",
+        "second": "SWSOLAR.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": -50.3,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-02-12",
+        "first": "QUADFUTURE.NS",
+        "second": "MOBIKWIK.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": 115.53,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-02-17",
+        "first": "QUADFUTURE.NS",
+        "second": "MOBIKWIK.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": 499.25,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-02-25",
+        "first": "QUADFUTURE.NS",
+        "second": "TEAMLEASE.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": -27.78,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-03-05",
+        "first": "QUADFUTURE.NS",
+        "second": "SANGINITA.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": 124.0,
+        "note": "2nd slot also sized from same conf/WR surface"
+      },
+      {
+        "asof": "2025-03-13",
+        "first": "DATAPATTNS.NS",
+        "second": "MTNL.NS",
+        "first_conf": 0.92,
+        "second_conf": 0.92,
+        "second_pnl": -48.25,
+        "note": "2nd slot also sized from same conf/WR surface"
+      }
+    ]
+  },
+  "5_entity_tail": {
+    "total_pnl": 51137.15,
+    "top5_entities_by_pnl": [
+      {
+        "entity": "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        "n": 28,
+        "pnl": 26463.8,
+        "share_pct": 51.8
+      },
+      {
+        "entity": "PRASOON PANKAJ",
+        "n": 2,
+        "pnl": 14236.84,
+        "share_pct": 27.8
+      },
+      {
+        "entity": "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        "n": 42,
+        "pnl": 9143.55,
+        "share_pct": 17.9
+      },
+      {
+        "entity": "MANSUKH SECURITIES FINANCE LIMITED",
+        "n": 4,
+        "pnl": 3407.26,
+        "share_pct": 6.7
+      },
+      {
+        "entity": "AAKRAYA RESEARCH LLP",
+        "n": 102,
+        "pnl": 2149.54,
+        "share_pct": 4.2
+      }
+    ],
+    "top5_share_pct": 108.3,
+    "winning_tail_20_entity_counts": [
+      [
+        "SILVERLEAF CAPITAL SERVICES PRIVATE LIMITED",
+        11
+      ],
+      [
+        "ELIXIR WEALTH MANAGEMENT PRIVATE LIMITED",
+        5
+      ],
+      [
+        "AAKRAYA RESEARCH LLP",
+        2
+      ],
+      [
+        "PRASOON PANKAJ",
+        1
+      ],
+      [
+        "SARAVANA SECURITIES DSATHYAMOORTHI",
+        1
+      ]
+    ]
+  },
+  "6_regime": {
+    "unknown": {
+      "n": 55,
+      "pnl": 12469.33,
+      "wr": 0.364,
+      "avg_pnl": 226.72
+    },
+    "trend": {
+      "n": 38,
+      "pnl": 10233.76,
+      "wr": 0.474,
+      "avg_pnl": 269.31
+    },
+    "risk_off": {
+      "n": 137,
+      "pnl": 25991.84,
+      "wr": 0.416,
+      "avg_pnl": 189.72
+    },
+    "chop": {
+      "n": 26,
+      "pnl": 2442.22,
+      "wr": 0.462,
+      "avg_pnl": 93.93
+    }
+  },
+  "7_fees": {
+    "n_checked": 256,
+    "n_identity_breaks": 0,
+    "sum_fees": 17452.72,
+    "sum_pnl": 51137.15,
+    "examples": [],
+    "note": "Identity pnl = exit_notional - entry_notional - fees (single CostModel+broker fee sum)"
+  }
+}

@@ -1,0 +1,928 @@
+{
+  "rule": "monthly: apply v2 month_return_pct to current pool; keep 50% of positive month PnL in pool, bank 50%; full losses hit pool",
+  "start": 10000,
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "monthly_half_profit": {
+    "pool_end": 5979.4,
+    "banked_cash": 23704.67,
+    "wealth_pool_plus_banked": 29684.07,
+    "path": [
+      {
+        "date": "start",
+        "capital": 10000.0,
+        "pnl": 0.0,
+        "banked": 0.0
+      },
+      {
+        "year": 2018,
+        "month": "january",
+        "ret_pct": 4.112,
+        "month_pnl": 411.2,
+        "capital": 10205.6,
+        "banked_this_month": 205.6,
+        "banked_cum": 205.6
+      },
+      {
+        "year": 2018,
+        "month": "february",
+        "ret_pct": -8.653,
+        "month_pnl": -883.09,
+        "capital": 9322.51,
+        "banked_this_month": 0.0,
+        "banked_cum": 205.6
+      },
+      {
+        "year": 2018,
+        "month": "march",
+        "ret_pct": -2.103,
+        "month_pnl": -196.05,
+        "capital": 9126.46,
+        "banked_this_month": 0.0,
+        "banked_cum": 205.6
+      },
+      {
+        "year": 2018,
+        "month": "april",
+        "ret_pct": 0.0,
+        "month_pnl": 0.0,
+        "capital": 9126.46,
+        "banked_this_month": 0.0,
+        "banked_cum": 205.6
+      },
+      {
+        "year": 2018,
+        "month": "may",
+        "ret_pct": 2.744,
+        "month_pnl": 250.43,
+        "capital": 9251.67,
+        "banked_this_month": 125.21,
+        "banked_cum": 330.81
+      },
+      {
+        "year": 2018,
+        "month": "june",
+        "ret_pct": 8.743,
+        "month_pnl": 808.87,
+        "capital": 9656.11,
+        "banked_this_month": 404.44,
+        "banked_cum": 735.25
+      },
+      {
+        "year": 2018,
+        "month": "july",
+        "ret_pct": -2.311,
+        "month_pnl": -223.15,
+        "capital": 9432.96,
+        "banked_this_month": 0.0,
+        "banked_cum": 735.25
+      },
+      {
+        "year": 2018,
+        "month": "august",
+        "ret_pct": 65.378,
+        "month_pnl": 6167.08,
+        "capital": 12516.5,
+        "banked_this_month": 3083.54,
+        "banked_cum": 3818.79
+      },
+      {
+        "year": 2018,
+        "month": "september",
+        "ret_pct": -7.516,
+        "month_pnl": -940.74,
+        "capital": 11575.76,
+        "banked_this_month": 0.0,
+        "banked_cum": 3818.79
+      },
+      {
+        "year": 2018,
+        "month": "october",
+        "ret_pct": -9.216,
+        "month_pnl": -1066.82,
+        "capital": 10508.93,
+        "banked_this_month": 0.0,
+        "banked_cum": 3818.79
+      },
+      {
+        "year": 2018,
+        "month": "november",
+        "ret_pct": -9.637,
+        "month_pnl": -1012.75,
+        "capital": 9496.19,
+        "banked_this_month": 0.0,
+        "banked_cum": 3818.79
+      },
+      {
+        "year": 2018,
+        "month": "december",
+        "ret_pct": -3.683,
+        "month_pnl": -349.74,
+        "capital": 9146.44,
+        "banked_this_month": 0.0,
+        "banked_cum": 3818.79
+      },
+      {
+        "year": 2019,
+        "month": "january",
+        "ret_pct": 0.186,
+        "month_pnl": 17.01,
+        "capital": 9154.95,
+        "banked_this_month": 8.51,
+        "banked_cum": 3827.3
+      },
+      {
+        "year": 2019,
+        "month": "february",
+        "ret_pct": -2.182,
+        "month_pnl": -199.76,
+        "capital": 8955.19,
+        "banked_this_month": 0.0,
+        "banked_cum": 3827.3
+      },
+      {
+        "year": 2019,
+        "month": "march",
+        "ret_pct": -1.21,
+        "month_pnl": -108.36,
+        "capital": 8846.83,
+        "banked_this_month": 0.0,
+        "banked_cum": 3827.3
+      },
+      {
+        "year": 2019,
+        "month": "april",
+        "ret_pct": 14.958,
+        "month_pnl": 1323.31,
+        "capital": 9508.49,
+        "banked_this_month": 661.65,
+        "banked_cum": 4488.95
+      },
+      {
+        "year": 2019,
+        "month": "may",
+        "ret_pct": 0.0,
+        "month_pnl": 0.0,
+        "capital": 9508.49,
+        "banked_this_month": 0.0,
+        "banked_cum": 4488.95
+      },
+      {
+        "year": 2019,
+        "month": "june",
+        "ret_pct": 28.468,
+        "month_pnl": 2706.88,
+        "capital": 10861.92,
+        "banked_this_month": 1353.44,
+        "banked_cum": 5842.39
+      },
+      {
+        "year": 2019,
+        "month": "july",
+        "ret_pct": -0.638,
+        "month_pnl": -69.3,
+        "capital": 10792.62,
+        "banked_this_month": 0.0,
+        "banked_cum": 5842.39
+      },
+      {
+        "year": 2019,
+        "month": "august",
+        "ret_pct": -21.401,
+        "month_pnl": -2309.73,
+        "capital": 8482.89,
+        "banked_this_month": 0.0,
+        "banked_cum": 5842.39
+      },
+      {
+        "year": 2019,
+        "month": "september",
+        "ret_pct": -4.425,
+        "month_pnl": -375.37,
+        "capital": 8107.53,
+        "banked_this_month": 0.0,
+        "banked_cum": 5842.39
+      },
+      {
+        "year": 2019,
+        "month": "october",
+        "ret_pct": 75.536,
+        "month_pnl": 6124.1,
+        "capital": 11169.58,
+        "banked_this_month": 3062.05,
+        "banked_cum": 8904.44
+      },
+      {
+        "year": 2019,
+        "month": "november",
+        "ret_pct": -24.282,
+        "month_pnl": -2712.2,
+        "capital": 8457.38,
+        "banked_this_month": 0.0,
+        "banked_cum": 8904.44
+      },
+      {
+        "year": 2019,
+        "month": "december",
+        "ret_pct": -2.89,
+        "month_pnl": -244.42,
+        "capital": 8212.96,
+        "banked_this_month": 0.0,
+        "banked_cum": 8904.44
+      },
+      {
+        "year": 2020,
+        "month": "january",
+        "ret_pct": 0.0,
+        "month_pnl": 0.0,
+        "capital": 8212.96,
+        "banked_this_month": 0.0,
+        "banked_cum": 8904.44
+      },
+      {
+        "year": 2020,
+        "month": "february",
+        "ret_pct": 0.0,
+        "month_pnl": 0.0,
+        "capital": 8212.96,
+        "banked_this_month": 0.0,
+        "banked_cum": 8904.44
+      },
+      {
+        "year": 2020,
+        "month": "march",
+        "ret_pct": 11.303,
+        "month_pnl": 928.31,
+        "capital": 8677.12,
+        "banked_this_month": 464.16,
+        "banked_cum": 9368.6
+      },
+      {
+        "year": 2020,
+        "month": "april",
+        "ret_pct": -6.223,
+        "month_pnl": -539.98,
+        "capital": 8137.14,
+        "banked_this_month": 0.0,
+        "banked_cum": 9368.6
+      },
+      {
+        "year": 2020,
+        "month": "may",
+        "ret_pct": 38.535,
+        "month_pnl": 3135.65,
+        "capital": 9704.96,
+        "banked_this_month": 1567.82,
+        "banked_cum": 10936.42
+      },
+      {
+        "year": 2020,
+        "month": "june",
+        "ret_pct": -6.002,
+        "month_pnl": -582.49,
+        "capital": 9122.47,
+        "banked_this_month": 0.0,
+        "banked_cum": 10936.42
+      },
+      {
+        "year": 2020,
+        "month": "july",
+        "ret_pct": -10.908,
+        "month_pnl": -995.08,
+        "capital": 8127.39,
+        "banked_this_month": 0.0,
+        "banked_cum": 10936.42
+      },
+      {
+        "year": 2020,
+        "month": "august",
+        "ret_pct": -4.581,
+        "month_pnl": -372.32,
+        "capital": 7755.08,
+        "banked_this_month": 0.0,
+        "banked_cum": 10936.42
+      },
+      {
+        "year": 2020,
+        "month": "september",
+        "ret_pct": 13.454,
+        "month_pnl": 1043.37,
+        "capital": 8276.76,
+        "banked_this_month": 521.68,
+        "banked_cum": 11458.1
+      },
+      {
+        "year": 2020,
+        "month": "october",
+        "ret_pct": -21.453,
+        "month_pnl": -1775.61,
+        "capital": 6501.15,
+        "banked_this_month": 0.0,
+        "banked_cum": 11458.1
+      },
+      {
+        "year": 2020,
+        "month": "november",
+        "ret_pct": 4.017,
+        "month_pnl": 261.15,
+        "capital": 6631.72,
+        "banked_this_month": 130.58,
+        "banked_cum": 11588.68
+      },
+      {
+        "year": 2020,
+        "month": "december",
+        "ret_pct": 29.172,
+        "month_pnl": 1934.61,
+        "capital": 7599.03,
+        "banked_this_month": 967.3,
+        "banked_cum": 12555.98
+      },
+      {
+        "year": 2021,
+        "month": "january",
+        "ret_pct": -6.397,
+        "month_pnl": -486.11,
+        "capital": 7112.92,
+        "banked_this_month": 0.0,
+        "banked_cum": 12555.98
+      },
+      {
+        "year": 2021,
+        "month": "february",
+        "ret_pct": 39.215,
+        "month_pnl": 2789.33,
+        "capital": 8507.58,
+        "banked_this_month": 1394.67,
+        "banked_cum": 13950.65
+      },
+      {
+        "year": 2021,
+        "month": "march",
+        "ret_pct": 2.816,
+        "month_pnl": 239.57,
+        "capital": 8627.37,
+        "banked_this_month": 119.79,
+        "banked_cum": 14070.43
+      },
+      {
+        "year": 2021,
+        "month": "april",
+        "ret_pct": -9.86,
+        "month_pnl": -850.66,
+        "capital": 7776.71,
+        "banked_this_month": 0.0,
+        "banked_cum": 14070.43
+      },
+      {
+        "year": 2021,
+        "month": "may",
+        "ret_pct": -13.307,
+        "month_pnl": -1034.85,
+        "capital": 6741.86,
+        "banked_this_month": 0.0,
+        "banked_cum": 14070.43
+      },
+      {
+        "year": 2021,
+        "month": "june",
+        "ret_pct": -6.398,
+        "month_pnl": -431.34,
+        "capital": 6310.52,
+        "banked_this_month": 0.0,
+        "banked_cum": 14070.43
+      },
+      {
+        "year": 2021,
+        "month": "july",
+        "ret_pct": -1.113,
+        "month_pnl": -70.24,
+        "capital": 6240.28,
+        "banked_this_month": 0.0,
+        "banked_cum": 14070.43
+      },
+      {
+        "year": 2021,
+        "month": "august",
+        "ret_pct": 36.32,
+        "month_pnl": 2266.47,
+        "capital": 7373.52,
+        "banked_this_month": 1133.24,
+        "banked_cum": 15203.67
+      },
+      {
+        "year": 2021,
+        "month": "september",
+        "ret_pct": -13.789,
+        "month_pnl": -1016.73,
+        "capital": 6356.78,
+        "banked_this_month": 0.0,
+        "banked_cum": 15203.67
+      },
+      {
+        "year": 2021,
+        "month": "october",
+        "ret_pct": -20.77,
+        "month_pnl": -1320.3,
+        "capital": 5036.48,
+        "banked_this_month": 0.0,
+        "banked_cum": 15203.67
+      },
+      {
+        "year": 2021,
+        "month": "november",
+        "ret_pct": -1.072,
+        "month_pnl": -53.99,
+        "capital": 4982.49,
+        "banked_this_month": 0.0,
+        "banked_cum": 15203.67
+      },
+      {
+        "year": 2021,
+        "month": "december",
+        "ret_pct": -8.717,
+        "month_pnl": -434.32,
+        "capital": 4548.16,
+        "banked_this_month": 0.0,
+        "banked_cum": 15203.67
+      },
+      {
+        "year": 2022,
+        "month": "january",
+        "ret_pct": 0.995,
+        "month_pnl": 45.25,
+        "capital": 4570.79,
+        "banked_this_month": 22.63,
+        "banked_cum": 15226.3
+      },
+      {
+        "year": 2022,
+        "month": "february",
+        "ret_pct": -8.549,
+        "month_pnl": -390.76,
+        "capital": 4180.04,
+        "banked_this_month": 0.0,
+        "banked_cum": 15226.3
+      },
+      {
+        "year": 2022,
+        "month": "march",
+        "ret_pct": 12.05,
+        "month_pnl": 503.69,
+        "capital": 4431.88,
+        "banked_this_month": 251.85,
+        "banked_cum": 15478.14
+      },
+      {
+        "year": 2022,
+        "month": "april",
+        "ret_pct": 1.33,
+        "month_pnl": 58.94,
+        "capital": 4461.35,
+        "banked_this_month": 29.47,
+        "banked_cum": 15507.62
+      },
+      {
+        "year": 2022,
+        "month": "may",
+        "ret_pct": -7.919,
+        "month_pnl": -353.29,
+        "capital": 4108.06,
+        "banked_this_month": 0.0,
+        "banked_cum": 15507.62
+      },
+      {
+        "year": 2022,
+        "month": "june",
+        "ret_pct": 23.728,
+        "month_pnl": 974.76,
+        "capital": 4595.44,
+        "banked_this_month": 487.38,
+        "banked_cum": 15995.0
+      },
+      {
+        "year": 2022,
+        "month": "july",
+        "ret_pct": -7.978,
+        "month_pnl": -366.62,
+        "capital": 4228.82,
+        "banked_this_month": 0.0,
+        "banked_cum": 15995.0
+      },
+      {
+        "year": 2022,
+        "month": "august",
+        "ret_pct": -1.196,
+        "month_pnl": -50.58,
+        "capital": 4178.24,
+        "banked_this_month": 0.0,
+        "banked_cum": 15995.0
+      },
+      {
+        "year": 2022,
+        "month": "september",
+        "ret_pct": -7.566,
+        "month_pnl": -316.13,
+        "capital": 3862.11,
+        "banked_this_month": 0.0,
+        "banked_cum": 15995.0
+      },
+      {
+        "year": 2022,
+        "month": "october",
+        "ret_pct": 4.441,
+        "month_pnl": 171.52,
+        "capital": 3947.87,
+        "banked_this_month": 85.76,
+        "banked_cum": 16080.75
+      },
+      {
+        "year": 2022,
+        "month": "november",
+        "ret_pct": -3.391,
+        "month_pnl": -133.87,
+        "capital": 3814.0,
+        "banked_this_month": 0.0,
+        "banked_cum": 16080.75
+      },
+      {
+        "year": 2022,
+        "month": "december",
+        "ret_pct": -16.818,
+        "month_pnl": -641.44,
+        "capital": 3172.56,
+        "banked_this_month": 0.0,
+        "banked_cum": 16080.75
+      },
+      {
+        "year": 2023,
+        "month": "january",
+        "ret_pct": 1.473,
+        "month_pnl": 46.73,
+        "capital": 3195.93,
+        "banked_this_month": 23.37,
+        "banked_cum": 16104.12
+      },
+      {
+        "year": 2023,
+        "month": "february",
+        "ret_pct": 0.0,
+        "month_pnl": 0.0,
+        "capital": 3195.93,
+        "banked_this_month": 0.0,
+        "banked_cum": 16104.12
+      },
+      {
+        "year": 2023,
+        "month": "march",
+        "ret_pct": 0.0,
+        "month_pnl": 0.0,
+        "capital": 3195.93,
+        "banked_this_month": 0.0,
+        "banked_cum": 16104.12
+      },
+      {
+        "year": 2023,
+        "month": "april",
+        "ret_pct": 3.655,
+        "month_pnl": 116.81,
+        "capital": 3254.33,
+        "banked_this_month": 58.41,
+        "banked_cum": 16162.52
+      },
+      {
+        "year": 2023,
+        "month": "may",
+        "ret_pct": 51.379,
+        "month_pnl": 1672.04,
+        "capital": 4090.35,
+        "banked_this_month": 836.02,
+        "banked_cum": 16998.55
+      },
+      {
+        "year": 2023,
+        "month": "june",
+        "ret_pct": -2.957,
+        "month_pnl": -120.95,
+        "capital": 3969.4,
+        "banked_this_month": 0.0,
+        "banked_cum": 16998.55
+      },
+      {
+        "year": 2023,
+        "month": "july",
+        "ret_pct": 17.979,
+        "month_pnl": 713.66,
+        "capital": 4326.23,
+        "banked_this_month": 356.83,
+        "banked_cum": 17355.38
+      },
+      {
+        "year": 2023,
+        "month": "august",
+        "ret_pct": 7.459,
+        "month_pnl": 322.69,
+        "capital": 4487.58,
+        "banked_this_month": 161.35,
+        "banked_cum": 17516.72
+      },
+      {
+        "year": 2023,
+        "month": "september",
+        "ret_pct": 3.364,
+        "month_pnl": 150.96,
+        "capital": 4563.06,
+        "banked_this_month": 75.48,
+        "banked_cum": 17592.2
+      },
+      {
+        "year": 2023,
+        "month": "october",
+        "ret_pct": -17.443,
+        "month_pnl": -795.93,
+        "capital": 3767.13,
+        "banked_this_month": 0.0,
+        "banked_cum": 17592.2
+      },
+      {
+        "year": 2023,
+        "month": "november",
+        "ret_pct": 27.686,
+        "month_pnl": 1042.97,
+        "capital": 4288.61,
+        "banked_this_month": 521.48,
+        "banked_cum": 18113.69
+      },
+      {
+        "year": 2023,
+        "month": "december",
+        "ret_pct": 8.108,
+        "month_pnl": 347.72,
+        "capital": 4462.47,
+        "banked_this_month": 173.86,
+        "banked_cum": 18287.55
+      },
+      {
+        "year": 2024,
+        "month": "january",
+        "ret_pct": 3.586,
+        "month_pnl": 160.02,
+        "capital": 4542.48,
+        "banked_this_month": 80.01,
+        "banked_cum": 18367.56
+      },
+      {
+        "year": 2024,
+        "month": "february",
+        "ret_pct": 57.548,
+        "month_pnl": 2614.11,
+        "capital": 5849.53,
+        "banked_this_month": 1307.05,
+        "banked_cum": 19674.61
+      },
+      {
+        "year": 2024,
+        "month": "march",
+        "ret_pct": -6.379,
+        "month_pnl": -373.14,
+        "capital": 5476.39,
+        "banked_this_month": 0.0,
+        "banked_cum": 19674.61
+      },
+      {
+        "year": 2024,
+        "month": "april",
+        "ret_pct": 4.656,
+        "month_pnl": 254.98,
+        "capital": 5603.88,
+        "banked_this_month": 127.49,
+        "banked_cum": 19802.1
+      },
+      {
+        "year": 2024,
+        "month": "may",
+        "ret_pct": 45.283,
+        "month_pnl": 2537.61,
+        "capital": 6872.69,
+        "banked_this_month": 1268.8,
+        "banked_cum": 21070.91
+      },
+      {
+        "year": 2024,
+        "month": "june",
+        "ret_pct": -8.0,
+        "month_pnl": -549.81,
+        "capital": 6322.87,
+        "banked_this_month": 0.0,
+        "banked_cum": 21070.91
+      },
+      {
+        "year": 2024,
+        "month": "july",
+        "ret_pct": 6.618,
+        "month_pnl": 418.45,
+        "capital": 6532.09,
+        "banked_this_month": 209.22,
+        "banked_cum": 21280.13
+      },
+      {
+        "year": 2024,
+        "month": "august",
+        "ret_pct": -4.105,
+        "month_pnl": -268.14,
+        "capital": 6263.95,
+        "banked_this_month": 0.0,
+        "banked_cum": 21280.13
+      },
+      {
+        "year": 2024,
+        "month": "september",
+        "ret_pct": 6.445,
+        "month_pnl": 403.71,
+        "capital": 6465.81,
+        "banked_this_month": 201.86,
+        "banked_cum": 21481.99
+      },
+      {
+        "year": 2024,
+        "month": "october",
+        "ret_pct": -28.851,
+        "month_pnl": -1865.45,
+        "capital": 4600.36,
+        "banked_this_month": 0.0,
+        "banked_cum": 21481.99
+      },
+      {
+        "year": 2024,
+        "month": "november",
+        "ret_pct": -6.471,
+        "month_pnl": -297.69,
+        "capital": 4302.67,
+        "banked_this_month": 0.0,
+        "banked_cum": 21481.99
+      },
+      {
+        "year": 2024,
+        "month": "december",
+        "ret_pct": 3.191,
+        "month_pnl": 137.3,
+        "capital": 4371.32,
+        "banked_this_month": 68.65,
+        "banked_cum": 21550.63
+      },
+      {
+        "year": 2025,
+        "month": "january",
+        "ret_pct": 1.832,
+        "month_pnl": 80.08,
+        "capital": 4411.36,
+        "banked_this_month": 40.04,
+        "banked_cum": 21590.68
+      },
+      {
+        "year": 2025,
+        "month": "february",
+        "ret_pct": -5.727,
+        "month_pnl": -252.64,
+        "capital": 4158.72,
+        "banked_this_month": 0.0,
+        "banked_cum": 21590.68
+      },
+      {
+        "year": 2025,
+        "month": "march",
+        "ret_pct": 2.083,
+        "month_pnl": 86.63,
+        "capital": 4202.03,
+        "banked_this_month": 43.31,
+        "banked_cum": 21633.99
+      },
+      {
+        "year": 2025,
+        "month": "april",
+        "ret_pct": 6.2,
+        "month_pnl": 260.53,
+        "capital": 4332.3,
+        "banked_this_month": 130.26,
+        "banked_cum": 21764.25
+      },
+      {
+        "year": 2025,
+        "month": "may",
+        "ret_pct": 14.624,
+        "month_pnl": 633.56,
+        "capital": 4649.07,
+        "banked_this_month": 316.78,
+        "banked_cum": 22081.03
+      },
+      {
+        "year": 2025,
+        "month": "june",
+        "ret_pct": 11.979,
+        "month_pnl": 556.91,
+        "capital": 4927.53,
+        "banked_this_month": 278.46,
+        "banked_cum": 22359.49
+      },
+      {
+        "year": 2025,
+        "month": "july",
+        "ret_pct": 4.728,
+        "month_pnl": 232.97,
+        "capital": 5044.02,
+        "banked_this_month": 116.49,
+        "banked_cum": 22475.97
+      },
+      {
+        "year": 2025,
+        "month": "august",
+        "ret_pct": 2.863,
+        "month_pnl": 144.41,
+        "capital": 5116.22,
+        "banked_this_month": 72.21,
+        "banked_cum": 22548.18
+      },
+      {
+        "year": 2025,
+        "month": "september",
+        "ret_pct": 20.834,
+        "month_pnl": 1065.91,
+        "capital": 5649.18,
+        "banked_this_month": 532.96,
+        "banked_cum": 23081.13
+      },
+      {
+        "year": 2025,
+        "month": "october",
+        "ret_pct": 7.991,
+        "month_pnl": 451.43,
+        "capital": 5874.89,
+        "banked_this_month": 225.71,
+        "banked_cum": 23306.85
+      },
+      {
+        "year": 2025,
+        "month": "november",
+        "ret_pct": 13.543,
+        "month_pnl": 795.64,
+        "capital": 6272.71,
+        "banked_this_month": 397.82,
+        "banked_cum": 23704.67
+      },
+      {
+        "year": 2025,
+        "month": "december",
+        "ret_pct": -4.676,
+        "month_pnl": -293.31,
+        "capital": 5979.4,
+        "banked_this_month": 0.0,
+        "banked_cum": 23704.67
+      }
+    ]
+  },
+  "monthly_full_compound": {
+    "pool_end": 120387.06,
+    "path_year_ends": [
+      {
+        "year": 2018,
+        "capital": 12280.47
+      },
+      {
+        "year": 2019,
+        "capital": 16916.05
+      },
+      {
+        "year": 2020,
+        "capital": 23403.24
+      },
+      {
+        "year": 2021,
+        "capital": 19070.39
+      },
+      {
+        "year": 2022,
+        "capital": 16071.33
+      },
+      {
+        "year": 2023,
+        "capital": 37084.65
+      },
+      {
+        "year": 2024,
+        "capital": 59232.06
+      },
+      {
+        "year": 2025,
+        "capital": 120387.06
+      }
+    ]
+  }
+}

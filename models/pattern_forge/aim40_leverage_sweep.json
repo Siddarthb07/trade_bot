@@ -1,0 +1,77 @@
+{
+  "rows": [
+    {
+      "lev": 5,
+      "sleeve": 0.22,
+      "total_return_pct": 20.499,
+      "green_months": 8,
+      "worst_month_pct": -10.834,
+      "best_month_pct": 8.291,
+      "n_trades": 221,
+      "run_id": "53df0b9c-18e",
+      "goal_met_product": true,
+      "in_40_50": false
+    },
+    {
+      "lev": 6,
+      "sleeve": 0.22,
+      "total_return_pct": 25.964,
+      "green_months": 8,
+      "worst_month_pct": -12.91,
+      "best_month_pct": 11.425,
+      "n_trades": 220,
+      "run_id": "2f487224-edd",
+      "goal_met_product": false,
+      "in_40_50": false
+    },
+    {
+      "lev": 7,
+      "sleeve": 0.22,
+      "total_return_pct": 25.666,
+      "green_months": 8,
+      "worst_month_pct": -14.955,
+      "best_month_pct": 13.364,
+      "n_trades": 222,
+      "run_id": "4f8a5a8c-0ab",
+      "goal_met_product": false,
+      "in_40_50": false
+    },
+    {
+      "lev": 8,
+      "sleeve": 0.25,
+      "total_return_pct": 37.381,
+      "green_months": 8,
+      "worst_month_pct": -19.133,
+      "best_month_pct": 16.855,
+      "n_trades": 218,
+      "run_id": "64b0c079-834",
+      "goal_met_product": false,
+      "in_40_50": false
+    },
+    {
+      "lev": 9,
+      "sleeve": 0.25,
+      "total_return_pct": 43.818,
+      "green_months": 8,
+      "worst_month_pct": -21.796,
+      "best_month_pct": 17.701,
+      "n_trades": 219,
+      "run_id": "a8a5f099-19f",
+      "goal_met_product": false,
+      "in_40_50": true
+    },
+    {
+      "lev": 10,
+      "sleeve": 0.25,
+      "total_return_pct": 50.102,
+      "green_months": 9,
+      "worst_month_pct": -24.006,
+      "best_month_pct": 19.708,
+      "n_trades": 219,
+      "run_id": "119a33bd-ed5",
+      "goal_met_product": false,
+      "in_40_50": false
+    }
+  ],
+  "claim": "clean PIT 2025; soft mistake ledger; not OOS"
+}

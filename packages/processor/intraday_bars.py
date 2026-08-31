@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 _CACHE_TTL_SEC = 300
 _cache: dict[str, tuple[float, list[dict[str, Any]]]] = {}
 _DISK_CACHE_DIR = Path(__file__).resolve().parents[2] / "models" / "intraday_cache"
-_INTERVAL_OR_BARS: dict[str, int] = {"5m": 5, "15m": 2, "30m": 1, "1h": 1, "60m": 1}
+_INTERVAL_OR_BARS: dict[str, int] = {"1m": 15, "5m": 5, "15m": 2, "30m": 1, "1h": 1, "60m": 1}
 
 # NSE cash approx; US RTH — used to filter same-session bars
 _IN_SESSION = (9 * 60 + 15, 15 * 60 + 30)  # minutes from midnight IST-ish (yfinance often IST-naive for .NS)
@@ -64,11 +64,26 @@ def _disk_cache_set(ticker: str, day: str, interval: str, data: list[dict[str, A
   path.write_text(json.dumps(data), encoding="utf-8")
 
 
+def load_disk_session_bars(
+  ticker: str,
+  session_date: str,
+  *,
+  interval: str = "5m",
+) -> list[dict[str, Any]]:
+  """Disk-cache only — never hits the network. Empty if miss."""
+  day = str(session_date)[:10]
+  for iv in (interval, "1h", "5m", "15m"):
+    hit = _disk_cache_get(ticker, day, iv)
+    if hit:
+      return hit
+  return []
+
+
 def probe_intraday_floor(ticker: str = "RELIANCE.NS", interval: str = "5m") -> date | None:
   """Earliest session date with intraday bars for interval (best-effort)."""
   period = "730d" if interval in ("1h", "60m") else "60d"
   try:
-    hist = yf.Ticker(ticker).history(period=period, interval=interval, auto_adjust=True)
+    hist = yf.Ticker(ticker).history(period=period, interval=interval, auto_adjust=False)
     if hist is None or hist.empty:
       return None
     first = hist.index.min()
@@ -78,7 +93,7 @@ def probe_intraday_floor(ticker: str = "RELIANCE.NS", interval: str = "5m") -> d
 
 
 def pick_interval_for_date(session_day: str, preferred: str = "5m") -> str:
-  """Use 5m inside Yahoo's rolling window; else 1h (up to ~2y)."""
+  """Prefer finer bars when Yahoo still has them; else fall back."""
   if preferred == "1h":
     return "1h"
   try:
@@ -86,8 +101,10 @@ def pick_interval_for_date(session_day: str, preferred: str = "5m") -> str:
   except Exception:
     return preferred if preferred != "auto" else "5m"
   today = datetime.now(timezone.utc).date()
-  # Yahoo .NS 5m is rolling ~60 calendar days; leave margin
+  floor_1m = today - timedelta(days=6)
   floor_5m = today - timedelta(days=55)
+  if preferred == "1m":
+    return "1m" if d >= floor_1m else ("5m" if d >= floor_5m else "1h")
   if preferred in ("5m", "15m", "30m", "auto") and d >= floor_5m:
     return "5m" if preferred == "auto" else preferred
   return "1h"
@@ -130,7 +147,8 @@ def fetch_intraday_bars(
   else:
     day = datetime.now(timezone.utc).date().isoformat()
 
-  cache_key = f"{ticker}:{interval}:{day}:{mkt}:{lookback_days}"
+  # adj0 = auto_adjust=False; busts older cache written under auto_adjust=True
+  cache_key = f"{ticker}:{interval}:{day}:{mkt}:{lookback_days}:adj0"
   cached = _cache_get(cache_key)
   if cached is not None:
     return cached
@@ -148,18 +166,18 @@ def fetch_intraday_bars(
       start=start.isoformat(),
       end=end.isoformat(),
       interval=interval,
-      auto_adjust=True,
+      auto_adjust=False,
     ),
     lambda: yf.download(
       ticker,
       start=start.isoformat(),
       end=end.isoformat(),
       interval=interval,
-      auto_adjust=True,
+      auto_adjust=False,
       progress=False,
       threads=False,
     ),
-    lambda: yf.Ticker(ticker).history(period=f"{max(lookback_days, 5)}d", interval=interval, auto_adjust=True),
+    lambda: yf.Ticker(ticker).history(period=f"{max(lookback_days, 5)}d", interval=interval, auto_adjust=False),
   )
   for attempt, fetch in enumerate(fetchers):
     if attempt:

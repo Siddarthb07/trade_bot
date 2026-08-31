@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from typing import Any
 
 import httpx
-from fastapi import Depends, FastAPI, Header, HTTPException, Query
+from fastapi import Body, Depends, FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from pydantic import BaseModel
@@ -47,7 +47,13 @@ app = FastAPI(title="Trade Bot API", version="0.1.0")
 
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=["*"],
+  allow_origins=[
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    settings.dashboard_public_url.rstrip("/") if getattr(settings, "dashboard_public_url", None) else "",
+  ],
   allow_credentials=True,
   allow_methods=["*"],
   allow_headers=["*"],
@@ -55,7 +61,11 @@ app.add_middleware(
 
 
 def verify_basic(credentials: HTTPBasicCredentials = Depends(security)) -> None:
-  if credentials.username != settings.api_username or credentials.password != settings.api_password:
+  import secrets
+
+  user_ok = secrets.compare_digest(credentials.username or "", settings.api_username or "")
+  pass_ok = secrets.compare_digest(credentials.password or "", settings.api_password or "")
+  if not (user_ok and pass_ok):
     raise HTTPException(status_code=401, detail="Unauthorized")
 
 
@@ -1640,22 +1650,36 @@ def exec_day_sim(
   path_mode: str = Query(default="session"),
   allow_demo_fallback: bool = Query(default=False),
   filter_mode: str = Query(default="strict"),
+  product: str | None = Query(default=None),
   _: None = Depends(verify_basic),
 ) -> dict[str, Any]:
   """Paper-simulate adaptive_edge / session ORB with full ledger + PnL.
 
   path_mode=session uses intraday bars + modeled costs (Stage A).
   filter_mode=relaxed lowers gates for sim frequency (not live).
+  product= orwidth product name enables target_return hero/guard configs.
   allow_demo_fallback marks DEMO fills — never counted as edge.
   """
   from processor.day_sim import simulate_day
 
   if path_mode not in ("session", "daily"):
     return {"error": "path_mode must be session|daily"}
-  if filter_mode not in ("strict", "relaxed", "orb_only", "aggressive"):
-    return {"error": "filter_mode must be strict|relaxed|orb_only|aggressive"}
 
   currency = "INR" if market.upper() == "IN" else "USD"
+  extra: dict[str, Any] = {}
+  if product:
+    from processor.orwidth_product import product_kwargs
+
+    try:
+      extra = product_kwargs(product)
+      extra.pop("bar_interval", None)
+    except KeyError:
+      return {"error": f"unknown product: {product}"}
+  elif filter_mode not in ("strict", "relaxed", "orb_only", "aggressive", "target_return"):
+    return {"error": "filter_mode must be strict|relaxed|orb_only|aggressive|target_return"}
+  else:
+    extra = {"filter_mode": filter_mode}
+
   return simulate_day(
     asof=asof,
     capital=capital,
@@ -1664,8 +1688,291 @@ def exec_day_sim(
     max_positions=max_positions,
     path_mode=path_mode,
     allow_demo_fallback=allow_demo_fallback,
-    filter_mode=filter_mode,
+    **extra,
   )
+
+
+@app.get("/exec/hybrid/benchmarks")
+def exec_hybrid_benchmarks(_: None = Depends(verify_basic_or_share)) -> dict[str, Any]:
+  from processor.benchmarks import load_fixtures, primary_score
+
+  data = load_fixtures()
+  enriched = []
+  for w in data.get("windows") or []:
+    ceil = (w.get("ceiling") or {}).get("in_tr10_orwidth_chase5_75x") or {}
+    floor = (w.get("floor") or {}).get("in_tr10_orwidth_chase5_75x_guard") or {}
+    enriched.append(
+      {
+        **w,
+        "ceiling_primary_score": primary_score(
+          compound_pct=float(ceil.get("compound_pct") or 0),
+          worst_day_pct=float(ceil.get("worst_day_pct") or 0),
+        )
+        if ceil
+        else None,
+        "floor_primary_score": primary_score(
+          compound_pct=float(floor.get("compound_pct") or 0),
+          worst_day_pct=float(floor.get("worst_day_pct") or 0),
+        )
+        if floor
+        else None,
+      }
+    )
+  return {
+    "meta": data.get("meta"),
+    "windows": enriched,
+    "north_star": "most_profits",
+    "disclaimer": "Ceiling = research aspiration. Floor = guarded product reference.",
+  }
+
+
+@app.get("/exec/hybrid/strategies")
+def exec_hybrid_strategies(
+  lane: str = Query(default="product"),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.hybrid.registry import list_strategies
+
+  return {"lane": lane, "strategies": list_strategies(lane), "north_star": "most_profits"}
+
+
+@app.get("/exec/hybrid/learning")
+def exec_hybrid_learning(
+  limit: int = Query(default=80, ge=1, le=500),
+  asof: str | None = Query(default=None),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from datetime import date
+
+  from processor.hybrid.ledger import load_chooser_state, load_recent_outcomes
+  from processor.hybrid.rules_ledger import load_rules_ledger, read_daily_briefing
+
+  state = load_chooser_state()
+  outcomes = load_recent_outcomes(limit=limit)
+  # learning curve: cumulative expectancy samples
+  curve = []
+  for i, o in enumerate(reversed(outcomes)):
+    curve.append(
+      {
+        "i": i + 1,
+        "asof": o.get("asof"),
+        "strategy_id": o.get("strategy_id"),
+        "pnl_pct": o.get("pnl_pct"),
+        "lane": o.get("lane"),
+      }
+    )
+  brief_asof = asof or date.today().isoformat()
+  briefing = read_daily_briefing(brief_asof, mark_read=False)
+  return {
+    "chooser_state": state,
+    "outcomes": outcomes,
+    "learning_curve": curve,
+    "rules_ledger": load_rules_ledger(),
+    "rules_briefing": briefing,
+    "north_star": "most_profits",
+    "disclaimer": (
+      "Chooser + rules ledger from paper/sim outcomes — not live guarantees. "
+      "Read rules_briefing before any session."
+    ),
+  }
+
+
+@app.get("/exec/hybrid/rules")
+def exec_hybrid_rules(
+  asof: str | None = Query(default=None),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Daily rules ledger — must be read before starting a session."""
+  from datetime import date
+
+  from processor.hybrid.rules_ledger import load_rules_ledger, read_daily_briefing
+
+  brief_asof = asof or date.today().isoformat()
+  briefing = read_daily_briefing(brief_asof, mark_read=True)
+  return {
+    "ledger": load_rules_ledger(),
+    "briefing": briefing,
+    "north_star": "most_profits",
+    "disclaimer": "Self-learning anti-repeat rules from paper/sim P&L. Not investment advice.",
+  }
+
+
+@app.post("/exec/hybrid/rules/learn")
+def exec_hybrid_rules_learn(
+  payload: dict[str, Any] = Body(default={}),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Ingest a day's trades into the rules ledger (manual / backfill)."""
+  from processor.hybrid.rules_ledger import learn_from_session, load_rules_ledger
+
+  asof = str(payload.get("asof") or "")
+  trades = list(payload.get("trades") or [])
+  if not asof:
+    return {"error": "asof required"}
+  result = learn_from_session(
+    asof=asof,
+    trades=trades,
+    session_return_pct=payload.get("session_return_pct"),
+    strategy_id=payload.get("strategy_id"),
+  )
+  return {"ok": True, "learn": result, "ledger": load_rules_ledger()}
+
+
+@app.get("/exec/hybrid/wins")
+def exec_hybrid_wins(
+  limit: int = Query(default=40, ge=1, le=200),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.hybrid.wins import list_wins
+
+  return {
+    "wins": list_wins(limit=limit),
+    "north_star": "most_profits",
+    "disclaimer": "Wins are lane-labeled. Research spikes are not live-eligible.",
+  }
+
+
+@app.get("/exec/hybrid/trades")
+def exec_hybrid_trades(
+  limit: int = Query(default=200, ge=1, le=2000),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.hybrid.ledger import load_recent_trades
+
+  return {"trades": load_recent_trades(limit=limit), "north_star": "most_profits"}
+
+
+@app.get("/exec/hybrid/trades/{trade_id}")
+def exec_hybrid_trade_detail(
+  trade_id: str,
+  bar_interval: str = Query(default="1m"),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.hybrid.ledger import load_trade_by_id
+  from processor.intraday_bars import fetch_intraday_bars, pick_interval_for_date
+
+  row = load_trade_by_id(trade_id)
+  if not row:
+    raise HTTPException(status_code=404, detail="trade not found")
+  asof = str(row.get("asof") or "")
+  ticker = str(row.get("ticker") or "")
+  bars = []
+  interval_used = bar_interval
+  if asof and ticker:
+    try:
+      interval_used = pick_interval_for_date(asof, bar_interval)
+      raw = fetch_intraday_bars(ticker, session_date=asof, interval=interval_used, market="IN")
+      if len(raw) < 10 and bar_interval == "1m":
+        interval_used = pick_interval_for_date(asof, "5m")
+        raw = fetch_intraday_bars(ticker, session_date=asof, interval=interval_used, market="IN")
+      bars = [
+        {
+          "date": str(b.get("ts") or "")[:19],
+          "close": b.get("close"),
+          "high": b.get("high"),
+          "low": b.get("low"),
+          "open": b.get("open"),
+          "volume": b.get("volume"),
+        }
+        for b in raw
+      ]
+    except Exception as e:  # noqa: BLE001
+      bars = []
+      row = {**row, "bars_error": str(e)}
+  return {
+    "trade": row,
+    "bars": bars,
+    "bar_interval": interval_used,
+    "n_bars": len(bars),
+    "markers": row.get("markers")
+    or [
+      {"side": "buy", "price": row.get("entry_price"), "ts": row.get("entry_date")},
+      {"side": "sell", "price": row.get("exit_price"), "ts": row.get("exit_date")},
+    ],
+    "disclaimer": "Paper/sim trade replay — not investment advice.",
+  }
+
+
+@app.post("/exec/hybrid-sim")
+def exec_hybrid_sim(
+  asof: str | None = Query(default=None),
+  window_id: str | None = Query(default=None),
+  start: str | None = Query(default=None),
+  end: str | None = Query(default=None),
+  capital: float = Query(default=10_000.0, ge=100, le=10_000_000),
+  market: str = Query(default="IN"),
+  lane: str = Query(default="product"),
+  force_strategy: str | None = Query(default=None),
+  record_learning: bool = Query(default=True),
+  max_positions: int = Query(default=1, ge=1, le=8),
+  bar_interval: str = Query(default="5m"),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  """Run hybrid day or window sim (chooser + risk-mapped strategy)."""
+  from processor.hybrid.engine import simulate_hybrid_day, simulate_hybrid_window
+
+  if window_id or (start and end):
+    return simulate_hybrid_window(
+      window_id=window_id,
+      start=start,
+      end=end,
+      capital=capital,
+      market=market,
+      lane=lane,
+      force_strategy=force_strategy,
+      record_learning=record_learning,
+    )
+  if not asof:
+    raise HTTPException(status_code=400, detail="asof or window_id/start+end required")
+  return simulate_hybrid_day(
+    asof=asof,
+    capital=capital,
+    market=market,
+    lane=lane,
+    force_strategy=force_strategy,
+    record_learning=record_learning,
+    max_positions=max_positions,
+    bar_interval=bar_interval,
+  )
+  if not asof:
+    return {"error": "provide asof for day sim, or window_id / start+end"}
+  return simulate_hybrid_day(
+    asof=asof,
+    capital=capital,
+    market=market,
+    lane=lane,
+    force_strategy=force_strategy,
+    record_learning=record_learning,
+  )
+
+
+@app.post("/market/intraday-history")
+def market_intraday_history(
+  ticker: str = Query(...),
+  asof: str = Query(...),
+  market: str = Query(default="IN"),
+  interval: str = Query(default="auto"),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.intraday_bars import fetch_intraday_bars, pick_interval_for_date
+
+  iv = pick_interval_for_date(asof, "5m" if interval == "auto" else interval)
+  bars = fetch_intraday_bars(ticker, session_date=asof, interval=iv, market=market)
+  return {
+    "ticker": ticker,
+    "asof": asof,
+    "interval": iv,
+    "bars": [
+      {
+        "date": str(b.get("ts") or "")[:19],
+        "open": b.get("open"),
+        "high": b.get("high"),
+        "low": b.get("low"),
+        "close": b.get("close"),
+      }
+      for b in bars
+    ],
+  }
 
 
 @app.get("/exec/paper-metrics")
@@ -2035,6 +2342,264 @@ def trigger_forward_backfill(
   from processor.forward_backfill import backfill_mature_forward_returns
 
   return backfill_mature_forward_returns(batch_size=batch_size)
+
+
+@app.get("/exec/pattern-forge/summary")
+def exec_pattern_forge_summary(_: None = Depends(verify_basic_or_share)) -> dict[str, Any]:
+  from processor.pattern_forge.ledger import load_summary
+  from processor.pattern_forge.strategy_board import load_strategy_board, normalize_months
+  import json
+  from pathlib import Path
+
+  summary = load_summary()
+  board = load_strategy_board()
+  models = Path(__file__).resolve().parents[2] / "models" / "pattern_forge"
+  v2 = None
+  aim40 = None
+  product = None
+  aim_next = None
+  v2_1 = None
+  for name, slot in (
+    ("v2_latest.json", "v2"),
+    ("v2_1_latest.json", "v2_1"),
+    ("v2_aim_next_latest.json", "aim_next"),
+    ("v2_aim40_latest.json", "aim40"),
+    ("v2_product_latest.json", "product"),
+  ):
+    path = models / name
+    if not path.exists():
+      continue
+    try:
+      data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+      continue
+    if slot == "v2":
+      v2 = data
+    elif slot == "v2_1":
+      v2_1 = data
+    elif slot == "aim_next":
+      aim_next = data
+    elif slot == "aim40":
+      aim40 = data
+    else:
+      product = data
+
+  hero = v2 or aim_next or aim40 or product
+  months = board.get("hero_months") or []
+  if not months and hero:
+    months = normalize_months(hero)
+  if hero and int(hero.get("months_total") or 0) >= 12:
+    year_pnl = float(hero.get("year_pnl") or (float(hero.get("capital_end") or 0) - float(hero.get("capital_start") or 10000)))
+    worst_pnl = float(hero.get("worst_month_pnl") or 0)
+    summary = {
+      **summary,
+      "lane": hero.get("lane") or board.get("hero_lane") or "v2",
+      "promoted": "v2" if v2 else hero.get("lane"),
+      "total_return_pct": hero.get("total_return_pct"),
+      "green_months": hero.get("green_months"),
+      "months_total": hero.get("months_total"),
+      "worst_month_pct": hero.get("worst_month_pct"),
+      "best_month_pct": hero.get("best_month_pct"),
+      "worst_month_pnl": hero.get("worst_month_pnl"),
+      "year_pnl": year_pnl,
+      "loss_lte_profits": hero.get("loss_lte_profits", abs(min(0.0, worst_pnl)) <= max(0.0, year_pnl)),
+      "goal_met": bool(hero.get("green_months", 0) >= 8 and float(hero.get("total_return_pct") or 0) > 0),
+      "capital_end": hero.get("capital_end"),
+      "capital_start": hero.get("capital_start") or 10000,
+      "best_return_pct": hero.get("total_return_pct"),
+      "best_label": "v2" if v2 else hero.get("lane"),
+      "best_green_months": hero.get("green_months"),
+      "latest_label": hero.get("lane"),
+      "latest_run_id": hero.get("run_id"),
+      "aim_band": "v2",
+    }
+  return {
+    "summary": summary,
+    "months_2025": months,
+    "strategies": board.get("strategies") or [],
+    "chart": board.get("chart") or [],
+    "v2": v2,
+    "v2_1": v2_1,
+    "product": product,
+    "aim40": aim40,
+    "aim_next": aim_next,
+    "equity_compare": board.get("equity_compare") or [],
+    "north_star": "v2_promoted",
+    "disclaimer": "Paper/sim Pattern Forge — not investment advice. Higher lev = larger left-tail. v2_1 is research challenger.",
+  }
+
+
+@app.get("/exec/pattern-forge/strategies")
+def exec_pattern_forge_strategies(_: None = Depends(verify_basic_or_share)) -> dict[str, Any]:
+  from processor.pattern_forge.strategy_board import load_strategy_board
+
+  return load_strategy_board()
+
+
+@app.get("/exec/pattern-forge/decisions")
+def exec_pattern_forge_decisions(
+  limit: int = Query(default=200, ge=1, le=2000),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.pattern_forge.ledger import recent_decisions
+
+  return {"decisions": recent_decisions(limit=limit)}
+
+
+@app.get("/exec/pattern-forge/trades")
+def exec_pattern_forge_trades(
+  limit: int = Query(default=200, ge=1, le=2000),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.pattern_forge.ledger import recent_trades
+
+  return {"trades": recent_trades(limit=limit)}
+
+
+@app.get("/exec/pattern-forge/mistakes")
+def exec_pattern_forge_mistakes(
+  limit: int = Query(default=80, ge=1, le=500),
+  asof: str | None = Query(default=None),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.pattern_forge.mistake_ledger import load_rules, read_briefing, recent_mistakes
+
+  day = (asof or date.today().isoformat())[:10]
+  st = load_rules()
+  return {
+    "mistakes": recent_mistakes(limit=limit),
+    "briefing": read_briefing(day, mark_read=False),
+    "rules_state": {
+      "last_learned_asof": st.get("last_learned_asof"),
+      "stats": st.get("stats"),
+      "streak": st.get("streak"),
+    },
+    "disclaimer": "Paper/sim mistake ledger — not investment advice.",
+  }
+
+
+@app.get("/exec/pattern-forge/iterations")
+def exec_pattern_forge_iterations(
+  limit: int = Query(default=50, ge=1, le=200),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  from processor.pattern_forge.ledger import recent_iterations, recent_runs
+
+  return {"iterations": recent_iterations(limit=limit), "runs": recent_runs(limit=limit)}
+
+
+@app.get("/exec/pattern-forge/chart")
+def exec_pattern_forge_chart(
+  ticker: str = Query(...),
+  asof: str = Query(..., description="Signal/entry date YYYY-MM-DD"),
+  lookback: int = Query(default=60, ge=10, le=250),
+  _: None = Depends(verify_basic_or_share),
+) -> dict[str, Any]:
+  """Daily closes + buy/sell markers for Pattern Lab inspector."""
+  from datetime import datetime, timedelta, timezone
+
+  from processor.day_sim import _fetch_history
+  from processor.pattern_forge.ledger import recent_trades
+
+  t = ticker.strip().upper()
+  if not t.endswith(".NS") and "." not in t:
+    t = f"{t}.NS"
+  day = asof[:10]
+  end = datetime.fromisoformat(day).replace(tzinfo=timezone.utc) + timedelta(days=5)
+  hist = _fetch_history(t, end, lookback_days=lookback + 40)
+  prices = [{"date": d, "close": c, "volume": 0} for d, c in hist if d <= (datetime.fromisoformat(day) + timedelta(days=10)).date().isoformat()]
+  # Prefer last lookback bars ending near asof+exit
+  if len(prices) > lookback + 5:
+    prices = prices[-(lookback + 5) :]
+
+  markers: list[dict[str, Any]] = []
+  entry_px = exit_px = None
+  side = None
+  for tr in recent_trades(limit=500):
+    if str(tr.get("ticker") or "").upper() != t:
+      continue
+    if str(tr.get("asof") or "")[:10] != day:
+      continue
+    side = str(tr.get("side") or "long")
+    entry_px = tr.get("entry_price")
+    exit_px = tr.get("exit_price")
+    exit_asof = str(tr.get("exit_asof") or "")[:10]
+    if entry_px is not None:
+      markers.append(
+        {
+          "ts": day,
+          "side": "buy" if side == "long" else "sell",
+          "price": float(entry_px),
+          "label": "entry",
+        }
+      )
+    if exit_px is not None and exit_asof:
+      markers.append(
+        {
+          "ts": exit_asof,
+          "side": "sell" if side == "long" else "buy",
+          "price": float(exit_px),
+          "label": "exit",
+        }
+      )
+    break
+
+  return {
+    "ticker": t,
+    "asof": day,
+    "prices": prices,
+    "markers": markers,
+    "entry_price": entry_px,
+    "exit_price": exit_px,
+    "side": side,
+    "disclaimer": "Paper/sim Pattern Forge chart — not investment advice.",
+  }
+
+
+@app.get("/exec/godfather/forward/status")
+def exec_godfather_forward_status(_: None = Depends(verify_basic_or_share)) -> dict[str, Any]:
+  """Placeholder: forward-test book status (not live)."""
+  return {
+    "ok": True,
+    "placeholder": True,
+    "status": "idle",
+    "strategy_id": "copy_bulk_pro",
+    "balance": None,
+    "open_positions": [],
+    "heartbeat": None,
+    "disclaimer": "Forward controls are placeholders — paper/session-sim only until wired.",
+  }
+
+
+@app.post("/exec/godfather/forward/balance")
+def exec_godfather_forward_balance(
+  payload: dict[str, Any] = Body(default={}),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  bal = payload.get("balance")
+  return {
+    "ok": True,
+    "placeholder": True,
+    "accepted_balance": bal,
+    "disclaimer": "Balance draft accepted locally by API stub — not applied to a live book.",
+  }
+
+
+@app.post("/exec/godfather/forward/{action}")
+def exec_godfather_forward_action(
+  action: str,
+  payload: dict[str, Any] = Body(default={}),
+  _: None = Depends(verify_basic),
+) -> dict[str, Any]:
+  if action not in {"start", "pause", "flatten"}:
+    raise HTTPException(status_code=400, detail="action must be start|pause|flatten")
+  return {
+    "ok": True,
+    "placeholder": True,
+    "action": action,
+    "payload": payload,
+    "disclaimer": "Forward action stub — no broker orders placed.",
+  }
 
 
 @app.post("/internal/train")

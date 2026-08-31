@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-08-30",
+  "mode": "synthetic",
+  "claim": "Synthetic oracle only \u2014 replace with F&O disk-cache ceiling before live ambition",
+  "long_path": {
+    "ok": true,
+    "side": "long",
+    "entry_i": 5,
+    "entry_px": 102.5,
+    "exit_i": 19,
+    "exit_px": 109.5,
+    "exit_reason": "session_close",
+    "pnl_frac": 0.06829268292682933
+  },
+  "short_path": {
+    "ok": true,
+    "side": "short",
+    "entry_i": 5,
+    "entry_px": 97.5,
+    "exit_i": 19,
+    "exit_px": 90.5,
+    "exit_reason": "session_close",
+    "pnl_frac": 0.07179487179487176
+  },
+  "days": [
+    {
+      "day": "up",
+      "side": "buy",
+      "session_close_ret_pct": 6.829
+    },
+    {
+      "day": "down",
+      "side": "sell",
+      "session_close_ret_pct": 7.179
+    }
+  ],
+  "mean_oracle_pct": 7.004
+}

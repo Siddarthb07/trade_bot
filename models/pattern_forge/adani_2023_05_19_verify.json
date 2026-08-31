@@ -1,0 +1,39 @@
+{
+  "trade_id": "v2_2023_05_19_ADANIENT",
+  "ledger": {
+    "asof": "2023-05-19",
+    "exit_asof": "2023-05-22",
+    "ticker": "ADANIENT.NS",
+    "entry_price": 1956.05,
+    "exit_price": 2326.10,
+    "pnl_pct": 18.918,
+    "pnl_inr": 5280.99,
+    "year_pnl_2023": 13074.92,
+    "share_of_year_pnl_pct": 40.4,
+    "leverage": 11.0
+  },
+  "independent_checks": [
+    {
+      "source": "LiveMint live blog 19 May 2023",
+      "url": "https://www.livemint.com/market/live-blog/adani-ent-share-price-live-blog-for-19-may-2023-11684465269370.html",
+      "note": "Adani Ent closed at ₹1956.9 on 19 May 2023 (matches entry ~1956.05)"
+    },
+    {
+      "source": "The Hindu BusinessLine 22 May 2023",
+      "url": "https://www.thehindubusinessline.com/markets/adani-group-surpasses-10-lakh-crore-market-cap-after-clearing-hindenburg-allegations/article66880989.ece",
+      "note": "Adani Enterprises gained ~18% to close at ₹2,326 on 22 May 2023 (matches exit)"
+    },
+    {
+      "source": "BusinessToday 22 May 2023",
+      "url": "https://www.businesstoday.in/markets/company-stock/story/adani-stocks-adani-enterprises-zooms-19-today-groups-six-other-shares-settle-at-upper-price-bands-382296-2023-05-22",
+      "note": "Reports ~18.8% gain / close ~₹2325.55 BSE; NSE settle cited ~₹2338 — real upper-band event day, not a Yahoo split/adjust artifact"
+    },
+    {
+      "source": "local yfinance auto_adjust=False via day_sim._fetch_history",
+      "note": "Close 2023-05-19=1956.05; 2023-05-22=2326.10; raw_ret=+18.918%"
+    }
+  ],
+  "verdict": "REAL_NSE_MOVE",
+  "implication": "Concentration is genuine name/event risk (SEBI/Hindenburg-related bounce), not data corruption. Still disqualifies treating +130.7% as a smooth edge without single-name caps.",
+  "v2_data_untouched": true
+}

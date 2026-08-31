@@ -4,6 +4,8 @@ import {
   CartesianGrid,
   ComposedChart,
   Line,
+  ReferenceDot,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -15,6 +17,16 @@ export interface PricePoint {
   date: string;
   close: number;
   volume?: number;
+  high?: number;
+  low?: number;
+  open?: number;
+}
+
+export interface TradeMarker {
+  side: "buy" | "sell" | string;
+  price?: number | null;
+  ts?: string | null;
+  label?: string;
 }
 
 export interface TrendInfo {
@@ -78,15 +90,21 @@ export function MiniPriceChart({
   );
 }
 
-/** Full detail chart with volume + MA50 */
+/** Full detail chart with volume + MA50 + optional buy/sell markers */
 export function DetailPriceChart({
   prices,
   trend,
   height = 300,
+  markers = [],
+  slPrice,
+  entryPrice,
 }: {
   prices: PricePoint[];
   trend?: TrendInfo;
   height?: number;
+  markers?: TradeMarker[];
+  slPrice?: number | null;
+  entryPrice?: number | null;
 }) {
   if (!prices.length) {
     return <p className="warn">Price history unavailable</p>;
@@ -95,10 +113,23 @@ export function DetailPriceChart({
   const up = (trend?.return_3m ?? trend?.return_1m ?? 0) >= 0;
   const stroke = up ? "#4ade80" : "#f87171";
 
+  const markerDots = markers
+    .filter((m) => m.price != null)
+    .map((m) => {
+      const ts = String(m.ts || "").slice(0, 10);
+      const hit = data.find((p) => String(p.date).startsWith(ts)) || data[m.side === "buy" ? 0 : data.length - 1];
+      return {
+        ...m,
+        x: hit?.date,
+        y: Number(m.price),
+        fill: m.side === "buy" ? "#4ade80" : "#f87171",
+      };
+    });
+
   return (
     <>
       <ResponsiveContainer width="100%" height={height}>
-        <ComposedChart data={data} margin={{ top: 8, right: 12, left: 4, bottom: 0 }}>
+        <ComposedChart data={data} margin={{ top: 12, right: 12, left: 4, bottom: 0 }}>
           <defs>
             <linearGradient id="detailFill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor={stroke} stopOpacity={0.25} />
@@ -120,6 +151,26 @@ export function DetailPriceChart({
           <Area yAxisId="price" type="monotone" dataKey="close" stroke={stroke} strokeWidth={2} fill="url(#detailFill)" dot={false} />
           <Line yAxisId="price" type="monotone" dataKey="ma50" stroke="#94a3b8" strokeWidth={1.5} dot={false} />
           <Area yAxisId="vol" type="monotone" dataKey="volume" fill="#334155" stroke="none" fillOpacity={0.4} />
+          {entryPrice != null && (
+            <ReferenceLine yAxisId="price" y={entryPrice} stroke="#93c5fd" strokeDasharray="4 4" label={{ value: "Entry", fill: "#93c5fd", fontSize: 10 }} />
+          )}
+          {slPrice != null && (
+            <ReferenceLine yAxisId="price" y={slPrice} stroke="#f87171" strokeDasharray="3 3" label={{ value: "SL", fill: "#f87171", fontSize: 10 }} />
+          )}
+          {markerDots.map((m, i) =>
+            m.x != null ? (
+              <ReferenceDot
+                key={`${m.side}-${i}`}
+                yAxisId="price"
+                x={m.x}
+                y={m.y}
+                r={5}
+                fill={m.fill}
+                stroke="#0a0e17"
+                strokeWidth={1}
+              />
+            ) : null
+          )}
         </ComposedChart>
       </ResponsiveContainer>
       {trend && (
@@ -128,6 +179,15 @@ export function DetailPriceChart({
           <span>3mo {fmtPct(trend.return_3m, 1)}</span>
           <span>{trend.above_ma50 ? "Above MA50" : "Below MA50"}</span>
           <span className={`mom-${trend.momentum}`}>{trend.momentum} momentum</span>
+        </div>
+      )}
+      {markerDots.length > 0 && (
+        <div className="chart-stats">
+          {markerDots.map((m, i) => (
+            <span key={i} style={{ color: m.fill }}>
+              {m.side.toUpperCase()} @ {m.y?.toFixed(2)}
+            </span>
+          ))}
         </div>
       )}
     </>

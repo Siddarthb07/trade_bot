@@ -1,0 +1,47 @@
+{
+  "run_id": "82ef0733-002",
+  "iteration_id": null,
+  "strategy": "daily_swing",
+  "benchmark": "2025",
+  "claim": "paper/daily close-to-close; clean PIT; modeled IN_FO ~12bps RT (not cash 30bps); not live fills",
+  "capital_start": 10000.0,
+  "capital_end": 10214.76,
+  "total_return_pct": 2.148,
+  "green_months": 1,
+  "months_total": 2,
+  "n_trades": 40,
+  "months": [
+    {
+      "month": "november",
+      "capital_start": 10000.0,
+      "capital_end": 10324.13,
+      "month_return_pct": 3.241,
+      "n_trades": 19,
+      "wins": 12
+    },
+    {
+      "month": "december",
+      "capital_start": 10324.13,
+      "capital_end": 10214.76,
+      "month_return_pct": -1.059,
+      "n_trades": 21,
+      "wins": 11
+    }
+  ],
+  "knobs": {
+    "min_score": 0.005,
+    "leverage": 3.0,
+    "sleeve_frac": 0.2,
+    "long_only": true,
+    "r1_lo": 0.005,
+    "r1_hi": 0.06,
+    "universe_n": 0,
+    "max_daily_loss_pct": 8.0
+  },
+  "no_ruin": true,
+  "goal": {
+    "green_months_min": 8,
+    "mean_month_positive": true
+  },
+  "goal_met": false
+}

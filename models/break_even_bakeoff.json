@@ -1,0 +1,1478 @@
+{
+  "generated_at": "2026-08-29T14:09:05.752119+00:00",
+  "capital": 10000.0,
+  "capital_use_frac": 0.5,
+  "coverage": {
+    "ok": true,
+    "total_buys": 13144,
+    "window_buys": 1812,
+    "window_min": "2026-07-01T18:30:00+00:00",
+    "window_max": "2026-07-20T18:30:00+00:00",
+    "data_gap": false
+  },
+  "lanes": [
+    {
+      "lane": "C",
+      "label": "august",
+      "window": {
+        "start": "2026-08-03",
+        "end": "2026-08-28",
+        "n_days": 20
+      },
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.48,
+        "min_or_pct": 0.0015,
+        "exit_at_session_end": true,
+        "rank_by": "or_width",
+        "max_chase_attempts": 2,
+        "target_return_pct": 10.0,
+        "max_daily_loss_pct": 6.0,
+        "max_trade_risk_pct": 6.0,
+        "intraday_stop_with_session_end": true,
+        "capital_use_frac": 0.5,
+        "require_bulk_confluence": false
+      },
+      "capital_start": 10000.0,
+      "capital_end": 9277.82,
+      "month_pnl_inr": -722.18,
+      "compound_pct": -7.222,
+      "total_trades": 24,
+      "sit_outs": 8,
+      "trade_days": 12,
+      "avg_pnl_on_trade_days": -60.18,
+      "worst_day_pct": -3.572,
+      "best_day_pct": 8.334,
+      "max_dd_pct": 8.792,
+      "pass_break_even": false,
+      "daily": [
+        {
+          "asof": "2026-08-03",
+          "capital_start": 10000.0,
+          "capital_end": 10168.67,
+          "pnl_inr": 168.67,
+          "return_pct": 1.687,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "ICICIBANK.NS",
+              "pnl": 114.2,
+              "lev": 6.75,
+              "exit": "session_close"
+            },
+            {
+              "ticker": "ADANIENT.NS",
+              "pnl": -150.55,
+              "lev": 6.75,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-04",
+          "capital_start": 10168.67,
+          "capital_end": 9826.77,
+          "pnl_inr": -341.9,
+          "return_pct": -3.362,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "pnl": -425.85,
+              "lev": 6.75,
+              "exit": "stop_loss"
+            },
+            {
+              "ticker": "MARUTI.NS",
+              "pnl": -65.42,
+              "lev": 3.173,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-05",
+          "capital_start": 9826.77,
+          "capital_end": 9826.77,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-06",
+          "capital_start": 9826.77,
+          "capital_end": 9589.26,
+          "pnl_inr": -237.51,
+          "return_pct": -2.417,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "BAJFINANCE.NS",
+              "pnl": -511.81,
+              "lev": 6.75,
+              "exit": "stop_loss"
+            },
+            {
+              "ticker": "SBIN.NS",
+              "pnl": 146.54,
+              "lev": 2.023,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-07",
+          "capital_start": 9589.26,
+          "capital_end": 9384.23,
+          "pnl_inr": -205.03,
+          "return_pct": -2.138,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "pnl": -409.17,
+              "lev": 6.75,
+              "exit": "stop_loss"
+            },
+            {
+              "ticker": "SBIN.NS",
+              "pnl": 64.38,
+              "lev": 3.084,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-10",
+          "capital_start": 9384.23,
+          "capital_end": 10166.28,
+          "pnl_inr": 782.05,
+          "return_pct": 8.334,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "pnl": 135.82,
+              "lev": 6.75,
+              "exit": "session_close"
+            },
+            {
+              "ticker": "BAJFINANCE.NS",
+              "pnl": 452.61,
+              "lev": 6.75,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-11",
+          "capital_start": 10166.28,
+          "capital_end": 9803.13,
+          "pnl_inr": -363.15,
+          "return_pct": -3.572,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "pnl": -440.9,
+              "lev": 6.75,
+              "exit": "stop_loss"
+            },
+            {
+              "ticker": "BAJFINANCE.NS",
+              "pnl": -69.01,
+              "lev": 3.005,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-12",
+          "capital_start": 9803.13,
+          "capital_end": 9686.33,
+          "pnl_inr": -116.8,
+          "return_pct": -1.191,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "SBIN.NS",
+              "pnl": -176.03,
+              "lev": 6.75,
+              "exit": "session_close"
+            },
+            {
+              "ticker": "ICICIBANK.NS",
+              "pnl": -125.54,
+              "lev": 5.868,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-13",
+          "capital_start": 9686.33,
+          "capital_end": 9686.33,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-14",
+          "capital_start": 9686.33,
+          "capital_end": 9686.33,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-17",
+          "capital_start": 9686.33,
+          "capital_end": 9981.11,
+          "pnl_inr": 294.78,
+          "return_pct": 3.043,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "VEDL.NS",
+              "pnl": -119.6,
+              "lev": 6.75,
+              "exit": "session_close"
+            },
+            {
+              "ticker": "JSWSTEEL.NS",
+              "pnl": 221.55,
+              "lev": 6.5,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-18",
+          "capital_start": 9981.11,
+          "capital_end": 9981.11,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "capital_start": 9981.11,
+          "capital_end": 9981.11,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-20",
+          "capital_start": 9981.11,
+          "capital_end": 9981.11,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-21",
+          "capital_start": 9981.11,
+          "capital_end": 9682.61,
+          "pnl_inr": -298.5,
+          "return_pct": -2.991,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "pnl": -460.22,
+              "lev": 6.75,
+              "exit": "stop_loss"
+            },
+            {
+              "ticker": "TCS.NS",
+              "pnl": 22.13,
+              "lev": 2.696,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-24",
+          "capital_start": 9682.61,
+          "capital_end": 9358.88,
+          "pnl_inr": -323.73,
+          "return_pct": -3.343,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "HINDALCO.NS",
+              "pnl": 82.67,
+              "lev": 6.75,
+              "exit": "session_close"
+            },
+            {
+              "ticker": "VEDL.NS",
+              "pnl": -603.91,
+              "lev": 6.75,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-25",
+          "capital_start": 9358.88,
+          "capital_end": 9358.88,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-26",
+          "capital_start": 9358.88,
+          "capital_end": 9274.68,
+          "pnl_inr": -84.2,
+          "return_pct": -0.9,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "ADANIENT.NS",
+              "pnl": -415.3,
+              "lev": 6.246,
+              "exit": "stop_loss"
+            },
+            {
+              "ticker": "VEDL.NS",
+              "pnl": 205.48,
+              "lev": 2.806,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-08-27",
+          "capital_start": 9274.68,
+          "capital_end": 9274.68,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-28",
+          "capital_start": 9274.68,
+          "capital_end": 9277.82,
+          "pnl_inr": 3.14,
+          "return_pct": 0.034,
+          "n_trades": 2,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "TCS.NS",
+              "pnl": -14.51,
+              "lev": 5.688,
+              "exit": "session_close"
+            },
+            {
+              "ticker": "BAJFINANCE.NS",
+              "pnl": -156.13,
+              "lev": 6.75,
+              "exit": "session_close"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lane": "A",
+      "label": "august",
+      "window": {
+        "start": "2026-08-03",
+        "end": "2026-08-28",
+        "n_days": 20
+      },
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.48,
+        "min_or_pct": 0.0015,
+        "exit_at_session_end": true,
+        "rank_by": "or_width",
+        "max_chase_attempts": 2,
+        "target_return_pct": 10.0,
+        "max_daily_loss_pct": 6.0,
+        "max_trade_risk_pct": 6.0,
+        "intraday_stop_with_session_end": true,
+        "capital_use_frac": 0.5,
+        "require_bulk_confluence": true,
+        "bulk_lookback_sessions": 3,
+        "bulk_min_win_rate": 0.55
+      },
+      "capital_start": 10000.0,
+      "capital_end": 10000.0,
+      "month_pnl_inr": 0.0,
+      "compound_pct": 0.0,
+      "total_trades": 0,
+      "sit_outs": 20,
+      "trade_days": 0,
+      "avg_pnl_on_trade_days": null,
+      "worst_day_pct": 0.0,
+      "best_day_pct": 0.0,
+      "max_dd_pct": 0.0,
+      "pass_break_even": false,
+      "daily": [
+        {
+          "asof": "2026-08-03",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-04",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-05",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-06",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-07",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-10",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-11",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-12",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-13",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-14",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-17",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-18",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-20",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-21",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-24",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-25",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-26",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-27",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_or_edge_below_cost"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-28",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        }
+      ]
+    },
+    {
+      "lane": "B",
+      "label": "august",
+      "window": {
+        "start": "2026-08-03",
+        "end": "2026-08-28",
+        "n_days": 20
+      },
+      "params": {
+        "filter_mode": "copy_bulk_pro",
+        "max_leverage": 5.0,
+        "conf_floor": 0.55,
+        "max_daily_loss_pct": 4.0,
+        "max_trade_risk_pct": 3.0,
+        "intraday_stop_with_session_end": true,
+        "exit_at_session_end": true,
+        "max_chase_attempts": 1,
+        "use_hl_exits": false,
+        "max_positions": 1,
+        "bulk_lookback_sessions": 1,
+        "bulk_min_win_rate": 0.55,
+        "capital_use_frac": 0.5
+      },
+      "capital_start": 10000.0,
+      "capital_end": 10000.0,
+      "month_pnl_inr": 0.0,
+      "compound_pct": 0.0,
+      "total_trades": 0,
+      "sit_outs": 20,
+      "trade_days": 0,
+      "avg_pnl_on_trade_days": null,
+      "worst_day_pct": 0.0,
+      "best_day_pct": 0.0,
+      "max_dd_pct": 0.0,
+      "pass_break_even": false,
+      "daily": [
+        {
+          "asof": "2026-08-03",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-04",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-05",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-06",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-07",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-10",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-11",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-12",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-13",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-14",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-17",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-18",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-19",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-20",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-21",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-24",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-25",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-26",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-27",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-08-28",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        }
+      ]
+    },
+    {
+      "lane": "A",
+      "label": "july_bulk_window",
+      "window": {
+        "start": "2026-07-01",
+        "end": "2026-07-17",
+        "n_days": 13
+      },
+      "params": {
+        "filter_mode": "target_return",
+        "max_leverage": 75.0,
+        "conf_floor": 0.48,
+        "min_or_pct": 0.0015,
+        "exit_at_session_end": true,
+        "rank_by": "or_width",
+        "max_chase_attempts": 2,
+        "target_return_pct": 10.0,
+        "max_daily_loss_pct": 6.0,
+        "max_trade_risk_pct": 6.0,
+        "intraday_stop_with_session_end": true,
+        "capital_use_frac": 0.5,
+        "require_bulk_confluence": true,
+        "bulk_lookback_sessions": 3,
+        "bulk_min_win_rate": 0.55
+      },
+      "capital_start": 10000.0,
+      "capital_end": 10000.0,
+      "month_pnl_inr": 0.0,
+      "compound_pct": 0.0,
+      "total_trades": 0,
+      "sit_outs": 13,
+      "trade_days": 0,
+      "avg_pnl_on_trade_days": null,
+      "worst_day_pct": 0.0,
+      "best_day_pct": 0.0,
+      "max_dd_pct": 0.0,
+      "pass_break_even": false,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-02",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-03",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-06",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-07",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-08",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-09",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-10",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-13",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-14",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-15",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-16",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-17",
+          "capital_start": 10000.0,
+          "capital_end": 10000.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [
+            "sit_out_no_bulk_confluence"
+          ],
+          "trades": []
+        }
+      ]
+    },
+    {
+      "lane": "B",
+      "label": "july_bulk_window",
+      "window": {
+        "start": "2026-07-01",
+        "end": "2026-07-17",
+        "n_days": 13
+      },
+      "params": {
+        "filter_mode": "copy_bulk_pro",
+        "max_leverage": 5.0,
+        "conf_floor": 0.55,
+        "max_daily_loss_pct": 4.0,
+        "max_trade_risk_pct": 3.0,
+        "intraday_stop_with_session_end": true,
+        "exit_at_session_end": true,
+        "max_chase_attempts": 1,
+        "use_hl_exits": false,
+        "max_positions": 1,
+        "bulk_lookback_sessions": 1,
+        "bulk_min_win_rate": 0.55,
+        "capital_use_frac": 0.5
+      },
+      "capital_start": 10000.0,
+      "capital_end": 10538.9,
+      "month_pnl_inr": 538.9,
+      "compound_pct": 5.389,
+      "total_trades": 12,
+      "sit_outs": 1,
+      "trade_days": 12,
+      "avg_pnl_on_trade_days": 44.91,
+      "worst_day_pct": -2.675,
+      "best_day_pct": 6.662,
+      "max_dd_pct": 4.634,
+      "pass_break_even": true,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "capital_start": 10000.0,
+          "capital_end": 10126.96,
+          "pnl_inr": 126.96,
+          "return_pct": 1.27,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "BLISSGVS.NS",
+              "pnl": 86.25,
+              "lev": 2.7,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-02",
+          "capital_start": 10126.96,
+          "capital_end": 9856.11,
+          "pnl_inr": -270.85,
+          "return_pct": -2.675,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "PAISALO.NS",
+              "pnl": -311.47,
+              "lev": 2.7,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-03",
+          "capital_start": 9856.11,
+          "capital_end": 10069.0,
+          "pnl_inr": 212.89,
+          "return_pct": 2.16,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "PAISALO.NS",
+              "pnl": 172.65,
+              "lev": 2.7,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-06",
+          "capital_start": 10069.0,
+          "capital_end": 10069.0,
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "sit_out": true,
+          "skip_reasons": [],
+          "trades": []
+        },
+        {
+          "asof": "2026-07-07",
+          "capital_start": 10069.0,
+          "capital_end": 9855.53,
+          "pnl_inr": -213.47,
+          "return_pct": -2.12,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "MANCREDIT.NS",
+              "pnl": -253.95,
+              "lev": 2.7,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-08",
+          "capital_start": 9855.53,
+          "capital_end": 9657.68,
+          "pnl_inr": -197.85,
+          "return_pct": -2.008,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "MANCREDIT.NS",
+              "pnl": -237.48,
+              "lev": 2.7,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-09",
+          "capital_start": 9657.68,
+          "capital_end": 10022.16,
+          "pnl_inr": 364.48,
+          "return_pct": 3.774,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "MANCREDIT.NS",
+              "pnl": 324.8,
+              "lev": 2.7,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-10",
+          "capital_start": 10022.16,
+          "capital_end": 10101.58,
+          "pnl_inr": 79.42,
+          "return_pct": 0.792,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "PANSARI.NS",
+              "pnl": 38.69,
+              "lev": 2.7,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-13",
+          "capital_start": 10101.58,
+          "capital_end": 9983.76,
+          "pnl_inr": -117.82,
+          "return_pct": -1.166,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "BCLIND.NS",
+              "pnl": -146.2,
+              "lev": 1.884,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-14",
+          "capital_start": 9983.76,
+          "capital_end": 9840.09,
+          "pnl_inr": -143.67,
+          "return_pct": -1.439,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "FINOPB.NS",
+              "pnl": -171.68,
+              "lev": 1.884,
+              "exit": "stop_loss"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-15",
+          "capital_start": 9840.09,
+          "capital_end": 10495.62,
+          "pnl_inr": 655.53,
+          "return_pct": 6.662,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "ATALREAL.NS",
+              "pnl": 614.67,
+              "lev": 2.7,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-16",
+          "capital_start": 10495.62,
+          "capital_end": 10653.59,
+          "pnl_inr": 157.97,
+          "return_pct": 1.505,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "ATALREAL.NS",
+              "pnl": 115.23,
+              "lev": 2.7,
+              "exit": "session_close"
+            }
+          ]
+        },
+        {
+          "asof": "2026-07-17",
+          "capital_start": 10653.59,
+          "capital_end": 10538.9,
+          "pnl_inr": -114.69,
+          "return_pct": -1.077,
+          "n_trades": 1,
+          "sit_out": false,
+          "skip_reasons": [],
+          "trades": [
+            {
+              "ticker": "ATALREAL.NS",
+              "pnl": -157.69,
+              "lev": 2.7,
+              "exit": "session_close"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "promoted": "copy_bulk_pro",
+  "winner": {
+    "lane": "B",
+    "label": "july_bulk_window"
+  },
+  "verdict": "PASS \u2014 Lane B (july_bulk_window) compound +5.39% with avg trade-day PnL 44.91. Promoted=copy_bulk_pro.",
+  "disclaimer": "Paper/sim only \u2014 not live fills, not investment advice."
+}

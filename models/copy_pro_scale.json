@@ -1,0 +1,1027 @@
+{
+  "generated_at": "2026-08-29T14:51:00.480601+00:00",
+  "window": {
+    "start": "2026-07-01",
+    "end": "2026-07-18"
+  },
+  "runs": [
+    {
+      "name": "baseline",
+      "params": {
+        "name": "baseline",
+        "capital_use_frac": 0.5,
+        "max_positions": 1,
+        "sl_cooldown_days": 0,
+        "bulk_lookback_sessions": 1
+      },
+      "compound_pct": 5.389,
+      "pnl_inr": 538.9,
+      "capital_end": 10538.9,
+      "total_trades": 12,
+      "trade_days": 12,
+      "avg_pnl_on_trade_days": 44.91,
+      "worst_day_pct": -2.675,
+      "best_day_pct": 6.662,
+      "max_dd_pct": 4.634,
+      "pass_break_even": true,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "pnl_inr": 126.96,
+          "return_pct": 1.27,
+          "n_trades": 1,
+          "capital_end": 10126.96
+        },
+        {
+          "asof": "2026-07-02",
+          "pnl_inr": -270.85,
+          "return_pct": -2.675,
+          "n_trades": 1,
+          "capital_end": 9856.11
+        },
+        {
+          "asof": "2026-07-03",
+          "pnl_inr": 212.89,
+          "return_pct": 2.16,
+          "n_trades": 1,
+          "capital_end": 10069.0
+        },
+        {
+          "asof": "2026-07-06",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 10069.0
+        },
+        {
+          "asof": "2026-07-07",
+          "pnl_inr": -213.47,
+          "return_pct": -2.12,
+          "n_trades": 1,
+          "capital_end": 9855.53
+        },
+        {
+          "asof": "2026-07-08",
+          "pnl_inr": -197.85,
+          "return_pct": -2.008,
+          "n_trades": 1,
+          "capital_end": 9657.68
+        },
+        {
+          "asof": "2026-07-09",
+          "pnl_inr": 364.48,
+          "return_pct": 3.774,
+          "n_trades": 1,
+          "capital_end": 10022.16
+        },
+        {
+          "asof": "2026-07-10",
+          "pnl_inr": 79.42,
+          "return_pct": 0.792,
+          "n_trades": 1,
+          "capital_end": 10101.58
+        },
+        {
+          "asof": "2026-07-13",
+          "pnl_inr": -117.82,
+          "return_pct": -1.166,
+          "n_trades": 1,
+          "capital_end": 9983.76
+        },
+        {
+          "asof": "2026-07-14",
+          "pnl_inr": -143.67,
+          "return_pct": -1.439,
+          "n_trades": 1,
+          "capital_end": 9840.09
+        },
+        {
+          "asof": "2026-07-15",
+          "pnl_inr": 655.53,
+          "return_pct": 6.662,
+          "n_trades": 1,
+          "capital_end": 10495.62
+        },
+        {
+          "asof": "2026-07-16",
+          "pnl_inr": 157.97,
+          "return_pct": 1.505,
+          "n_trades": 1,
+          "capital_end": 10653.59
+        },
+        {
+          "asof": "2026-07-17",
+          "pnl_inr": -114.69,
+          "return_pct": -1.077,
+          "n_trades": 1,
+          "capital_end": 10538.9
+        }
+      ]
+    },
+    {
+      "name": "cooldown1",
+      "params": {
+        "name": "cooldown1",
+        "capital_use_frac": 0.5,
+        "max_positions": 1,
+        "sl_cooldown_days": 1,
+        "bulk_lookback_sessions": 1
+      },
+      "compound_pct": 3.871,
+      "pnl_inr": 387.08,
+      "capital_end": 10387.08,
+      "total_trades": 11,
+      "trade_days": 11,
+      "avg_pnl_on_trade_days": 35.19,
+      "worst_day_pct": -2.675,
+      "best_day_pct": 6.662,
+      "max_dd_pct": 6.008,
+      "pass_break_even": true,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "pnl_inr": 126.96,
+          "return_pct": 1.27,
+          "n_trades": 1,
+          "capital_end": 10126.96
+        },
+        {
+          "asof": "2026-07-02",
+          "pnl_inr": -270.85,
+          "return_pct": -2.675,
+          "n_trades": 1,
+          "capital_end": 9856.11
+        },
+        {
+          "asof": "2026-07-03",
+          "pnl_inr": -131.39,
+          "return_pct": -1.333,
+          "n_trades": 1,
+          "capital_end": 9724.72
+        },
+        {
+          "asof": "2026-07-06",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 9724.72
+        },
+        {
+          "asof": "2026-07-07",
+          "pnl_inr": -206.17,
+          "return_pct": -2.12,
+          "n_trades": 1,
+          "capital_end": 9518.55
+        },
+        {
+          "asof": "2026-07-08",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 9518.55
+        },
+        {
+          "asof": "2026-07-09",
+          "pnl_inr": 359.23,
+          "return_pct": 3.774,
+          "n_trades": 1,
+          "capital_end": 9877.78
+        },
+        {
+          "asof": "2026-07-10",
+          "pnl_inr": 78.27,
+          "return_pct": 0.792,
+          "n_trades": 1,
+          "capital_end": 9956.05
+        },
+        {
+          "asof": "2026-07-13",
+          "pnl_inr": -116.12,
+          "return_pct": -1.166,
+          "n_trades": 1,
+          "capital_end": 9839.93
+        },
+        {
+          "asof": "2026-07-14",
+          "pnl_inr": -141.6,
+          "return_pct": -1.439,
+          "n_trades": 1,
+          "capital_end": 9698.33
+        },
+        {
+          "asof": "2026-07-15",
+          "pnl_inr": 646.09,
+          "return_pct": 6.662,
+          "n_trades": 1,
+          "capital_end": 10344.42
+        },
+        {
+          "asof": "2026-07-16",
+          "pnl_inr": 155.7,
+          "return_pct": 1.505,
+          "n_trades": 1,
+          "capital_end": 10500.12
+        },
+        {
+          "asof": "2026-07-17",
+          "pnl_inr": -113.04,
+          "return_pct": -1.077,
+          "n_trades": 1,
+          "capital_end": 10387.08
+        }
+      ]
+    },
+    {
+      "name": "use60",
+      "params": {
+        "name": "use60",
+        "capital_use_frac": 0.6,
+        "max_positions": 1,
+        "sl_cooldown_days": 0,
+        "bulk_lookback_sessions": 1
+      },
+      "compound_pct": 6.394,
+      "pnl_inr": 639.43,
+      "capital_end": 10639.43,
+      "total_trades": 12,
+      "trade_days": 12,
+      "avg_pnl_on_trade_days": 53.29,
+      "worst_day_pct": -3.209,
+      "best_day_pct": 7.994,
+      "max_dd_pct": 5.558,
+      "pass_break_even": true,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "pnl_inr": 152.35,
+          "return_pct": 1.524,
+          "n_trades": 1,
+          "capital_end": 10152.35
+        },
+        {
+          "asof": "2026-07-02",
+          "pnl_inr": -325.83,
+          "return_pct": -3.209,
+          "n_trades": 1,
+          "capital_end": 9826.52
+        },
+        {
+          "asof": "2026-07-03",
+          "pnl_inr": 254.7,
+          "return_pct": 2.592,
+          "n_trades": 1,
+          "capital_end": 10081.22
+        },
+        {
+          "asof": "2026-07-06",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 10081.22
+        },
+        {
+          "asof": "2026-07-07",
+          "pnl_inr": -256.48,
+          "return_pct": -2.544,
+          "n_trades": 1,
+          "capital_end": 9824.74
+        },
+        {
+          "asof": "2026-07-08",
+          "pnl_inr": -236.67,
+          "return_pct": -2.409,
+          "n_trades": 1,
+          "capital_end": 9588.07
+        },
+        {
+          "asof": "2026-07-09",
+          "pnl_inr": 434.22,
+          "return_pct": 4.529,
+          "n_trades": 1,
+          "capital_end": 10022.29
+        },
+        {
+          "asof": "2026-07-10",
+          "pnl_inr": 95.3,
+          "return_pct": 0.951,
+          "n_trades": 1,
+          "capital_end": 10117.59
+        },
+        {
+          "asof": "2026-07-13",
+          "pnl_inr": -141.6,
+          "return_pct": -1.4,
+          "n_trades": 1,
+          "capital_end": 9975.99
+        },
+        {
+          "asof": "2026-07-14",
+          "pnl_inr": -172.27,
+          "return_pct": -1.727,
+          "n_trades": 1,
+          "capital_end": 9803.72
+        },
+        {
+          "asof": "2026-07-15",
+          "pnl_inr": 783.73,
+          "return_pct": 7.994,
+          "n_trades": 1,
+          "capital_end": 10587.45
+        },
+        {
+          "asof": "2026-07-16",
+          "pnl_inr": 191.22,
+          "return_pct": 1.806,
+          "n_trades": 1,
+          "capital_end": 10778.67
+        },
+        {
+          "asof": "2026-07-17",
+          "pnl_inr": -139.24,
+          "return_pct": -1.292,
+          "n_trades": 1,
+          "capital_end": 10639.43
+        }
+      ]
+    },
+    {
+      "name": "use60_cd1",
+      "params": {
+        "name": "use60_cd1",
+        "capital_use_frac": 0.6,
+        "max_positions": 1,
+        "sl_cooldown_days": 1,
+        "bulk_lookback_sessions": 1
+      },
+      "compound_pct": 4.566,
+      "pnl_inr": 456.62,
+      "capital_end": 10456.62,
+      "total_trades": 11,
+      "trade_days": 11,
+      "avg_pnl_on_trade_days": 41.51,
+      "worst_day_pct": -3.209,
+      "best_day_pct": 7.994,
+      "max_dd_pct": 7.181,
+      "pass_break_even": true,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "pnl_inr": 152.35,
+          "return_pct": 1.524,
+          "n_trades": 1,
+          "capital_end": 10152.35
+        },
+        {
+          "asof": "2026-07-02",
+          "pnl_inr": -325.83,
+          "return_pct": -3.209,
+          "n_trades": 1,
+          "capital_end": 9826.52
+        },
+        {
+          "asof": "2026-07-03",
+          "pnl_inr": -157.19,
+          "return_pct": -1.6,
+          "n_trades": 1,
+          "capital_end": 9669.33
+        },
+        {
+          "asof": "2026-07-06",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 9669.33
+        },
+        {
+          "asof": "2026-07-07",
+          "pnl_inr": -246.0,
+          "return_pct": -2.544,
+          "n_trades": 1,
+          "capital_end": 9423.33
+        },
+        {
+          "asof": "2026-07-08",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 9423.33
+        },
+        {
+          "asof": "2026-07-09",
+          "pnl_inr": 426.76,
+          "return_pct": 4.529,
+          "n_trades": 1,
+          "capital_end": 9850.09
+        },
+        {
+          "asof": "2026-07-10",
+          "pnl_inr": 93.66,
+          "return_pct": 0.951,
+          "n_trades": 1,
+          "capital_end": 9943.75
+        },
+        {
+          "asof": "2026-07-13",
+          "pnl_inr": -139.17,
+          "return_pct": -1.4,
+          "n_trades": 1,
+          "capital_end": 9804.58
+        },
+        {
+          "asof": "2026-07-14",
+          "pnl_inr": -169.31,
+          "return_pct": -1.727,
+          "n_trades": 1,
+          "capital_end": 9635.27
+        },
+        {
+          "asof": "2026-07-15",
+          "pnl_inr": 770.26,
+          "return_pct": 7.994,
+          "n_trades": 1,
+          "capital_end": 10405.53
+        },
+        {
+          "asof": "2026-07-16",
+          "pnl_inr": 187.94,
+          "return_pct": 1.806,
+          "n_trades": 1,
+          "capital_end": 10593.47
+        },
+        {
+          "asof": "2026-07-17",
+          "pnl_inr": -136.85,
+          "return_pct": -1.292,
+          "n_trades": 1,
+          "capital_end": 10456.62
+        }
+      ]
+    },
+    {
+      "name": "slots2",
+      "params": {
+        "name": "slots2",
+        "capital_use_frac": 0.5,
+        "max_positions": 2,
+        "sl_cooldown_days": 0,
+        "bulk_lookback_sessions": 1
+      },
+      "compound_pct": -2.486,
+      "pnl_inr": -248.57,
+      "capital_end": 9751.43,
+      "total_trades": 19,
+      "trade_days": 12,
+      "avg_pnl_on_trade_days": -20.71,
+      "worst_day_pct": -2.056,
+      "best_day_pct": 1.917,
+      "max_dd_pct": 3.916,
+      "pass_break_even": false,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "pnl_inr": 18.84,
+          "return_pct": 0.188,
+          "n_trades": 2,
+          "capital_end": 10018.84
+        },
+        {
+          "asof": "2026-07-02",
+          "pnl_inr": -205.95,
+          "return_pct": -2.056,
+          "n_trades": 2,
+          "capital_end": 9812.89
+        },
+        {
+          "asof": "2026-07-03",
+          "pnl_inr": 40.57,
+          "return_pct": 0.413,
+          "n_trades": 2,
+          "capital_end": 9853.46
+        },
+        {
+          "asof": "2026-07-06",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 9853.46
+        },
+        {
+          "asof": "2026-07-07",
+          "pnl_inr": -104.45,
+          "return_pct": -1.06,
+          "n_trades": 1,
+          "capital_end": 9749.01
+        },
+        {
+          "asof": "2026-07-08",
+          "pnl_inr": -97.85,
+          "return_pct": -1.004,
+          "n_trades": 1,
+          "capital_end": 9651.16
+        },
+        {
+          "asof": "2026-07-09",
+          "pnl_inr": 182.12,
+          "return_pct": 1.887,
+          "n_trades": 1,
+          "capital_end": 9833.28
+        },
+        {
+          "asof": "2026-07-10",
+          "pnl_inr": 38.96,
+          "return_pct": 0.396,
+          "n_trades": 1,
+          "capital_end": 9872.24
+        },
+        {
+          "asof": "2026-07-13",
+          "pnl_inr": -113.87,
+          "return_pct": -1.153,
+          "n_trades": 2,
+          "capital_end": 9758.37
+        },
+        {
+          "asof": "2026-07-14",
+          "pnl_inr": -131.88,
+          "return_pct": -1.351,
+          "n_trades": 2,
+          "capital_end": 9626.49
+        },
+        {
+          "asof": "2026-07-15",
+          "pnl_inr": 184.55,
+          "return_pct": 1.917,
+          "n_trades": 2,
+          "capital_end": 9811.04
+        },
+        {
+          "asof": "2026-07-16",
+          "pnl_inr": 73.83,
+          "return_pct": 0.753,
+          "n_trades": 1,
+          "capital_end": 9884.87
+        },
+        {
+          "asof": "2026-07-17",
+          "pnl_inr": -133.44,
+          "return_pct": -1.35,
+          "n_trades": 2,
+          "capital_end": 9751.43
+        }
+      ]
+    },
+    {
+      "name": "slots2_cd1",
+      "params": {
+        "name": "slots2_cd1",
+        "capital_use_frac": 0.5,
+        "max_positions": 2,
+        "sl_cooldown_days": 1,
+        "bulk_lookback_sessions": 1
+      },
+      "compound_pct": 3.364,
+      "pnl_inr": 336.39,
+      "capital_end": 10336.39,
+      "total_trades": 17,
+      "trade_days": 11,
+      "avg_pnl_on_trade_days": 30.58,
+      "worst_day_pct": -2.056,
+      "best_day_pct": 2.921,
+      "max_dd_pct": 2.559,
+      "pass_break_even": true,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "pnl_inr": 18.84,
+          "return_pct": 0.188,
+          "n_trades": 2,
+          "capital_end": 10018.84
+        },
+        {
+          "asof": "2026-07-02",
+          "pnl_inr": -205.95,
+          "return_pct": -2.056,
+          "n_trades": 2,
+          "capital_end": 9812.89
+        },
+        {
+          "asof": "2026-07-03",
+          "pnl_inr": 54.19,
+          "return_pct": 0.552,
+          "n_trades": 1,
+          "capital_end": 9867.08
+        },
+        {
+          "asof": "2026-07-06",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 9867.08
+        },
+        {
+          "asof": "2026-07-07",
+          "pnl_inr": -104.6,
+          "return_pct": -1.06,
+          "n_trades": 1,
+          "capital_end": 9762.48
+        },
+        {
+          "asof": "2026-07-08",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 9762.48
+        },
+        {
+          "asof": "2026-07-09",
+          "pnl_inr": 184.22,
+          "return_pct": 1.887,
+          "n_trades": 1,
+          "capital_end": 9946.7
+        },
+        {
+          "asof": "2026-07-10",
+          "pnl_inr": 39.41,
+          "return_pct": 0.396,
+          "n_trades": 1,
+          "capital_end": 9986.11
+        },
+        {
+          "asof": "2026-07-13",
+          "pnl_inr": -115.18,
+          "return_pct": -1.153,
+          "n_trades": 2,
+          "capital_end": 9870.93
+        },
+        {
+          "asof": "2026-07-14",
+          "pnl_inr": 288.35,
+          "return_pct": 2.921,
+          "n_trades": 2,
+          "capital_end": 10159.28
+        },
+        {
+          "asof": "2026-07-15",
+          "pnl_inr": 240.3,
+          "return_pct": 2.365,
+          "n_trades": 2,
+          "capital_end": 10399.58
+        },
+        {
+          "asof": "2026-07-16",
+          "pnl_inr": 78.26,
+          "return_pct": 0.753,
+          "n_trades": 1,
+          "capital_end": 10477.84
+        },
+        {
+          "asof": "2026-07-17",
+          "pnl_inr": -141.45,
+          "return_pct": -1.35,
+          "n_trades": 2,
+          "capital_end": 10336.39
+        }
+      ]
+    },
+    {
+      "name": "lookback2",
+      "params": {
+        "name": "lookback2",
+        "capital_use_frac": 0.5,
+        "max_positions": 1,
+        "sl_cooldown_days": 0,
+        "bulk_lookback_sessions": 2
+      },
+      "compound_pct": 4.007,
+      "pnl_inr": 400.74,
+      "capital_end": 10400.74,
+      "total_trades": 13,
+      "trade_days": 13,
+      "avg_pnl_on_trade_days": 30.83,
+      "worst_day_pct": -2.791,
+      "best_day_pct": 6.662,
+      "max_dd_pct": 7.71,
+      "pass_break_even": true,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "pnl_inr": 126.96,
+          "return_pct": 1.27,
+          "n_trades": 1,
+          "capital_end": 10126.96
+        },
+        {
+          "asof": "2026-07-02",
+          "pnl_inr": -20.44,
+          "return_pct": -0.202,
+          "n_trades": 1,
+          "capital_end": 10106.52
+        },
+        {
+          "asof": "2026-07-03",
+          "pnl_inr": -206.31,
+          "return_pct": -2.041,
+          "n_trades": 1,
+          "capital_end": 9900.21
+        },
+        {
+          "asof": "2026-07-06",
+          "pnl_inr": -156.01,
+          "return_pct": -1.576,
+          "n_trades": 1,
+          "capital_end": 9744.2
+        },
+        {
+          "asof": "2026-07-07",
+          "pnl_inr": -206.59,
+          "return_pct": -2.12,
+          "n_trades": 1,
+          "capital_end": 9537.61
+        },
+        {
+          "asof": "2026-07-08",
+          "pnl_inr": -191.46,
+          "return_pct": -2.007,
+          "n_trades": 1,
+          "capital_end": 9346.15
+        },
+        {
+          "asof": "2026-07-09",
+          "pnl_inr": 352.72,
+          "return_pct": 3.774,
+          "n_trades": 1,
+          "capital_end": 9698.87
+        },
+        {
+          "asof": "2026-07-10",
+          "pnl_inr": 76.85,
+          "return_pct": 0.792,
+          "n_trades": 1,
+          "capital_end": 9775.72
+        },
+        {
+          "asof": "2026-07-13",
+          "pnl_inr": -272.84,
+          "return_pct": -2.791,
+          "n_trades": 1,
+          "capital_end": 9502.88
+        },
+        {
+          "asof": "2026-07-14",
+          "pnl_inr": 208.21,
+          "return_pct": 2.191,
+          "n_trades": 1,
+          "capital_end": 9711.09
+        },
+        {
+          "asof": "2026-07-15",
+          "pnl_inr": 646.94,
+          "return_pct": 6.662,
+          "n_trades": 1,
+          "capital_end": 10358.03
+        },
+        {
+          "asof": "2026-07-16",
+          "pnl_inr": 155.9,
+          "return_pct": 1.505,
+          "n_trades": 1,
+          "capital_end": 10513.93
+        },
+        {
+          "asof": "2026-07-17",
+          "pnl_inr": -113.19,
+          "return_pct": -1.077,
+          "n_trades": 1,
+          "capital_end": 10400.74
+        }
+      ]
+    },
+    {
+      "name": "scale_best",
+      "params": {
+        "name": "scale_best",
+        "capital_use_frac": 0.6,
+        "max_positions": 2,
+        "sl_cooldown_days": 1,
+        "bulk_lookback_sessions": 1
+      },
+      "compound_pct": 4.109,
+      "pnl_inr": 410.88,
+      "capital_end": 10410.88,
+      "total_trades": 17,
+      "trade_days": 11,
+      "avg_pnl_on_trade_days": 37.35,
+      "worst_day_pct": -2.38,
+      "best_day_pct": 3.505,
+      "max_dd_pct": 2.983,
+      "pass_break_even": true,
+      "daily": [
+        {
+          "asof": "2026-07-01",
+          "pnl_inr": 22.61,
+          "return_pct": 0.226,
+          "n_trades": 2,
+          "capital_end": 10022.61
+        },
+        {
+          "asof": "2026-07-02",
+          "pnl_inr": -238.58,
+          "return_pct": -2.38,
+          "n_trades": 2,
+          "capital_end": 9784.03
+        },
+        {
+          "asof": "2026-07-03",
+          "pnl_inr": 64.84,
+          "return_pct": 0.663,
+          "n_trades": 1,
+          "capital_end": 9848.87
+        },
+        {
+          "asof": "2026-07-06",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 9848.87
+        },
+        {
+          "asof": "2026-07-07",
+          "pnl_inr": -125.28,
+          "return_pct": -1.272,
+          "n_trades": 1,
+          "capital_end": 9723.59
+        },
+        {
+          "asof": "2026-07-08",
+          "pnl_inr": 0.0,
+          "return_pct": 0.0,
+          "n_trades": 0,
+          "capital_end": 9723.59
+        },
+        {
+          "asof": "2026-07-09",
+          "pnl_inr": 220.18,
+          "return_pct": 2.264,
+          "n_trades": 1,
+          "capital_end": 9943.77
+        },
+        {
+          "asof": "2026-07-10",
+          "pnl_inr": 47.28,
+          "return_pct": 0.475,
+          "n_trades": 1,
+          "capital_end": 9991.05
+        },
+        {
+          "asof": "2026-07-13",
+          "pnl_inr": -138.29,
+          "return_pct": -1.384,
+          "n_trades": 2,
+          "capital_end": 9852.76
+        },
+        {
+          "asof": "2026-07-14",
+          "pnl_inr": 345.38,
+          "return_pct": 3.505,
+          "n_trades": 2,
+          "capital_end": 10198.14
+        },
+        {
+          "asof": "2026-07-15",
+          "pnl_inr": 289.46,
+          "return_pct": 2.838,
+          "n_trades": 2,
+          "capital_end": 10487.6
+        },
+        {
+          "asof": "2026-07-16",
+          "pnl_inr": 94.71,
+          "return_pct": 0.903,
+          "n_trades": 1,
+          "capital_end": 10582.31
+        },
+        {
+          "asof": "2026-07-17",
+          "pnl_inr": -171.43,
+          "return_pct": -1.62,
+          "n_trades": 2,
+          "capital_end": 10410.88
+        }
+      ]
+    }
+  ],
+  "best": "use60",
+  "best_row": {
+    "name": "use60",
+    "params": {
+      "name": "use60",
+      "capital_use_frac": 0.6,
+      "max_positions": 1,
+      "sl_cooldown_days": 0,
+      "bulk_lookback_sessions": 1
+    },
+    "compound_pct": 6.394,
+    "pnl_inr": 639.43,
+    "capital_end": 10639.43,
+    "total_trades": 12,
+    "trade_days": 12,
+    "avg_pnl_on_trade_days": 53.29,
+    "worst_day_pct": -3.209,
+    "best_day_pct": 7.994,
+    "max_dd_pct": 5.558,
+    "pass_break_even": true,
+    "daily": [
+      {
+        "asof": "2026-07-01",
+        "pnl_inr": 152.35,
+        "return_pct": 1.524,
+        "n_trades": 1,
+        "capital_end": 10152.35
+      },
+      {
+        "asof": "2026-07-02",
+        "pnl_inr": -325.83,
+        "return_pct": -3.209,
+        "n_trades": 1,
+        "capital_end": 9826.52
+      },
+      {
+        "asof": "2026-07-03",
+        "pnl_inr": 254.7,
+        "return_pct": 2.592,
+        "n_trades": 1,
+        "capital_end": 10081.22
+      },
+      {
+        "asof": "2026-07-06",
+        "pnl_inr": 0.0,
+        "return_pct": 0.0,
+        "n_trades": 0,
+        "capital_end": 10081.22
+      },
+      {
+        "asof": "2026-07-07",
+        "pnl_inr": -256.48,
+        "return_pct": -2.544,
+        "n_trades": 1,
+        "capital_end": 9824.74
+      },
+      {
+        "asof": "2026-07-08",
+        "pnl_inr": -236.67,
+        "return_pct": -2.409,
+        "n_trades": 1,
+        "capital_end": 9588.07
+      },
+      {
+        "asof": "2026-07-09",
+        "pnl_inr": 434.22,
+        "return_pct": 4.529,
+        "n_trades": 1,
+        "capital_end": 10022.29
+      },
+      {
+        "asof": "2026-07-10",
+        "pnl_inr": 95.3,
+        "return_pct": 0.951,
+        "n_trades": 1,
+        "capital_end": 10117.59
+      },
+      {
+        "asof": "2026-07-13",
+        "pnl_inr": -141.6,
+        "return_pct": -1.4,
+        "n_trades": 1,
+        "capital_end": 9975.99
+      },
+      {
+        "asof": "2026-07-14",
+        "pnl_inr": -172.27,
+        "return_pct": -1.727,
+        "n_trades": 1,
+        "capital_end": 9803.72
+      },
+      {
+        "asof": "2026-07-15",
+        "pnl_inr": 783.73,
+        "return_pct": 7.994,
+        "n_trades": 1,
+        "capital_end": 10587.45
+      },
+      {
+        "asof": "2026-07-16",
+        "pnl_inr": 191.22,
+        "return_pct": 1.806,
+        "n_trades": 1,
+        "capital_end": 10778.67
+      },
+      {
+        "asof": "2026-07-17",
+        "pnl_inr": -139.24,
+        "return_pct": -1.292,
+        "n_trades": 1,
+        "capital_end": 10639.43
+      }
+    ]
+  }
+}
