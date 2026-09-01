@@ -1,0 +1,63 @@
+{
+  "ts": "2026-09-01T17:01:49+00:00",
+  "years": [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  "methodology": "Standalone clean-PIT: each year starts at Rs 10k; compound path chains year returns sequentially. IN_FO ~12bps RT.",
+  "v2_locked": {
+    "mean_year_return_pct": 24.535,
+    "compound_return_pct": 418.081,
+    "years_positive": 7,
+    "min_worst_month_pct": -30.29,
+    "sum_standalone_pnl": 19628.0,
+    "per_year": {
+      "2018": 10.7,
+      "2019": 59.82,
+      "2020": 9.54,
+      "2021": -2.64,
+      "2022": 13.57,
+      "2023": 20.79,
+      "2024": 57.06,
+      "2025": 27.44
+    }
+  },
+  "moon_15x_combo2": {
+    "mean_year_return_pct": 225.785,
+    "compound_return_pct": 288893.735,
+    "years_positive": 7,
+    "min_worst_month_pct": -27.95,
+    "sum_standalone_pnl": 180628.0,
+    "per_year": {
+      "2018": 170.03,
+      "2019": 465.51,
+      "2020": 323.9,
+      "2021": 530.19,
+      "2022": -7.7,
+      "2023": 26.9,
+      "2024": 185.88,
+      "2025": 111.57
+    },
+    "beats_v2": true,
+    "only_losing_year_vs_v2": 2022
+  },
+  "combo2_push_b": {
+    "variant": "combo2_push_b",
+    "knobs_delta": {
+      "leverage": 17,
+      "attack_leverage": 20,
+      "attack_sleeve_frac": 0.37,
+      "max_daily_loss_pct": 7.0
+    },
+    "mean_year_return_pct": 318.859,
+    "compound_return_pct": 1614108.064,
+    "years_positive": 8,
+    "min_worst_month_pct": -32.97,
+    "sum_standalone_pnl": 255087.46,
+    "promoted_stretch": true
+  },
+  "breaks_at": {
+    "variant": "combo2_push_d",
+    "reason": "profit_guard off + attack 22x / lev 20; 2024 worst month -37.8%; 2025 return collapses to +45.7%",
+    "min_worst_month_pct": -37.768
+  },
+  "verdict": "combo2 beats v2 on all aggregate metrics (2018-2025). combo2_push_b is best push before break: 8/8 positive years, mean +319%/yr, deepest month -33%. Do not promote over locked v2 without OOS/live gate; stretch lane only.",
+  "full_report_with_trades": "models/pattern_forge/v2_vs_combo2_backtest.json"
+}
