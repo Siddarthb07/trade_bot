@@ -15,15 +15,22 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "packages"))
 
 from processor.costs import IN_FO_COST
-from processor.day_sim import _fetch_history
+from processor.day_sim import _fetch_history, _fetch_history_ohlcv
 from processor.fo_universe import fo_universe_list
 from processor.no_ruin import NoRuinConfig, apply_no_ruin_to_leverage, risk_budget, state_dict, update_peak
-from processor.pattern_forge.daily_swing import choose_daily_candidate, next_day_pnl_frac
+from processor.pattern_forge.daily_swing import (
+  breadth_above_ma20,
+  choose_daily_candidate,
+  next_day_pnl_frac,
+  resolve_market_mode,
+)
+from processor.hybrid.recognition.swarm.cross_market import similarity_size_mult
 from processor.pattern_forge.daily_swarm_tape import daily_swarm_tape
 from processor.pattern_forge.ledger import log_decision, log_run, log_trade, write_summary
-from processor.pattern_forge.market_regime_proxy import market_closes_asof
-from processor.pattern_forge.mistake_ledger import learn_from_day, note_repeat_blocked, read_briefing
+from processor.pattern_forge.market_regime_proxy import market_closes_asof, soft_regime
+from processor.pattern_forge.mistake_ledger import learn_from_day, note_repeat_blocked, read_briefing, seed_standing_policies, standing_freq_knobs
 from processor.pattern_forge.overnight_feeds import overnight_cues_asof
+from processor.pattern_forge.news_edge import news_edge_size_mult
 from processor.two_sided import notional_pnl
 
 _MONTH_NAMES = [
@@ -42,13 +49,21 @@ _MONTH_NAMES = [
 ]
 
 
-def months_for_year(year: int) -> list[tuple[str, str, str]]:
+def months_for_year(year: int, *, clip_to_today: bool = True) -> list[tuple[str, str, str]]:
   import calendar
 
+  today = date.today()
   out: list[tuple[str, str, str]] = []
   for i, name in enumerate(_MONTH_NAMES, start=1):
+    if clip_to_today and year > today.year:
+      break
+    if clip_to_today and year == today.year and i > today.month:
+      break
     last = calendar.monthrange(year, i)[1]
-    out.append((name, f"{year}-{i:02d}-01", f"{year}-{i:02d}-{last:02d}"))
+    end_d = f"{year}-{i:02d}-{last:02d}"
+    if clip_to_today and year == today.year and i == today.month:
+      end_d = today.isoformat()
+    out.append((name, f"{year}-{i:02d}-01", end_d))
   return out
 
 
@@ -63,8 +78,32 @@ def _load_universe_series(tickers: list[str], end: str = "2025-12-31", *, lookba
     out[t] = [(d, c) for d, c in hist if d <= end]
   return out
 
+
+def _load_universe_ohlcv(
+  tickers: list[str], end: str = "2025-12-31", *, lookback_days: int = 520
+) -> dict[str, list[tuple[str, float, float, float, float]]]:
+  end_dt = datetime.fromisoformat(end).replace(tzinfo=timezone.utc)
+  out: dict[str, list[tuple[str, float, float, float, float]]] = {}
+  for t in tickers:
+    hist = _fetch_history_ohlcv(t, end_dt, lookback_days=lookback_days)
+    out[t] = [row for row in hist if row[0] <= end]
+  return out
+
+
 def _closes_asof(series: list[tuple[str, float]], asof: str) -> list[float]:
   return [c for d, c in series if d <= asof]
+
+
+def _ohlcv_asof(
+  series: list[tuple[str, float, float, float, float]], asof: str
+) -> dict[str, list[float]]:
+  rows = [r for r in series if r[0] <= asof]
+  return {
+    "closes": [r[1] for r in rows],
+    "volumes": [r[2] for r in rows],
+    "highs": [r[3] for r in rows],
+    "lows": [r[4] for r in rows],
+  }
 
 
 def _trading_days(series: list[tuple[str, float]], start: str, end: str) -> list[str]:
@@ -81,6 +120,17 @@ def run_daily_benchmark(
   year: int | None = None,
 ) -> dict:
   knobs = knobs or {}
+  # v2.2: merge standing freq / Oct soft policies from mistake ledger (never amplify)
+  if bool(knobs.get("apply_standing_freq", False)) or str(knobs.get("lane") or "").startswith("v2_2"):
+    seed_standing_policies()
+    for k, v in standing_freq_knobs().items():
+      # Explicit knob wins; standing fills gaps
+      if k not in knobs or knobs.get(k) in (None, 0, [], False):
+        knobs[k] = v
+      elif k == "calendar_soft_months":
+        knobs[k] = sorted(set(list(knobs.get(k) or []) + list(v or [])))
+      elif k == "calendar_soft_mult":
+        knobs[k] = min(float(knobs.get(k) or 1.0), float(v))
   run_id = str(uuid.uuid4())[:12]
   long_only = bool(knobs.get("long_only", True))
   min_score = float(knobs.get("hybrid_min_score", knobs.get("min_score", 0.005)))
@@ -92,6 +142,7 @@ def run_daily_benchmark(
   use_breadth_veto = bool(knobs.get("use_breadth_veto", False))
   breadth_scale = bool(knobs.get("breadth_scale", False))
   learn_mistakes = bool(knobs.get("learn_mistakes", True))
+  mistake_mark_read = bool(knobs.get("mistake_mark_read", True))
   profit_guard = bool(knobs.get("profit_guard", False))
   profit_guard_floor_pct = float(knobs.get("profit_guard_floor_pct", 2.0))
   swarm_hard_veto = bool(knobs.get("swarm_hard_veto", False))
@@ -104,6 +155,82 @@ def run_daily_benchmark(
   market_ts_min = float(knobs.get("market_ts_min", 0.0))
   ticker_cooldown_days = max(0, int(knobs.get("ticker_cooldown_days", 0)))
   max_single_name_day_frac = float(knobs.get("max_single_name_day_frac", 1.0))  # of day risk budget
+  require_above_ema200 = bool(knobs.get("require_above_ema200", False))
+  min_rel_volume = knobs.get("min_rel_volume")
+  min_rel_volume_f = float(min_rel_volume) if min_rel_volume is not None else None
+  require_above_vwap = bool(knobs.get("require_above_vwap", False))
+  vwap_score_boost = float(knobs.get("vwap_score_boost", 0.0))
+  vol_soft_penalty = bool(knobs.get("vol_soft_penalty", False))
+  score_mode = str(knobs.get("score_mode", "raw_r1"))
+  indicator_mode = str(knobs.get("indicator_mode", "off"))
+  defense_sitout = bool(knobs.get("defense_sitout", False))
+  defense_size_mult = float(knobs.get("defense_size_mult", 0.5))
+  defense_on_risk_off = bool(knobs.get("defense_on_risk_off", True))
+  defense_on_breadth_stress = bool(knobs.get("defense_on_breadth_stress", True))
+  defense_on_nifty_below_ema = bool(knobs.get("defense_on_nifty_below_ema", True))
+  nifty_ema_period = int(knobs.get("nifty_ema_period", 200))
+  october_defense = bool(knobs.get("october_defense", False))
+  october_size_mult = float(knobs.get("october_size_mult", 0.5))
+  r1_hi_trend = knobs.get("r1_hi_trend")
+  r1_hi_trend_f = float(r1_hi_trend) if r1_hi_trend is not None else None
+  boost_near_52w_high = bool(knobs.get("boost_near_52w_high", False))
+  max_trades_per_month = int(knobs.get("max_trades_per_month") or 0)  # 0 = unlimited
+  loss_streak_sitout = int(knobs.get("loss_streak_sitout") or 0)  # sit after N losses
+  news_edge_soft = bool(knobs.get("news_edge_soft", False))
+  news_edge_soft_mult = float(knobs.get("news_edge_soft_mult", 0.4))
+  news_edge_hard = bool(knobs.get("news_edge_hard", False))  # sit cash on NewsEdge skip
+  calendar_soft_months = {
+    str(x).lower() for x in (knobs.get("calendar_soft_months") or []) if x
+  }
+  calendar_soft_mult = float(knobs.get("calendar_soft_mult", 0.45))
+  # v2.3 asymmetric: crash defenses when underwater/defense; open throttle when green
+  asymmetric_freq = bool(knobs.get("asymmetric_freq", False))
+  attack_max_trades_per_month = int(knobs.get("attack_max_trades_per_month") or 0)
+  defense_max_trades_per_month = int(
+    knobs.get("defense_max_trades_per_month") or max_trades_per_month or 16
+  )
+  attack_cooldown_days = int(knobs.get("attack_cooldown_days", 0))
+  defense_cooldown_days = int(knobs.get("defense_cooldown_days") or ticker_cooldown_days or 1)
+  attack_loss_streak_sitout = int(knobs.get("attack_loss_streak_sitout", 0))
+  defense_loss_streak_sitout = int(
+    knobs.get("defense_loss_streak_sitout") or loss_streak_sitout or 3
+  )
+  attack_r1_hi = knobs.get("attack_r1_hi")
+  attack_r1_hi_f = float(attack_r1_hi) if attack_r1_hi is not None else None
+  attack_boost_52w = bool(knobs.get("attack_boost_52w", False))
+  attack_sleeve_frac = knobs.get("attack_sleeve_frac")
+  attack_sleeve_f = float(attack_sleeve_frac) if attack_sleeve_frac is not None else None
+  calendar_soft_only_underwater = bool(knobs.get("calendar_soft_only_underwater", False))
+  ignore_briefing_size_in_attack = bool(knobs.get("ignore_briefing_size_in_attack", False))
+  similarity_soft = bool(knobs.get("similarity_soft", False))
+  similarity_iqr_skip = float(knobs.get("similarity_iqr_skip", 0.0025))
+  similarity_iqr_soft = float(knobs.get("similarity_iqr_soft", 0.004))
+  similarity_soft_mult = float(knobs.get("similarity_soft_mult", 0.5))
+  similarity_hard_skip = bool(knobs.get("similarity_hard_skip", False))
+  correlation_cap = bool(knobs.get("correlation_cap", False))
+  max_pairwise_corr = float(knobs.get("max_pairwise_corr", 0.65))
+  attack_leverage = knobs.get("attack_leverage")
+  attack_leverage_f = float(attack_leverage) if attack_leverage is not None else None
+  defense_leverage = knobs.get("defense_leverage")
+  defense_leverage_f = float(defense_leverage) if defense_leverage is not None else None
+  defense_sleeve_frac = knobs.get("defense_sleeve_frac")
+  defense_sleeve_f = float(defense_sleeve_frac) if defense_sleeve_frac is not None else None
+  attack_red_day_cap = float(knobs.get("attack_red_day_size_mult", 1.0))
+  defense_similarity_mult = float(knobs.get("defense_similarity_mult", 1.0))
+  use_ohlcv = bool(
+    knobs.get("use_ohlcv", False)
+    or require_above_ema200
+    or require_above_vwap
+    or min_rel_volume_f is not None
+    or vwap_score_boost > 0
+    or vol_soft_penalty
+    or indicator_mode in ("always", "defense_only")
+  )
+  # v2.4 lane defaults
+  if str(knobs.get("lane") or "").startswith("v2_4"):
+    similarity_soft = bool(knobs.get("similarity_soft", True))
+    similarity_hard_skip = bool(knobs.get("similarity_hard_skip", False))
+    correlation_cap = bool(knobs.get("correlation_cap", knobs.get("top_k", 1) > 1))
   if year is None:
     year = int(knobs.get("year") or 2025)
   month_table = months or months_for_year(year)
@@ -112,13 +239,14 @@ def run_daily_benchmark(
     from processor.pattern_forge.mistake_ledger import RULES_PATH, reset_ledger
 
     reset_ledger(keep_mistake_log=True)
-    print(f"mistake ledger reset → {RULES_PATH}", flush=True)
+    print(f"mistake ledger reset -> {RULES_PATH}", flush=True)
+  eff_lev_cap = max(float(lev_cap), float(attack_leverage_f or 0), float(defense_leverage_f or 0))
   cfg = NoRuinConfig(
     default_sleeve_frac=sleeve,
-    max_sleeve_frac=0.5,
+    max_sleeve_frac=max(0.5, float(attack_sleeve_f or 0), float(defense_sleeve_f or 0), sleeve),
     max_daily_loss_pct=float(knobs.get("max_daily_loss_pct", 8.0)),
     max_trade_risk_pct=float(knobs.get("max_trade_risk_pct", 10.0)),
-    max_leverage=max(lev_cap, 1.0),
+    max_leverage=max(eff_lev_cap, 1.0),
   )
   n_uni = int(knobs.get("universe_n", 0)) or 0
   raw = universe or fo_universe_list()
@@ -126,7 +254,12 @@ def run_daily_benchmark(
   if n_uni > 0:
     tickers = tickers[:n_uni]
   print(f"loading daily history for {len(tickers)} FO names… (end={end_date})", flush=True)
-  series = _load_universe_series(tickers, end=end_date, lookback_days=int(knobs.get("lookback_days") or 520))
+  lookback = int(knobs.get("lookback_days") or 520)
+  series = _load_universe_series(tickers, end=end_date, lookback_days=lookback)
+  ohlcv_series: dict[str, list[tuple[str, float, float, float, float]]] = {}
+  if use_ohlcv:
+    print(f"loading OHLCV for indicator filters…", flush=True)
+    ohlcv_series = _load_universe_ohlcv(tickers, end=end_date, lookback_days=lookback)
   # Use most liquid for calendar
   calendar_src = max(series.values(), key=len)
   cap = capital
@@ -140,6 +273,9 @@ def run_daily_benchmark(
   equity_curve: list[dict] = [{"date": month_table[0][1] if month_table else "", "capital": capital, "year": year}]
   # ticker -> last asof traded (cooldown)
   last_traded: dict[str, str] = {}
+  loss_streak = 0
+  prev_month_green = False
+  prev_day_red = False
 
   for name, a, b in month_table:
     m_start = cap
@@ -147,39 +283,104 @@ def run_daily_benchmark(
     m_wins = 0
     days = _trading_days(calendar_src, a, b)
     for i, asof in enumerate(days):
-      # Need next session in calendar for exit
-      # Find next day after asof in calendar_src
+      ytd_green = cap >= start
+      if asymmetric_freq:
+        pre_attack = bool(ytd_green or prev_month_green)
+        eff_max_trades = attack_max_trades_per_month if pre_attack else defense_max_trades_per_month
+        eff_loss_sit = attack_loss_streak_sitout if pre_attack else defense_loss_streak_sitout
+        eff_cooldown = attack_cooldown_days if pre_attack else defense_cooldown_days
+      else:
+        pre_attack = True
+        eff_max_trades = max_trades_per_month
+        eff_loss_sit = loss_streak_sitout
+        eff_cooldown = ticker_cooldown_days
+
+      if eff_max_trades > 0 and m_trades >= eff_max_trades:
+        continue
+      if eff_loss_sit > 0 and loss_streak >= eff_loss_sit:
+        loss_streak = max(0, eff_loss_sit - 1)
+        continue
       next_days = [d for d, _ in calendar_src if d > asof]
       if not next_days:
         continue
       t1 = next_days[0]
-      if t1 > b and name:  # allow exit into next month
+      if t1 > b and name:
         pass
 
       uni_closes = {t: _closes_asof(series[t], asof) for t in tickers if len(_closes_asof(series[t], asof)) >= 25}
+      uni_ohlcv = None
+      if use_ohlcv and ohlcv_series:
+        uni_ohlcv = {
+          t: _ohlcv_asof(ohlcv_series[t], asof)
+          for t in tickers
+          if t in ohlcv_series and len(_ohlcv_asof(ohlcv_series[t], asof).get("closes") or []) >= 25
+        }
       if len(uni_closes) < 3:
         continue
       mkt = market_closes_asof(asof, allow_network=False)
       if len(mkt) < 20:
-        # fallback: first ticker closes
         mkt = next(iter(uni_closes.values()))
 
+      regime_pre = soft_regime(list(mkt))
+      breadth_pre = breadth_above_ma20(uni_closes)
+      market_mode_pre, _ = resolve_market_mode(
+        regime=regime_pre,
+        breadth=breadth_pre,
+        market_closes=mkt,
+        asof=asof,
+        nifty_ema_period=nifty_ema_period,
+        defense_on_risk_off=defense_on_risk_off,
+        defense_on_breadth_stress=defense_on_breadth_stress,
+        defense_on_nifty_below_ema=defense_on_nifty_below_ema,
+        october_defense=october_defense,
+      )
+      if asymmetric_freq and market_mode_pre == "defense":
+        pre_attack = False
+        eff_max_trades = defense_max_trades_per_month
+        eff_loss_sit = defense_loss_streak_sitout
+        eff_cooldown = defense_cooldown_days
+        if eff_max_trades > 0 and m_trades >= eff_max_trades:
+          continue
+        if eff_loss_sit > 0 and loss_streak >= eff_loss_sit:
+          loss_streak = max(0, eff_loss_sit - 1)
+          continue
+
       briefing = (
-        read_briefing(asof, mark_read=True)
+        read_briefing(
+          asof,
+          mark_read=mistake_mark_read,
+          regime=regime_pre,
+          breadth_frac=(breadth_pre or {}).get("frac_above_ma20"),
+          breadth_stress=bool((breadth_pre or {}).get("stress")),
+          ytd_underwater=cap < start,
+          loss_streak=loss_streak,
+          market_mode=market_mode_pre,
+          apply_fingerprints=bool(knobs.get("adaptive_fingerprints", True)),
+        )
         if learn_mistakes
         else {"exclude_tickers": [], "sitout": False, "size_mult": 1.0, "summary": "learning_off"}
       )
       cooldown_ban: list[str] = []
-      if ticker_cooldown_days > 0:
-        # Ban names traded within last N calendar trading days on this calendar
+      if eff_cooldown > 0:
         cal_idx = {d: i for i, (d, _) in enumerate(calendar_src)}
         ai = cal_idx.get(asof)
         if ai is not None:
           for tk, last_d in last_traded.items():
             li = cal_idx.get(last_d)
-            if li is not None and 0 < (ai - li) <= ticker_cooldown_days:
+            if li is not None and 0 < (ai - li) <= eff_cooldown:
               cooldown_ban.append(tk)
       exclude = list(briefing.get("exclude_tickers") or []) + cooldown_ban
+
+      day_r1_hi_trend = r1_hi_trend_f
+      day_boost_52w = boost_near_52w_high
+      if asymmetric_freq and pre_attack:
+        if attack_r1_hi_f is not None:
+          day_r1_hi_trend = attack_r1_hi_f
+        if attack_boost_52w:
+          day_boost_52w = True
+      brief_size = float(briefing.get("size_mult") or 1.0)
+      if asymmetric_freq and pre_attack and ignore_briefing_size_in_attack and not briefing.get("sitout"):
+        brief_size = 1.0
 
       choice = choose_daily_candidate(
         uni_closes,
@@ -192,12 +393,33 @@ def run_daily_benchmark(
         use_breadth_veto=use_breadth_veto,
         breadth_scale=breadth_scale,
         exclude_tickers=exclude,
-        mistake_size_mult=float(briefing.get("size_mult") or 1.0),
+        mistake_size_mult=brief_size,
         sitout=bool(briefing.get("sitout")),
         vol_scale_rank=vol_scale_rank,
         skip_extended_r5=skip_extended_r5_f,
         require_market_ts_mom=require_market_ts_mom,
         market_ts_min=market_ts_min,
+        require_above_ema200=require_above_ema200,
+        min_rel_volume=min_rel_volume_f,
+        require_above_vwap=require_above_vwap,
+        vwap_score_boost=vwap_score_boost,
+        vol_soft_penalty=vol_soft_penalty,
+        universe_ohlcv=uni_ohlcv,
+        score_mode=score_mode,
+        indicator_mode=indicator_mode,
+        defense_sitout=defense_sitout,
+        defense_size_mult=defense_size_mult,
+        defense_on_risk_off=defense_on_risk_off,
+        defense_on_breadth_stress=defense_on_breadth_stress,
+        defense_on_nifty_below_ema=defense_on_nifty_below_ema,
+        nifty_ema_period=nifty_ema_period,
+        october_defense=october_defense,
+        october_size_mult=october_size_mult,
+        r1_hi_trend=day_r1_hi_trend,
+        boost_near_52w_high=day_boost_52w,
+        asof=asof,
+        correlation_cap=correlation_cap,
+        max_pairwise_corr=max_pairwise_corr,
       )
       if learn_mistakes:
         banned = set(str(x).upper() for x in (briefing.get("exclude_tickers") or []))
@@ -273,6 +495,63 @@ def run_daily_benchmark(
           feed_status=cues.get("feed_status") or {},
         )
 
+      # NewsEdgeScan: soft size or hard sit (never amplify)
+      news_msg = next((m for m in swarm_msgs if m.get("agent") == "NewsEdgeScan"), None)
+      if news_msg and picks and news_msg.get("vote") == "skip":
+        if news_edge_hard:
+          choice = {
+            **choice,
+            "picked": "cash",
+            "picks": [],
+            "size_mult": 0.0,
+            "reason": f"news_edge_hard:{news_msg.get('reason')}",
+            "stress_veto": True,
+          }
+          primary = {"side": "flat", "confidence": 0.5, "reason": choice["reason"]}
+          picks = []
+        elif news_edge_soft:
+          sm = news_edge_size_mult("skip", soft_mult=news_edge_soft_mult)
+          choice = {**choice, "size_mult": min(float(choice.get("size_mult") or 1.0), sm)}
+
+      # Soft similarity gate — crowded tape size-down / skip (never amplify)
+      sim_note: str | None = None
+      if similarity_soft and picks:
+        sim_mult, sim_reason, sim_iqr = similarity_size_mult(
+          peer_rets=peer_rets,
+          iqr_hard_skip=similarity_iqr_skip,
+          iqr_soft=similarity_iqr_soft,
+          soft_mult=similarity_soft_mult * (defense_similarity_mult if (asymmetric_freq and not pre_attack) else 1.0),
+          allow_hard_skip=similarity_hard_skip,
+        )
+        sim_note = sim_reason
+        if sim_mult <= 0.0:
+          choice = {
+            **choice,
+            "picked": "cash",
+            "picks": [],
+            "size_mult": 0.0,
+            "reason": f"similarity_soft:{sim_reason}",
+            "stress_veto": True,
+          }
+          primary = {"side": "flat", "confidence": 0.5, "reason": choice["reason"]}
+          picks = []
+        else:
+          choice = {
+            **choice,
+            "size_mult": min(float(choice.get("size_mult") or 1.0), sim_mult),
+            "similarity_iqr": sim_iqr,
+          }
+
+      # Calendar soft months — size only; v2.3 can limit soft to underwater YTD
+      apply_cal_soft = bool(calendar_soft_months and name.lower() in calendar_soft_months and picks)
+      if apply_cal_soft and calendar_soft_only_underwater and cap >= start:
+        apply_cal_soft = False
+      if apply_cal_soft:
+        choice = {
+          **choice,
+          "size_mult": min(float(choice.get("size_mult") or 1.0), calendar_soft_mult),
+        }
+
       decision = {
         "kind": "decision",
         "asof": asof,
@@ -301,7 +580,12 @@ def run_daily_benchmark(
         "disclaimer": "Paper/sim audit — not investment advice.",
       }
 
-      nr = risk_budget(equity=cap, starting_capital=start, peak_equity=peak, sleeve_frac=sleeve, cfg=cfg)
+      day_sleeve = sleeve
+      if asymmetric_freq and pre_attack and attack_sleeve_f is not None:
+        day_sleeve = max(sleeve, min(0.5, attack_sleeve_f))
+      elif asymmetric_freq and defense_sleeve_f is not None:
+        day_sleeve = min(sleeve, max(0.05, defense_sleeve_f))
+      nr = risk_budget(equity=cap, starting_capital=start, peak_equity=peak, sleeve_frac=day_sleeve, cfg=cfg)
       decision["no_ruin"] = state_dict(nr)
       if nr.halted:
         decision["choice"] = "skip"
@@ -315,6 +599,13 @@ def run_daily_benchmark(
 
       conf = float(primary.get("confidence") or 0.55)
       lev = min(cfg.max_leverage, max(1.0, lev_cap))
+      if asymmetric_freq:
+        if pre_attack and attack_leverage_f is not None:
+          lev = min(cfg.max_leverage, max(lev, attack_leverage_f))
+        elif defense_leverage_f is not None:
+          lev = min(cfg.max_leverage, defense_leverage_f)
+      elif attack_leverage_f is not None and pre_attack:
+        lev = min(cfg.max_leverage, max(lev, attack_leverage_f))
       lev, nnotes = apply_no_ruin_to_leverage(lev, state=nr, cfg=cfg)
       _ = conf
       if lev <= 0:
@@ -331,6 +622,9 @@ def run_daily_benchmark(
         day_notes_pre = ["profit_guard_underwater_half"]
       else:
         day_notes_pre = []
+      if asymmetric_freq and pre_attack and prev_day_red and attack_red_day_cap < 1.0:
+        size_mult = min(size_mult, attack_red_day_cap)
+        day_notes_pre.append(f"attack_red_day_cap={attack_red_day_cap}")
       # Equal-weight risk across top-k (same day risk budget as single-name path)
       n_pick = float(len(picks))
       name_cap = max(0.05, min(1.0, max_single_name_day_frac))
@@ -407,6 +701,12 @@ def run_daily_benchmark(
       if day_pnl < -max_day:
         day_pnl = -max_day
         day_notes.append("daily_loss_clamp")
+      if day_pnl < 0:
+        loss_streak += 1
+        prev_day_red = True
+      else:
+        loss_streak = 0
+        prev_day_red = False
       cap = round(cap + day_pnl, 2)
       peak = update_peak(peak, cap)
       if include_trades:
@@ -432,6 +732,11 @@ def run_daily_benchmark(
           day_return_pct=round(100.0 * day_pnl / max(cap - day_pnl, 1.0), 4),
           regime=str(choice.get("regime") or ""),
           breadth_frac=(choice.get("breadth") or {}).get("frac_above_ma20"),
+          breadth_stress=bool((choice.get("breadth") or {}).get("stress")),
+          ytd_underwater=(cap - day_pnl) < start,
+          loss_streak=loss_streak,
+          market_mode=str(choice.get("market_mode") or market_mode_pre or ""),
+          adaptive_fingerprints=bool(knobs.get("adaptive_fingerprints", True)),
         )
     pct = round(100.0 * (cap - m_start) / m_start, 3) if m_start else 0.0
     if pct > 0:
@@ -447,6 +752,7 @@ def run_daily_benchmark(
       }
     )
     print(f"  {name:12} {pct:+.2f}% trades={m_trades} end={cap:,.2f}", flush=True)
+    prev_month_green = pct > 0
 
   worst = min((float(m["month_return_pct"]) for m in month_rows), default=0.0)
   best_m = max((float(m["month_return_pct"]) for m in month_rows), default=0.0)

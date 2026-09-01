@@ -1,0 +1,142 @@
+{
+  "ts": "2026-09-01T16:22:42.514511+00:00",
+  "base": {
+    "variant": "moon_15x_base",
+    "total_return_pct": 222.454,
+    "capital_end": 32245.44,
+    "green_months": 8,
+    "worst_month_pct": -21.64,
+    "best_month_pct": 63.89,
+    "loss_lte_profits": true,
+    "n_trades": 189,
+    "pct_of_618": 36.0,
+    "extra": {}
+  },
+  "worst_month_improved_variants": [
+    "moon_15x_def11",
+    "moon_15x_def12",
+    "moon_15x_combo",
+    "moon_15x_combo2"
+  ],
+  "rows": [
+    {
+      "variant": "moon_15x_combo2",
+      "total_return_pct": 240.123,
+      "capital_end": 34012.25,
+      "green_months": 7,
+      "worst_month_pct": -7.39,
+      "best_month_pct": 53.923,
+      "loss_lte_profits": true,
+      "n_trades": 191,
+      "pct_of_618": 38.9,
+      "extra": {
+        "defense_leverage": 12,
+        "defense_sleeve_frac": 0.24,
+        "defense_similarity_mult": 0.7,
+        "attack_red_day_size_mult": 0.7,
+        "october_defense": true,
+        "october_size_mult": 0.5,
+        "max_daily_loss_pct": 6.0
+      }
+    },
+    {
+      "variant": "moon_15x_oct",
+      "total_return_pct": 231.626,
+      "capital_end": 33162.58,
+      "green_months": 8,
+      "worst_month_pct": -21.64,
+      "best_month_pct": 63.89,
+      "loss_lte_profits": true,
+      "n_trades": 190,
+      "pct_of_618": 37.5,
+      "extra": {
+        "october_defense": true,
+        "october_size_mult": 0.4
+      }
+    },
+    {
+      "variant": "moon_15x_base",
+      "total_return_pct": 222.454,
+      "capital_end": 32245.44,
+      "green_months": 8,
+      "worst_month_pct": -21.64,
+      "best_month_pct": 63.89,
+      "loss_lte_profits": true,
+      "n_trades": 189,
+      "pct_of_618": 36.0,
+      "extra": {}
+    },
+    {
+      "variant": "moon_15x_def11",
+      "total_return_pct": 207.705,
+      "capital_end": 30770.49,
+      "green_months": 8,
+      "worst_month_pct": -21.403,
+      "best_month_pct": 63.89,
+      "loss_lte_profits": true,
+      "n_trades": 189,
+      "pct_of_618": 33.6,
+      "extra": {
+        "defense_leverage": 11,
+        "defense_sleeve_frac": 0.22
+      }
+    },
+    {
+      "variant": "moon_15x_def12",
+      "total_return_pct": 144.273,
+      "capital_end": 24427.33,
+      "green_months": 7,
+      "worst_month_pct": -20.927,
+      "best_month_pct": 63.89,
+      "loss_lte_profits": true,
+      "n_trades": 184,
+      "pct_of_618": 23.3,
+      "extra": {
+        "defense_leverage": 12,
+        "defense_sleeve_frac": 0.24,
+        "defense_loss_streak_sitout": 2
+      }
+    },
+    {
+      "variant": "moon_15x_combo",
+      "total_return_pct": 139.96,
+      "capital_end": 23996.0,
+      "green_months": 8,
+      "worst_month_pct": -9.294,
+      "best_month_pct": 57.868,
+      "loss_lte_profits": true,
+      "n_trades": 193,
+      "pct_of_618": 22.6,
+      "extra": {
+        "defense_leverage": 11,
+        "defense_sleeve_frac": 0.22,
+        "defense_similarity_mult": 0.65,
+        "attack_red_day_size_mult": 0.65,
+        "october_defense": true,
+        "october_size_mult": 0.45,
+        "defense_size_mult": 0.45,
+        "defense_sitout": false
+      }
+    }
+  ],
+  "best": {
+    "variant": "moon_15x_combo2",
+    "total_return_pct": 240.123,
+    "capital_end": 34012.25,
+    "green_months": 7,
+    "worst_month_pct": -7.39,
+    "best_month_pct": 53.923,
+    "loss_lte_profits": true,
+    "n_trades": 191,
+    "pct_of_618": 38.9,
+    "extra": {
+      "defense_leverage": 12,
+      "defense_sleeve_frac": 0.24,
+      "defense_similarity_mult": 0.7,
+      "attack_red_day_size_mult": 0.7,
+      "october_defense": true,
+      "october_size_mult": 0.5,
+      "max_daily_loss_pct": 6.0
+    }
+  }
+}

@@ -13,8 +13,11 @@ from processor.hybrid.recognition.swarm.cross_market import (
   cross_section_similarity_message,
 )
 from processor.pattern_forge.market_regime_proxy import soft_regime
+from processor.pattern_forge.news_edge import news_edge_message
 
-HARD_VETO_AGENTS = frozenset({"Regime", "CrossMarketOpen", "CrossSectionSimilarity", "BreadthRegime"})
+HARD_VETO_AGENTS = frozenset(
+  {"Regime", "CrossMarketOpen", "CrossSectionSimilarity", "BreadthRegime", "NewsEdgeScan"}
+)
 
 
 def _msg(agent: str, vote: str, reason: str, *, weight: float = 1.0, status: str = "ok", payload: dict | None = None) -> dict[str, Any]:
@@ -122,6 +125,16 @@ def daily_swarm_tape(
     primary_side=side if side in ("buy", "sell") else None,
   )
   msgs.append(_msg(cs.agent, cs.vote, cs.reason, weight=cs.weight, status=cs.status, payload=dict(cs.payload or {})))
+
+  ne = news_edge_message(
+    overnight_gap_pct=overnight_gap_pct,
+    asia_ret_pct=asia_ret_pct,
+    us_ret_pct=us_ret_pct,
+    candidate_ret_1=candidate_ret_1,
+    peer_rets=peer_rets,
+    primary_side=side if side in ("buy", "sell") else None,
+  )
+  msgs.append(_msg(ne.agent, ne.vote, ne.reason, weight=ne.weight, status=ne.status, payload=dict(ne.payload or {})))
 
   msgs.append(_msg("Cost", "take" if picked != "cash" else "annotate", "fo_cost_model_12bps", payload={"model": "IN_FO"}))
   msgs.append(_msg("NoRuin", "annotate", "checked_pre_trade", status="ok"))

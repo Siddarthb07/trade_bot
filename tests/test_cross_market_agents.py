@@ -11,7 +11,9 @@ sys.path.insert(0, str(ROOT / "packages"))
 from processor.hybrid.recognition.swarm.cross_market import (
   cross_market_open_message,
   cross_section_similarity_message,
+  similarity_size_mult,
 )
+from processor.pattern_forge.daily_swing import filter_uncorrelated_picks
 from processor.hybrid.recognition.stack import recognize_session
 
 
@@ -59,3 +61,36 @@ def test_recognize_session_includes_new_agents():
   names = {m.agent for m in snap.messages}
   assert "CrossMarketOpen" in names
   assert "CrossSectionSimilarity" in names
+
+
+def test_similarity_size_mult_crowded_skip():
+  peers = [0.001] * 12
+  mult, reason, iqr = similarity_size_mult(peer_rets=peers)
+  assert mult == 0.0
+  assert "skip" in reason
+  assert iqr is not None and iqr < 0.0025
+
+
+def test_similarity_size_mult_ok():
+  peers = [i * 0.003 for i in range(-6, 7)]
+  mult, reason, _ = similarity_size_mult(peer_rets=peers)
+  assert mult == 1.0
+  assert reason == "similarity_ok"
+
+
+def test_filter_uncorrelated_picks():
+  uni = {
+    "A.NS": [100.0 + i * 0.5 + (0.1 if i % 2 else -0.1) for i in range(40)],
+    "B.NS": [200.0 + (10.0 if i % 5 == 0 else -2.0) for i in range(40)],
+    "C.NS": [100.0 + i * 0.5 + (0.1 if i % 2 else -0.1) for i in range(40)],
+  }
+  eligible = [
+    {"ticker": "A.NS", "score": 0.02, "side": "buy"},
+    {"ticker": "B.NS", "score": 0.018, "side": "buy"},
+    {"ticker": "C.NS", "score": 0.017, "side": "buy"},
+  ]
+  picks = filter_uncorrelated_picks(eligible, uni, top_k=3, max_pairwise_corr=0.85)
+  tickers = {p["ticker"] for p in picks}
+  assert len(picks) >= 2
+  assert "A.NS" in tickers
+  assert "C.NS" not in tickers or "A.NS" not in tickers  # A and C are identical series

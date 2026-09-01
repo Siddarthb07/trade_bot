@@ -15,6 +15,14 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
+from processor.pattern_forge.adaptive_learn import (
+  FP_EXPIRE_SESSIONS,
+  MIN_DAY_RET_FOR_FP,
+  context_fingerprint,
+  fingerprint_rule_from_failure,
+  match_fingerprint_rules,
+)
+
 ROOT = Path(__file__).resolve().parents[3]
 LEDGER_DIR = ROOT / "models" / "pattern_forge"
 RULES_PATH = LEDGER_DIR / "mistake_rules.json"
@@ -69,10 +77,46 @@ def load_rules() -> dict[str, Any]:
 
 
 def save_rules(state: dict[str, Any]) -> None:
+  import time
+  import uuid
+
   LEDGER_DIR.mkdir(parents=True, exist_ok=True)
   state = dict(state)
   state["updated_at"] = _now()
-  RULES_PATH.write_text(json.dumps(state, indent=2, default=str), encoding="utf-8")
+  payload = json.dumps(state, indent=2, default=str)
+  tmp = RULES_PATH.with_suffix(f".{uuid.uuid4().hex[:8]}.tmp")
+  tmp.write_text(payload, encoding="utf-8")
+  last_err: Exception | None = None
+  for attempt in range(8):
+    try:
+      tmp.replace(RULES_PATH)
+      return
+    except (PermissionError, OSError) as exc:
+      last_err = exc
+      time.sleep(0.05 * (attempt + 1))
+      try:
+        RULES_PATH.write_text(payload, encoding="utf-8")
+        try:
+          tmp.unlink(missing_ok=True)
+        except OSError:
+          pass
+        return
+      except (PermissionError, OSError) as exc2:
+        last_err = exc2
+        time.sleep(0.08 * (attempt + 1))
+  try:
+    tmp.unlink(missing_ok=True)
+  except OSError:
+    pass
+  # Last resort: write sidecar so learning is not lost; bakeoff continues
+  sidecar = RULES_PATH.with_suffix(".json.fallback")
+  try:
+    sidecar.write_text(payload, encoding="utf-8")
+  except OSError:
+    pass
+  if last_err is not None:
+    # Soft-fail for Windows file locks during parallel/long bakeoffs
+    print(f"warning: mistake_rules save deferred ({last_err}); wrote {sidecar.name}", flush=True)
 
 
 def _append_jsonl(path: Path, row: dict[str, Any]) -> None:
@@ -168,12 +212,124 @@ def seed_standing_policies(state: dict[str, Any] | None = None) -> dict[str, Any
       "status": "active",
       "permanent": True,
     },
+    # v5 → v2 lessons (freq + bad months). Applied when apply_standing_freq=True (v2.2).
+    {
+      "id": "policy_freq_ticker_cooldown_1",
+      "kind": "frequency",
+      "title": "1-session ticker cooldown after a trade",
+      "reason": "v5_freq: cutting immediate re-fires reduced Oct bleed without killing 2025 (+99.5% vs v2 +103%).",
+      "status": "active",
+      "permanent": True,
+      "ticker_cooldown_days": 1,
+    },
+    {
+      "id": "policy_freq_loss_streak_sitout_3",
+      "kind": "frequency",
+      "title": "Sit one day after 3 meaningful reds",
+      "reason": "v5_freq: loss_streak_sitout=3 improved several v2 crash months (e.g. 2021 Oct −20.8% → −4.3%).",
+      "status": "active",
+      "permanent": True,
+      "loss_streak_sitout": 3,
+    },
+    {
+      "id": "policy_freq_max_trades_month_16",
+      "kind": "frequency",
+      "title": "Cap ~16 trades/month",
+      "reason": "v5_freq: month cap cuts churn in noisy months; keeps top_k=1 concentration edge.",
+      "status": "active",
+      "permanent": True,
+      "max_trades_per_month": 16,
+    },
+    {
+      "id": "policy_calendar_october_soft",
+      "kind": "calendar_soft",
+      "title": "October soft size ×0.5",
+      "reason": "v2 multi-year: October is the worst calendar cluster (−28.9% 2024, −21.5% 2020, −20.8% 2021, −17.4% 2023). Soft size only — do not sit out (sit-out costs green Oct days).",
+      "status": "active",
+      "permanent": True,
+      "months": ["october"],
+      "size_mult": 0.5,
+    },
+    {
+      "id": "policy_v23_asymmetric_attack",
+      "kind": "policy",
+      "title": "v2.3 asymmetric attack/defense",
+      "reason": "Keep freq defenses only when underwater or market defense; when YTD green / prior month green, lift trade caps and fire full size to raise year-end. Oct soft only if underwater.",
+      "status": "active",
+      "permanent": True,
+    },
+    {
+      "id": "policy_adaptive_fingerprint_learn",
+      "kind": "policy",
+      "title": "Learn failure contexts, not calendar months",
+      "reason": "Forward path: fingerprint regime/breadth/underwater/streak after meaningful reds; require repeated evidence before size-down/sit. No July/October hardcodes as alpha.",
+      "status": "active",
+      "permanent": True,
+    },
   ]
+  changed = False
+  existing = {str(r.get("id")): r for r in st["rules"]}
   for p in policies:
-    if not any(r.get("id") == p["id"] for r in st["rules"]):
+    rid = str(p["id"])
+    if rid not in existing:
       _upsert_rule(st, p)
-  save_rules(st)
+      changed = True
+    else:
+      # Refresh permanent policy text/params without bumping hits spam
+      old = existing[rid]
+      if old.get("permanent") and (
+        old.get("reason") != p.get("reason")
+        or old.get("ticker_cooldown_days") != p.get("ticker_cooldown_days")
+        or old.get("loss_streak_sitout") != p.get("loss_streak_sitout")
+        or old.get("max_trades_per_month") != p.get("max_trades_per_month")
+        or old.get("months") != p.get("months")
+        or old.get("size_mult") != p.get("size_mult")
+      ):
+        merged = {**old, **p, "hits": int(old.get("hits") or 1), "updated_at": _now()}
+        for i, r in enumerate(st["rules"]):
+          if str(r.get("id")) == rid:
+            st["rules"][i] = merged
+            break
+        changed = True
+  if changed:
+    save_rules(st)
   return st
+
+
+def standing_freq_knobs(state: dict[str, Any] | None = None) -> dict[str, Any]:
+  """Merge active frequency + calendar_soft standing policies into runner knobs."""
+  st = state or load_rules()
+  out: dict[str, Any] = {}
+  months: list[str] = []
+  soft_mult = 1.0
+  for r in st.get("rules") or []:
+    if str(r.get("status") or "active") != "active":
+      continue
+    kind = str(r.get("kind") or "")
+    if kind == "frequency":
+      if r.get("ticker_cooldown_days") is not None:
+        out["ticker_cooldown_days"] = max(
+          int(out.get("ticker_cooldown_days") or 0), int(r["ticker_cooldown_days"])
+        )
+      if r.get("loss_streak_sitout") is not None:
+        out["loss_streak_sitout"] = max(
+          int(out.get("loss_streak_sitout") or 0), int(r["loss_streak_sitout"])
+        )
+      if r.get("max_trades_per_month") is not None:
+        cur = int(out.get("max_trades_per_month") or 0)
+        val = int(r["max_trades_per_month"])
+        out["max_trades_per_month"] = min(cur, val) if cur > 0 else val
+    elif kind == "calendar_soft":
+      for m in r.get("months") or []:
+        months.append(str(m).lower())
+      try:
+        soft_mult = min(soft_mult, float(r.get("size_mult") or 1.0))
+      except (TypeError, ValueError):
+        pass
+  if months:
+    out["calendar_soft_months"] = sorted(set(months))
+    out["calendar_soft_mult"] = soft_mult if soft_mult < 1.0 else 0.5
+  return out
 
 
 def learn_from_day(
@@ -184,9 +340,14 @@ def learn_from_day(
   day_return_pct: float | None = None,
   regime: str | None = None,
   breadth_frac: float | None = None,
+  breadth_stress: bool | None = None,
+  ytd_underwater: bool = False,
+  loss_streak: int = 0,
+  market_mode: str | None = None,
   family: str = "daily_swing",
   ticker_cooldown: int = DEFAULT_TICKER_COOLDOWN,
   big_loss_cooldown: int = DEFAULT_BIG_LOSS_COOLDOWN,
+  adaptive_fingerprints: bool = True,
 ) -> dict[str, Any]:
   """After exits for day `asof` are known — log mistakes and refresh anti-repeat rules."""
   st = seed_standing_policies(load_rules())
@@ -195,6 +356,14 @@ def learn_from_day(
   wins = [t for t in trades if float(t.get("pnl") or 0) > 0]
   touched: list[str] = []
   mistakes: list[dict[str, Any]] = []
+  fp = context_fingerprint(
+    regime=regime,
+    breadth_frac=breadth_frac,
+    breadth_stress=breadth_stress,
+    ytd_underwater=ytd_underwater,
+    loss_streak=loss_streak,
+    market_mode=market_mode,
+  )
 
   for t in losses:
     tk = str(t.get("ticker") or "").upper().strip()
@@ -360,6 +529,50 @@ def learn_from_day(
       },
     )
 
+
+  # Adaptive fingerprints: learn failure *contexts* (not calendar months)
+  if adaptive_fingerprints and trades and day_ret is not None and day_ret <= MIN_DAY_RET_FOR_FP:
+    prior = 0
+    for r in st.get("rules") or []:
+      if str(r.get("id")) == fp["id"]:
+        prior = int(r.get("evidence_hits") or 0)
+        break
+    exp = _session_dates_after(asof, FP_EXPIRE_SESSIONS)
+    frule = fingerprint_rule_from_failure(
+      fp=fp,
+      asof=asof,
+      day_return_pct=float(day_ret),
+      expires_on=exp,
+      prior_hits=prior,
+    )
+    # Replace-in-place without double-counting evidence_hits via _upsert_rule hits
+    rules = list(st.get("rules") or [])
+    found = False
+    for i, r in enumerate(rules):
+      if str(r.get("id")) == frule["id"]:
+        rules[i] = {**r, **frule, "updated_at": _now()}
+        found = True
+        break
+    if not found:
+      rules.append({**frule, "hits": 1, "created_at": _now(), "updated_at": _now()})
+      st["stats"]["rules_created"] = int(st["stats"].get("rules_created") or 0) + 1
+    st["rules"] = rules
+    touched.append(frule["id"])
+    mist_fp = {
+      "kind": "mistake",
+      "mistake_type": "context_fingerprint",
+      "asof": asof,
+      "family": family,
+      "day_return_pct": day_ret,
+      "fingerprint": fp,
+      "lesson": frule["reason"],
+      "rule_id": frule["id"],
+      "evidence_hits": frule["evidence_hits"],
+      "active_defense": frule["active_defense"],
+    }
+    mistakes.append(mist_fp)
+    _append_jsonl(MISTAKES_PATH, mist_fp)
+
   st["last_learned_asof"] = asof
   st["stats"]["learned_days"] = int(st["stats"].get("learned_days") or 0) + 1
   st["stats"]["mistakes_logged"] = int(st["stats"].get("mistakes_logged") or 0) + len(mistakes)
@@ -376,6 +589,7 @@ def learn_from_day(
       "n_losses": len(losses),
       "rules_touched": sorted(set(touched)),
       "mistakes": len(mistakes),
+      "fingerprint_id": fp.get("id"),
     },
   )
   return {
@@ -384,12 +598,24 @@ def learn_from_day(
     "mistakes": mistakes,
     "active_count": len(active_rules(asof, st)),
     "streak": streak,
+    "fingerprint": fp,
     "ledger_path": str(RULES_PATH),
     "mistakes_path": str(MISTAKES_PATH),
   }
 
 
-def read_briefing(asof: str, *, mark_read: bool = True) -> dict[str, Any]:
+def read_briefing(
+  asof: str,
+  *,
+  mark_read: bool = True,
+  regime: str | None = None,
+  breadth_frac: float | None = None,
+  breadth_stress: bool | None = None,
+  ytd_underwater: bool = False,
+  loss_streak: int = 0,
+  market_mode: str | None = None,
+  apply_fingerprints: bool = True,
+) -> dict[str, Any]:
   """Pre-fire read: tickers banned, sit-out, and size multiplier (≤ 1)."""
   st = seed_standing_policies(load_rules())
   rules = active_rules(asof, st)
@@ -397,6 +623,7 @@ def read_briefing(asof: str, *, mark_read: bool = True) -> dict[str, Any]:
   sitout = False
   size_mult = 1.0
   lines: list[str] = []
+  fp_match: dict[str, Any] = {}
 
   for r in rules:
     kind = str(r.get("kind") or "")
@@ -412,6 +639,23 @@ def read_briefing(asof: str, *, mark_read: bool = True) -> dict[str, Any]:
         size_mult = min(size_mult, float(r.get("size_mult") or 1.0))
       except (TypeError, ValueError):
         pass
+
+  if apply_fingerprints:
+    fp = context_fingerprint(
+      regime=regime,
+      breadth_frac=breadth_frac,
+      breadth_stress=breadth_stress,
+      ytd_underwater=ytd_underwater,
+      loss_streak=loss_streak,
+      market_mode=market_mode,
+    )
+    fp_match = match_fingerprint_rules(rules, fp=fp)
+    if fp_match.get("sitout"):
+      sitout = True
+    size_mult = min(size_mult, float(fp_match.get("size_mult") or 1.0))
+    for m in fp_match.get("matched") or []:
+      if m.get("applied"):
+        lines.append(f"• [fingerprint] {m.get('title')} — {m.get('reason')}")
 
   exclude_tickers = sorted(set(exclude_tickers))
   size_mult = max(0.0, min(1.0, size_mult))
@@ -449,6 +693,8 @@ def read_briefing(asof: str, *, mark_read: bool = True) -> dict[str, Any]:
     "exclude_tickers": exclude_tickers,
     "sitout": sitout,
     "size_mult": size_mult,
+    "fingerprint": (fp_match or {}).get("fingerprint"),
+    "fingerprint_match": fp_match,
     "last_learned_asof": st.get("last_learned_asof"),
     "stats": st.get("stats"),
     "ledger_path": str(RULES_PATH),

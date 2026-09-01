@@ -174,3 +174,40 @@ def cross_section_similarity_message(
     payload=payload,
     status="ok",
   )
+
+
+def cross_section_iqr(peer_rets: list[float] | None) -> float | None:
+  """Inter-quartile range of peer 1d returns (fractions). None if insufficient data."""
+  if not peer_rets or len(peer_rets) < 5:
+    return None
+  peers = sorted(float(x) for x in peer_rets)
+  n = len(peers)
+  p75 = peers[int(0.75 * (n - 1))]
+  p25 = peers[int(0.25 * (n - 1))]
+  return float(p75 - p25)
+
+
+def similarity_size_mult(
+  *,
+  peer_rets: list[float] | None = None,
+  iqr_hard_skip: float = 0.0025,
+  iqr_soft: float = 0.004,
+  soft_mult: float = 0.5,
+  ultra_soft: float = 0.003,
+  ultra_mult: float = 0.75,
+  allow_hard_skip: bool = True,
+) -> tuple[float, str, float | None]:
+  """Soft crowded-tape gate — size down or skip; never amplify.
+
+  Returns (size_mult, reason, iqr).
+  """
+  iqr = cross_section_iqr(peer_rets)
+  if iqr is None:
+    return 1.0, "similarity_na", None
+  if allow_hard_skip and iqr < iqr_hard_skip:
+    return 0.0, "similarity_crowded_skip", iqr
+  if iqr < iqr_soft:
+    return soft_mult, "similarity_crowded_soft", iqr
+  if iqr < ultra_soft:
+    return ultra_mult, "similarity_mild_crowd", iqr
+  return 1.0, "similarity_ok", iqr
