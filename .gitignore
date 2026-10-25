@@ -30,3 +30,10 @@ docs/ANIMA_DEEP_DIVE.md
 .cursor/council-sessions/
 models/intraday_cache/
 *.log
+
+# local marketing / scratch
+brag-output/
+output/
+tmp*
+*.mp4
+
