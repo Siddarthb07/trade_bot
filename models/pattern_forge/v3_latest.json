@@ -1,114 +1,114 @@
 {
   "lane": "v3",
-  "variant": "v3_div3_vol_lev11",
+  "variant": "v3_ind_top1_vwap_vol",
   "confirmed_oos": false,
   "strategy": "daily_swing",
   "capital_start": 10000.0,
-  "capital_end": 10096.81,
-  "total_return_pct": 0.968,
-  "green_months": 6,
+  "capital_end": 9904.4,
+  "total_return_pct": -0.956,
+  "green_months": 7,
   "months_total": 12,
-  "worst_month_pct": -13.01,
-  "year_pnl": 96.81,
+  "worst_month_pct": -21.816,
+  "year_pnl": -95.6,
   "loss_lte_profits": false,
   "goal_met": false,
-  "n_trades": 637,
+  "n_trades": 207,
   "months": [
     {
       "month": "january",
       "capital_start": 10000.0,
-      "capital_end": 9949.24,
-      "month_return_pct": -0.508,
-      "n_trades": 41,
-      "wins": 14
+      "capital_end": 10266.16,
+      "month_return_pct": 2.662,
+      "n_trades": 15,
+      "wins": 6
     },
     {
       "month": "february",
-      "capital_start": 9949.24,
-      "capital_end": 8654.86,
-      "month_return_pct": -13.01,
-      "n_trades": 35,
-      "wins": 7
+      "capital_start": 10266.16,
+      "capital_end": 9800.0,
+      "month_return_pct": -4.541,
+      "n_trades": 11,
+      "wins": 3
     },
     {
       "month": "march",
-      "capital_start": 8654.86,
-      "capital_end": 8814.12,
-      "month_return_pct": 1.84,
-      "n_trades": 53,
-      "wins": 19
+      "capital_start": 9800.0,
+      "capital_end": 9800.0,
+      "month_return_pct": 0.0,
+      "n_trades": 15,
+      "wins": 6
     },
     {
       "month": "april",
-      "capital_start": 8814.12,
-      "capital_end": 8749.18,
-      "month_return_pct": -0.737,
-      "n_trades": 52,
-      "wins": 27
+      "capital_start": 9800.0,
+      "capital_end": 10370.58,
+      "month_return_pct": 5.822,
+      "n_trades": 19,
+      "wins": 13
     },
     {
       "month": "may",
-      "capital_start": 8749.18,
-      "capital_end": 8807.59,
-      "month_return_pct": 0.668,
-      "n_trades": 57,
-      "wins": 24
+      "capital_start": 10370.58,
+      "capital_end": 12319.52,
+      "month_return_pct": 18.793,
+      "n_trades": 20,
+      "wins": 9
     },
     {
       "month": "june",
-      "capital_start": 8807.59,
-      "capital_end": 9277.45,
-      "month_return_pct": 5.335,
-      "n_trades": 60,
-      "wins": 31
+      "capital_start": 12319.52,
+      "capital_end": 13000.0,
+      "month_return_pct": 5.524,
+      "n_trades": 19,
+      "wins": 10
     },
     {
       "month": "july",
-      "capital_start": 9277.45,
-      "capital_end": 9073.22,
-      "month_return_pct": -2.201,
-      "n_trades": 62,
-      "wins": 27
+      "capital_start": 13000.0,
+      "capital_end": 10163.92,
+      "month_return_pct": -21.816,
+      "n_trades": 19,
+      "wins": 5
     },
     {
       "month": "august",
-      "capital_start": 9073.22,
-      "capital_end": 8961.32,
-      "month_return_pct": -1.233,
-      "n_trades": 37,
-      "wins": 14
+      "capital_start": 10163.92,
+      "capital_end": 9388.69,
+      "month_return_pct": -7.627,
+      "n_trades": 10,
+      "wins": 0
     },
     {
       "month": "september",
-      "capital_start": 8961.32,
-      "capital_end": 9215.58,
-      "month_return_pct": 2.837,
-      "n_trades": 64,
-      "wins": 33
+      "capital_start": 9388.69,
+      "capital_end": 9733.21,
+      "month_return_pct": 3.67,
+      "n_trades": 21,
+      "wins": 9
     },
     {
       "month": "october",
-      "capital_start": 9215.58,
-      "capital_end": 10055.27,
-      "month_return_pct": 9.112,
-      "n_trades": 63,
-      "wins": 35
+      "capital_start": 9733.21,
+      "capital_end": 9949.76,
+      "month_return_pct": 2.225,
+      "n_trades": 20,
+      "wins": 12
     },
     {
       "month": "november",
-      "capital_start": 10055.27,
-      "capital_end": 10306.7,
-      "month_return_pct": 2.5,
-      "n_trades": 51,
-      "wins": 23
+      "capital_start": 9949.76,
+      "capital_end": 10551.1,
+      "month_return_pct": 6.044,
+      "n_trades": 18,
+      "wins": 9
     },
     {
       "month": "december",
-      "capital_start": 10306.7,
-      "capital_end": 10096.81,
-      "month_return_pct": -2.036,
-      "n_trades": 62,
-      "wins": 30
+      "capital_start": 10551.1,
+      "capital_end": 9904.4,
+      "month_return_pct": -6.129,
+      "n_trades": 20,
+      "wins": 9
     }
   ],
   "knobs": {
@@ -122,14 +122,14 @@
     "min_score": 0.005,
     "r1_lo": 0.005,
     "r1_hi": 0.06,
-    "top_k": 3,
+    "top_k": 1,
     "use_breadth_veto": false,
     "breadth_scale": false,
-    "vol_scale_rank": true,
-    "skip_extended_r5": 0.12,
+    "vol_scale_rank": false,
+    "skip_extended_r5": null,
     "require_market_ts_mom": false,
-    "ticker_cooldown_days": 2,
-    "max_single_name_day_frac": 0.34,
+    "ticker_cooldown_days": 0,
+    "max_single_name_day_frac": 1.0,
     "max_daily_loss_pct": 8.0,
     "promote_summary": false,
     "write_lab_summary": false,
@@ -137,74 +137,79 @@
     "include_trades": true,
     "swarm_hard_veto": false,
     "overnight_feeds": false,
-    "lane": "v3_div3_vol_lev11"
+    "lookback_days": 520,
+    "mistake_mark_read": false,
+    "lane": "v3_ind_top1_vwap_vol",
+    "use_ohlcv": true,
+    "require_above_ema200": false,
+    "require_above_vwap": true,
+    "min_rel_volume": 1.0
   },
   "oos": {
     "2023": {
-      "total_return_pct": 9.357,
-      "green_months": 4,
-      "worst_month_pct": -9.14,
+      "total_return_pct": 102.1,
+      "green_months": 8,
+      "worst_month_pct": -16.646,
       "gate_ok": false,
       "gate_fail": [
-        "green=4<8",
-        "loss_lte_profits=False",
-        "max_trade_share=90.0>35.0"
+        "max_trade_share=51.74>35.0"
       ],
       "concentration": {
-        "max_share_pct": 90.0,
+        "max_share_pct": 51.74,
         "trade": {
-          "asof": "2023-07-26",
-          "ticker": "CIPLA.NS",
-          "pnl": 842.14,
-          "pnl_pct": 9.635
+          "asof": "2023-05-19",
+          "ticker": "ADANIENT.NS",
+          "pnl": 5282.68,
+          "pnl_pct": 18.918
         }
       }
     },
     "2024": {
-      "total_return_pct": -14.472,
-      "green_months": 3,
-      "worst_month_pct": -17.59,
+      "total_return_pct": 39.628,
+      "green_months": 6,
+      "worst_month_pct": -23.319,
+      "gate_ok": false,
+      "gate_fail": [
+        "green=6<8",
+        "loss_lte_profits=False",
+        "worst_month=-23.319<-22",
+        "max_trade_share=120.12>35.0"
+      ],
+      "concentration": {
+        "max_share_pct": 120.12,
+        "trade": {
+          "asof": "2024-05-31",
+          "ticker": "ADANIPORTS.NS",
+          "pnl": 4760.22,
+          "pnl_pct": 10.195
+        }
+      }
+    },
+    "2025": {
+      "total_return_pct": -0.956,
+      "green_months": 7,
+      "worst_month_pct": -21.816,
       "gate_ok": false,
       "gate_fail": [
         "return<=0",
-        "green=3<8",
+        "green=7<8",
         "loss_lte_profits=False"
       ],
       "concentration": {
         "max_share_pct": null,
         "trade": null
       }
-    },
-    "2025": {
-      "total_return_pct": 0.968,
-      "green_months": 6,
-      "worst_month_pct": -13.01,
-      "gate_ok": false,
-      "gate_fail": [
-        "green=6<8",
-        "loss_lte_profits=False",
-        "max_trade_share=775.79>35.0"
-      ],
-      "concentration": {
-        "max_share_pct": 775.79,
-        "trade": {
-          "asof": "2025-01-01",
-          "ticker": "EICHERMOT.NS",
-          "pnl": 751.04,
-          "pnl_pct": 8.655
-        }
-      }
     }
   },
   "concentration_2025": {
-    "max_share_pct": 775.79,
-    "trade": {
-      "asof": "2025-01-01",
-      "ticker": "EICHERMOT.NS",
-      "pnl": 751.04,
-      "pnl_pct": 8.655
-    }
+    "max_share_pct": null,
+    "trade": null
   },
   "locked_v2_untouched": true,
-  "claim": "paper/sim v3 v3_div3_vol_lev11; lev=11.0 DISCLOSED; top_k=3 diversification; confirmed_oos=False; not live fills; does not replace locked v2"
+  "indicators": [
+    "vwap",
+    "rel_volume",
+    "ema200"
+  ],
+  "claim": "paper/sim v3 v3_ind_top1_vwap_vol; VWAP+volume+200EMA filters; lev=11.0 DISCLOSED; confirmed_oos=False; not live fills; does not replace locked v2"
 }

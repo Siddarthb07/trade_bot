@@ -37,3 +37,11 @@ output/
 tmp*
 *.mp4
 
+
+# Pattern Forge run ledgers (too large for GitHub; keep local)
+models/pattern_forge/decisions.jsonl
+models/pattern_forge/mistakes.jsonl
+models/pattern_forge/mistake_history.jsonl
+models/pattern_forge/trades.jsonl
+models/pattern_forge/runs.jsonl
+models/pattern_forge/iterations.jsonl

@@ -109,6 +109,58 @@ def _fetch_history(ticker: str, end: datetime, lookback_days: int = 400) -> list
   return []
 
 
+def _fetch_history_ohlcv(
+  ticker: str, end: datetime, lookback_days: int = 400
+) -> list[tuple[str, float, float, float, float]]:
+  """Return list of (YYYY-MM-DD, close, volume, high, low) up to end date inclusive."""
+  start = end - timedelta(days=lookback_days)
+  end_excl = end + timedelta(days=2)
+  for attempt in range(3):
+    try:
+      if attempt == 0:
+        hist = yf.Ticker(ticker).history(
+          start=start.strftime("%Y-%m-%d"),
+          end=end_excl.strftime("%Y-%m-%d"),
+          auto_adjust=False,
+        )
+      else:
+        hist = yf.download(
+          ticker,
+          start=start.strftime("%Y-%m-%d"),
+          end=end_excl.strftime("%Y-%m-%d"),
+          auto_adjust=False,
+          progress=False,
+          threads=False,
+        )
+      if hist is None or hist.empty:
+        continue
+      if hasattr(hist.columns, "nlevels") and hist.columns.nlevels > 1:
+        hist = hist.copy()
+        hist.columns = hist.columns.get_level_values(0)
+      out: list[tuple[str, float, float, float, float]] = []
+      for ts, row in hist.iterrows():
+        close = float(row.get("Close", row.iloc[0]))
+        if close != close or close <= 0:
+          continue
+        high = float(row.get("High", close))
+        low = float(row.get("Low", close))
+        vol = float(row.get("Volume", 0) or 0)
+        if high != high or high <= 0:
+          high = close
+        if low != low or low <= 0:
+          low = close
+        if vol != vol or vol < 0:
+          vol = 0.0
+        d = ts.date().isoformat() if hasattr(ts, "date") else str(ts)[:10]
+        if d <= end.date().isoformat():
+          out.append((d, close, vol, high, low))
+      if out:
+        return out
+    except Exception:
+      continue
+  return []
+
+
 def _state_for_ticker(ticker: str) -> AdaptiveState:
   profile = None
   data = load_profiles()

@@ -40,18 +40,34 @@
   },
   "combo2_push_b": {
     "variant": "combo2_push_b",
-    "knobs_delta": {
-      "leverage": 17,
-      "attack_leverage": 20,
-      "attack_sleeve_frac": 0.37,
-      "max_daily_loss_pct": 7.0
-    },
     "mean_year_return_pct": 318.859,
-    "compound_return_pct": 1614108.064,
-    "years_positive": 8,
-    "min_worst_month_pct": -32.97,
     "sum_standalone_pnl": 255087.46,
-    "promoted_stretch": true
+    "min_worst_month_pct": -32.97,
+    "years_positive": 8,
+    "superseded_by": "guard_c"
+  },
+  "guard_c": {
+    "variant": "guard_c",
+    "parent": "combo2_push_b",
+    "loss_controls": {
+      "max_daily_loss_pct": 6.0,
+      "attack_red_day_size_mult": 0.60,
+      "october_size_mult": 0.40,
+      "defense_leverage": 10,
+      "defense_sleeve_frac": 0.20,
+      "calendar_soft_months": ["october", "august"],
+      "calendar_soft_mult": 0.45
+    },
+    "mean_year_return_pct": 853.585,
+    "sum_standalone_pnl": 682868.0,
+    "years_positive": 8,
+    "min_worst_month_pct": -21.122,
+    "mean_worst_month_pct": -11.164,
+    "promoted_stretch": true,
+    "vs_push_b": {
+      "sum_pnl_delta_pct": 167.5,
+      "min_worst_improved_pp": 12.0
+    }
   },
   "breaks_at": {
     "variant": "combo2_push_d",

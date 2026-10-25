@@ -2418,6 +2418,7 @@ def exec_pattern_forge_summary(_: None = Depends(verify_basic_or_share)) -> dict
     "months_2025": months,
     "strategies": board.get("strategies") or [],
     "chart": board.get("chart") or [],
+    "stretch_panel": board.get("stretch_panel"),
     "v2": v2,
     "v2_1": v2_1,
     "product": product,

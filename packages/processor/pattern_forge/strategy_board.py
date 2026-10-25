@@ -109,6 +109,57 @@ def strategy_card(report: dict[str, Any], *, role: str) -> dict[str, Any]:
   }
 
 
+def load_stretch_panel() -> dict[str, Any] | None:
+  """Stretch-lane survivor panel (guard_omega_d) for Pattern Lab."""
+  stretch_path = PF / "v2_4_stretch_latest.json"
+  omega_path = PF / "guard_h_omega.json"
+  meta = _load(stretch_path)
+  if not meta:
+    return None
+  years: list[dict[str, Any]] = []
+  omega = _load(omega_path)
+  if omega:
+    for row in omega.get("full_panel") or []:
+      if row.get("name") == "guard_omega_d":
+        years = list(row.get("years") or [])
+        break
+    if not years and (omega.get("best") or {}).get("name") == "guard_omega_d":
+      years = list((omega.get("best") or {}).get("years") or [])
+  summary = dict(meta.get("full_panel_summary") or {})
+  if not summary and years:
+    summary = {
+      "years_positive": sum(1 for y in years if float(y.get("total_return_pct") or 0) > 0),
+      "sum_pnl": round(sum(float(y.get("capital_end") or 10_000) - 10_000 for y in years), 2),
+    }
+  return {
+    "variant": meta.get("variant") or "guard_omega_d",
+    "lane": meta.get("lane") or "v2_4_stretch",
+    "claim": meta.get("claim"),
+    "nine_nine": bool(meta.get("nine_nine")),
+    "locked_v2_untouched": bool(meta.get("locked_v2_untouched")),
+    "summary": summary,
+    "years": [
+      {
+        "year": int(y.get("year") or 0),
+        "label": str(y.get("year") or "")[2:],
+        "return_pct": float(y.get("total_return_pct") or 0),
+        "worst_month_pct": float(y.get("worst_month_pct") or 0),
+        "n_trades": int(y.get("n_trades") or 0),
+        "capital_end": float(y.get("capital_end") or 0),
+      }
+      for y in years
+    ],
+    "chart": [
+      {
+        "name": str(y.get("year") or "")[2:],
+        "ret": float(y.get("total_return_pct") or 0),
+        "fill": "#bf5af2" if float(y.get("total_return_pct") or 0) >= 700 else "#30d158",
+      }
+      for y in years
+    ],
+  }
+
+
 def load_strategy_board(capital: float = 10_000.0) -> dict[str, Any]:
   """Named lanes for the ending-capital chart."""
   files = [
@@ -205,8 +256,11 @@ def load_strategy_board(capital: float = 10_000.0) -> dict[str, Any]:
         by_lab[lab] = row
       else:
         row["v2_1"] = m.get("capital_end")
+  stretch = load_stretch_panel()
+
   return {
     "capital_start": capital,
+    "stretch_panel": stretch,
     "strategies": strategies,
     "chart": [
       {

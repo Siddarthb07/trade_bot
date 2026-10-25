@@ -1,7 +1,8 @@
 # Pattern Forge v2 Design — After v1 Daily FO Swing
 
-> **Date:** 2026-08-30  
+> **Date:** 2026-08-30 (v2_alpha addendum 2026-09-06)  
 > **v2 status:** **LOCKED / PROMOTED** — see [`PATTERN_FORGE_CURRENT_METHOD.md`](PATTERN_FORGE_CURRENT_METHOD.md)  
+> **v2_alpha status:** **RESEARCH** — regime × dip-depth exits — [`PATTERN_FORGE_V2_ALPHA_DESIGN.md`](PATTERN_FORGE_V2_ALPHA_DESIGN.md)  
 > **v2.1 status:** **RESEARCH** — shorts + hard swarm vetoes + overnight feeds + Lab charts; promote only via bakeoff gate  
 > **v1 status:** frozen stretch baseline (`daily_fo_push10`)  
 > **v2 north star:** bigger clean return with **loss ≤ profits** (profit_guard), not max annual via naked leverage
@@ -211,7 +212,18 @@ Dash: Pattern Lab → Mistake ledger + `/exec/pattern-forge/mistakes`.
 | Ablation + OOS 2023/2024 | `scripts/run_v2_1_bakeoff.py` → `v2_1_bakeoff.json` |
 | Promote to locked v2 | **Never silent** — only if bakeoff beats v2 on 2025 + OOS claim |
 
-Artefacts: locked `v2_latest.json`; challenger `v2_1_latest.json`.
+Artefacts: locked `v2_latest.json`; challenger `v2_1_latest.json`; exit challenger `v2_alpha_latest.json`.
+
+### v2_alpha research checklist (2026-09-06)
+
+| Gap | Status |
+|-----|--------|
+| Design doc | Done — `PATTERN_FORGE_V2_ALPHA_DESIGN.md` |
+| Dip-depth stop + regime TP/partial module | Done — `v2_alpha_exit.py` |
+| Runner `exit_book=v2_alpha` + OHLCV T+1 path | Done — `run_pattern_forge_daily_swing_2025.py` |
+| Ablation bakeoff (control / full / stops / tp) | `scripts/run_v2_alpha_bakeoff.py` |
+| Unit tests | `tests/test_v2_alpha_exit.py` |
+| Promote over locked v2 | **Never silent** — bakeoff gate + OOS |
 
 ### Aim band 40–50% (clean PIT 2025)
 

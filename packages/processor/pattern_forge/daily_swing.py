@@ -379,6 +379,8 @@ def choose_daily_candidate(
   # v3 risk-managed momentum knobs (never amplify)
   vol_scale_rank: bool = False,
   skip_extended_r5: float | None = None,
+  skip_extended_r5_defense_only: bool = False,
+  skip_extended_r5_attack: float | None = None,
   require_market_ts_mom: bool = False,
   market_ts_lookback: int = 20,
   market_ts_min: float = 0.0,
@@ -393,6 +395,7 @@ def choose_daily_candidate(
   score_mode: str = "raw_r1",
   indicator_mode: str = "off",
   defense_sitout: bool = False,
+  defense_chop_sitout: bool = False,
   defense_size_mult: float = 0.5,
   defense_on_risk_off: bool = True,
   defense_on_breadth_stress: bool = True,
@@ -400,6 +403,8 @@ def choose_daily_candidate(
   nifty_ema_period: int = 200,
   october_defense: bool = False,
   october_size_mult: float = 0.5,
+  calendar_sit_months: set[str] | list[str] | None = None,
+  calendar_sit_mult: float = 0.0,
   r1_hi_trend: float | None = None,
   boost_near_52w_high: bool = False,
   asof: str | None = None,
@@ -459,6 +464,22 @@ def choose_daily_candidate(
       "mode_meta": mode_meta,
     }
 
+  if market_mode == "defense" and regime == "chop" and defense_chop_sitout:
+    return {
+      "picked": "cash",
+      "picks": [],
+      "regime": regime,
+      "breadth": breadth,
+      "size_mult": 0.0,
+      "reason": f"defense_chop_sitout:{','.join(mode_meta.get('reasons') or [])}",
+      "primary": {"side": "flat", "confidence": 0.5, "reason": "defense_chop_sitout"},
+      "ranked_top": [],
+      "stress_veto": True,
+      "exclude_tickers": sorted(banned),
+      "market_mode": market_mode,
+      "mode_meta": mode_meta,
+    }
+
   ranked: list[dict[str, Any]] = []
   for ticker, closes in universe_closes.items():
     ohlcv = (universe_ohlcv or {}).get(ticker) or {}
@@ -490,12 +511,21 @@ def choose_daily_candidate(
     if vwap_score_boost > 0 and score > 0 and feats.get("above_vwap") is True:
       score = score + min(float(vwap_score_boost), 0.002)
     extended = False
-    if skip_extended_r5 is not None and feats.get("ok"):
+    if feats.get("ok"):
       r5 = float(feats.get("ret_5") or 0)
-      if sig.get("side") == "buy" and r5 >= float(skip_extended_r5):
-        extended = True
-      if sig.get("side") == "sell" and r5 <= -float(skip_extended_r5):
-        extended = True
+      thresh: float | None = None
+      if skip_extended_r5_defense_only:
+        if market_mode == "defense" and skip_extended_r5 is not None:
+          thresh = float(skip_extended_r5)
+        elif market_mode == "attack" and skip_extended_r5_attack is not None:
+          thresh = float(skip_extended_r5_attack)
+      elif skip_extended_r5 is not None:
+        thresh = float(skip_extended_r5)
+      if thresh is not None:
+        if sig.get("side") == "buy" and r5 >= thresh:
+          extended = True
+        if sig.get("side") == "sell" and r5 <= -thresh:
+          extended = True
     indicator_fail = False
     indicator_reason: str | None = None
     if eff_min_vol is not None and not indicator_fail:
@@ -550,6 +580,13 @@ def choose_daily_candidate(
     size_mult = min(size_mult, max(0.0, min(1.0, float(defense_size_mult))))
   if october_defense and asof and len(asof) >= 7 and asof[5:7] == "10":
     size_mult = min(size_mult, max(0.0, min(1.0, float(october_size_mult))))
+
+  _sit = {str(x).lower() for x in (calendar_sit_months or []) if x}
+  if _sit and asof and len(asof) >= 7:
+    _mm = {"01": "january", "02": "february", "03": "march", "04": "april", "05": "may", "06": "june", "07": "july", "08": "august", "09": "september", "10": "october", "11": "november", "12": "december"}
+    _mname = _mm.get(asof[5:7])
+    if _mname and _mname in _sit:
+      size_mult = min(size_mult, max(0.0, min(1.0, float(calendar_sit_mult))))
 
   if sitout:
     return {
@@ -644,6 +681,7 @@ def choose_daily_candidate(
       "confidence": best["confidence"],
       "reason": best.get("reason"),
       "score": best["score"],
+      "features": best.get("features") or {},
     },
     "hybrid_choice": {
       "picked": "daily_swing",

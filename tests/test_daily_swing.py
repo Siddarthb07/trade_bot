@@ -143,6 +143,23 @@ def test_v4_defense_sitout():
   assert out.get("market_mode") == "defense"
 
 
+def test_defense_chop_sitout():
+  uni = {f"T{i}.NS": [100.0 + (0.4 if i == 0 else 0.05) * j for j in range(40)] for i in range(6)}
+  flat_mkt = [100.0] * 40
+  out = choose_daily_candidate(
+    uni,
+    market_closes=flat_mkt,
+    long_only=True,
+    min_score=0.001,
+    defense_chop_sitout=True,
+    october_defense=True,
+    asof="2024-10-15",
+    use_breadth_veto=False,
+  )
+  assert out["picked"] == "cash"
+  assert "defense_chop_sitout" in str(out.get("reason") or "")
+
+
 def test_news_edge_skip_on_us_dump():
   from processor.pattern_forge.news_edge import news_edge_message, news_edge_size_mult
 

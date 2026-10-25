@@ -24,7 +24,9 @@ from processor.pattern_forge.adaptive_learn import (
 )
 
 ROOT = Path(__file__).resolve().parents[3]
-LEDGER_DIR = ROOT / "models" / "pattern_forge"
+LEDGER_DIR = Path(
+  __import__("os").environ.get("PATTERN_FORGE_LEDGER_DIR") or (ROOT / "models" / "pattern_forge")
+)
 RULES_PATH = LEDGER_DIR / "mistake_rules.json"
 MISTAKES_PATH = LEDGER_DIR / "mistakes.jsonl"
 HISTORY_PATH = LEDGER_DIR / "mistake_history.jsonl"

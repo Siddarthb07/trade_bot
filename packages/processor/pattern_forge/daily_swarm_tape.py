@@ -14,9 +14,27 @@ from processor.hybrid.recognition.swarm.cross_market import (
 )
 from processor.pattern_forge.market_regime_proxy import soft_regime
 from processor.pattern_forge.news_edge import news_edge_message
+from processor.pattern_forge.research_agents import (
+  asia_basket_message,
+  bad_month_guard_message,
+  liquidity_gate_message,
+  open_auction_quality_message,
+  stock_research_message,
+)
 
 HARD_VETO_AGENTS = frozenset(
-  {"Regime", "CrossMarketOpen", "CrossSectionSimilarity", "BreadthRegime", "NewsEdgeScan"}
+  {
+    "Regime",
+    "CrossMarketOpen",
+    "CrossSectionSimilarity",
+    "BreadthRegime",
+    "NewsEdgeScan",
+    "LiquidityGate",
+    "StockResearch",
+    "OpenAuctionQuality",
+    "AsiaBasket",
+    "BadMonthGuard",
+  }
 )
 
 
@@ -43,6 +61,15 @@ def daily_swarm_tape(
   hard_veto: bool = False,
   profit_guard_note: str | None = None,
   feed_status: dict[str, str] | None = None,
+  candidate_features: dict[str, Any] | None = None,
+  peer_rel_volumes: list[float] | None = None,
+  month_pnl_pct: float | None = None,
+  consecutive_red_days: int = 0,
+  peak_dd_pct: float | None = None,
+  liquidity_min_rel_volume: float = 0.55,
+  liquidity_soft_rel_volume: float = 0.85,
+  auction_chase_gap_bps: float = 120.0,
+  bad_month_red_days: int = 2,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
   """Return (messages, agreement) for ledger + dash."""
   regime = soft_regime(list(market_closes or []))
@@ -50,6 +77,12 @@ def daily_swarm_tape(
   side = str(primary.get("side") or "flat")
   picked = str(choice.get("picked") or "cash")
   breadth = choice.get("breadth") or {}
+  feats = dict(candidate_features or primary.get("features") or {})
+  if not feats:
+    for row in choice.get("ranked_top") or []:
+      if str(row.get("ticker") or "") == picked and isinstance(row.get("features"), dict):
+        feats = dict(row["features"])
+        break
   msgs: list[dict[str, Any]] = []
 
   msgs.append(
@@ -135,6 +168,40 @@ def daily_swarm_tape(
     primary_side=side if side in ("buy", "sell") else None,
   )
   msgs.append(_msg(ne.agent, ne.vote, ne.reason, weight=ne.weight, status=ne.status, payload=dict(ne.payload or {})))
+
+  # Liquidity / research / auction / asia / loss-guard (V2 backlog + Zerodha ADV)
+  lg = liquidity_gate_message(
+    rel_volume=float(feats["rel_volume"]) if feats.get("rel_volume") is not None else None,
+    peer_rel_volumes=peer_rel_volumes,
+    primary_side=side if side in ("buy", "sell") else None,
+  )
+  msgs.append(_msg(lg.agent, lg.vote, lg.reason, weight=lg.weight, status=lg.status, payload=dict(lg.payload or {})))
+
+  sr = stock_research_message(
+    features=feats or None,
+    primary_side=side if side in ("buy", "sell") else None,
+  )
+  msgs.append(_msg(sr.agent, sr.vote, sr.reason, weight=sr.weight, status=sr.status, payload=dict(sr.payload or {})))
+
+  oa = open_auction_quality_message(
+    overnight_gap_pct=overnight_gap_pct,
+    primary_side=side if side in ("buy", "sell") else None,
+  )
+  msgs.append(_msg(oa.agent, oa.vote, oa.reason, weight=oa.weight, status=oa.status, payload=dict(oa.payload or {})))
+
+  ab = asia_basket_message(
+    asia_ret_pct=asia_ret_pct,
+    us_ret_pct=us_ret_pct,
+    primary_side=side if side in ("buy", "sell") else None,
+  )
+  msgs.append(_msg(ab.agent, ab.vote, ab.reason, weight=ab.weight, status=ab.status, payload=dict(ab.payload or {})))
+
+  bmg = bad_month_guard_message(
+    month_pnl_pct=month_pnl_pct,
+    consecutive_red_days=int(consecutive_red_days or 0),
+    peak_dd_pct=peak_dd_pct,
+  )
+  msgs.append(_msg(bmg.agent, bmg.vote, bmg.reason, weight=bmg.weight, status=bmg.status, payload=dict(bmg.payload or {})))
 
   msgs.append(_msg("Cost", "take" if picked != "cash" else "annotate", "fo_cost_model_12bps", payload={"model": "IN_FO"}))
   msgs.append(_msg("NoRuin", "annotate", "checked_pre_trade", status="ok"))

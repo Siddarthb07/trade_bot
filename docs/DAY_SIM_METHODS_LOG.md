@@ -1089,10 +1089,52 @@ Report: `models/copy_pro_returns_push.json`.
 | **Full 8-year standalone** | 6/8 green; red = **2021 (−18.5%)**, **2022 (−15.7%)**. Scorecard: `v2_multi_year.json` (lead with year table; compound = footnote). |
 | **v3 confirmed OOS?** | **No.** Pass1 (TS-mom+breadth+vol) → flat/~0%. Pass2 (top_k diversify only) → **destroys** v2 edge (OOS mostly red). Honest: **v2’s return IS single-name concentration**; diversifying removes the headline without a replacement edge. Artefacts: `v3_bakeoff.json`, `v3_bakeoff_pass2.json`, `v3_latest.json` (`confirmed_oos=false`). **`v2_latest.json` untouched.** |
 
+### M5. v3.1 indicator filters — VWAP / volume / 200 EMA (2026-08-31)
+
+| Field | Value |
+|-------|-------|
+| **Indicators** | 20d rolling **VWAP** (typical price × volume), **rel_volume** (today / 20d avg), **200 EMA** trend filter |
+| **Code** | `daily_swing.py` (`stock_daily_features`, `choose_daily_candidate`); OHLCV via `day_sim._fetch_history_ohlcv`; bakeoff `scripts/run_v3_bakeoff_pass3.py` |
+| **Hard all-three** | **Too strict** — 2025 **−18%** (127 trades, 2/12 green); early months often 0 trades |
+| **Best so far** | **200 EMA only** (`require_above_ema200`): 2023 **+33%**, 2024 **−7%**, 2025 **+8.8%** — beats pass2 (+0.97% on 2025) but **still fails** OOS gate (2024 red, green months) |
+| **Soft volume / VWAP** | `min_rel_volume=0.75` + `vol_soft_penalty`; `vwap_score_boost=0.001` — ranking tie-breaks, not hard vetoes |
+| **Status** | RESEARCH / **not confirmed OOS**; v2 remains locked hero |
+
+### M6. v4 dual-mode attack/defense (2026-08-31)
+
+| Field | Value |
+|-------|-------|
+| **Thesis** | v2 concentration in **attack**; **defense** on Nifty&lt;200EMA, breadth stress, October + optional VWAP/vol |
+| **Scoring** | `rs_vs_nifty`, `rs_times_r1`, or `raw_r1` |
+| **Bakeoff** | `scripts/run_v4_bakeoff.py` → `v4_bakeoff.json`, `v4_latest.json` |
+| **Status** | RESEARCH; **`v2_latest.json` never overwritten** |
+
+### M7. v5 frequency + NewsEdge off-market (2026-08-31)
+
+| Field | Value |
+|-------|-------|
+| **Thesis** | Keep v2 signal; cut bad months via **frequency** (cooldown, loss-streak sit, month cap) + **NewsEdgeScan** (US/Asia overnight tape as news proxy — not NLP headlines) + October size soft |
+| **Gates** | max single-trade share **55%**; 2026 YTD uses 2/3 green-month rule |
+| **Bakeoff** | `scripts/run_v5_bakeoff.py` → `v5_bakeoff.json` (incl. bad-month delta vs v2) |
+| **Status** | RESEARCH; locked v2 untouched |
+
+### M8. Adaptive fingerprints + walk-forward (2026-08-31)
+
+| Field | Value |
+|-------|-------|
+| **Goal** | Forward-capable learning: remember *failure contexts* (regime/breadth/underwater/streak), not July/October hardcodes |
+| **Evidence gate** | ≥3 repeats before size-down; ≥6 before sit — never amplify |
+| **Eval** | `scripts/run_walkforward_adaptive.py` — carry ledger across years; compare reset-each-year vs adaptive carry |
+| **Artefact** | `models/pattern_forge/walkforward_adaptive.json` |
+| **Status** | RESEARCH; locked `v2_latest.json` untouched |
+
 ## Changelog
 
 | Date | Change |
 |------|--------|
+| 2026-08-31 | **Adaptive fingerprints + walk-forward:** see §M8 / `adaptive_learn.py` / `run_walkforward_adaptive.py`. |
+| 2026-08-31 | **v4 dual-mode:** attack/defense + RS scoring; see §M6 / `run_v4_bakeoff.py`. |
+| 2026-08-31 | **v3.1 indicators:** VWAP + rel volume + 200 EMA filters; EMA-only best pass3 variant; see §M5 / `run_v3_bakeoff_pass3.py`. |
 | 2026-08-30 | **ADANIENT verify + 2019/2021 fill + v3 OOS fail:** real fill; missing years were unrun not cherry-picked; v3 cannot clear confirmed OOS without killing edge; see §M4. |
 | 2026-08-30 | **v2.1 bakeoff:** full lane +86.3% vs locked v2 +103.2% — **no promote**; OOS logged; see §M3 / `v2_1_bakeoff.json`. |
 | 2026-08-30 | **v2.1 research lane:** shorts + hard swarm veto + overnight feeds + Lab charts + bakeoff/OOS gate; see §M3. |

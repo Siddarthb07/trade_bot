@@ -62,6 +62,22 @@ type StrategyCard = {
   n_trades?: number;
 };
 
+type StretchPanel = {
+  variant?: string;
+  lane?: string;
+  claim?: string;
+  nine_nine?: boolean;
+  locked_v2_untouched?: boolean;
+  summary?: {
+    years_positive?: number;
+    sum_pnl?: number;
+    y2020?: number;
+    y2021?: number;
+  };
+  years?: { year: number; label?: string; return_pct: number; worst_month_pct?: number; n_trades?: number }[];
+  chart?: ChartRow[];
+};
+
 type ChartRow = { name: string; end: number; pnl: number; ret: number; fill?: string };
 
 type AgentMsg = {
@@ -259,6 +275,7 @@ export default function PatternLabPage() {
   const [priceChart, setPriceChart] = useState<ChartPayload | null>(null);
   const [chartBusy, setChartBusy] = useState(false);
   const [disclaimer, setDisclaimer] = useState("");
+  const [stretchPanel, setStretchPanel] = useState<StretchPanel | null>(null);
 
   const loadChart = useCallback(async (ticker?: string, asof?: string) => {
     if (!ticker || !asof || ticker === "cash") {
@@ -288,6 +305,7 @@ export default function PatternLabPage() {
           chart?: ChartRow[];
           equity_compare?: EquityCompareRow[];
           disclaimer?: string;
+          stretch_panel?: StretchPanel | null;
         }>("/exec/pattern-forge/summary"),
         apiFetch<{ decisions: Decision[] }>("/exec/pattern-forge/decisions?limit=300"),
         apiFetch<{ trades: Trade[] }>("/exec/pattern-forge/trades?limit=200"),
@@ -300,6 +318,7 @@ export default function PatternLabPage() {
       setChartRows(s.chart || []);
       setEquityCompare(s.equity_compare || []);
       setDisclaimer(s.disclaimer || "");
+      setStretchPanel(s.stretch_panel || null);
       const decs = d.decisions || [];
       setDecisions(decs);
       setTrades(t.trades || []);
@@ -458,6 +477,55 @@ export default function PatternLabPage() {
               </span>
             </div>
           </section>
+
+          {stretchPanel && (stretchPanel.chart || []).length > 0 && (
+            <section className="pl-glass pl-panel pl-stretch-panel" aria-label="Stretch survivor">
+              <div className="pl-panel-head">
+                <h2>
+                  Stretch survivor · <span className="pl-badge pl-badge-stretch">{stretchPanel.variant || "guard_omega_d"}</span>
+                </h2>
+                <p className="pl-soft">
+                  {stretchPanel.summary?.years_positive ?? stretchPanel.years?.length ?? 0}/9 positive standalone years · ₹10k/yr · stretch lane · not live
+                </p>
+              </div>
+              <div className="pl-stretch-stats">
+                <div className="pl-metric">
+                  <span className="pl-metric-label">Sum PnL</span>
+                  <strong className="up">{fmtInr(stretchPanel.summary?.sum_pnl)}</strong>
+                </div>
+                <div className="pl-metric">
+                  <span className="pl-metric-label">2020</span>
+                  <strong className="up">{fmtPct(stretchPanel.summary?.y2020)}</strong>
+                </div>
+                <div className="pl-metric">
+                  <span className="pl-metric-label">2021</span>
+                  <strong className="up">{fmtPct(stretchPanel.summary?.y2021)}</strong>
+                </div>
+                <div className="pl-metric">
+                  <span className="pl-metric-label">Locked v2</span>
+                  <strong className="up">untouched</strong>
+                  <span className="pl-soft">runner +103% 2025</span>
+                </div>
+              </div>
+              <ResponsiveContainer width="100%" height={220}>
+                <BarChart data={stretchPanel.chart} margin={{ top: 8, right: 8, left: 0, bottom: 24 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" vertical={false} />
+                  <XAxis dataKey="name" tick={{ fill: "#8e8e93", fontSize: 11 }} />
+                  <YAxis tick={{ fill: "#8e8e93", fontSize: 11 }} tickFormatter={(v) => `${v}%`} width={44} />
+                  <Tooltip
+                    contentStyle={tipStyle}
+                    formatter={(v: number) => [fmtPct(v), "Year return"]}
+                  />
+                  <Bar dataKey="ret" radius={[5, 5, 0, 0]}>
+                    {(stretchPanel.chart || []).map((entry) => (
+                      <Cell key={entry.name} fill={entry.fill || "#30d158"} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+              <p className="pl-soft pl-stretch-claim">{stretchPanel.claim || "Clean PIT standalone panel · research only"}</p>
+            </section>
+          )}
 
           <section className="pl-glass pl-panel">
             <div className="pl-panel-head">
